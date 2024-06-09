@@ -1,34 +1,87 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <!--    &#45;&#45;css파일-->
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/main_menu.css">
+    <!--    제이쿼이 -->
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <!--    js파일-->
     <script src="/js/main.js"></script>
+
+
+    <!--    구글폰트-->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,500,0,100"/>
     <title>JCGX</title>
 </head>
 <body>
-<form name="MovieAction" method="get" class="MovieAction">
 <div class="movie_box">
-    <h2 id="logo">JCGX</h2>
-    <ul id="movie_menu">
-        <div class="menu_button" >
-            <button id="menu_div">                HOME</button>
-        </div>
-        <div class="menu_button">
-            이벤트
-        </div>
-        <div class="menu_button">
-            예매버튼
-        </div>
-        <div class="menu_button">
-            예매내역
-        </div>
-        <div class="menu_button" >
-            로그인
+
+    <div class="top_nav">
+
+        <h2 id="logo">
+            <div th:replace="movie/movie_menu/movie_menu.html :: movie_menu"></div>
+
+                <div class="div_title">
+            JCGX
+                </div>
+
+        </h2>
+    </div>
+
+
+    <form name="MovieAction" method="get" class="MovieAction">
+
+
+        <div class="snippet-container">
+            <div class="content_view">
+                <button class="arrow"><span class="material-symbols-outlined" id="google">
+
+arrow_circle_left
+
+</span></button>
+                <iframe width="70%" height="90%" src="https://www.youtube.com/embed/QTK44VXXkXg?si=zUOLTcM-XlVx1jTv"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <button class="arrow"><span class="material-symbols-outlined" id="google1">
+arrow_circle_right
+</span></button>
+            </div>
+
+            <div class="new_board">
+                <div class="board">
+                    <h5 class="h2_color">공지사항</h5>
+                    <div class="box_board">
+                        <div class="board_box">
+                            <div class="middle_title">
+
+                            </div>
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="board_blue">
+                    <h5 class="h2_color">자유게시판</h5>
+                    <div class="box_board">
+
+                        <div class="board_boxs">
+                            <div class="middle_title">
+
+                            </div>
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-    </ul>
+    </form>
 </div>
-</form>
-</body>
-</html>

@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<div th:fragment="movie_menu" class="movie_menu" >
+    <div class="hideMenuBody" id="hideMenuBody">
+        <div onclick="location.href='/movie/main'" class="buttons">Home</div>
+        <div onclick="location.href='/movie/community/event'" class="buttons" >이벤트</div>
+        <div onclick="location.href='/movie/Reservation/sreservation'" class="buttons">예매</div>
+        <div onclick="location.href='/movie/login/join'" class="buttons">회원가입</div>
+        <div onclick="location.href='/movie/login/login'" class="buttons">로그인</div>
+
+    </div>
+<div class="circleBt" id="circleBt" onclick="showLeftMenu(); return false;">
+    <i class= "icon-align-justify"></i>
+</div>
+</div>
