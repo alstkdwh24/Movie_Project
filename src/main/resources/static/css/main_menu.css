@@ -13,3 +13,6 @@
 .buttons{
     cursor: pointer;
 }
+.modal{
+    display: none;
+}
