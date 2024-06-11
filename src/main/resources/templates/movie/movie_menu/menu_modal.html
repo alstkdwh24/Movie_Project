@@ -5,15 +5,22 @@
     <title>Title</title>
 </head>
 <body>
-    <div th:fragment="menu_fragment" class="modal">
-        <div>
-            <div></div>
-            <div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-    </div>
+<div id="menu_buttons" th:fragment="menu_fragment">
 
+
+<div id="modalContainer" class="hidden">
+    <div id="modalContent">
+        <div>
+        <h2 id="h2_modal">Modal Title</h2>
+        </div>
+        <div class="body_modal">
+            <div></div>
+            <div></div>
+        </div>
+        <button id="modalCloseButton">Close</button>
+    </div>
+</div>
+    <script src="/js/main.js"></script>
+</div>
 </body>
 </html>

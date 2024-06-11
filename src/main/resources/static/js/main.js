@@ -1,24 +1,13 @@
+document.addEventListener('DOMContentLoaded', (event) => {
+    const modalOpenButton = document.querySelector('.modal_btn');
+    const modalCloseButton = document.getElementById('modalCloseButton');
+    const modal = document.getElementById('modalContainer');
 
+    modalOpenButton.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+    });
 
-
-    function showLeftMenu(){
-    var circleBtObj = document.getElementById('circleBt');
-    var leftMenuObj = document.getElementById('hideMenuBodyId');
-    circleBtObj.style['display'] = "none";
-    leftMenuObj.style['transform'] = "translate(0px, 0px)";
-
-    leftMenuObj.style['msTransform'] = "translate(0px, 0px)";
-    leftMenuObj.style['mozTransform'] = "translate(0px, 0px)";
-    leftMenuObj.style['webkitTransform'] = "translate(0px, 0px)";
-    leftMenuObj.style['oTransform'] = "translate(0px, 0px)";
-}
-
-    function closeLeftMenu() {
-    var circleBtObj = document.getElementById('circleBt');
-    var leftMenuObj = document.getElementById('hideMenuBodyId');
-
-    circleBtObj.style['display'] = "block";
-    leftMenuObj.removeAttribute("style");
-}
-
-
+    modalCloseButton.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
+});
