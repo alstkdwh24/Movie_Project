@@ -1,0 +1,43 @@
+*{
+    padding: 0; margin: 0;
+}
+html{
+    width: 100%;
+    height: 1600px;
+}
+body{
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    background:linear-gradient(#b8def4 14%,#458ce1 80%);
+
+}
+
+
+
+
+.body_left {
+    width: 100%;
+    height: 1200px;
+
+ box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-direction: column ;
+    align-items: center;
+
+}
+.body_center{
+    width: 65%;
+    height: 17%;
+    background:linear-gradient(#7289e9 14%,#2347dd 80%);
+border-radius: 100px;
+
+}
+.body_ul{
+    min-width: 800px;
+    width: 65%;
+    height: 80%;
+    border: 1px solid black;
+;
+}

@@ -1,8 +1,9 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    const modalOpenButton = document.querySelector('.modal_btn');
-    const modalCloseButton = document.getElementById('modalCloseButton');
-    const modal = document.getElementById('modalContainer');
+let modal = document.getElementById('modalContainer');
 
+document.addEventListener('DOMContentLoaded', (event) => {
+
+    let modalOpenButton = document.querySelector('.modal_btn');
+    let modalCloseButton = document.getElementById('modalCloseButton');
     modalOpenButton.addEventListener('click', () => {
         modal.classList.remove('hidden');
     });
@@ -10,4 +11,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     modalCloseButton.addEventListener('click', () => {
         modal.classList.add('hidden');
     });
+
+
+
 });
+window.onclick = function (event){
+    if(event.target===modal){
+        modal.classList.add('hidden');
+    }}
