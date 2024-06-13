@@ -1,4 +1,4 @@
-package com.example.movie.login;
+package com.example.movie.LoginService;
 
 
 import org.apache.ibatis.annotations.Mapper;

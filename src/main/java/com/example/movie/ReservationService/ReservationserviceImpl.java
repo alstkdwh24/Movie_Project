@@ -1,7 +1,6 @@
-package com.example.movie.Reservation;
+package com.example.movie.ReservationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service("reservationService")

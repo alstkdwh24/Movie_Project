@@ -1,4 +1,4 @@
-package com.example.movie.service;
+package com.example.movie.MovieService;
 
 
 import org.apache.ibatis.annotations.Mapper;

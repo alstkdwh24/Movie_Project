@@ -1,6 +1,6 @@
 package com.example.movie.controller;
 
-import com.example.movie.login.LoginService;
+import com.example.movie.LoginService.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;

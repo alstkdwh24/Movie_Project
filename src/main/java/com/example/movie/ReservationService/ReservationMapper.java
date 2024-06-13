@@ -1,4 +1,4 @@
-package com.example.movie.Reservation;
+package com.example.movie.ReservationService;
 
 import org.apache.ibatis.annotations.Mapper;
 
