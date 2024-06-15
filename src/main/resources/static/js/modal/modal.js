@@ -1,9 +1,8 @@
-
+let modals=document.querySelectorAll(".modal_container")
 
    document.addEventListener('DOMContentLoaded',(eve)=> {
 
 
-       let modals = document.querySelectorAll(".modal_container");
        let buttons = document.querySelectorAll(".chat_button");
        var closes = document.querySelectorAll(".close_close");
 
@@ -26,4 +25,9 @@
            }
        });
 
+
    });
+   window.onclick = function (event){
+       if(event.target===modals){
+           modals.classList.add('hidden');
+       }}
