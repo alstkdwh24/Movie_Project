@@ -274,6 +274,12 @@ display: flex;
     cursor:pointer;
 
 }
-
+/*아이프레임 비디오*/
+.iframe{
+    position: fixed;
+    width:70% ;
+    height:92%;
+    left: -100%;
+}
 
 
