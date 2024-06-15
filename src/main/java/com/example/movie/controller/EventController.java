@@ -1,5 +1,6 @@
 package com.example.movie.controller;
 
+import com.example.movie.communityEventService.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -10,10 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/movie/community")
 public class EventController {
     @Autowired
-    @Qualifier()
+    @Qualifier("EventService")
+    public EventService eventService;
 
     @GetMapping("/event")
-    public String Event(){
+    public String Event2(){
         return "movie/community/event";
     }
     @GetMapping("/gboard")

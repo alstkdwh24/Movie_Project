@@ -1,4 +1,4 @@
-package com.example.movie.EventService;
+package com.example.movie.communityEventService;
 
 import org.apache.ibatis.annotations.Mapper;
 

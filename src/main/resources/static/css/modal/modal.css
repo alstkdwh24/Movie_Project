@@ -32,6 +32,7 @@
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5); /* 배경을 반투명하게 */
+    z-index: 10;
 
 }
 /* 모달의 내용시작 */
@@ -66,7 +67,7 @@ border: none;
     background-color: #b85c00;
     position: fixed;
    text-align: center;
-    top:4%;
+    top:1%;
     width: 80px;
     height: 80px;
     border-radius: 50px;

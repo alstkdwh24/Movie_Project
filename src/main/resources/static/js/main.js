@@ -1,6 +1,6 @@
 let modal = document.getElementById('modalContainer');
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', (even) => {
 
     let modalOpenButton = document.querySelector('.modal_btn');
     let modalCloseButton = document.getElementById('modalCloseButton');
@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 });
-window.onclick = function (event){
-    if(event.target===modal){
+window.onclick = function (even){
+    if(even.target===modal){
         modal.classList.add('hidden');
     }}
+
+
