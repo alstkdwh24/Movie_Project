@@ -1,7 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <div th:fragment="movie_menu" class="movie_menu" >
     <div class="hideMenuBody" id="hideMenuBody">
-        <div onclick="location.href='/movie/main'" class="buttons">Home</div>
+        <button class="slide_close"><span class="material-symbols-outlined" id="home">
+home
+</span></button>
         <div onclick="location.href='/movie/community/event'" class="buttons" >이벤트</div>
         <div onclick="location.href='/movie/Reservation/sreservation'" class="buttons">예매</div>
         <div class="buttons" id="menu_buttons" ><div th:replace="movie/movie_menu/menu_modal.html :: menu_fragment"></div>
@@ -12,9 +14,7 @@
 
     </div>
 
-<div class="circleBt" id="circleBt" onclick="showLeftMenu(); return false;">
-    <i class= "icon-align-justify"></i>
-</div>
+
 </div>
 
 

@@ -9,7 +9,7 @@
 #h2_modal{
     font-size: 40px;
     font-weight: bolder;
-    color: red;
+
 }
 /*모달 제목*/
 #h2_modals{
@@ -58,7 +58,7 @@
 .modal_btn{
 border: none;
     background-color: antiquewhite;
-    color: red;
+    color: #35a7e9;
 
 }
 /*모달 닫기 버든*/
