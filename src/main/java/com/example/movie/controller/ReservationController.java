@@ -23,4 +23,8 @@ public class ReservationController {
 
         return "movie/Reservation/sreservation";
     }
+    @GetMapping("/reservation")
+    public  String reser(){
+        return "movie/Reservation/reservation";
+    }
     }

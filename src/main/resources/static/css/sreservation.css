@@ -25,4 +25,13 @@ body{
     height:83%;
     background-color: antiquewhite;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.body_movie_region{
+    width: 70%;
+    height: 80%;
+    background-color: black;
 }

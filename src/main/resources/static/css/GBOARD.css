@@ -3,7 +3,7 @@
 }
 html{
     width: 100%;
-    height: 1600px;
+    height: 2400px;
 }
 body{
     width: 100%;
@@ -18,26 +18,38 @@ body{
 
 .body_left {
     width: 100%;
-    height: 1200px;
+    height: 2400px;
 
  box-sizing: border-box;
     display: flex;
-    justify-content: center;
+    justify-content:space-around;
     flex-direction: column ;
     align-items: center;
 
 }
 .body_center{
     width: 65%;
-    height: 17%;
+    height: 10%;
     background:linear-gradient(#7289e9 14%,#2347dd 80%);
 border-radius: 100px;
+    top:0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+
 
 }
 .body_ul{
+    border-radius: 10px;
     min-width: 800px;
     width: 65%;
-    height: 80%;
+    height: 70%;
     border: 1px solid black;
+    min-height: 1200px;
+    top:-7%;
+    position: relative;
+    background: linear-gradient(#9dd5fa 30%,#1fb6f4 200%);
 ;
 }
