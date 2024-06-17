@@ -113,10 +113,10 @@ justify-content: center;
 
 }
 .snippet-container{
-    height: 90%;
+    height: 100%;
     width: 100%;
     background-color:black;
-    margin-bottom: 30px;
+    /*margin-bottom: 30px;*/
     display: flex;
     flex-direction: column;
 
@@ -130,6 +130,7 @@ justify-content: center;
     display: flex;
     justify-content: center;
 
+
 }
 .content_view .arrow{
     background-color: black;
@@ -138,7 +139,6 @@ justify-content: center;
  border: 1px solid antiquewhite;
     border-radius: 5px;
     box-sizing: border-box;
-
 }
 
  .material-symbols-outlined {
@@ -276,10 +276,26 @@ display: flex;
 }
 /*아이프레임 비디오*/
 .iframe{
-    position: fixed;
-    width:70% ;
-    height:92%;
-    left: -100%;
+    float: left ;
+max-width:10%;
+    max-height: 750px;
+margin-right: 100%;
 }
 
 
+/*영화프레임*/
+.body_movie_frame{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+}
+.body_movie_frame_feel{
+    width: 1000%;
+    height: 100%;
+}
+/*예고편 동영상 박스*/
+.body_movie_frame{
+    height: 92%;
+    box-sizing: border-box;
+}
