@@ -39,10 +39,11 @@ width: 100%;
     display: flex;
 justify-content: center;
     height: 100%;
-
+align-items: center;
     overflow: hidden;
     font-size: 80px;
     margin-bottom: 1px;
+
 }
 
 .menu_button{
@@ -237,9 +238,10 @@ display: flex;
 }
 .body_JCGX{
 
-    position: absolute;
-    left: 40%;
+    position: relative;
+    left: 98%;
     right:40%;
+
 
 
 }
@@ -320,3 +322,12 @@ min-width:1500px;
     height: 92%;
     box-sizing: border-box;
 }
+.div_image_icon{
+    position: relative;
+    right: 32%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#s{float: right;}

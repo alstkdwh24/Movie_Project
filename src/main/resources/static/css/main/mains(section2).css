@@ -1,0 +1,15 @@
+.section2{
+    height: 22%;
+    width: 100%;
+    border: 1px solid white;
+    color: #86edf2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.good_movies{
+    height: 100%;
+    width: 80%;
+    border: 1px solid white;
+
+}

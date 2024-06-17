@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <!--    &#45;&#45;css파일-->
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/main_menu.css">
+    <link rel="stylesheet" href="/css/전에%20했던%20css/main.css">
+    <link rel="stylesheet" href="/css/전에%20했던%20css/main_menu.css">
     <!--    모달 css-->
     <link rel="stylesheet" href="/css/modal/modal.css">
     <link rel="stylesheet" href="/css/modal/chat_modal.css">
@@ -30,28 +30,29 @@
     <div class="top_nav">
 
         <h2 id="logo">
-            <div th:replace="movie/movie_menu/movie_menu.html :: movie_menu"></div>
-            <!--채팅방 만들기-->
-            <div class="div_title">
-                <button class="image_button"><span class="material-symbols-outlined" id="image_span">
-menu
-</span>
+<!--            <div th:replace="movie/movie_menu/movie_menu.html :: movie_menu"></div>-->
+<!--            &lt;!&ndash;채팅방 만들기&ndash;&gt;-->
+<!--            <div class="div_title">-->
+<!--                <div class="div_image_icon">-->
+<!--                <button class="image_button"><span class="material-symbols-outlined" id="image_span">-->
+<!--menu-->
+<!--</span>-->
 
-                </button>
-                <button class="chat_button">
-                    <div class="body_div_chat">
-            <span class="material-symbols-outlined" id="image">
-chat_bubble
-</span></div>
-                </button>
-                <div class="body_chat">
-                    <h3 class="body_JCGX">JCGX</h3></div>
-                <div class="login_dox">s</div>
-            </div>
+<!--                </button>-->
+<!--                <button class="chat_button">-->
+<!--                    <div class="body_div_chat">-->
+<!--            <span class="material-symbols-outlined" id="image">-->
+<!--chat_bubble-->
+<!--</span></div>-->
+<!--                </button></div>-->
+<!--                <div class="body_chat">-->
+<!--                    <h3 class="body_JCGX">JCGX</h3></div>-->
+<!--                <div class="div_image_icon" id="s">s</div>-->
+<!--            </div>-->
 
-        </h2>
-    </div>
-    <div th:replace="movie/chat/chat.html :: chat_modal"></div>
+<!--        </h2>-->
+<!--    </div>-->
+<!--    <div th:replace="movie/chat/chat.html :: chat_modal"></div>-->
 
     <form name="MovieAction" method="get" class="MovieAction">
 
@@ -103,7 +104,10 @@ chat_bubble
 
 
     </form>
+        </h2>
+    </div>
 </div>
+
 <script src="/js/main.js"></script>
 <script src="/js/modal/modal.js"></script>
 <script src="/js/slide/slide.js"></script>
