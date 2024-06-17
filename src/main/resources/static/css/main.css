@@ -39,8 +39,10 @@ width: 100%;
     display: flex;
 justify-content: center;
     height: 100%;
-    top:100px;
+
     overflow: hidden;
+    font-size: 80px;
+    margin-bottom: 1px;
 }
 
 .menu_button{
@@ -123,10 +125,11 @@ justify-content: center;
 
 }
 .content_view{
-    height: 800px;
+    height: 1000%;
     width: 100%;
     background-color:black;
-    margin: 30px 0;
+
+flex-direction: row;
     display: flex;
     justify-content: center;
 
@@ -135,10 +138,12 @@ justify-content: center;
 .content_view .arrow{
     background-color: black;
     width:15%;
-    height:92%;
+    height:100%;
  border: 1px solid antiquewhite;
     border-radius: 5px;
     box-sizing: border-box;
+    position: relative;
+
 }
 
  .material-symbols-outlined {
@@ -247,8 +252,11 @@ display: flex;
              'opsz' 48
  }
 #image{
-    font-size: 120px;
-    margin-top: 4%;
+    font-size: 70px;
+    position: relative;
+   ;
+    right: 90%;
+
 
 }
 .body_div_chat{
@@ -259,27 +267,35 @@ display: flex;
     cursor:pointer;
 }
 #image_span{
-    font-size: 140px;
+    font-size: 90px;
     position: relative;
-   margin-top: 8%;
+    float:left;
+
+
 }
 .image_button{
     width: 8%;
-    height: 4%;
+    height: 20%;
     background-color: black;
     position: relative;
-   right: 41%;
-    top:5%;
+    float: left;
+    right: 30%;
+
+
+
     border:none;
     cursor:pointer;
+
 
 }
 /*아이프레임 비디오*/
 .iframe{
     float: left ;
-max-width:10%;
-    max-height: 750px;
-margin-rightgit : 100%;
+    width: 100%;
+    height: 100%;
+min-width:740px;
+    min-height: 800px;
+
 }
 
 
@@ -288,11 +304,16 @@ margin-rightgit : 100%;
     width: 100%;
     height: 100%;
     overflow: hidden;
+    position: relative;
+    top:-5%;
 
 }
 .body_movie_frame_feel{
-    width: 1000%;
+    display: flex;
+min-width:1500px;
+    width: 150%;
     height: 100%;
+ min-height:800px;
 }
 /*예고편 동영상 박스*/
 .body_movie_frame{

@@ -1,12 +1,14 @@
 /*모달 열기버튼*/
 .chat_button{
-    width: 7%;
-    left: 40%;
+    width: 1%;
+    right: 32%;
     position: relative;
     background: black;
-    margin-top: 1.5%;
+
     border:none;
     cursor: pointer;
+   padding: 1% 0 0 0;
+
 }
 /*모달 내용*/
 .modal_contents{

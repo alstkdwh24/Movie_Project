@@ -15,8 +15,14 @@ public class MovieController  {
     @Qualifier("movieService")
     public MovieService movieService;
 
-    @GetMapping("/main")
+    @GetMapping("/mains")
     public String mains(){
+        return "movie/mains";
+    }
+
+
+    @GetMapping("/main")
+    public String main(){
         return "movie/main";
     }
 }

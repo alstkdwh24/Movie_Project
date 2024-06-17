@@ -15,19 +15,16 @@ body{
     width: 1300px;
     height: 1600px;
 
-    border: 1px solid black;
 display: flex;
     justify-content: center;
     align-items: center;
-    background:linear-gradient(36.41deg, blue 50%,red 50%);
 }
 .big_join{
-    width: 75%;
-    height: 90%;
-    border: 1px solid black;
-    border-radius: 50px;
+    width: 65%;
+    height: 80%;
     background:linear-gradient(36.41deg, #35a7e9 37%, #86edf2 103%);
-
+border-radius: 50px;
+    border:1px solid black;
 }
 #big_join_title{
     width: 100%;
@@ -38,7 +35,8 @@ display: flex;
     align-items: center;
     color:red;
     background-color:black ;
-    border-radius: 50px 50px 0 0 ;
+
+    box-sizing: border-box;
 }
 .join_id{
     width: 100%;
@@ -47,7 +45,7 @@ display: flex;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 40px; /* 글씨 크기 설정 */
+    font-size: 20px; /* 글씨 크기 설정 */
 }
 input{
 display: flex;
@@ -89,9 +87,9 @@ display: flex;
 .input_check_box{
     justify-content: space-evenly;
     width: 10%;
-    height: 40%;
+    height: 20%;
 
 }
 #join_gender{
-    font-size: 40px;
+    font-size: 20px;
 }

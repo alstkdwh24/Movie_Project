@@ -7,7 +7,7 @@
 }
 /* 모달 버튼 제목 */
 #h2_modal{
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bolder;
 
 }
@@ -117,6 +117,14 @@ display:flex;
 
 
 }
+.login_dox{
+    width: 30%;
+    height: 100%;
+    border:1px solid white;
+    float: right;
+    position: relative;
+    left:41%;
 
+}
 
 
