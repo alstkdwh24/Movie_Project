@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/main/mains(article).css">
     <link rel="stylesheet" href="/css/main/mains(section).css">
     <link rel="stylesheet" href="/css/main/mains(section2).css">
+    <link rel="stylesheet" href="/css/main/mains_movie_store.css">
     <!--    모달 css-->
     <link rel="stylesheet" href="/css/modal/modal.css">
     <link rel="stylesheet" href="/css/modal/chat_modal.css">
@@ -28,15 +29,9 @@
 
 </head>
 <body>
-<article>
-<div class="big_image">
-    <div class="title">
-        <div class="icon_menu" id="account_div"></div>
-        <div class="real_title"></div>
-        <div class="icon_menu" ></div>
-    </div>
+<div th:replace="/movie/mains_menu/main_menus.html :: article_div" >
+
 </div>
-</article>
 <section>
 <div class="movie_list">
     <div class="good_movie"></div>
@@ -58,8 +53,8 @@
     </div>
 </div>
 </section>
-<div th:replace="movie/mains_fragment/mains_fragment.html :: mains_fragment"></div>
-
+<div th:replace="movie/mains_fragment/mains_fragment.html :: mains_fragment"></div><!--영화관 이벤트-->
+<div th:replace="movie/shop/movie_store.html :: movie_SHOP"></div><!--영화관상점-->
 <script src="/js/main.js"></script>
     <script src="/js/modal/modal.js"></script>
     <script src="/js/slide/slide.js"></script>

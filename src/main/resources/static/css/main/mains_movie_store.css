@@ -1,0 +1,23 @@
+/*거대한 틀*/
+.section3{
+    height: 22%;
+    width: 100%;
+    border: 1px solid white;
+    color: #86edf2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*내용과 가까운 틀*/
+.movie_movie{
+    width:80%;
+    height: 80%;
+    border: 1px solid white;
+    display: flex;
+    justify-content: space-between;
+}
+.ant{
+    width:30%;
+    height: 100%;
+    border: 1px solid white;
+}

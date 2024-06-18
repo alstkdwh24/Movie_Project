@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/movie/chat")
+@RequestMapping("movie/chats")
 public class ChatController {
     @Autowired
     @Qualifier("chatService")
@@ -17,7 +17,7 @@ public class ChatController {
 
     @GetMapping("/chat")
     public String Chat(){
-        return "movie/chat/chat";
+        return "movie/chats/chat";
     }
 
 }
