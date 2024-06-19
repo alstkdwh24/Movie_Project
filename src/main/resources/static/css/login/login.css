@@ -89,9 +89,10 @@ display: flex;
     align-items: center;
 }
 .input_black{
-    height: 30%;
+    height: 40%;
     width: 70%;
     border-radius: 10px;
+    border:none;
 
 
 
