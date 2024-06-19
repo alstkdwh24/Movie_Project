@@ -84,6 +84,17 @@ body {
     height: 100%;
     box-sizing: border-box;
     border: 1px solid white;
+    display: flex;
+
+
+}
+.real_title_top_blanks {
+    width: 20%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid white;
+
+
 
 }
 
@@ -340,4 +351,16 @@ top:-5%;
 }
 .youtube{
     color:antiquewhite;
+}
+.popcorn{
+    border: 1px solid white;
+    width: 50%;
+    height: 100%;
+    background-color: transparent;
+
+}
+.theater{    border: 1px solid white;
+    width: 50%;
+    height: 100%;
+    background-color: transparent;
 }
