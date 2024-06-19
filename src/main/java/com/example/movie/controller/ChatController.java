@@ -15,9 +15,9 @@ public class ChatController {
     public ChatService chatService;
 
 
-    @GetMapping("/chat")
+    @GetMapping("/Question")
     public String Chat(){
-        return "movie/chats/chat";
+        return "movie/chats/Question";
     }
 
 }

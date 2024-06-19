@@ -21,12 +21,11 @@ body {
 .overflow {
     overflow: hidden;
     width: 100%;
-    height: 100%;
+    height: 32%;
 }
 
 .title {
 
-    border: 1px solid white;
     height: 16%;
     overflow: hidden;
     display: flex;
@@ -43,7 +42,6 @@ body {
 .icon_menu {
     height: 100%;
     width: 15%;
-    border: 1px solid white;
     float: right;
     z-index: 2;
     box-sizing: border-box;
@@ -55,7 +53,6 @@ body {
 .real_title {
     height: 100%;
     width: 70%;
-    border: 1px solid white;
     box-sizing: border-box;
     min-width: 1200px;
 
@@ -68,7 +65,6 @@ body {
 #real_title_top {
     width: 100%;
     height: 65%;
-    border: 1px solid white;
     box-sizing: border-box;
     z-index: 3;
     display: flex;
@@ -83,7 +79,6 @@ body {
     width: 20%;
     height: 100%;
     box-sizing: border-box;
-    border: 1px solid white;
     display: flex;
 
 
@@ -92,7 +87,7 @@ body {
     width: 20%;
     height: 100%;
     box-sizing: border-box;
-    border: 1px solid white;
+
 
 
 
@@ -105,7 +100,7 @@ body {
 
     font-size: 15px;
     box-sizing: border-box;
-    border: 1px solid white;
+
     display: flex;
 
 }
@@ -113,9 +108,10 @@ body {
 .real_title_top_blank_loginFQ_a {
     width: 33.3%;
     height: 100%;
-    border: 1px solid white;
+    border-bottom: 1px solid white;
+cursor: pointer;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: center;
     text-decoration: underline;
     color: antiquewhite;
@@ -125,7 +121,7 @@ body {
     width: 60%;
     height: 100%;
     box-sizing: border-box;
-    border: 1px solid white;
+border-bottom: 1px solid white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -134,7 +130,7 @@ body {
 #real_title_bottom {
     width: 100%;
     height: 35%;
-    border-top: 1px solid white;
+
     box-sizing: border-box;
     z-index: 3;
     display: flex;
@@ -145,7 +141,7 @@ body {
 
 .real_title_bottom_two {
     height: 100%;
-    border-top: 1px solid white;
+
     width: 50%;
     box-sizing: border-box;
     display: flex;
@@ -154,7 +150,7 @@ body {
 .real_title_bottom_black {
     width: 25%;
     height: 100%;
-    border: 1px solid white;
+
     box-sizing: border-box;
     float: left;
 
@@ -163,7 +159,7 @@ body {
 .real_title_bottom_black_icon{
     width:80% ;
     height: 100%;
-    border: 1px solid white;
+
     display: flex;
     justify-content: center;
 }
@@ -171,7 +167,7 @@ body {
 .real_title_bottom_black_icon_div{
     width:25%;
     height: 100%;
-    border: 1px solid white;
+
 }
 
 .icon_button{
@@ -179,6 +175,7 @@ body {
     height: 100%;
     border:none;
     background-color: transparent;
+    cursor:pointer;
 }
 
 .example-class{
@@ -194,7 +191,7 @@ width: 70%;
 .real_title_bottom_blacks {
     width: 25%;
     height: 100%;
-    border: 1px solid white;
+
     box-sizing: border-box;
     float: right;
     display: flex;
@@ -205,7 +202,7 @@ width: 70%;
 .real_title_bottom_blacks_arr{
     width: 80%;
     height: 100%;
-    border: 1px solid white;
+
     display: flex;
 
 }
@@ -213,10 +210,11 @@ width: 70%;
 .real_title_bottom_blacks_a{
     width: 25%;
     height: 100%;
-    border: 1px solid white;
+
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor:pointer;
 }
 #menu{
     color: antiquewhite;
@@ -241,7 +239,7 @@ width: 70%;
 .real_title_bottom_two_reservation {
     width: 20%;
     height: 100%;
-    border: 1px solid white;
+cursor: pointer;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
@@ -261,7 +259,7 @@ width: 70%;
 .big_image {
     width: 100%;
     height: 100%;
-    border: 1px solid white;
+
     box-sizing: border-box;
     background-image: url("../img/4w84T0Vao2O_uvFZwuxehrec3fgBt0PBETJa2-5dxghEL8tWr6VjzMHpPjKLH89fV_UwjShjQRZlOwP03FnmsV2WLzGJ9Cv5YHmLjN6lwi8CBQjXIqO2cm7gzHW42q-QFXjmt2Rl3O6b2WKM2lNaSA.webp");
     background-size: contain; /* 이미지를 div에 맞게 조정 */
@@ -287,7 +285,7 @@ width: 70%;
     width: 15%;
     height: 100%;
     background-color: transparent;
-    border: 1px solid white;
+
     float: right;
     display: flex;
     align-items: center;
@@ -297,7 +295,7 @@ width: 70%;
     width: 15%;
     height: 100%;
     background-color: transparent;
-    border: 1px solid white;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -331,7 +329,7 @@ width: 70%;
 }
 .article {
     width: 1000%;
-    height: 32%;
+    height: 100%;
     position: relative;
     z-index: 2;
 
@@ -353,14 +351,19 @@ top:-5%;
     color:antiquewhite;
 }
 .popcorn{
-    border: 1px solid white;
-    width: 50%;
-    height: 100%;
-    background-color: transparent;
 
-}
-.theater{    border: 1px solid white;
     width: 50%;
     height: 100%;
     background-color: transparent;
+    border:none;
+    border-bottom: 1px solid white;
+cursor: pointer;
+}
+.theater{
+    width: 50%;
+    height: 100%;
+    background-color: transparent;
+    border:none;
+    border-bottom: 1px solid white;
+cursor: pointer;
 }
