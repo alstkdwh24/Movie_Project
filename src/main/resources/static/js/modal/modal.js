@@ -1,33 +1,37 @@
-let modals=document.querySelectorAll(".modal_container")
 
-   document.addEventListener('DOMContentLoaded',(eve)=> {
+let modals = document.querySelectorAll(".modal_contents");
+document.addEventListener('DOMContentLoaded', (event) => {
 
+    let buttons = document.querySelectorAll(".modal_button");
+    let closes = document.querySelectorAll(".close_close");
 
-       let buttons = document.querySelectorAll(".chat_button");
-       var closes = document.querySelectorAll(".close_close");
+    console.log("Number of buttons:", buttons.length);
+    console.log("Number of modals:", modals.length);
+    console.log("Number of close buttons:", closes.length);
 
-       console.log("Number of buttons:", buttons.length);
-       console.log("Number of modals:", modals.length);
-       console.log("Number of close buttons:", closes.length);
-       buttons.forEach((button, index) => {
-           button.onclick = function () {
-               modals[index].style.display = "flex";
-               modals[index].style.justifyContent="center";
-               modals[index].style.alignItems="center";
+    buttons.forEach((button, index) => {
+        if (index < modals.length) {
+            button.onclick = function () {
+                modals[index].style.display = "flex";
+                modals[index].style.justifyContent = "center";
+                modals[index].style.alignItems = "center";
+            }
+        }
+    });
 
-           }
-       });
-       closes.forEach((close, index) => {
+    closes.forEach((close, index) => {
+        if (index < modals.length) {
+            close.onclick = function () {
+                modals[index].style.display = "none";
+            }
+        }
+    });
 
-
-           close.onclick = function () {
-               modals[index].style.display = "none";
-           }
-       });
-
-
-   });
-   window.onclick = function (event){
-       if(event.target===modals){
-           modals.classList.add('hidden');
-       }}
+    window.onclick = function (event) {
+        modals.forEach(modal => {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+    };
+});

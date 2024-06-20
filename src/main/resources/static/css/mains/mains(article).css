@@ -350,11 +350,28 @@ cursor: pointer;
 .Copyright{
         color: white;
     width: 5%;
-
+cursor:pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: underline;
+    border:none;
+    background-color: transparent;
+    font-size: 15px;
+}
+.modal_button{
+
+        color: white;
+        width: 5%;
+        cursor:pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: underline;
+        border:none;
+        background-color: transparent;
+        font-size: 15px;
+
 }
 #JCGX{
     width: 5%;
