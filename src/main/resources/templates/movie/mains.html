@@ -29,7 +29,7 @@
 </head>
 <body>
 <div class="overflow">
-<div th:replace="/movie/mains_menu/mains_menus.html :: article_div" >
+<div th:replace="/movie/mains_fragment/mains_menus.html :: article_div" >
 
 </div>
 </div>
@@ -57,7 +57,9 @@
 </section>
 <div th:replace="movie/mains_fragment/mains_fragment.html :: mains_fragment"></div><!--영화관 이벤트-->
 <div th:replace="movie/shop/movie_store.html :: movie_SHOP"></div>
-<div class="licence"></div><!--영화관상점-->
+<div th:replace="/movie/mains_fragment/mains_bottom.html :: mains_bottom">
+
+</div><!--영화관상점-->
 <a href="https://icons8.com/icon/R68QQG5KXRB3/인스-타-그램">인스 타 그램</a> icon by <a href="https://icons8.com">Icons8</a>    <script src="/js/slide/slide.js"></script>
 <a  href="https://icons8.com/icon/435/페이스-북">페이스 북</a> icon by <a href="https://icons8.com">Icons8</a>
 <a  href="https://icons8.com/icon/9a46bTk3awwI/유튜브-재생">유튜브 재생</a> icon by <a href="https://icons8.com">Icons8</a>

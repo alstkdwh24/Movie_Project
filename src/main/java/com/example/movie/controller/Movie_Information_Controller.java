@@ -19,6 +19,6 @@ public class Movie_Information_Controller {
 
     @GetMapping("/movie_information")
     public String movie_information(){
-        return "/movie/information/movie_information";
+        return "movie/information/movie_information";
     }
 }
