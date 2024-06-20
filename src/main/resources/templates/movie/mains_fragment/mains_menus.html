@@ -58,8 +58,9 @@
                         </div>
                     </div>
                     <div class="real_title_bottom_two">
-                        <div class="real_title_bottom_two_reservation"onclick="location.href='/movie/information/movie_information'">영화정보</div>
-                        <div class="real_title_bottom_two_reservation">커뮤니티</div>
+                        <div class="real_title_bottom_two_reservation" onclick="location.href='/movie/information/movie_information'">영화정보</div>
+                        <div class="real_title_bottom_two_reservation"><a class="community">커뮤니티
+                        </a></div>
                         <div class="real_title_bottom_two_reservation" onclick="location.href='/movie/Reservation/reservation'">예매</div>
                         <div class="real_title_bottom_two_reservation" onclick="location.href='/movie/community/event'">이벤트</div>
                         <div class="real_title_bottom_two_reservation" onclick="location.href='/movie/shop/movie_store'">스토어</div>
@@ -99,6 +100,8 @@ arrow_circle_right
             </div>
         </div>
     </div>
+    <div th:replace="/movie/mains_fragment/mains_menu_modal.html :: mains_menu_modal"></div>
+
 </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 
-let modals = document.querySelectorAll(".modal_contents");
+let modals = document.querySelectorAll(".modal_container");
 document.addEventListener('DOMContentLoaded', (event) => {
 
     let buttons = document.querySelectorAll(".modal_button");
