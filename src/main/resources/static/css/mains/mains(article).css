@@ -231,7 +231,7 @@ width: 70%;
 #menutwo{
     color: antiquewhite;
     font-size: 35px;
-    top:5%;
+    top:10%;
     right: 10%;
     position: relative;
 }
@@ -267,12 +267,12 @@ cursor: pointer;
     height: 100%;
 
     box-sizing: border-box;
-    background-image: url("../img/4w84T0Vao2O_uvFZwuxehrec3fgBt0PBETJa2-5dxghEL8tWr6VjzMHpPjKLH89fV_UwjShjQRZlOwP03FnmsV2WLzGJ9Cv5YHmLjN6lwi8CBQjXIqO2cm7gzHW42q-QFXjmt2Rl3O6b2WKM2lNaSA.webp");
+    background-image: url("img.png");
     background-size: contain; /* 이미지를 div에 맞게 조정 */
     background-position: center;
 
 
-    z-index: 0; /* 낮은 z-index */
+    z-index: 10; /* 낮은 z-index */
     position: absolute;
     top: 0;
 }
@@ -321,6 +321,20 @@ cursor: pointer;
     align-items: center;
     justify-content: center;
 }
+.big_image_arrow_button_left{
+    border: none;
+
+    height: 10%;
+    width:50%;
+    background-color: transparent;
+    cursor:pointer;
+    max-width: 50%;
+    min-width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 #google_font{
     font-size: 100px;
@@ -418,4 +432,9 @@ cursor: pointer;
     position: relative;
     top:-18%;
     left: 10%;
+}
+.modalOpenButton{
+    position: relative;
+    top:10%;
+    right: 6%;
 }
