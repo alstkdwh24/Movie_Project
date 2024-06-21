@@ -1,4 +1,6 @@
-
+*{
+    padding: 0; margin: 0;
+}
 .modal_good{
     display: none;
     width: 100%;
@@ -16,7 +18,7 @@
     /*left: 50%;*/
     /*!*transform: translate(-50%, -50%);*!*/
     background-color: white;
-    padding: 20px;
+
     /*z-index: 10;*/
     justify-content: center;
     align-items: center;
@@ -26,28 +28,93 @@
 
 #mains_menus_modal {
     /* 배경을 반투명하게 */
-    width: 50%;
-    height: 60%;
-    background-color: #86edf2;
+    width: 28%;
+    min-width: 480px;
+    height: 40%;
+background-color:antiquewhite;
 z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    border-radius: 50px;
+ flex-direction: column;
 }
 .mains_contenttwo{
+ border:1px solid black ;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+display: flex;
+    flex-direction: column;
 
+    box-sizing:border-box ;
 
 }
 .modal_containerss{
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     width:100%;
     height: 100%;
 background-color: rgba(0, 0, 0, 0.5); /* 배경을 반투명하게 */
 }
-.modalss {
-    display: none;
+.close_closes{
+    height: 30%;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 50px 50px 0  0;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+
+}
+/*모달 바닥 버튼*/
+.botton_button{
+    height: 70%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing:border-box ;
+}
+.botton_button_left{
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*모달안에 게시판 이동 버튼*/
+.botton_button_right{
+    width: 80%;
+    height: 80%;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+#yellow{
+    background-color: gold;
+    border-radius: 50px;
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+#skyblue{
+    background-color: deepskyblue;
+    border-radius: 50px;
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+#h2_ti{
+    color: red;
+    font-size: 50px;
 }
