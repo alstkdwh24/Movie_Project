@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/mains/mains_movie_store.css">
     <link rel="stylesheet" href="/css/mains/modal/mains_botton_modal.css">
    <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
     <!--    모달 css-->
 <!--    <link rel="stylesheet" href="/css/modal/modal.css">-->
 <!--    <link rel="stylesheet" href="/css/modal/chat_modal.css">-->
@@ -66,13 +67,15 @@
 <div th:replace="movie/shop/movie_store.html :: movie_SHOP"></div>
 <div th:replace="/movie/mains_fragment/mains_bottom.html :: mains_bottom">
 </div>
+<div th:replace="/movie/mains_fragment/mains_menu_modal_important.html :: important"></div>
+<div th:replace="/movie/mains_fragment/mains_chat_modal.html :: chat"></div>
 <div th:replace="/movie/mains_fragment/mains_modal.html :: mains_modal"></div>
-
+<div th:replace="/movie/mains_fragment/mains_search_modal.html :: mains_search_modal"></div>
 <!--    js파일-->
 
 <script src="/js/modal/mains_menu_modal.js"></script>
 <script src="/js/modal/modal.js"></script>
-
+<script src="/js/modal/momo_modal.js"></script>
 
 </body>
 </html>

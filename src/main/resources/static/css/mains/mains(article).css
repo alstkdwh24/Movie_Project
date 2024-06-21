@@ -87,7 +87,7 @@ body {
     width: 20%;
     height: 100%;
     box-sizing: border-box;
-
+    border-bottom:1px solid white ;
 
 
 
@@ -218,7 +218,10 @@ width: 70%;
 }
 #menu{
     color: antiquewhite;
-    font-size: 40px;
+    font-size: 45px;
+    position: relative;
+    top:4%;
+
 }
 #menus{
     color: antiquewhite;
@@ -229,12 +232,15 @@ width: 70%;
     color: antiquewhite;
     font-size: 35px;
     top:5%;
+    right: 10%;
     position: relative;
 }
 
 #menulogin{
     color: antiquewhite;
     font-size: 40px;
+    top:30%;
+    position: relative;
 }
 .real_title_bottom_two_reservation {
     width: 20%;
@@ -407,4 +413,9 @@ cursor: pointer;
     border:none;
     border-bottom: 1px solid white;
 cursor: pointer;
+}
+#modal_modal{
+    position: relative;
+    top:-18%;
+    left: 10%;
 }
