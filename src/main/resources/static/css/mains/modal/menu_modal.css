@@ -1,40 +1,42 @@
 
 .modal_good{
+    display: none;
     width: 100%;
     height: 100%;
 
     background-color: rgba(0, 0, 0, 0.5); /* 배경을 반투명하게 */
     z-index: 10;
-    display: none;
-}
-
-#mains_menus_modal {
-display: flex;
     position: fixed;
-    /* 모달 스타일 추가 */
-    width: 100%;
-    height: 100%;
-    top:0%;
-    left: 0%;
+    /*!* 모달 스타일 추가 *!*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    top:0;
+    left: 0;
     /*top: 50%;*/
     /*left: 50%;*/
     /*!*transform: translate(-50%, -50%);*!*/
     background-color: white;
     padding: 20px;
-    z-index: 10;
+    /*z-index: 10;*/
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5); /* 배경을 반투명하게 */
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+#mains_menus_modal {
+    /* 배경을 반투명하게 */
+    width: 50%;
+    height: 60%;
+    background-color: #86edf2;
+z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 .mains_contenttwo{
-    width: 30%;
-    height: 60%;
 
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    background-color: white;
 
 }
 .modal_containerss{
