@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="/css/login/login.css">
+<!--    mains css-->
+    <link rel="stylesheet" href="/css/login/login(menu).css">
+
     <meta charset="UTF-8">
     <title>JCGX MEMBER LOGIN</title>
 </head>
 <body>
+<div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
+
 <div class="login_div">
     <div class="login_title"><h2 class="h2_title">JCGX</h2></div>
     <div class="login_id_pw">
@@ -25,5 +40,7 @@
     </div>
 
 </div>
+<script src="/js/modal/mains_menu_modal.js"></script>
+
 </body>
 </html>
