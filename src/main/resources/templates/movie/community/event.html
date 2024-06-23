@@ -14,8 +14,11 @@
     <!--    css-->
     <link rel="stylesheet" href="/css/event/event.css">
     <link rel="stylesheet" href="/css/login/login(menu).css">
-    <link rel="stylesheet" href="/css/login/login(menu).css">
+
     <link rel="stylesheet" href="/css/login/login.css">
+    <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -125,6 +128,9 @@
             </div>
         </div>
     </div>
+
+    <div th:replace="/movie/mains_fragment/mains_search_modal.html :: mains_search_modal"></div>
+    <div th:replace="/movie/mains_fragment/mains_chat_modal.html :: chat"></div>
     <tr class="tr_board">
         <td class=""></td>
         <td></td>
@@ -134,5 +140,9 @@
         <td></td>
     </tr>
 </div>
+<script src="/js/modal/mains_menu_modal.js"></script>
+<script src="/js/modal/modal.js"></script>
+<script src="/js/modal/momo_modal.js"></script>
+<script src="/js/modal/chat_modal.js"></script>
 </body>
 </html>
