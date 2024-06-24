@@ -12,36 +12,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/login/login.css">
-<!--    mains css-->
+    <!--    mains css-->
     <link rel="stylesheet" href="/css/login/login(menu).css">
-<link rel="stylesheet" href="/css/login/logins.css">
+    <link rel="stylesheet" href="/css/login/logins.css">
+    <link rel="stylesheet" href="/css/modal/fragment_gallery_modal.css">
+
     <meta charset="UTF-8">
     <title>JCGX MEMBER LOGIN</title>
 </head>
 <body>
 <div class="over_flow">
-<div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
+    <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 
-<div class="login_div">
-    <div class="login_title"><h2 class="h2_title">LOGIN</h2></div>
-    <div class="login_id_pw">
-        <div class="login_input"><input type="text" class="input_black"></div>
-        <div class="login_input"><input type="text" class="input_black"></div>
-        <div class="login_button">
-            <div class="big_button"><button id="login_button"><h3>LOGIN</h3></button></div>
-            <div class="small_button">
+    <div class="login_div">
+        <div class="login_title"><h2 class="h2_title">LOGIN</h2></div>
+        <div class="login_id_pw">
+            <div class="login_input"><input type="text" class="input_black"></div>
+            <div class="login_input"><input type="text" class="input_black"></div>
+            <div class="login_button">
+                <div class="big_button">
+                    <button id="login_button"><h3>LOGIN</h3></button>
+                </div>
+                <div class="small_button">
 
-                <button class="login_buttonss"><img id="img_kakao" src="/css/img/icon/kakao_login_medium_narrow.png" alt=""></button>
-                <button class="login_buttonss"><img id="img_naver" src="/css/img/2021_Login_with_naver_guidelines_Kr/btnG_완성형.png" alt=""></button>
+                    <button class="login_buttonss"><img id="img_kakao" src="/css/img/icon/kakao_login_medium_narrow.png"
+                                                        alt=""></button>
+                    <button class="login_buttonss"><img id="img_naver"
+                                                        src="/css/img/2021_Login_with_naver_guidelines_Kr/btnG_완성형.png"
+                                                        alt=""></button>
 
-           
+
+                </div>
             </div>
+            <div class="login_search"><a>아이디 찾기</a>|<a>비밀번호 찾기</a></div>
         </div>
-        <div class="login_search"><a>아이디 찾기</a>|<a>비밀번호 찾기</a></div>
+
     </div>
 
 </div>
+<div th:replace="/movie/community/fragment_gallery_modal.html :: Gallery_modal"></div>
 <script src="/js/modal/mains_menu_modal.js"></script>
-</div>
 </body>
 </html>
