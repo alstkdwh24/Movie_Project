@@ -3,7 +3,7 @@
     height: 12%;
     position: relative;
     top:0;
-    min-height: 150px;
+    max-height: 150px;
     background-color: white;
     color:white;
     display: flex;
