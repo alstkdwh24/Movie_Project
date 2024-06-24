@@ -26,4 +26,17 @@ public class EventController {
     public String FREEBOARD(){
         return "movie/community/freeboard";
     }
+
+    @GetMapping("/g_board_writer")
+    public  String  g_board(){
+        return "movie/community/g_board_writer";
+    }
+
+    @GetMapping("/free_board_writer")
+    public  String free_board_writer(){
+        return "movie/community/free_board_writer";
+    }
+
+
+
 }

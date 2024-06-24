@@ -10,9 +10,9 @@ body{   width: 100%;
 }
 .big_word{
     width: 60%;
-    height: 70%;
+    height: 72%;
     /*border: 1px solid black;*/
     position: relative;
-    top:-8%;
+    top:-12%;
 
 }
