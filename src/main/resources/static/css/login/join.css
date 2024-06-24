@@ -1,0 +1,17 @@
+body{   width: 100%;
+    height: 180%;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    background-color: antiquewhite;
+
+}
+
+
+#login_join{
+    width: 60%;
+    height: 76%;
+    border:1px solid black;
+}

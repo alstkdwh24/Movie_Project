@@ -35,7 +35,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor:pointer;
 }
 
 .small_sub_main{
@@ -49,7 +48,7 @@
 
 .week_menu_function{
     width: 26%;
-height: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-between;
 
@@ -58,7 +57,7 @@ height: 100%;
 .menu_function{
     width: 48%;
     height: 100%;
-display: flex;
+    display: flex;
 }
 
 .plus_menu{
@@ -73,7 +72,7 @@ display: flex;
 }
 .small_icon{
     width: 25%;
-        height: 100%;
+    height: 100%;
     color: black;
     cursor:pointer;
     display: flex;
