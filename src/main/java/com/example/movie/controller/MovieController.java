@@ -1,6 +1,6 @@
 package com.example.movie.controller;
 
-import com.example.movie.service.MovieService;
+import com.example.movie.MovieService.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -15,8 +15,14 @@ public class MovieController  {
     @Qualifier("movieService")
     public MovieService movieService;
 
-    @GetMapping("/main")
+    @GetMapping("/mains")
     public String mains(){
+        return "movie/mains";
+    }
+
+
+    @GetMapping("/main")
+    public String main(){
         return "movie/main";
     }
 }

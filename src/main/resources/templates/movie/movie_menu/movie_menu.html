@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<div th:fragment="movie_menu" class="movie_menu" >
+    <div class="hideMenuBody" id="hideMenuBody">
+        <button class="slide_close"><span class="material-symbols-outlined" id="home">
+home
+</span></button>
+        <div onclick="location.href='/movie/community/event'" class="buttons" >이벤트</div>
+        <div onclick="location.href='/movie/Reservation/reservation'" class="buttons">예매</div>
+        <div class="buttons" id="menu_buttons" ><div th:replace="movie/movie_menu/menu_modal.html :: menu_fragment"></div>
+            <button type="button" class="modal_btn" ><h2 id="h2_modal">게시판</h2></button></div>
+
+        <div onclick="location.href='/movie/login/join'" class="buttons">회원가입</div>
+        <div onclick="location.href='/movie/login/login'" class="buttons">로그인</div>
+
+    </div>
+
+
+</div>
+
+
+
+</html>

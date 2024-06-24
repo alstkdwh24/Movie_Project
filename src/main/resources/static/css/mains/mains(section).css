@@ -1,0 +1,49 @@
+section{
+    height: 22%;
+    width: 100%;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.movie_list{
+    height: 100%;
+    width: 80%;
+    border:1px solid white;
+}
+.movie_title{
+    height: 20%;
+    width: 100%;
+    border: 1px solid white;
+    overflow: hidden;
+}
+.sort{
+display: flex;
+    font-size: 30px;
+color: white;
+    height: 100%;
+    width:30%;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    float:left;
+}
+.watch_movie{
+    width: 50%;
+    height: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center
+;
+}
+#right{ float:right;
+    border: 1px solid white;
+}
+/*여백만들기*/
+.good_movie{
+    width: 100%;
+    height: 7%;
+    color: white;
+}

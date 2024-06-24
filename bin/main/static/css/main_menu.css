@@ -1,0 +1,15 @@
+.hideMenuBody{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 40px;
+    background-color: antiquewhite;
+
+}
+.hideMenuBody>div{
+    width: 20%;
+    top: 0;
+}
+.buttons{
+    cursor: pointer;
+}
