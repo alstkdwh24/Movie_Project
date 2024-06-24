@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.movie.communityEventService.EventMapper">
+<insert id="regist">
+    INSERT INTO FREE_GALLERY (FREE_TITLE,
+                              FREE_CONTENTS,)
+    VALUES (#{free_title},
+            #{free_contents})</insert>
+</mapper>
