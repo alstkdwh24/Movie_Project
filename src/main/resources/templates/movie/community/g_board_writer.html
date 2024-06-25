@@ -13,16 +13,44 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
-
+    <link rel="stylesheet" href="/css/event/free_board.css">
     <link rel="stylesheet" href="/css/login/login(menu).css">
     <link rel="stylesheet" href="/css/login/login(menu).css">
     <link rel="stylesheet" href="/css/login/login.css">
     <link rel="stylesheet" href="/css/event/writer.css">
     <link rel="stylesheet" href="/css/modal/free_board_modal.css">
+    <link rel="stylesheet" href="/css/event/free_board_writer.css">
+    <link rel="stylesheet" href="/css/modal/fragment_gallery_modal.css">
 </head>
 <body>
+
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 <div th:replace="/movie/community/fragment_gallery_modal.html :: Gallery_modal"></div>
+<div class="big_frame">
+    <div class="big_div">
+        <div class="big_gallery_title"><h2 class="title_big">G-WRITE</h2></div>
+        <div class="blank">
+            <div class="f-write_title"><h2 class="title_word">글제목</h2></div>
+            <div class="title_inputs">
+                <input type="text" class="title_input" >
+            </div>
+        </div>
+        <div class="blank"></div>
+        <div class="big_content">
+            <input type="text" class="content_big_input">
+        </div>
+        <div class="blank"></div>
+        <div class="big_content_file"></div>
+        <div class="writer_button">
+            <div class="button_bottom">
+                <button class="bottom_submit">SUBMIT</button>
+                <button class="bottom_close">CLOSE</button>
+            </div>
+        </div>
+
+
+    </div>
+</div>
 <script src="/js/modal/write_freeboard_modal.js"></script>
 
 </body>
