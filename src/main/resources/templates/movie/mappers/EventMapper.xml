@@ -4,9 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.movie.communityEventService.EventMapper">
-<insert id="regist">
-    INSERT INTO FREE_GALLERY (FREE_TITLE,
-                              FREE_CONTENTS,)
-    VALUES (#{free_title},
-            #{free_contents})</insert>
+    <insert id="gallery_free_board" parameterType="com.example.movie.commandVO.EventVO">
+        INSERT INTO FREE_GALLERY (free_title, free_contents)
+        VALUES (#{free_title}, #{free_contents})
+    </insert>
 </mapper>
+

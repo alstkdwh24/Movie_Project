@@ -79,6 +79,8 @@ display: flex;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .bottom_bottom .bottom_left{
@@ -94,11 +96,13 @@ display: flex;
     border:1px solid black;
     box-sizing: border-box;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .bottom_left .right_text{
     width: 50%;
     height: 100%;
-    box-sizing: border-box;
+
 
     border: 1px solid black;
 }
@@ -106,7 +110,7 @@ display: flex;
     width: 50%;
     height: 100%;
     border: 1px solid black;
-    box-sizing: border-box;
+
 
 }
 .bottom_left .right_text{
