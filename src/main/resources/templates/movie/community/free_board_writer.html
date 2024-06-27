@@ -27,6 +27,7 @@
     <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
     <div th:replace="/movie/community/fragment_gallery_modal.html :: Gallery_modal"></div>
     <form method="post" name="free_board_writer" action="/free_board_writer" class="big_frame">
+        <input type="hidden" name="free_number" th:value="${vo.free_number}">
 
 
         <div class="big_div">
@@ -42,7 +43,7 @@
             <div class="blank"></div>
             <div class="big_content">
                 <label>
-                    <input type="text" class="content_big_input" name="free_contents">
+                    <textarea class="content_big_input" name="free_contents"></textarea>
                 </label>
             </div>
             <div class="blank"></div>

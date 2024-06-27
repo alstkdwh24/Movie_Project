@@ -3,13 +3,20 @@ package com.example.movie.controller;
 import ch.qos.logback.core.net.SyslogOutputStream;
 import com.example.movie.commandVO.EventVO;
 import com.example.movie.communityEventService.EventService;
+import com.example.movie.util.Criteria;
+import com.example.movie.util.PageVO;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/movie/community")
@@ -27,7 +34,15 @@ public class EventController {
         return "movie/community/gboard";
     }
     @GetMapping("/freeboard")
-    public String FREEBOARD(){
+    public String FREEBOARD(HttpServletRequest request, Model model, Criteria cri /*@RequestParam("free_number") Integer free_number*/){
+        ArrayList<EventVO> List =eventService.gallery_free_show(cri);
+        int total = eventService.gallery_free_total(cri);
+        PageVO pageVO=new PageVO(cri, total);
+        model.addAttribute("list",List);
+        model.addAttribute("pageVO",pageVO);
+        System.out.println(pageVO.toString());
+
+
         return "movie/community/freeboard";
     }
 
@@ -54,4 +69,5 @@ public class EventController {
    return "redirect:/movie/community/freeboard";
 
     }
+
 }
