@@ -6,15 +6,15 @@ import com.example.movie.util.Criteria;
 import java.util.ArrayList;
 
 public interface EventService {
-    public int gallery_free_board(EventVO vo);
-    public int gallery_free_total(Criteria cri);
-    public ArrayList<EventVO> gallery_free_show(Criteria cri);
+    int gallery_free_board(EventVO vo);
+    int gallery_free_total(Criteria cri);
+    ArrayList<EventVO> gallery_free_show(Criteria cri);
 
 
 
-    public int gallery_g_board(EventVO vo);
-    public int gallery_g_total(Criteria cri);
-    public ArrayList<EventVO> gallery_g_show(Criteria cri);
+    int gallery_g_board(EventVO vo);
+    int gallery_g_total(Criteria cri);
+    ArrayList<EventVO> gallery_g_show(Criteria cri);
 
 
     }

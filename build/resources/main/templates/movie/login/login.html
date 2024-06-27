@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="/css/login/login(menu).css">
     <link rel="stylesheet" href="/css/login/logins.css">
     <link rel="stylesheet" href="/css/modal/fragment_gallery_modal.css">
+    <link rel="stylesheet" href="/css/event/Gallery_modal.css">
+
 
     <meta charset="UTF-8">
     <title>JCGX MEMBER LOGIN</title>
@@ -50,7 +52,11 @@
     </div>
 
 </div>
-<div th:replace="/movie/community/fragment_gallery_modal.html :: Gallery_modal"></div>
-<script src="/js/modal/mains_menu_modal.js"></script>
+<div class="Gallery_container">
+    <div class="Gallery_content">
+        <button class="G_C"></button>
+    </div>
+</div>
+<script src="/js/modal/Gallery_modal.js"></script><script src="/js/modal/mains_menu_modal.js"></script>
 </body>
 </html>

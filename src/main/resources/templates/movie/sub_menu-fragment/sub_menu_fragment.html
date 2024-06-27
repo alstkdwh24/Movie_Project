@@ -4,6 +4,8 @@
 
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/css/event/Gallery_modal.css">
+
 </head>
 <body class="body">
 <div th:fragment="article_divs" class="main_title">
@@ -43,7 +45,7 @@
         </div>
         <div class="menu_function">
             <div class="plus_menu" onclick="location.href='/movie/information/movie_information'">영화정보</div>
-            <div class="plus_menu"><a  class="community">커뮤니티</a></div>
+            <div class="plus_menu"><div class="community">커뮤니티</div></div>
             <div class="plus_menu" onclick="location.href='/movie/Reservation/reservation'">예매</div>
             <div class="plus_menu" onclick="location.href='/movie/community/event'">이벤트</div>
             <div class="plus_menu" onclick="location.href='/movie/shop/movie_store'">스토어</div>
@@ -68,3 +70,6 @@ menu
         </div>
     </div>
 </div>
+
+
+<div th:replace="movie/movie_menu/menu_modal.html :: menu_fragment"></div>

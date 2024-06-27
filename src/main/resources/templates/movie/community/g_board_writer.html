@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,6 +18,8 @@
     <link rel="stylesheet" href="/css/modal/free_board_modal.css">
     <link rel="stylesheet" href="/css/event/free_board_writer.css">
     <link rel="stylesheet" href="/css/modal/fragment_gallery_modal.css">
+    <link rel="stylesheet" href="/css/event/Gallery_modal.css">
+
 </head>
 <body>
 
@@ -55,6 +54,9 @@
     </div>
 
 </form>
+<div th:replace="/movie/community/fragment_gallery_modal.html :: Gallery_modal"></div>
+
+<script src="/js/modal/Gallery_modal.js"></script>
 <script src="/js/modal/write_freeboard_modal.js"></script>
 <script src="/js/data/g_board_writer.js"></script>
 </body>

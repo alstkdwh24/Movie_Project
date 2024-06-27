@@ -36,7 +36,7 @@ public class EventController {
         PageVO pageVO=new PageVO(cri, total);
         model.addAttribute("list",List);
         model.addAttribute("pageVO",pageVO);
-        System.out.println(pageVO.toString());
+        System.out.println(pageVO);
 
         return "movie/community/gboard";
     }
@@ -47,7 +47,7 @@ public class EventController {
         PageVO pageVO=new PageVO(cri, total);
         model.addAttribute("list",List);
         model.addAttribute("pageVO",pageVO);
-        System.out.println(pageVO.toString());
+        System.out.println(pageVO);
 
 
         return "movie/community/freeboard";
