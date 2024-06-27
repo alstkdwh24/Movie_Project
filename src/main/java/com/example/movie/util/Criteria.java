@@ -8,13 +8,8 @@ public class Criteria {
     private int amount;
     private Integer free_number;
     private int First;
-    public int getFreeNumber() {
-        return free_number;
-    }
+    private  Integer g_number;
 
-    public void setFreeNumber(int freeNumber) {
-        this.free_number = freeNumber;
-    }
     public Criteria(){
         this.page=1;
         this.amount=8;

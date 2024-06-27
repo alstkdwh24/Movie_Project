@@ -11,4 +11,10 @@ public interface EventService {
     public ArrayList<EventVO> gallery_free_show(Criteria cri);
 
 
+
+    public int gallery_g_board(EventVO vo);
+    public int gallery_g_total(Criteria cri);
+    public ArrayList<EventVO> gallery_g_show(Criteria cri);
+
+
     }

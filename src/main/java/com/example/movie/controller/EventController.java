@@ -30,7 +30,14 @@ public class EventController {
         return "movie/community/event";
     }
     @GetMapping("/gboard")
-    public String gboard(){
+    public String gboard(HttpServletRequest request, Model model, Criteria cri){
+        ArrayList<EventVO> List =eventService.gallery_g_show(cri);
+        int total = eventService.gallery_g_total(cri);
+        PageVO pageVO=new PageVO(cri, total);
+        model.addAttribute("list",List);
+        model.addAttribute("pageVO",pageVO);
+        System.out.println(pageVO.toString());
+
         return "movie/community/gboard";
     }
     @GetMapping("/freeboard")
@@ -67,6 +74,18 @@ public class EventController {
             ra.addFlashAttribute("msg", "음, 이건 아니에요.");
         }
    return "redirect:/movie/community/freeboard";
+
+    }
+    @PostMapping("/Gallery_g_board")
+    public String Gallery_g_board(EventVO vo, RedirectAttributes ra){
+        int result = eventService.gallery_g_board(vo);
+        if(result ==1){
+            ra.addFlashAttribute("msg","정상적으로 처리하였습니다.");
+            System.out.println(vo.getG_title());
+        }else{
+            ra.addFlashAttribute("msg", "음, 이건 아니에요.");
+        }
+        return "redirect:/movie/community/gboard";
 
     }
 

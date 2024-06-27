@@ -13,4 +13,9 @@ public interface EventMapper {
     public ArrayList<EventVO> gallery_free_show(Criteria cri);
 
     int gallery_free_total(Criteria cri);
+
+    public int gallery_g_board(EventVO vo);
+    public ArrayList<EventVO> gallery_g_show(Criteria cri);
+
+    int gallery_g_total(Criteria cri);
 }

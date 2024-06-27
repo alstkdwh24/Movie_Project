@@ -36,10 +36,10 @@
         <div class="mini_title_good" id="w_t">작성시간</div>
     </div>
     <div class="gallery_content">
-        <div class="gallery_blank_mini2">
+        <div class="gallery_blank_mini2" th:each="vo, status: ${list}">
 
-            <div class="mini_title_good" id="writer_number2"></div>
-            <div class="mini_title_good" id="writer_title2"></div>
+            <div class="mini_title_good" id="writer_number2">[[${vo.g_number}]]</div>
+            <div class="mini_title_good" id="writer_title2">[[${vo.g_title}]]</div>
             <div class="mini_title_good"  id="writer2"></div>
             <div class="mini_title_good"  id="w_c2"></div>
             <div class="mini_title_good" id="l_c2" ></div>
