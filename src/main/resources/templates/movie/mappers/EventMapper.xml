@@ -8,5 +8,12 @@
         INSERT INTO FREE_GALLERY (free_title, free_contents)
         VALUES (#{free_title}, #{free_contents})
     </insert>
+    <select id="gallery_free_show" resultType="com.example.movie.commandVO.EventVO">
+select * from FREE_GALLERY
+order by free_number desc limit #{First},#{amount}
+    </select>
+    <select id="gallery_free_total" resultType="int" >
+        select count(*) AS gallery_free_total from FREE_GALLERY
+    </select>
 </mapper>
 
