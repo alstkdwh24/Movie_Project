@@ -6,7 +6,7 @@ home
 </span></button>
         <div onclick="location.href='/movie/community/event'" class="buttons" >이벤트</div>
         <div onclick="location.href='/movie/Reservation/reservation'" class="buttons">예매</div>
-        <div class="buttons" id="menu_buttons" ><div th:replace="movie/movie_menu/menu_modal.html :: menu_fragment"></div>
+        <div class="buttons" id="menu_buttons" >
             <button type="button" class="modal_btn" ><h2 id="h2_modal">게시판</h2></button></div>
 
         <div onclick="location.href='/movie/login/join'" class="buttons">회원가입</div>
@@ -17,6 +17,6 @@ home
 
 </div>
 
-
+<div th:replace="movie/movie_menu/menu_modal.html :: menu_fragment"></div>
 
 </html>

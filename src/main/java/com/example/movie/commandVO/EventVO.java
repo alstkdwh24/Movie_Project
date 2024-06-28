@@ -15,4 +15,13 @@ public class EventVO {
     private String free_contents;
     private Integer free_count;
     private String free_title;
+
+
+    private Integer g_number;
+    private Integer g_like;
+    private String g_contents;
+    private Integer g_count;
+    private String g_title;
+    private Integer g_share_count;
+
 }

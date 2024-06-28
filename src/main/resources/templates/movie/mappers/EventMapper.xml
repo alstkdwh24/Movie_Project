@@ -15,5 +15,20 @@ order by free_number desc limit #{First},#{amount}
     <select id="gallery_free_total" resultType="int" >
         select count(*) AS gallery_free_total from FREE_GALLERY
     </select>
+
+
+
+    <insert id="gallery_g_board" parameterType="com.example.movie.commandVO.EventVO">
+        INSERT INTO g_GALLERY (G_TITLE, G_CONTENTS)
+        VALUES (#{g_title}, #{g_contents})
+    </insert>
+
+    <select id="gallery_g_show" resultType="com.example.movie.commandVO.EventVO">
+        select * from g_GALLERY
+        order by G_NUMBER desc limit #{First},#{amount}
+    </select>
+    <select id="gallery_g_total" resultType="int" >
+        select count(*) AS gallery_g_total from G_GALLERY
+    </select>
 </mapper>
 

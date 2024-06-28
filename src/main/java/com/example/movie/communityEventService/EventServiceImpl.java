@@ -26,4 +26,18 @@ public class EventServiceImpl implements EventService{
     public ArrayList<EventVO> gallery_free_show(Criteria cri) {
         return eventMapper.gallery_free_show(cri);
     }
+
+    public int gallery_g_board(EventVO vo){
+        return eventMapper.gallery_g_board(vo);
+    }
+
+    @Override
+    public int gallery_g_total(Criteria cri) {
+        return eventMapper.gallery_g_total(cri);
+    }
+
+    @Override
+    public ArrayList<EventVO> gallery_g_show(Criteria cri) {
+        return eventMapper.gallery_g_show(cri);
+    }
 }
