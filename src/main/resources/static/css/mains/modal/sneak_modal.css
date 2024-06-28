@@ -16,18 +16,23 @@
     justify-content: center;
     align-items: center;
     background-color: #fefefe;
-   height: 90% ;
+   height: 70% ;
 
     border: 1px solid #888;
-    width: 90%;
+    width: 60%;
 
 
 }
 .sneak_close {
-    color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    position: relative;
+    top:-36%;
+    left: 0%;
+    background-color: transparent;
+    border: none;
+    color: #888;
 }
 .sneak_close:hover,
 .sneak_close:focus {
