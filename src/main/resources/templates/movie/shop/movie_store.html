@@ -27,9 +27,57 @@
 
 <div th:fragment="movie_SHOP" class="section3">
     <div class="movie_movie">
-        <div class="ant"></div>
-        <div class="ant"></div>
-        <div class="ant"></div>
+        <div class="ant">
+            <div class="ant_set_title">
+                <div class="set_title_button"></div>
+
+                <div class="set_title_h2"><h2>맛난세트</h2></div>
+                <div class="set_title_button"><button class="button_store"  onclick="location.href='/movie/shop/movie_store'">더보기</button></div>
+            </div>
+            <div class="ant_contents">
+                <div class="contents_img">
+이미지
+                </div>
+                <div class="contents_ant">
+                    <div class="ant_big_title">s</div>
+                    <div class="ant_big_title">s</div>
+                </div>
+            </div>
+        </div>
+        <div class="ant">
+            <div class="ant_set_title">
+                <div class="set_title_button"></div>
+
+                <div class="set_title_h2"><h2>영화관람권</h2></div>
+                <div class="set_title_button"><button class="button_store"  onclick="location.href='/movie/shop/movie_store'">더보기</button></div>
+            </div>
+            <div class="ant_contents">
+                <div class="contents_img">
+                    이미지
+                </div>
+                <div class="contents_ant">
+                    <div class="ant_big_title">s</div>
+                    <div class="ant_big_title">s</div>
+                </div>
+            </div>
+        </div>
+        <div class="ant">
+            <div class="ant_set_title">
+                <div class="set_title_button"></div>
+
+                <div class="set_title_h2"><h2>기프트카트</h2></div>
+                <div class="set_title_button"><button class="button_store" onclick="location.href='/movie/shop/movie_store'">더보기</button></div>
+            </div>
+            <div class="ant_contents">
+                <div class="contents_img">
+                    이미지
+                </div>
+                <div class="contents_ant">
+                    <div class="ant_big_title">s</div>
+                    <div class="ant_big_title">s</div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div th:replace="/movie/community/fragment_gallery_modal.html :: Gallery_modal"></div>
