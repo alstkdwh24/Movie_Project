@@ -5,14 +5,11 @@
     <title>sneak peek</title>
 </head>
 <body>
-<div th:fragment="sneak_peek" class="body_movie_frame_feel">
-    <iframe class="iframe" width="70%" height="100%"
-            src="https://www.youtube.com/embed/QTK44VXXkXg?si=zUOLTcM-XlVx1jTv"
-            title="YouTube video player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <iframe class="iframe" width="70%" height="100%" src="https://www.youtube.com/embed/LU7ujHmsc-s?si=LstrqmdnPIegfwoD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <iframe class="iframe" width="70%" height="100%" src="https://www.youtube.com/embed/7_lUqV3pM0o?si=WMjwnlANSgF3pZ-t" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<div th:fragment="sneak_peek" class="sneak_peek_movie">
+    <div class="sneak_mobal">
+        <button class="sneak_close"></button>
+        <iframe id="trailer" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
 
 </div>
 </body>
