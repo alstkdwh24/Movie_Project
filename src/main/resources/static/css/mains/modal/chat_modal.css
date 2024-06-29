@@ -1,4 +1,4 @@
-.chat_modal{
+.chat_modals{
     display: none;
     justify-content: center;
     align-items: center;
@@ -8,6 +8,7 @@
     background-color: rgba(0, 0, 0, 0.5); /* 배경을 반투명하게 */
     top:0;
     left: 0;
+    z-index: 10;
 
 }
 
@@ -15,7 +16,7 @@
     width: 30%;
     height: 40%;
     background-color: #86edf2;
-    /*z-index: 10;*/
+    z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;

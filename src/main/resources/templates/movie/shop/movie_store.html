@@ -10,7 +10,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-
+<!--    모달적용-->
+    <link rel="stylesheet" href="/css/mains/modal/mains_botton_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/sneak_modal.css">
     <!--    css-->
     <link rel="stylesheet" href="/css/popcorn_store/popcorn_store.css">
     <link rel="stylesheet" href="/css/login/login(menu).css">
@@ -81,9 +86,16 @@
     </div>
 </div>
 <div th:replace="/movie/community/fragment_gallery_modal.html :: Gallery_modal"></div>
+<div th:replace="/movie/mains_fragment/mains_chat_modal.html :: chat"></div>
+
 
 
 <script src="/js/modal/Gallery_modal.js"></script>
-
+<script src="/js/modal/mains_menu_modal.js"></script>
+<script src="/js/modal/modal.js"></script>
+<script src="/js/modal/momo_modal.js"></script>
+<script src="/js/modal/chat_modal.js"></script>
+<script src="/js/modal/write_freeboard_modal.js"></script>
+<script src="/js/data/freeboard.js"></script>
 </body>
 </html>
