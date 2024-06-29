@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-<!--    css-->
+    <!--    css-->
 
     <link rel="stylesheet" href="/css/login/join.css">
     <link rel="stylesheet" href="/css/login/login(menu).css">
@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="/css/event/Gallery_modal.css">
 
 
-
     <meta charset="UTF-8">
     <title>JCGX MEMBER JOIN</title>
 </head>
@@ -26,15 +25,114 @@
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 
 
-
 <div id="login_join">
-    <div>ss</div>
-    <div></div>
+    <div id="id_title"><h2 class="title_id">JOIN</h2></div>
+    <div class="id">
+        <div class="id_div"><h2 class="title_id">이름</h2></div>
+
+        <div class="id_input"><label>
+            <input type="text" name="" class="input">
+        </label></div>
+    </div>
+
+    <div class="black"></div>
+
+    <div class="id">
+        <div class="id_div"><h2 class="title_id">아이디</h2></div>
+        <div class="id_input"><label>
+            <input type="text" name="" class="input">
+        </label></div>
+    </div>
+
+    <div class="black"></div>
+
+
+    <div class="id">
+        <div class="id_div"><h2 class="title_id">비밀번호</h2></div>
+        <div class="id_input"><label>
+            <input type="text" name="" class="input">
+        </label></div>
+    </div>
+
+
+    <div class="black"></div>
+    <div class="id">
+        <div class="id_div"><h2 class="title_id">핸드폰번호</h2></div>
+        <div class="id_input"><label>
+            <input type="text" name="" class="input">
+        </label></div>
+    </div>
+
+    <div class="black"></div>
+
+    <div class="id">
+        <div class="id_div"><h2 class="title_id">생년월일</h2></div>
+        <div class="id_input"><label>
+            <input type="date" name="" class="input">
+        </label></div>
+    </div>
+
+    <div class="black"></div>
+
+    <div class="id">
+        <div class="id_div"><h2 class="title_id">성별</h2></div>
+        <div class="id_input"><label>
+            <select name="" class="input">
+                <option value="man">남</option>
+                <option value="woman">여</option>
+            </select>
+        </label></div>
+    </div>
+
+    <div class="black"></div>
+
+    <div class="id">
+        <div class="id_div"><h2 class="title_id">직업</h2></div>
+        <div class="id_input"><label>
+            <select name="" class="input">
+                <option value="developer">개발자</option>
+                <option value="bank_clerk">은행원</option>
+                <option value="student">학생</option>
+                <option value="teacher">교사</option>
+                <option value="employee">회사원</option>
+                <option value="self-employed">자영업자</option>
+            </select>
+        </label></div>
+    </div>
+
+    <div class="black"></div>
+
+    <div class="id">
+        <div class="id_div"><h2 class="title_id">이메일</h2></div>
+        <div class="id_input"><label>
+            <input type="text" name="" class="input">
+        </label></div>
+    </div>
+
+    <div class="black"></div>
+
+    <div class="id">
+        <div class="id_div"><h2 class="title_id">가입경로</h2></div>
+        <div class="id_input"><label>
+            <select name="" class="input">
+                <option value="search">인터넷 검색</option>
+                <option value="instagram">인스타그램</option>
+                <option value="facebook">페이스북</option>
+                <option value="ticktok">틱톡</option>
+            </select>
+        </label></div>
+    </div>
+    <div class="div_button">
+        <button class="botton_button" id="button_colors">SUBMIT</button>
+        <button class="botton_button" id="button_color">CANCEL</button>
+    </div>
+
 </div>
 <div class="Gallery_container">
     <div class="Gallery_content">
         <button class="G_C"></button>
     </div>
 </div>
-<script src="/js/modal/Gallery_modal.js"></script></body>
+<script src="/js/modal/Gallery_modal.js"></script>
+</body>
 </html>
