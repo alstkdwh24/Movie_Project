@@ -13,11 +13,11 @@ body {
 
 #login_join {
     width: 60%;
-    height: 80%;
+    height: 78%;
     border: none;
     background-color: white;
     position: relative;
-    top: -6%;
+
     min-width: 900px;
 }
 

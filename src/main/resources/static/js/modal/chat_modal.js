@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         // 모달 외부를 클릭했을 때 모달을 닫기 위한 이벤트 리스너
         window.onclick = function(event) {
-            if (event.target === chat_modals) {
+            if (chat_modals && event.target === chat_modals) {
                 console.log("Clicked outside of modal contents");
                 chat_modals.style.display = "none";
             }

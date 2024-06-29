@@ -7,11 +7,10 @@
     <link rel="stylesheet" href="/css/login/login(menu).css">
     <link rel="stylesheet" href="/css/login/login(menu).css">
     <link rel="stylesheet" href="/css/login/login.css">
-    <link rel="stylesheet" href="/css/modal/fragment_gallery_modal.css"> <link rel="stylesheet" href="/css/mains/modal/mains_botton_modal.css">
-    <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
+    <link rel="stylesheet" href="/css/modal/fragment_gallery_modal.css">
+
     <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
     <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
-    <link rel="stylesheet" href="/css/mains/modal/sneak_modal.css">
 
 
     <link rel="stylesheet"
@@ -137,8 +136,11 @@
         <button class="G_C"></button>
     </div>
 </div>
+</body>
 <div th:replace="/movie/mains_fragment/mains_chat_modal.html :: chat"></div>
+<div th:replace="/movie/mains_fragment/mains_search_modal.html :: mains_search_modal"></div>
 
+<script src="/js/modal/Gallery_modal.js"></script>
 <script src="/js/modal/Gallery_modal.js"></script>
 <script src="/js/modal/mains_menu_modal.js"></script>
 <script src="/js/modal/modal.js"></script>
@@ -146,5 +148,7 @@
 <script src="/js/modal/chat_modal.js"></script>
 <script src="/js/modal/write_freeboard_modal.js"></script>
 <script src="/js/data/freeboard.js"></script>
-</body>
+
+
+
 </html>
