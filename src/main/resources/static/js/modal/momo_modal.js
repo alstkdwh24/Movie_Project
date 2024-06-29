@@ -1,44 +1,23 @@
-document.addEventListener('DOMContentLoaded',(event) =>{
-   const button_modal=document.querySelectorAll(".momo_button");
-   const let_close=document.querySelectorAll(".close_lo");
-    const momo_modal=document.querySelectorAll(".momo_container");
+document.addEventListener('DOMContentLoaded', (event) => {
+    const button_modal = document.querySelector(".momo_button");
+    const con_close = document.querySelector(".close_lo");
+    const momo_modal = document.querySelector(".momo_container");
 
-    console.log(button_modal.length);
-   console.log(momo_modal.length);
-   console.log(let_close.length);
+    // 모달 열기 버튼 클릭 시 모달 표시
+    button_modal.onclick = function() {
+        momo_modal.style.display = "flex";
+    }
 
-   button_modal.forEach((button,index)=>{
-       if(index<momo_modal.length){
-           button.onclick = function (){
-               momo_modal[index].style.display="flex";
-               momo_modal[index].style.justifyContent='center';
-               momo_modal[index].style.alignItems="center";
-           }
-       }
+    // 모달 닫기 버튼 클릭 시 모달 숨김
+    con_close.onclick = function() {
+        momo_modal.style.display = "none";
+    }
 
-
-       });
-    let_close.forEach((close_se, index)=> {
-    if(index<momo_modal.length){
-        close_se.onclick=function(){
-            momo_modal[index].style.display="none";
+    // 모달 외부 클릭 시 모달 숨김
+    window.onclick = function(event) {
+        if (momo_modal && event.target === momo_modal) {
+            console.log("Window clicked outside momo_modal");
+            momo_modal.style.display = "none";
         }
     }
-    });
- momo_modal.forEach((element)=>{
-    element.addEventListener('click',(event)=>{
-       const modalContents=element.querySelectorAll(".mo_contents");
-       console.log(modalContents,length);
-       if(modalContents && modalContents.contains(event.target)){
-           event.stopPropagation();
-       }
-
-    });
-    element.addEventListener('click',(event)=>{
-       if(event.target===element){
-           element.style.display="none";
-       }
-    });
- });
-
 });
