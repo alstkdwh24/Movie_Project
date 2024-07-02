@@ -77,16 +77,15 @@ public class EventController {
 
     }
     @PostMapping("/Gallery_g_board")
-    public String Gallery_g_board(EventVO vo, RedirectAttributes ra){
+    public String Gallery_g_board(EventVO vo, RedirectAttributes ra) {
         int result = eventService.gallery_g_board(vo);
-        if(result ==1){
-            ra.addFlashAttribute("msg","정상적으로 처리하였습니다.");
+        if (result == 1) {
+            ra.addFlashAttribute("msg", "정상적으로 처리하였습니다.");
             System.out.println(vo.getG_title());
-        }else{
+        } else {
             ra.addFlashAttribute("msg", "음, 이건 아니에요.");
         }
         return "redirect:/movie/community/gboard";
-
     }
 
 }

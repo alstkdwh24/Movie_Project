@@ -22,4 +22,20 @@ height: 128%;
     background-color: white;
     position: relative;
     top:9%;
+    display: flex;
+}
+#movies_title{
+    width: 33.3%;
+    height: 100%;
+    border: 1px solid antiquewhite;
+}
+#place{
+    width: 33.3%;
+    height: 100%;
+    border: 1px solid antiquewhite;
+}
+#time{
+    width: 33.3%;
+    height: 100%;
+    border: 1px solid antiquewhite;
 }
