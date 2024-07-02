@@ -1,24 +1,25 @@
+let modal = document.getElementById('modalContainer');
+
+document.addEventListener('DOMContentLoaded', (even) => {
+
+    let modalOpenButton = document.querySelector('.modal_btn');
+    let modalCloseButton = document.getElementById('modalCloseButton');
+    modalOpenButton.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+    });
+
+    modalCloseButton.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
 
 
 
-    function showLeftMenu(){
-    var circleBtObj = document.getElementById('circleBt');
-    var leftMenuObj = document.getElementById('hideMenuBodyId');
-    circleBtObj.style['display'] = "none";
-    leftMenuObj.style['transform'] = "translate(0px, 0px)";
+});
 
-    leftMenuObj.style['msTransform'] = "translate(0px, 0px)";
-    leftMenuObj.style['mozTransform'] = "translate(0px, 0px)";
-    leftMenuObj.style['webkitTransform'] = "translate(0px, 0px)";
-    leftMenuObj.style['oTransform'] = "translate(0px, 0px)";
+window.onclick = function (event) {
+    // 모달 내부를 클릭한 경우를 제외하고 모달을 닫음
+    if (!modal.contains(event.target) && event.target !== modal) {
+        modal.classList.add('hidden');
+    }
 }
-
-    function closeLeftMenu() {
-    var circleBtObj = document.getElementById('circleBt');
-    var leftMenuObj = document.getElementById('hideMenuBodyId');
-
-    circleBtObj.style['display'] = "block";
-    leftMenuObj.removeAttribute("style");
-}
-
 

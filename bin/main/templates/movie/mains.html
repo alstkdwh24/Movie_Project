@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--    &#45;&#45;css파일-->
+
+    <link rel="stylesheet" href="/css/mains/mains(article).css">
+    <link rel="stylesheet" href="/css/mains/mains(section).css">
+    <link rel="stylesheet" href="/css/mains/mains(section2).css">
+    <link rel="stylesheet" href="/css/mains/mains_movie_store.css">
+    <link rel="stylesheet" href="/css/mains/modal/mains_botton_modal.css">
+   <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
+   <link rel="stylesheet" href="/css/mains/modal/sneak_modal.css">
+    <!--    모달 css-->
+<!--    <link rel="stylesheet" href="/css/modal/modal.css">-->
+<!--    <link rel="stylesheet" href="/css/modal/chat_modal.css">-->
+    <!--    제이쿼이 -->
+    <script src="/js/jquery-3.7.1.min.js"></script>
+
+    <!--    구글폰트-->
+
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+    <title></title>
+
+</head>
+<body>
+<div class="overflow">
+<div th:replace="/movie/mains_fragment/mains_menus.html :: article_div" >
+
+</div>
+    <div th:replace="/movie/mains_fragment/mains_menu_modal.html :: mains_menu_modal"></div>
+
+</div>
+<section>
+<div class="movie_list">
+    <div class="good_movie"></div>
+    <div class="movie_title">
+        <div class="sort">
+            <div class="watch_movie">상영중영화</div>|
+            <div class="watch_movie">상영예정인영화</div>
+        </div>
+        <div class="sort" id="right"></div>
+    </div>
+    <div class="movie_title_ex">
+        <div class="movie_image"></div>
+        <div class="ex">
+            <div class="movie_title_real"></div>
+            <div class="date">
+                <div class="movie_buy"></div>
+                <div class="movie_socore"><div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</section>
+<div th:replace="movie/mains_fragment/mains_fragment.html :: mains_fragment"></div><!--영화관 이벤트-->
+<div th:replace="movie/shop/movie_store.html :: movie_SHOP"></div>
+<div th:replace="/movie/mains_fragment/mains_bottom.html :: mains_bottom">
+</div>
+<div th:replace="/movie/mains_fragment/mains_menu_modal_important.html :: important"></div>
+<div th:replace="/movie/mains_fragment/mains_chat_modal.html :: chat"></div>
+<div th:replace="/movie/mains_fragment/mains_modal.html :: mains_modal"></div>
+<div th:replace="/movie/mains_fragment/mains_search_modal.html :: mains_search_modal"></div>
+<div th:replace="/movie/sneak_peek/sneak_peek.html :: sneak_peek"></div>
+
+<!--    js파일-->
+
+<script src="/js/modal/mains_menu_modal.js"></script>
+<script src="/js/modal/modal.js"></script>
+<script src="/js/modal/momo_modal.js"></script>
+<script src="/js/modal/chat_modal.js"></script>
+<script src="/js/slide/slide.js"></script>
+<script src="/js/modal/chat_modal.js"></script>
+</body>
+</html>

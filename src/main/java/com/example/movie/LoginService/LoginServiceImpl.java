@@ -1,5 +1,6 @@
 package com.example.movie.LoginService;
 
+import com.example.movie.commandVO.LoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,4 +9,11 @@ public class LoginServiceImpl implements LoginService {
 
     @Autowired
     private LoginMapper loginMapper;
+
+
+
+    @Override
+    public int Login_join(LoginVO vo) {
+        return loginMapper.Login_join(vo);
+    }
 }

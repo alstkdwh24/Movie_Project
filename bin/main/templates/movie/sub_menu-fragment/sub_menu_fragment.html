@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/event/Gallery_modal.css">
+
+</head>
+<body class="body">
+<div th:fragment="article_divs" class="main_title">
+    <div class="big_sub_main">
+        <div class="week_title">
+            <div class="bird"  onclick="location.href='/movie/shop/movie_store'"><img width="80%"
+                                   height="100%"
+                                   src="https://img.icons8.com/arcade/64/popcorn.png"
+                                   alt="popcorn"/></div>
+            <div class="bird" onclick="location.href='/movie/Reservation/reservation'"><img
+                    width="80%" height="100%" src="/css/img/icon/movies.png" alt=""></div>
+
+
+        </div>
+        <div class="strong_title" onclick="location.href='/movie/mains'"><h2>JCGX</h2></div>
+        <div class="week_title">
+            <div class="good"></div>
+            <div class="icons">
+
+    <div class="clouds">
+       <div class="a_word"><a onclick="location.href='/movie/login/login'">로그인</a></div>
+        <div class="a_word"><a onclick="location.href='/movie/login/join'">회원가입</a></div>
+        <div class="a_word">   <a onclick="location.href='/movie/chats/Question'">문의사항</a></div>
+        </div>
+            </div>
+        </div>
+    </div>
+    <div class="small_sub_main">
+        <div class="week_menu_function">
+
+            <div class="small_icon"         onclick="location.href='https://www.instagram.com/lottecinema_official/'"><img width="30%" height="50%" alt="" src="/css/img/icon/5296499_fb_facebook_facebook%20logo_icon.png"> </div>
+            <div class="small_icon" onclick="location.href='https://www.facebook.com/LotteCinema.kr/?locale=ko_KR'"><img width="30%" height="50%"  alt="" src="/css/img/icon/5296765_camera_instagram_instagram%20logo_icon.png">
+            </div>
+            <div class="small_icon"                           onclick="location.href='https://www.youtube.com/@LOTTECINEMA'"> <img width="30%" height="60%" src="/css/img/icon/4375133_logo_youtube_icon.png" alt=""> </div>
+            <div class="small_icon"  onclick="location.href='https://pf.kakao.com/_HPBhu'"><img width="40%" height="60%" src="https://img.icons8.com/color/48/kakaotalk.png"
+                                         alt="kakaotalk"/></div>
+        </div>
+        <div class="menu_function">
+            <div class="plus_menu" onclick="location.href='/movie/information/movie_information'">영화정보</div>
+            <div class="plus_menu"><div class="community">커뮤니티</div></div>
+            <div class="plus_menu" onclick="location.href='/movie/Reservation/reservation'">예매</div>
+            <div class="plus_menu" onclick="location.href='/movie/community/event'">이벤트</div>
+            <div class="plus_menu" onclick="location.href='/movie/shop/movie_store'">스토어</div>
+        </div>
+        <div class="week_menu_function">
+
+            <div class="small_icon" onclick="location.href='/movie/mains'"><span
+                    class="material-symbols-outlined" id="menus">
+home
+</span></div>
+            <div class="small_icon" onclick=""><div class="momo_button"><span class="material-symbols-outlined"
+                                          id="menulogin">
+search
+                            </span></div></div>
+            <div class="small_icon" id="menu1" ><div class="modalOpenButton"><span class="material-symbols-outlined"
+                                          id="menutwo">
+chat_bubble
+</span></div></div>
+            <div class="small_icon" onclick=""><span class="material-symbols-outlined" id="menu">
+menu
+</span></div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="movie/movie_menu/menu_modal.html :: menu_fragment"></div>
+</body>

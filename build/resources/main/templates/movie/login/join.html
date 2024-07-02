@@ -27,14 +27,14 @@
 <body>
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 
-<form id="login_join">
+<form id="login_join" name="login_join" action="##" method="post">
 
     <div id="id_title"><h2 class="title_id">JOIN</h2></div>
     <div class="id">
         <div class="id_div"><h2 class="title_id">이름</h2></div>
 
         <div class="id_input"><label>
-            <input type="text" name="" class="input">
+            <input type="text" name="namena" class="input">
         </label></div>
     </div>
 
@@ -43,7 +43,7 @@
     <div class="id">
         <div class="id_div"><h2 class="title_id">아이디</h2></div>
         <div class="id_input"><label>
-            <input type="text" name="" class="input">
+            <input type="text" name="id" class="input">
         </label></div>
     </div>
 
@@ -53,7 +53,7 @@
     <div class="id">
         <div class="id_div"><h2 class="title_id">비밀번호</h2></div>
         <div class="id_input"><label>
-            <input type="text" name="" class="input">
+            <input type="text" name="pw" class="input">
         </label></div>
     </div>
 
@@ -62,7 +62,7 @@
     <div class="id">
         <div class="id_div"><h2 class="title_id">핸드폰번호</h2></div>
         <div class="id_input"><label>
-            <input type="text" name="" class="input">
+            <input type="text" name="phone" class="input">
         </label></div>
     </div>
 
@@ -71,7 +71,7 @@
     <div class="id">
         <div class="id_div"><h2 class="title_id">생년월일</h2></div>
         <div class="id_input"><label>
-            <input type="date" name="" class="input">
+            <input type="date" name="birth" class="input">
         </label></div>
     </div>
 
@@ -80,7 +80,7 @@
     <div class="id">
         <div class="id_div"><h2 class="title_id">성별</h2></div>
         <div class="id_input"><label>
-            <select name="" class="input">
+            <select name="gender" class="input">
                 <option value="man">남</option>
                 <option value="woman">여</option>
             </select>
@@ -92,7 +92,7 @@
     <div class="id">
         <div class="id_div"><h2 class="title_id">직업</h2></div>
         <div class="id_input"><label>
-            <select name="" class="input">
+            <select name="job" class="input">
                 <option value="developer">개발자</option>
                 <option value="bank_clerk">은행원</option>
                 <option value="student">학생</option>
@@ -108,21 +108,16 @@
     <div class="id">
         <div class="id_div"><h2 class="title_id">이메일</h2></div>
         <div class="id_input"><label>
-            <input type="text" name="" class="input">
+            <input type="text" name="email" class="input">
         </label></div>
     </div>
 
     <div class="black"></div>
 
     <div class="id">
-        <div class="id_div"><h2 class="title_id">가입경로</h2></div>
+        <div class="id_div"><h2 class="title_id">닉네임</h2></div>
         <div class="id_input"><label>
-            <select name="" class="input">
-                <option value="search">인터넷 검색</option>
-                <option value="instagram">인스타그램</option>
-                <option value="facebook">페이스북</option>
-                <option value="ticktok">틱톡</option>
-            </select>
+            <input type="text" name="nickname" class="input">
         </label></div>
     </div>
     <div class="div_button">
@@ -148,7 +143,7 @@
 <script src="/js/modal/chat_modal.js"></script>
 <script src="/js/modal/write_freeboard_modal.js"></script>
 <script src="/js/data/freeboard.js"></script>
-
+<script src="/js/data/Login_join.js"></script>
 
 
 </html>
