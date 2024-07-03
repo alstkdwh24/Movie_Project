@@ -15,8 +15,8 @@ public class StoreController {
     @Qualifier("shopService")
     public ShopService shopService;
 
-    @GetMapping("/movie_store")
+    @GetMapping("/popcorn_store")
     public String movie_store(){
-        return "movie/shop/movie_store";
+        return "movie/shop/popcorn_store";
     }
 }
