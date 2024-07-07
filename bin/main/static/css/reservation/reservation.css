@@ -8,3 +8,35 @@ overflow: hidden;
     background-color: antiquewhite;
 
 }
+#reservation{
+height: 128%;
+    width: 100%;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+}
+
+#reservation_board{
+    width: 64%;
+    height: 50%;
+    background-color: white;
+    position: relative;
+    top:9%;
+    display: flex;
+}
+#movies_title{
+    width: 33.3%;
+    height: 100%;
+    border: 1px solid antiquewhite;
+}
+#place{
+    width: 33.3%;
+    height: 100%;
+    border: 1px solid antiquewhite;
+}
+#time{
+    width: 33.3%;
+    height: 100%;
+    border: 1px solid antiquewhite;
+}
+

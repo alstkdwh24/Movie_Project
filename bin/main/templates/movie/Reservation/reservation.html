@@ -29,6 +29,13 @@
 </head>
 <body>
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
+<div id="reservation">
+    <div id="reservation_board">
+        <div id="movies_title">영화제목</div>
+        <div id="place">극장장소</div>
+        <div id="time">시간 그리고 모달창으로 좌석 예약 하고 결제창까지</div>
+    </div>
+</div>
 <div th:replace="/movie/community/fragment_gallery_modal.html :: Gallery_modal"></div>
 <div th:replace="/movie/mains_fragment/mains_chat_modal.html :: chat"></div>
 <div th:replace="/movie/mains_fragment/mains_search_modal.html :: mains_search_modal"></div>
@@ -40,5 +47,6 @@
 <script src="/js/modal/momo_modal.js"></script>
 <script src="/js/modal/chat_modal.js"></script>
 <script src="/js/modal/write_freeboard_modal.js"></script>
-<script src="/js/data/freeboard.js"></script></body>
+<script src="/js/data/freeboard.js"></script>
+</body>
 </html>
