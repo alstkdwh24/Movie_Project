@@ -3,9 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/css/login/login(menu).css">
+    <link rel="stylesheet" href="/css/login/login(menu).css">
+    <link rel="stylesheet" href="/css/login/login.css">
+    <link rel="stylesheet" href="/css/event/g_board.css">
+    <link rel="stylesheet" href="/css/event/free_board.css">
+    <link rel="stylesheet" href="/css/modal/free_board_modal.css">
+    <link rel="stylesheet" href="/css/event/Gallery_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/mains_botton_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/sneak_modal.css">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
+<div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
+<div class="big_word"><div class="input"><button id="writer_word" onclick="location.href='/movie/chats/Question_writer'"><img src="/css/img/icon/290135_pen_pencil_write_icon.png" alt="" id="pencil"></button><button id="w_s" class="ww_ss"><img src="/css/img/icon/9035096_search_icon.png" alt="" width="100%" height="100%"></button></div>
+    <div class="gallery_title"><h2 class="h2_title2">문의사항</h2></div>
+    <div class="gallery_blank_mini">
+        <div class="mini_title_good" id="writer_number">글번호</div>
+        <div class="mini_title_good" id="writer_title">글제목</div>
+        <div class="mini_title_good" id="writer">작성자</div>
+        <div class="mini_title_good" id="w_c">조회수</div>
+        <div class="mini_title_good" id="l_c">좋아요</div>
+        <div class="mini_title_good" id="w_t">작성시간</div>
+    </div>
+    <div class="gallery_content">
+        <div class="gallery_blank_mini2" th:each="vo, status: ${list}">
 
+            <div class="mini_title_good" id="writer_number2">[[${vo.Q_number}]]</div>
+            <div class="mini_title_good" id="writer_title2">[[${vo.Q_title}]]</div>
+            <div class="mini_title_good"  id="writer2"></div>
+            <div class="mini_title_good"  id="w_c2"></div>
+            <div class="mini_title_good" id="l_c2" ></div>
+            <div class="mini_title_good"  id="w_t2" ></div>
+        </div>
+    </div>
+</div>
+<div th:replace="/movie/community/free_search_modal.html :: free_writer_modal"></div>
+<div th:replace="/movie/community/fragment_gallery_modal.html :: Gallery_modal"></div>
+<div th:replace="/movie/mains_fragment/mains_chat_modal.html :: chat"></div>
+<div th:replace="/movie/mains_fragment/mains_search_modal.html :: mains_search_modal"></div>
+<script src="/js/modal/Gallery_modal.js"></script>
+<script src="/js/modal/mains_menu_modal.js"></script>
+<script src="/js/modal/modal.js"></script>
+<script src="/js/modal/momo_modal.js"></script>
+<script src="/js/modal/chat_modal.js"></script>
+<script src="/js/modal/write_freeboard_modal.js"></script>
+<script src="/js/data/freeboard.js"></script>
 </body>
 </html>
