@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("movie/shop")
+@RequestMapping("movie/shops")
 public class StoreController {
 
     @Autowired
@@ -17,6 +17,6 @@ public class StoreController {
 
     @GetMapping("/popcorn_store")
     public String movie_store(){
-        return "movie/shop/popcorn_store";
+        return "movie/shops/popcorn_store";
     }
 }

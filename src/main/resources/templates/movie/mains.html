@@ -40,7 +40,7 @@
 <div th:replace="/movie/mains_fragment/mains_menus.html :: article_div" >
 
 </div>
-    <div th:replace="/movie/mains_fragment/mains_menu_modal.html :: mains_menu_modal"></div>
+    <div th:replace="/movie/mains_fragment/modal/mains_menu_modal.html :: mains_menu_modal"></div>
 
 </div>
 <section>
@@ -68,14 +68,14 @@
 
 </div>
 </section>
-<div th:replace="movie/mains_fragment/mains_fragment.html :: mains_fragment"></div><!--영화관 이벤트-->
-<div th:replace="movie/shop/movie_store.html :: movie_SHOP"></div>
-<div th:replace="/movie/mains_fragment/mains_bottom.html :: mains_bottom">
+<div th:replace="/movie/mains_fragment/mains_fragment.html :: mains_fragment"></div><!--영화관 이벤트-->
+<div th:replace="/movie/shops/movie_store.html :: movie_SHOP"></div>
+<div th:replace="/movie/mains_fragment/modal/mains_bottom.html :: mains_bottom">
 </div>
-<div th:replace="/movie/mains_fragment/mains_menu_modal_important.html :: important"></div>
-<div th:replace="/movie/mains_fragment/mains_chat_modal.html :: chat"></div>
-<div th:replace="/movie/mains_fragment/mains_modal.html :: mains_modal"></div>
-<div th:replace="/movie/mains_fragment/mains_search_modal.html :: mains_search_modal"></div>
+<div th:replace="/movie/mains_fragment/modal/mains_menu_modal_important.html :: important"></div>
+<div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
+<div th:replace="/movie/mains_fragment/modal/mains_modal.html :: mains_modal"></div>
+<div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
 <div th:replace="/movie/sneak_peek/sneak_peek.html :: sneak_peek"></div>
 
 <!--    js파일-->

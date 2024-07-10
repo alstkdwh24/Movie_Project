@@ -127,3 +127,9 @@ display: flex;
     box-sizing: border-box;
 
 }
+
+
+.community{
+    width: 100%;
+    height: 100%;
+}

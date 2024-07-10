@@ -70,6 +70,16 @@
     text-decoration: underline;
     cursor:pointer;
 }
+.plus_menu2{
+    width: 20%;
+    height: 100%;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: underline;
+    cursor:pointer;
+}
 .small_icon{
     width: 25%;
     height: 100%;

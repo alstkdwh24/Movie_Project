@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
     <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
     <link rel="stylesheet" href="/css/mains/modal/sneak_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/fragment_gallery_modal.css">
+
 
     <!--    css-->
     <link rel="stylesheet" href="/css/reservation/reservation.css">
@@ -36,9 +38,9 @@
         <div id="time">시간 그리고 모달창으로 좌석 예약 하고 결제창까지</div>
     </div>
 </div>
-<div th:replace="/movie/community/fragment_gallery_modal.html :: Gallery_modal"></div>
-<div th:replace="/movie/mains_fragment/mains_chat_modal.html :: chat"></div>
-<div th:replace="/movie/mains_fragment/mains_search_modal.html :: mains_search_modal"></div>
+<div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
+<div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
+<div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
 
 
 <script src="/js/modal/Gallery_modal.js"></script>
@@ -48,5 +50,8 @@
 <script src="/js/modal/chat_modal.js"></script>
 <script src="/js/modal/write_freeboard_modal.js"></script>
 <script src="/js/data/freeboard.js"></script>
+<script src="/js/modal/Gallery_modal2.js"></script>
+
+
 </body>
 </html>
