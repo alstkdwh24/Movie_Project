@@ -8,23 +8,35 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
-    <!--    css-->
+    <!--    event css-->
     <link rel="stylesheet" href="/css/event/event.css">
+
+
+    <!--메뉴 css-->
     <link rel="stylesheet" href="/css/login/login(menu).css">
     <link rel="stylesheet" href="/css/login/login.css">
-    <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
-    <link rel="stylesheet" href="/css/mains/modal/mains_botton_modal.css">
-    <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
-    <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
-<link rel="stylesheet" href="/css/mains/modal/fragment_gallery_modal.css">
-    <link rel="stylesheet" href="/css/mains/modal/sneak_modal.css">
 
-    <link rel="stylesheet" href="/css/event/Gallery_modal.css">
+<!--    채팅모달 css-->
+    <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
+
+
+    <!--    커뮤니티 모딜 제목css-->
+    <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
+
+
+<!--소메뉴 검섹 css-->
+    <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
+
+    <!--커뮤니티 css-->
+<link rel="stylesheet" href="/css/mains/modal/fragment_gallery_modal.css">
+
+
+
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+<!--소메뉴 div-->
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 
 <div class="event_board">
@@ -135,17 +147,23 @@
 
 
 
-
+<!--커뮤니티 모달div-->
     <div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
 
+<!--    채팅모달div-->
     <div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
-<div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
 
-<!--    <div th:replace="/movie/mains_fragment/modal/mains_menu_modal.html :: mains_menu_modal"></div>-->
+<!--    소메뉴 검색모달-->
+    <div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
+
 
 </div>
+<!--    채팅모달js-->
 <script src="/js/modal/chat_modal.js"></script>
+<!--카테고리js-->
 <script src="/js/modal/Gallery_modal2.js"></script>
+
+<!--소메뉴 검색js-->
 <script src="/js/modal/momo_modal.js"></script>
 
 

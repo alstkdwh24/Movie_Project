@@ -64,6 +64,17 @@ public class EventController {
     }
 
 
+    @GetMapping("/free_detail")
+    public String free_detail(){
+        return "movie/community/free_detail";
+    }
+    @GetMapping("/g_detail")
+    public String g_detail(){
+        return "movie/community/g_detail";
+    }
+
+
+
     @PostMapping("/Gallery_free_board")
     public String Gallery_free_board(EventVO vo, RedirectAttributes ra){
         int result = eventService.gallery_free_board(vo);
