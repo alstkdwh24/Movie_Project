@@ -2,20 +2,30 @@
 <html lang="en">
 <head>
     <!--    css-->
+    <!--    css 소메뉴 html크기 css-->
+
     <link rel="stylesheet" href="/css/login/login(menu).css">
     <link rel="stylesheet" href="/css/login/login(menu).css">
     <link rel="stylesheet" href="/css/login/login.css">
-    <link rel="stylesheet" href="/css/event/g_board.css">
-    <link rel="stylesheet" href="/css/event/free_board.css">
-    <link rel="stylesheet" href="/css/modal/free_board_modal.css">
-    <link rel="stylesheet" href="/css/event/Gallery_modal.css">
-    <link rel="stylesheet" href="/css/mains/modal/mains_botton_modal.css">
-    <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
-    <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
-    <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
-    <link rel="stylesheet" href="/css/mains/modal/sneak_modal.css">
-    <link rel="stylesheet" href="/css/mains/modal/fragment_gallery_modal.css">
 
+    <!--    공지사한-->
+    <link rel="stylesheet" href="/css/event/g_board.css">
+
+    <!--보드를 유지하기 위한 css-->
+
+    <link rel="stylesheet" href="/css/event/free_board.css">
+
+    <!--   검색 모달 css-->
+    <link rel="stylesheet" href="/css/modal/free_board_modal.css">
+
+    <!--    커뮤니티 제목을 유지하기 위한 css, 커뮤니티 css-->
+    <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/fragment_gallery_modal.css">
+    <!--    소메뉴 검색 css-->
+    <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
+
+    <!--    채팅-->
+    <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
 
 
     <link rel="stylesheet"
@@ -25,14 +35,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
 
-
-
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<!--소메뉴  div-->
+
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
-<div class="big_word"><div class="input"><button id="writer_word" onclick="location.href='/movie/community/g_board_writer'"><img src="/css/img/icon/290135_pen_pencil_write_icon.png" alt="" id="pencil"></button><button id="w_s" class="ww_ss"><img src="/css/img/icon/9035096_search_icon.png" alt="" width="100%" height="100%"></button></div>
+<div class="big_word">
+    <div class="input">
+        <button id="writer_word" onclick="location.href='/movie/community/g_board_writer'"><img
+                src="/css/img/icon/290135_pen_pencil_write_icon.png" alt="" id="pencil"></button>
+        <button id="w_s" class="ww_ss"><img src="/css/img/icon/9035096_search_icon.png" alt="" width="100%"
+                                            height="100%"></button>
+    </div>
     <div class="gallery_title"><h2 class="h2_title2">공지사항</h2></div>
     <div class="gallery_blank_mini">
         <div class="mini_title_good" id="writer_number">글번호</div>
@@ -47,26 +63,50 @@
 
             <div class="mini_title_good" id="writer_number2">[[${vo.g_number}]]</div>
             <div class="mini_title_good" id="writer_title2">[[${vo.g_title}]]</div>
-            <div class="mini_title_good"  id="writer2"></div>
-            <div class="mini_title_good"  id="w_c2"></div>
-            <div class="mini_title_good" id="l_c2" ></div>
-            <div class="mini_title_good"  id="w_t2" ></div>
+            <div class="mini_title_good" id="writer2"></div>
+            <div class="mini_title_good" id="w_c2"></div>
+            <div class="mini_title_good" id="l_c2"></div>
+            <div class="mini_title_good" id="w_t2"></div>
         </div>
     </div>
 </div>
+<!--게시판 검색 div-->
+
 <div th:replace="/movie/community/free_search_modal.html :: free_writer_modal"></div>
+
+<!--커뮤니티div-->
+
 <div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
+
+<!--채팅 모달div-->
+
 <div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
+
+<!--소메뉴 검색css-->
+
 <div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
 
 
-<script src="/js/modal/Gallery_modal.js"></script>
-<script src="/js/modal/mains_menu_modal.js"></script>
-<script src="/js/modal/modal.js"></script>
+
+
+
+<!--소메뉴 검색 모달-->
+
 <script src="/js/modal/momo_modal.js"></script>
+
+<!--채팅 모달js-->
+
 <script src="/js/modal/chat_modal.js"></script>
+
+<!--게시판 검색 js-->
 <script src="/js/modal/write_freeboard_modal.js"></script>
+
+<!--게시판 date js-->
+
 <script src="/js/data/freeboard.js"></script>
+
+<!--커뮤니티 js-->
+
 <script src="/js/modal/Gallery_modal2.js"></script>
 
 </body>
