@@ -14,7 +14,10 @@
     <link rel="stylesheet" href="/css/login/login(menu).css">
     <link rel="stylesheet" href="/css/login/login(menu).css">
     <link rel="stylesheet" href="/css/login/login.css">
-    <link rel="stylesheet" href="/css/event/writer.css">
+    <link rel="stylesheet" href="/css/event/writer2.css">
+
+    <!--    본 페이지 css-->
+    <link rel="stylesheet" href="/css/event/free_detail/freedetail.css">
 
 
     <!--    커뮤니티 모달 css-->
@@ -32,11 +35,58 @@
 
 <!--소메뉴 div-->
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
+<form  name="free_detail" method="post" action="###"  class="input">
 
-<div>
+    <div class="free_detail">
+        <!--    <input type="hidden" name="free_number" th:value="${vo.free_number}">-->
+        <div class="user_name">
+            <div id="title"></div>
+            <div id="user_id">
+                <div id="user_img"></div>
+                <div id="free_feature">
+                    <div id="name"></div>
+                    <div id="free_impormation">
+                        <div class="small_box" id="gallery_name"></div>
+                        <div class="small_box" id="date"></div>
+                        <div class="small_box" id="count"></div>
+                    </div>
+                </div>
+            </div>
 
-</div>
+        </div>
+        <div class="free_contents">
 
+        </div>
+        <div class="coment">
+            <div class="talk">
+                <div id="talk_img">
+                    <input type="image" alt="" id="input_img" >
+                </div>
+                <div id="talk_contents">
+                    <div id="talk_contents_title"></div>
+                    <div id="talk_contents_content"></div>
+                    <div id="notice"></div>
+                </div>
+            </div>
+            <div class="talk_writer">
+                <div id="talk_writer_free">
+                    <label>
+                        <textarea id="talk_input"></textarea>
+                    </label>
+                </div>
+                <button id="talk_button_free"></button>
+            </div>
+
+        </div>
+
+        <form>
+
+
+        </form>
+
+
+    </div>
+</form>
 
 <!--커뮤니티 div-->
 <div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>

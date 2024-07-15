@@ -1,0 +1,189 @@
+.input{
+    min-height: 1890px;
+    min-width: 1700px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /*align-items: center;*/
+}
+
+.free_detail{
+    width: 60%;
+    height: 86%;
+    border:1px solid black;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    background-color: white;
+    position:relative;
+    top:5%;
+
+
+}
+
+.user_name{
+    height: 10%;
+    border: 1px solid black;
+    width: 100%;
+    box-sizing: border-box;
+display: flex;
+    flex-direction: column;
+
+}
+#title{
+    height: 52%;
+    width: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+#user_id{
+    height: 48%;
+    width: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.free_contents{
+    height: 60%;
+    width: 100%;
+    border: 1px solid black;
+box-sizing: border-box;
+}
+
+.coment{
+    height: 30%;
+    width:100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+#user_img{
+    height: 100%;
+    width:7%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+#free_feature{
+    height: 100%;
+    width:93%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+
+}
+
+#free_impormation{
+    height: 50%;
+    width:100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    display: flex;
+}
+
+#name{
+    height: 50%;
+    width:100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+.small_box{
+    height: 100%;
+    width: 15%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    min-width: 170px;
+    min-height: 24px;
+}
+
+.talk{
+    height: 26%;
+    width: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    min-width: 1100px;
+    min-height: 85px;
+    display: flex;
+    flex-direction: row;
+}
+
+.talk_writer{
+    height: 74%;
+    width: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+#talk_writer_free{
+    height:100%;
+    width: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+#talk_button_free{
+    height:16%;
+    width: 12%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 5px;
+    position: relative;
+    left: 87%;
+    display: flex;
+top:-20%;
+}
+
+#talk_input{
+    width: 100%;
+    height: 100%;
+font-size: 20px;
+
+}
+
+#talk_img{
+    width: 10%;
+    height: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+#input_img{
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 50%;
+}
+
+#talk_contents{
+    width: 90%;
+    height: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+#talk_contents_title{
+    width: 100%;
+    height: 30%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+#talk_contents_content{
+    width: 100%;
+    height: 40%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+#notice{
+    width: 100%;
+    height: 30%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
