@@ -16,5 +16,8 @@ public interface EventService {
     int gallery_g_total(Criteria cri);
     ArrayList<EventVO> gallery_g_show(Criteria cri);
 
+    EventVO freeselect(int free_number);
 
-    }
+    public EventVO free_detail_update_select(int free_number);
+
+}

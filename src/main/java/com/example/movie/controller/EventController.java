@@ -58,6 +58,17 @@ public class EventController {
         return "movie/community/g_board_writer";
     }
 
+
+    @GetMapping("/g_board_writer_update")
+    public  String g_update(){
+        return "movie/community/g_board_writer_update";
+    }
+
+    @GetMapping("/free_board_writer_update")
+    public  String free_update(){
+        return "movie/community/free_board_writer_update";
+    }
+
     @GetMapping("/free_board_writer")
     public  String free_board_writer(){
         return "movie/community/free_board_writer";
@@ -65,9 +76,23 @@ public class EventController {
 
 
     @GetMapping("/free_detail")
-    public String free_detail(){
+    public String free_detail(@RequestParam("free_number") Integer free_number , Model model){
+
+        EventVO vo = eventService.freeselect(free_number);
+        model.addAttribute("vo",vo);
+
         return "movie/community/free_detail";
     }
+
+    @GetMapping("/free_detail_update")
+    public String free_detail_updateint (@RequestParam("free_number") Integer free_number, Model model, RedirectAttributes ra){
+
+        EventVO vo =eventService.free_detail_update_select(free_number);
+        model.addAttribute("vo", vo);
+
+        return "movie/community/free_board_writer_update";
+    }
+
     @GetMapping("/g_detail")
     public String g_detail(){
         return "movie/community/g_detail";
@@ -98,5 +123,6 @@ public class EventController {
         }
         return "redirect:/movie/community/gboard";
     }
+
 
 }

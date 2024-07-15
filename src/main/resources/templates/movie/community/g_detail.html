@@ -35,12 +35,12 @@
 
 <!--소메뉴 div-->
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
-<form  name="free_detail" method="post" action="###"  class="input">
+<form name="free_detail" method="post" action="###" class="input">
 
     <div class="free_detail">
-        <!--    <input type="hidden" name="free_number" th:value="${vo.free_number}">-->
+        <input type="hidden" name="free_number" th:value="${vo.free_number}">
         <div class="user_name">
-            <div id="title"></div>
+            <div id="title"><h2>[[${vo.free_title}]]</h2></div>
             <div id="user_id">
                 <div id="user_img"></div>
                 <div id="free_feature">
@@ -54,13 +54,14 @@
             </div>
 
         </div>
-        <div class="free_contents">
+        <div class="free_contents" th:value="${vo.free_contents}">
+            [[${vo.free_contents}]]
 
         </div>
         <div class="coment">
             <div class="talk">
                 <div id="talk_img">
-                    <input type="image" alt="" id="input_img" >
+                    <input type="image" alt="" id="input_img">
                 </div>
                 <div id="talk_contents">
                     <div id="talk_contents_title"></div>
@@ -70,11 +71,18 @@
             </div>
             <div class="talk_writer">
                 <div id="talk_writer_free">
-                    <label>
-                        <textarea id="talk_input"></textarea>
-                    </label>
+
+                    <textarea id="talk_input"></textarea>
+
                 </div>
-                <button id="talk_button_free"></button>
+
+            </div>
+            <div id="botton_buttom">
+                <button id="talk_button_free">댓글</button>
+                <div id="buttom_two">
+                    <button id="talk_button_update">수정</button>
+                    <button id="talk_button_cancel">삭제</button>
+                </div>
             </div>
 
         </div>

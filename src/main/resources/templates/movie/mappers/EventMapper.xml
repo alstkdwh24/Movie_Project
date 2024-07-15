@@ -30,5 +30,23 @@ order by free_number desc limit #{First},#{amount}
     <select id="gallery_g_total" resultType="int" >
         select count(*) AS gallery_g_total from G_GALLERY
     </select>
+
+
+
+    <select id="freeselect" resultType="EventVO">
+        select *
+        from FREE_GALLERY
+        where free_number=${free_number}
+
+
+    </select>
+
+    <select id="free_detail_update_select" resultType="EventVO">
+        select *
+        from FREE_GALLERY
+        where free_number=${free_number}
+
+
+    </select>
 </mapper>
 

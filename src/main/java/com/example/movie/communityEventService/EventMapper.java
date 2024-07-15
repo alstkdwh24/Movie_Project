@@ -15,7 +15,12 @@ public interface EventMapper {
     int gallery_free_total(Criteria cri);
 
     int gallery_g_board(EventVO vo);
+
     ArrayList<EventVO> gallery_g_show(Criteria cri);
 
     int gallery_g_total(Criteria cri);
+
+    public EventVO freeselect(int free_number);
+
+    public EventVO free_detail_update_select(int free_number);
 }
