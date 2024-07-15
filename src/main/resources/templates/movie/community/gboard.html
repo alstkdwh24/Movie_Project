@@ -59,8 +59,8 @@
         <div class="mini_title_good" id="w_t">작성시간</div>
     </div>
     <div class="gallery_content">
-        <div class="gallery_blank_mini2" th:each="vo, status: ${list}">
-
+        <div class="gallery_blank_mini2" th:each="vo, status: ${list}" th:onclick="|location.href='@{/movie/community/g_detail(g_number=${vo.g_number})}'|">
+<input type="hidden" th:value="${vo.g_number}">
             <div class="mini_title_good" id="writer_number2">[[${vo.g_number}]]</div>
             <div class="mini_title_good" id="writer_title2">[[${vo.g_title}]]</div>
             <div class="mini_title_good" id="writer2"></div>

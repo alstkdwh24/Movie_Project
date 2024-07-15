@@ -84,6 +84,16 @@ public class EventController {
         return "movie/community/free_detail";
     }
 
+    @GetMapping("/g_detail")
+    public String g_detail(@RequestParam("g_number") Integer g_number, Model model){
+
+        EventVO vo=eventService.gSelect(g_number);
+        model.addAttribute("vo",vo);
+        return "movie/community/g_detail";
+    }
+
+
+
     @GetMapping("/free_detail_update")
     public String free_detail_updateint (@RequestParam("free_number") Integer free_number, Model model, RedirectAttributes ra){
 
@@ -93,9 +103,12 @@ public class EventController {
         return "movie/community/free_board_writer_update";
     }
 
-    @GetMapping("/g_detail")
-    public String g_detail(){
-        return "movie/community/g_detail";
+    @GetMapping("/g_update")
+    public String g_update(@RequestParam("g_number") Integer g_number, Model model){
+
+        EventVO vo=eventService.g_update(g_number);
+        model.addAttribute("vo",vo);
+        return "movie/community/g_board_writer_update";
     }
 
 
@@ -121,6 +134,23 @@ public class EventController {
         } else {
             ra.addFlashAttribute("msg", "음, 이건 아니에요.");
         }
+        return "redirect:/movie/community/gboard";
+    }
+
+    @PostMapping("/talk_button_cancel")
+    public String talk_button_cancel(@RequestParam("free_number") Integer free_number,Model model,RedirectAttributes ra){
+      eventService.free_delete(free_number);
+
+
+
+        return "redirect:/movie/community/freeboard";
+
+    }
+
+
+    @PostMapping("/g_delete")
+    public String g_delete(@RequestParam("g_number") Integer g_number){
+        eventService.g_delete(g_number);
         return "redirect:/movie/community/gboard";
     }
 

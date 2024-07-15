@@ -20,4 +20,13 @@ public interface EventService {
 
     public EventVO free_detail_update_select(int free_number);
 
+    public void free_delete(int free_number);
+
+    public EventVO gSelect(int g_number);
+
+    public void g_delete(int g_number);
+
+    public EventVO g_update(int g_number);
+
+
 }

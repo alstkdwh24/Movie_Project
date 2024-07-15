@@ -41,19 +41,21 @@
 <!--소제목 div-->
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 <form method="Post" name="Gallery_g_board" action="/" class="big_frame">
-
+    <input type="hidden" name="g_number" th:value="${vo.g_number}">
     <div class="big_div">
         <div class="big_gallery_title"><h2 class="title_big">G-WRITE</h2></div>
         <div class="blank">
             <div class="f-write_title"><h2 class="title_word">글제목</h2></div>
             <div class="title_inputs">
-                <input type="text" class="title_input" name="g_title" >
+                <label>
+                    <input type="text" class="title_input" name="g_title" th:value="${vo.g_title}" >
+                </label>
             </div>
         </div>
         <div class="blank"></div>
         <div class="big_content">
             <label>
-                <textarea class="content_big_input" name="g_contents"></textarea>
+                <textarea class="content_big_input" name="g_contents"  th:value="${vo.g_contents}"></textarea>
             </label>
         </div>
         <div class="blank"></div>

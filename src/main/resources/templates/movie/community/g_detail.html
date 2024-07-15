@@ -35,12 +35,12 @@
 
 <!--소메뉴 div-->
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
-<form name="free_detail" method="post" action="###" class="input">
+<form name="g_delete" method="post" action="" class="input">
 
     <div class="free_detail">
-        <input type="hidden" name="free_number" th:value="${vo.free_number}">
+        <input type="hidden" name="g_number" th:value="${vo.g_number}">
         <div class="user_name">
-            <div id="title"><h2>[[${vo.free_title}]]</h2></div>
+            <div id="title" th:value="${vo.g_title}"><h2>[[${vo.g_title}]]</h2></div>
             <div id="user_id">
                 <div id="user_img"></div>
                 <div id="free_feature">
@@ -54,8 +54,8 @@
             </div>
 
         </div>
-        <div class="free_contents" th:value="${vo.free_contents}">
-            [[${vo.free_contents}]]
+        <div class="free_contents" th:value="${vo.g_contents}">
+            [[${vo.g_contents}]]
 
         </div>
         <div class="coment">
@@ -80,17 +80,14 @@
             <div id="botton_buttom">
                 <button id="talk_button_free">댓글</button>
                 <div id="buttom_two">
-                    <button id="talk_button_update">수정</button>
+                    <button id="talk_button_update" th:onclick="|location.href='@{/movie/community/g_board_writer_update(g_number=${vo.g_number})}'|">수정</button>
                     <button id="talk_button_cancel">삭제</button>
                 </div>
             </div>
 
         </div>
 
-        <form>
 
-
-        </form>
 
 
     </div>
@@ -115,5 +112,8 @@
 
 <!--커뮤니티 js-->
 <script src="/js/modal/Gallery_modal2.js"></script>
+
+<!--삭제js-->
+<script src="/js/data/event/g_detail.js"></script>
 </body>
 </html>

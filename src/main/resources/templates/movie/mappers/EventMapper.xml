@@ -48,5 +48,31 @@ order by free_number desc limit #{First},#{amount}
 
 
     </select>
+
+    <delete id="free_delete">
+delete from free_gallery
+where free_number=#{free_number}
+
+    </delete>
+
+    <select id="gSelect" resultType="EventVO">
+        select *
+        from G_GALLERY
+        where g_number=#{g_number}
+
+
+    </select>
+
+    <delete id="g_delete">
+        delete from g_gallery
+        where g_number=#{g_number}
+    </delete>
+
+    <select id="g_update">
+        select *
+        from g_GALLERY
+        where g_number=${g_number}
+
+    </select>
 </mapper>
 
