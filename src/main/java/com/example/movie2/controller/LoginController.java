@@ -43,6 +43,11 @@ public class LoginController {
 
         return "redirect:/movie/mains";
     }
+
+    @PostMapping("/login_div")
+    public String login_div(){
+        return "redirect:/movie/mains";
+    }
     @PostMapping("/return_movie_mains")
     public String return_movie_mains(){
         return "redirect:/movie/mains";
