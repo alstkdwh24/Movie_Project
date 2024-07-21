@@ -25,5 +25,6 @@ public class LoginVO {
 private String gender;
 private String job;
 private String email;
+private String role;
 
 }

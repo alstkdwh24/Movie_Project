@@ -4,7 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.movie2.LoginService.LoginMapper">
     <insert id="Login_join" parameterType="com.example.movie2.commandVO.LoginVO">
-        insert into members (nickname, namena, id, pw, phone, birth, gender,job,email) values(#{nickname},#{namena},#{id},#{pw}, #{phone}, #{birth}, #{gender}, #{job}, #{email})
+        insert into members (nickname, namena, id, pw, phone, birth, gender,job,email, role) values(#{nickname},#{namena},#{id},#{pw}, #{phone}, #{birth}, #{gender}, #{job}, #{email}, #{role})
     </insert>
+    <select id="login" resultType="LoginVO">
+        select * from members where id=#{id}
+    </select>
+
+    <select id="Logins" resultType="LoginVO">
+        select * from members where id=#{id}
+    </select>
 
 </mapper>
