@@ -1,0 +1,29 @@
+*{
+    padding: 0; margin: 0;
+}
+.momo_container{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    top:0;
+    left: 0;
+    position: fixed;
+
+}
+.mo_contents{
+    /* 배경을 반투명하게 */
+    width: 28%;
+    min-width: 480px;
+    height: 40%;
+    background-color:antiquewhite;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    flex-direction: column;
+}
