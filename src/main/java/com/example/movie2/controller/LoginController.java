@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -27,7 +28,10 @@ public class LoginController {
         return "movie/login/login";
     }
 
-
+    @GetMapping("/LoginTwo")
+    public String loginTwo(){
+        return "/movie/login/LoginTwo";
+    }
 
 
     @PostMapping("/login_join")
@@ -42,6 +46,26 @@ public class LoginController {
         }
 
         return "redirect:/movie/mains";
+    }
+
+    @PostMapping("/login_div")
+    public String login_div(@RequestParam("id") String id, @RequestParam("pw") String pw, RedirectAttributes ra){
+LoginVO vo =loginService.login(id);
+        int result = 0;
+        if (vo.getPw().equals(pw)) { // 일반 사용자 로그인 성공
+            result = 1;}
+        if (result == 1) {
+            ra.addFlashAttribute("msg", "로그인 되었습니다");
+
+            // 일반 사용자 권한으로 처리할 로직 추가
+            return "redirect:/movie/mains";
+
+        }
+
+        else{
+            ra.addFlashAttribute("msg", "로그인안되었습니다");
+            return "redirect:/movie/login/login";
+        }
     }
     @PostMapping("/return_movie_mains")
     public String return_movie_mains(){
