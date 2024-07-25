@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+    <!--구글 폰트-->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+    <!--    본페이지 css-->
+    <link rel="stylesheet" href="/css/login/login.css">
+    <!--    mains css-->
+    <link rel="stylesheet" href="/css/login/login(menu).css">
+    <link rel="stylesheet" href="/css/login/logins.css">
+    <!--    커뮤니티 css-->
+    <link rel="stylesheet" href="/css/modal/fragment_gallery_modal.css">
+
+    <!--    커뮤니티 제목css-->
+
+    <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
+
+
+    <!--    소메뉴 검색 css-->
+    <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
+
+
+    <!--    채팅 css-->
+    <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
+
+
+    <!--    커뮤니티 모닿 css-->
+    <link rel="stylesheet" href="/css/mains/modal/fragment_gallery_modal.css">
+
+    <meta charset="UTF-8">
+    <title>JCGX MEMBER LOGIN</title>
+</head>
+<body>
+<form class="over_flow" name="login_form" method="post" action="/">
+
+    <!--소메뉴  div-->
+    <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
+
+    <div class="login_div">
+        <div class="login_title"><h2 class="h2_title">LOGIN</h2></div>
+        <div class="login_id_pw">
+            <div class="login_input"><input type="text" name="username" class="input_black"></div>
+            <div class="login_input"><input type="password" name="pw" class="input_black"></div>
+            <div th:type="hidden" id="hidden"><input type="hidden" class="hidden" >[[${msg}]]</div>
+            <div class="login_button">
+                <div class="big_button">
+                    <button id="login_button"><h3>LOGIN</h3></button>
+                </div>
+                <div class="small_button">
+
+                    <button class="login_buttonss"><img id="img_kakao" src="/css/img/icon/kakao_login_medium_narrow.png"
+                                                        alt=""></button>
+                    <button class="login_buttonss"><img id="img_naver"
+                                                        src="/css/img/2021_Login_with_naver_guidelines_Kr/btnG_완성형.png"
+                                                        alt=""></button>
+
+
+                </div>
+            </div>
+            <div class="login_search"><a>아이디 찾기</a>|<a>비밀번호 찾기</a></div>
+        </div>
+
+    </div>
+
+</form>
+<div class="Gallery_container">
+    <div class="Gallery_content">
+        <button class="G_C"></button>
+    </div>
+</div>
+
+<!--커뮤니티div-->
+<div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
+
+<!--채팅 모달div-->
+<div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
+
+
+<!--소메뉴 검색css-->
+<div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
+
+<!--커뮤니티 js-->
+<script src="/js/modal/Gallery_modal2.js"></script>
+
+<!--소메뉴 검색 모달-->
+<script src="/js/modal/momo_modal.js"></script>
+<!--채팅 모달js-->
+<script src="/js/modal/chat_modal.js"></script>
+
+
+<!--로그인 모달-->
+<script src="/js/login/login.js"></script>
+</body>
+</html>

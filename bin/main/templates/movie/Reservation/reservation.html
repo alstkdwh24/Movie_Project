@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/event/Gallery_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/mains_botton_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/sneak_modal.css">
+
+    <!--    css-->
+    <link rel="stylesheet" href="/css/reservation/reservation.css">
+    <link rel="stylesheet" href="/css/login/login(menu).css">
+    <link rel="stylesheet" href="/css/login/login(menu).css">
+    <link rel="stylesheet" href="/css/login/login.css">
+    <link rel="stylesheet" href="/css/modal/fragment_gallery_modal.css">
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
+<div id="reservation">
+    <div id="reservation_board">
+        <div id="movies_title">영화제목</div>
+        <div id="place">극장장소</div>
+        <div id="time">시간 그리고 모달창으로 좌석 예약 하고 결제창까지</div>
+    </div>
+</div>
+<div th:replace="/movie/community/fragment_gallery_modal.html :: Gallery_modal"></div>
+<div th:replace="/movie/mains_fragment/mains_chat_modal.html :: chat"></div>
+<div th:replace="/movie/mains_fragment/mains_search_modal.html :: mains_search_modal"></div>
+
+
+<script src="/js/modal/Gallery_modal.js"></script>
+<script src="/js/modal/mains_menu_modal.js"></script>
+<script src="/js/modal/modal.js"></script>
+<script src="/js/modal/momo_modal.js"></script>
+<script src="/js/modal/chat_modal.js"></script>
+<script src="/js/modal/write_freeboard_modal.js"></script>
+<script src="/js/data/freeboard.js"></script>
+</body>
+</html>

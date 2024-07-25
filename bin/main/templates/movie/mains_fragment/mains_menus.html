@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div th:fragment="article_div" class="article">
+
+    <div class="big_image">
+
+
+        <div class="title">
+            <div class="icon_menu" id="account_div"></div>
+            <div class="real_title">
+                <div id="real_title_top">
+                    <div class="real_title_top_blank">
+                        <button class="popcorn" onclick="location.href='/movie/shop/movie_store'"><img width="90%"
+                                                                                                       height="100%"
+                                                                                                       src="https://img.icons8.com/arcade/64/popcorn.png"
+                                                                                                       alt="popcorn"/>
+                        </button>
+                        <button class="theater" onclick="location.href='/movie/Reservation/reservation'"><img
+                                width="90%" height="100%" src="/css/img/icon/movies.png" alt=""></button>
+                    </div>
+                    <div class="real_title_top_title"><h2>JCGX</h2></div>
+                    <div class="real_title_top_blanks">
+                        <div class="real_title_top_blank_loginFQ"></div>
+                        <div class="real_title_top_blank_loginFQ">
+                            <a class="real_title_top_blank_loginFQ_a"
+                               onclick="location.href='/movie/login/login'">로그인</a>
+                            <a class="real_title_top_blank_loginFQ_a"
+                               onclick="location.href='/movie/login/join'">회원가입</a>
+                            <a class="real_title_top_blank_loginFQ_a"
+                               onclick="location.href='/movie/chats/Question'">문의</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="real_title_bottom">
+
+                    <div class="real_title_bottom_black">
+                        <div class="real_title_bottom_black_icon">
+                            <div class="real_title_bottom_black_icon_div">
+                                <button class="icon_button"
+                                        onclick="location.href='https://www.instagram.com/lottecinema_official/'">
+                                    <img width="80%" height="95%"
+                                         src="https://img.icons8.com/parakeet-line/48/instagram-new.png"
+                                         alt="instagram-new"/>
+
+                                </button>
+                            </div>
+                            <div class="real_title_bottom_black_icon_div">
+                                <button class="icon_button"
+                                        onclick="location.href='https://www.facebook.com/LotteCinema.kr/?locale=ko_KR'">
+                                    <img width="90%" height="105%" id="good"
+                                         src="https://img.icons8.com/laces/64/facebook.png" alt="facebook"/>
+
+
+                                </button>
+                            </div>
+                            <div class="real_title_bottom_black_icon_div"
+                                 onclick="location.href='https://www.youtube.com/@LOTTECINEMA'">
+                                <button class="icon_button">
+                                    <img id="youtube" width="80%" height="100%"
+                                         src="https://img.icons8.com/ios-filled/50/youtube-play.png"
+                                         alt="youtube-play"/></button>
+                            </div>
+                            <div class="real_title_bottom_black_icon_div">
+                                <button class="icon_button" onclick="location.href='https://pf.kakao.com/_HPBhu'">
+                                    <img width="80%" height="100%" src="https://img.icons8.com/color/48/kakaotalk.png"
+                                         alt="kakaotalk"/>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="real_title_bottom_two">
+                        <div class="real_title_bottom_two_reservation"
+                             onclick="location.href='/movie/information/movie_information'">영화정보
+                        </div>
+                        <div class="real_title_bottom_two_reservation"><a class="community">커뮤니티
+                        </a></div>
+                        <div class="real_title_bottom_two_reservation"
+                             onclick="location.href='/movie/Reservation/reservation'">예매
+                        </div>
+                        <div class="real_title_bottom_two_reservation" onclick="location.href='/movie/community/event'">
+                            이벤트
+                        </div>
+                        <div class="real_title_bottom_two_reservation"
+                             onclick="location.href='/movie/shop/popcorn_store'">스토어
+                        </div>
+                    </div>
+                    <div class="real_title_bottom_blacks">
+                    <div class="real_title_bottom_blacks_arr">
+                            <div class="real_title_bottom_blacks_a" onclick="location.href='/movie/mains'"><span
+                                    class="material-symbols-outlined" id="menus">
+home
+</span></div>
+                            <div class="real_title_bottom_blacks_a">
+                                <div class="momo_button" id="modal_modal"><span class="material-symbols-outlined"
+                                           id="menulogin">
+search
+                            </span></div>
+                            </div>
+                            <div class="real_title_bottom_blacks_a"><div class="modalOpenButton"><span class="material-symbols-outlined"
+                                                                          id="menutwo">
+chat_bubble
+</span></div></div>
+                            <div class="real_title_bottom_blacks_a">
+                                <div class="momo_button"><span class="material-symbols-outlined" id="menu">
+menu
+</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="icon_menu"></div>
+        </div>
+        <div class="big_image_div">
+            <div class="big_image_arrow">
+                <button class="big_image_arrow_button"><span class="material-symbols-outlined" id="google_font">
+arrow_circle_left
+</span></button>
+            </div>
+            <div class="sneak_entry"></div>
+            <div class="big_image_arrow" id="big_image_arrow_right">
+                <button class="big_image_arrow_button_left"><span class="material-symbols-outlined" id="google_font_right">
+arrow_circle_right
+</span></button>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
