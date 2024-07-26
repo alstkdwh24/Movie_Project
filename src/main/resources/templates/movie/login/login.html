@@ -33,6 +33,10 @@
     <!--    커뮤니티 모닿 css-->
     <link rel="stylesheet" href="/css/mains/modal/fragment_gallery_modal.css">
 
+
+
+    <!--    미니메뉴 모달-->
+    <link rel="stylesheet" href="/css/mains/main_imin_menu.css">
     <meta charset="UTF-8">
     <title>JCGX MEMBER LOGIN</title>
 </head>
@@ -85,6 +89,11 @@
 <!--소메뉴 검색css-->
 <div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
 
+
+<!--미니 메뉴 div-->
+<div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
+
+
 <!--커뮤니티 js-->
 <script src="/js/modal/Gallery_modal2.js"></script>
 
@@ -96,5 +105,8 @@
 
 <!--로그인 모달-->
 <script src="/js/login/login.js"></script>
+
+<!--미니 메뉴-->
+<script src="/js/modal/menu_modal.js"></script>
 </body>
 </html>

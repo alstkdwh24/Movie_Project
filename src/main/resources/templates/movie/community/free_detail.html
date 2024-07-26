@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="/css/login/login.css">
     <link rel="stylesheet" href="/css/event/writer2.css">
 
+    <!--    미니메뉴 모달-->
+    <link rel="stylesheet" href="/css/mains/main_imin_menu.css">
+
     <!--    본 페이지 css-->
     <link rel="stylesheet" href="/css/event/free_detail/freedetail.css">
 
@@ -103,6 +106,10 @@
 <!--소메뉴 검색  div-->
 <div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
 
+<!--미니 메뉴 div-->
+<div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
+
+
 <!--채팅 js-->
 <script src="/js/modal/chat_modal.js"></script>
 
@@ -114,5 +121,8 @@
 
 <!--수정으로 보내는 js-->
 <script src="/js/data/event/free_detail.js"></script>
+
+<!--미니 메뉴-->
+<script src="/js/modal/menu_modal.js"></script>
 </body>
 </html>

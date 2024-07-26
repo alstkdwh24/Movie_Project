@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="/css/login/login(menu).css">
 
 
+    <!--    미니메뉴 모달-->
+    <link rel="stylesheet" href="/css/mains/main_imin_menu.css">
+
     <!--    html크기css-->
     <link rel="stylesheet" href="/css/login/login.css">
 
@@ -87,6 +90,10 @@
 <!--소메뉴 검색 모달 div-->
 <div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
 
+<!--미니 메뉴 div-->
+<div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
+
+
 
 <!--이 페이지에 필요한 js-->
 <script src="/js/data/free_board_writer.js"></script>
@@ -101,6 +108,8 @@
 <!--카테고리 js-->
 <script src="/js/modal/Gallery_modal2.js"></script>
 
+<!--미니 메뉴-->
+<script src="/js/modal/menu_modal.js"></script>
 
 </body>
 </html>

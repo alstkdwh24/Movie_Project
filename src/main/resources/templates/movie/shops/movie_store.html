@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
     <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
     <link rel="stylesheet" href="/css/mains/modal/sneak_modal.css">
+
+    <!--    미니메뉴 모달-->
+    <link rel="stylesheet" href="/css/mains/main_imin_menu.css">
+
     <!--    css-->
     <link rel="stylesheet" href="/css/popcorn_store/popcorn_store.css">
     <link rel="stylesheet" href="/css/login/login(menu).css">
@@ -23,6 +27,8 @@
     <link rel="stylesheet" href="/css/login/login.css">
     <link rel="stylesheet" href="/css/modal/fragment_gallery_modal.css">
     <link rel="stylesheet" href="/css/event/Gallery_modal.css">
+
+
 
     <meta charset="UTF-8">
     <title>JCGX SHOP</title>
@@ -91,6 +97,7 @@
 
 
 <div th:replace="/movie/mains_fragment/modal/mains_menu_modal.html :: mains_menu_modal"></div>
+<div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
 
 
 
@@ -101,5 +108,7 @@
 <script src="/js/modal/chat_modal.js"></script>
 <script src="/js/modal/write_freeboard_modal.js"></script>
 <script src="/js/data/freeboard.js"></script>
+<!--미니 메뉴-->
+<script src="/js/modal/menu_modal.js"></script>
 </body>
 </html>

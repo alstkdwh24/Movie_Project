@@ -13,4 +13,9 @@ public class UserController {
         return "movie/user/Mypage";
     }
 
+    @GetMapping("/myproduct")
+    public String myproduct(){
+        return "movie/user/myproduct";
+    }
+
 }
