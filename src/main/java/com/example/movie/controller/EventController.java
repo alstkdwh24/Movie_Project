@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 @Controller
@@ -30,13 +31,20 @@ public class EventController {
         return "movie/community/event";
     }
     @GetMapping("/gboard")
-    public String gboard(HttpServletRequest request, Model model, Criteria cri){
-        ArrayList<EventVO> List =eventService.gallery_g_show(cri);
-        int total = eventService.gallery_g_total(cri);
-        PageVO pageVO=new PageVO(cri, total);
-        model.addAttribute("list",List);
-        model.addAttribute("pageVO",pageVO);
-        System.out.println(pageVO);
+    public String gboard(HttpServletRequest request, Model model, Criteria cri , HttpSession session){
+        String sessionUsername=(String) session.getAttribute("username");
+        if (sessionUsername != null) {
+            System.out.println("세션에 저장된 username: " + sessionUsername);
+
+            ArrayList<EventVO> List = eventService.gallery_g_show(cri);
+            int total = eventService.gallery_g_total(cri);
+            PageVO pageVO = new PageVO(cri, total);
+            model.addAttribute("list", List);
+            model.addAttribute("pageVO", pageVO);
+            System.out.println(pageVO);
+            System.out.println("세션에 저장된 username: " + sessionUsername);
+
+        }
 
         return "movie/community/gboard";
     }

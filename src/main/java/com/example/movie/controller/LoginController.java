@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/movie/login")
@@ -49,24 +50,27 @@ public class LoginController {
     }
 
 
-//    @PostMapping("/Login_form")
-//    public String login_login(HttpServletRequest request,
-//                              @RequestParam("username") String username,
-//                              @RequestParam("pw") String pw,
-//                              Model model,
-//                              RedirectAttributes ra) {
-//
-//        LoginVO vo = loginService.login(username);
-//        if (vo != null && passwordEncoder.matches(pw, vo.getPw())) {
-//            ra.addFlashAttribute("msg", "정상적으로 로그인되었습니다");
-//            return "redirect:/movie/mains";
-//        } else {
-//            ra.addFlashAttribute("msg", "로그인에 실패했습니다.");
-//            System.out.println("vo.username :" + username);
-//            System.out.println("pw: " + pw);
-//            return "redirect:/movie/login/login";
-//        }
-//    }
+    @PostMapping("/Login_form")
+    public String login_login(HttpServletRequest request,
+                              @RequestParam("username") String username,
+                              @RequestParam("pw") String pw,
+                              Model model,
+                              RedirectAttributes ra,
+                              HttpSession session) {
+
+        LoginVO vo = loginService.login(username);
+        if (vo != null && passwordEncoder.matches(pw, vo.getPw())) {
+            session.setAttribute("username",vo.getUsername());
+            ra.addFlashAttribute("msg", "정상적으로 로그인되었습니다");
+            System.out.println("session" + session);
+            return "redirect:/movie/mains";
+        } else {
+            ra.addFlashAttribute("msg", "로그인에 실패했습니다.");
+            System.out.println("vo.username :" + username);
+            System.out.println("pw: " + pw);
+            return "redirect:/movie/login/login";
+        }
+    }
 
 
     @PostMapping("/login_join")

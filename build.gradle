@@ -39,6 +39,10 @@ dependencies {
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 //시큐리티 테스트
     testImplementation 'org.springframework.security:spring-security-test'
+    implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+
+    // 적절한 버전으로 변경
+
 }
 
 tasks.named('test') {

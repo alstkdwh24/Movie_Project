@@ -17,7 +17,9 @@ public class MyUserDetail implements UserDetails {
     public MyUserDetail(LoginVO vo) {
         this.VO = vo;
     }
-
+    public String getrole(){
+        return VO.getRoles();
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> list= new ArrayList<>();
