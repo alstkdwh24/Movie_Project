@@ -14,5 +14,11 @@ const momo_button=document.getElementById("menu");
     closed.onclick=function(){
         imin_menu_modal.style.display="none";
     }
+    imin_menu_modal.onclick = function(event) {
+        if (imin_menu_modal && event.target === imin_menu_modal) {
+            console.log("Window clicked outside momo_modal");
+            imin_menu_modal.style.display = "none";
+        }
+    }
 
 });
