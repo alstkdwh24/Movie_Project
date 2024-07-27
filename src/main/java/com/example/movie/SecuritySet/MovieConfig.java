@@ -33,6 +33,9 @@ public class MovieConfig {
                 .antMatchers("/movie/user/**").hasAnyRole("ROLE_1")
                 .antMatchers("/movie/chat/**").hasAnyRole("ROLE_1")
                 .antMatchers("/admin/**").hasRole("admin")
+                .antMatchers("/movie/community/free_board_writer").hasAnyRole("ROLE_1")
+                .antMatchers("/movie/community/g_board_writer").hasAnyRole("ROLE_1")
+                .antMatchers("/movie/Reservation/reservation").hasAnyRole("ROLE_1")
                 .anyRequest().permitAll());
 
 

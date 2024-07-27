@@ -55,14 +55,13 @@ public class LoginController {
                               @RequestParam("username") String username,
                               @RequestParam("pw") String pw,
                               Model model,
-                              RedirectAttributes ra,
-                              HttpSession session) {
+                              RedirectAttributes ra) {
 
         LoginVO vo = loginService.login(username);
         if (vo != null && passwordEncoder.matches(pw, vo.getPw())) {
-            session.setAttribute("username",vo.getUsername());
+//            session.setAttribute("username",vo.getUsername());
             ra.addFlashAttribute("msg", "정상적으로 로그인되었습니다");
-            System.out.println("session" + session);
+//            System.out.println("session" + session);
             return "redirect:/movie/mains";
         } else {
             ra.addFlashAttribute("msg", "로그인에 실패했습니다.");

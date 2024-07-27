@@ -1,7 +1,9 @@
 package com.example.movie.controller;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
+import com.example.movie.LoginService.LoginService;
 import com.example.movie.commandVO.EventVO;
+import com.example.movie.commandVO.LoginVO;
 import com.example.movie.communityEventService.EventService;
 import com.example.movie.util.Criteria;
 import com.example.movie.util.PageVO;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/movie/community")
@@ -26,25 +29,23 @@ public class EventController {
     @Qualifier("EventService")
     public EventService eventService;
 
+    @Autowired
+    @Qualifier("loginService")
+    public LoginService loginService;
+
     @GetMapping("/event")
     public String Event2(){
         return "movie/community/event";
     }
     @GetMapping("/gboard")
-    public String gboard(HttpServletRequest request, Model model, Criteria cri , HttpSession session){
-        String sessionUsername=(String) session.getAttribute("username");
-        if (sessionUsername != null) {
-            System.out.println("세션에 저장된 username: " + sessionUsername);
-
-            ArrayList<EventVO> List = eventService.gallery_g_show(cri);
-            int total = eventService.gallery_g_total(cri);
-            PageVO pageVO = new PageVO(cri, total);
-            model.addAttribute("list", List);
-            model.addAttribute("pageVO", pageVO);
-            System.out.println(pageVO);
-            System.out.println("세션에 저장된 username: " + sessionUsername);
-
-        }
+    public String gboard(HttpServletRequest request, Model model, Criteria cri ){
+//        String sessionUsername=(String) session.getAttribute("username");
+        ArrayList<EventVO> List = eventService.gallery_g_show(cri);
+        int total = eventService.gallery_g_total(cri);
+        PageVO pageVO = new PageVO(cri, total);
+        model.addAttribute("list", List);
+        model.addAttribute("pageVO", pageVO);
+        System.out.println(pageVO);
 
         return "movie/community/gboard";
     }
@@ -62,7 +63,13 @@ public class EventController {
     }
 
     @GetMapping("/g_board_writer")
-    public  String  g_board(){
+    public  String  g_board( HttpSession session,Model model){
+
+//
+//        String roles = (String) session.getAttribute("roles");
+//        model.addAttribute("roles", roles);
+
+
         return "movie/community/g_board_writer";
     }
 
@@ -79,6 +86,8 @@ public class EventController {
 
     @GetMapping("/free_board_writer")
     public  String free_board_writer(){
+
+
         return "movie/community/free_board_writer";
     }
 
