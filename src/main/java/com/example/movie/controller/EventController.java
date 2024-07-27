@@ -66,13 +66,10 @@ public class EventController {
     }
 
     @GetMapping("/g_board_writer")
-    @PreAuthorize("hasAnyRole('1')")
+ @PreAuthorize("hasRole('ROLE_1')")
     public String g_board(HttpSession session, Model model) {
 
 //
-        String roles = (String) session.getAttribute("roles");
-
-        model.addAttribute("roles", roles);
 
 
         return "movie/community/g_board_writer";
@@ -90,7 +87,7 @@ public class EventController {
     }
 
     @GetMapping("/free_board_writer")
-    @PreAuthorize("hasRole('ROLE_1')")
+//       @PreAuthorize("hasRole('ROLE_1')")
     public String freeBoardWriter(Model model) {
 
         return "movie/community/free_board_writer"; // 해당 뷰 반환

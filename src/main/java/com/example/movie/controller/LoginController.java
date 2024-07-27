@@ -85,13 +85,13 @@ public class LoginController {
 
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-            // 사용자 인증 정보 생성
+//            // 사용자 인증 정보 생성
             UsernamePasswordAuthenticationToken authenticationToken =
                     new UsernamePasswordAuthenticationToken(userDetails, pw, userDetails.getAuthorities());
-
-            // 인증을 수행
+//
+//            // 인증을 수행
             Authentication authentication = authenticationManager.authenticate(authenticationToken);
-
+//
             // 인증 성공 후, SecurityContext에 Authentication 객체 설정
             SecurityContextHolder.getContext().setAuthentication(authentication);
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  th:if="${roles != null and roles.equals('ROLE_1')}">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -40,11 +40,10 @@
     <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
 
 </head>
-<body >
+<body>
 <!--소제목 div-->
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs" ></div>
 <form method="Post" name="Gallery_g_board" action="/" class="big_frame">
-    <input type="hidden" th:value="roles.roles" name="roles">
     <div class="big_div">
         <div class="big_gallery_title"><h2 class="title_big">G-WRITE</h2></div>
         <div class="blank">
@@ -68,7 +67,6 @@
             </div>
         </div>
 
-        <p th:text="${message}"></p>
     </div>
 
 </form>
