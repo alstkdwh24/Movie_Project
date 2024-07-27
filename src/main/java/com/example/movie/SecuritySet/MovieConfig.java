@@ -4,6 +4,8 @@ package com.example.movie.SecuritySet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,12 +32,12 @@ public class MovieConfig {
     public SecurityFilterChain SecurityFilterChain(HttpSecurity http) throws Exception{
         http.csrf().disable();
         http.authorizeRequests((authorize)->authorize.antMatchers("/movie").authenticated()
-                .antMatchers("/movie/user/**").hasAnyRole("ROLE_1")
-                .antMatchers("/movie/chat/**").hasAnyRole("ROLE_1")
+                .antMatchers("/movie/user/**").hasRole("1")
+                .antMatchers("/movie/chat/**").hasRole("1")
                 .antMatchers("/admin/**").hasRole("admin")
-                .antMatchers("/movie/community/free_board_writer").hasAnyRole("ROLE_1")
-                .antMatchers("/movie/community/g_board_writer").hasAnyRole("ROLE_1")
-                .antMatchers("/movie/Reservation/reservation").hasAnyRole("ROLE_1")
+                .antMatchers("/movie/community/free_board_writer").hasRole("1")
+                .antMatchers("/movie/community/g_board_writer").hasRole("1")
+                .antMatchers("/movie/Reservation/reservation").hasRole("1")
                 .anyRequest().permitAll());
 
 
@@ -63,5 +65,11 @@ public class MovieConfig {
         });
         return http.build();
     }
-
+    @Bean
+    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+        AuthenticationManagerBuilder authenticationManagerBuilder =
+                http.getSharedObject(AuthenticationManagerBuilder.class);
+        // 사용자 세부 정보 서비스 설정 (예: userDetailService)
+        return authenticationManagerBuilder.build();
+    }
 }

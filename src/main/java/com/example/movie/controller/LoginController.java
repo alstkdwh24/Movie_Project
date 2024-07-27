@@ -5,18 +5,24 @@ import com.example.movie.SecuritySet.MyUserDetailService;
 import com.example.movie.commandVO.LoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 @RequestMapping("/movie/login")
@@ -31,7 +37,11 @@ public class LoginController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private UserDetailsService userDetailsService; // UserDetailsService 주입
 
+    @Autowired
+    private AuthenticationManager authenticationManager;
     //회원가입 화면
     @GetMapping("/join")
     public String join() {
@@ -50,18 +60,45 @@ public class LoginController {
     }
 
 
+
+    @GetMapping("/name")
+    public @ResponseBody String an(HttpSession session){
+        String username=(String) session.getAttribute("username");
+        if(username!=null){
+            return "세셔은 살아있다.";
+        }else{
+            return "세션살려";
+        }
+    }
+
     @PostMapping("/Login_form")
     public String login_login(HttpServletRequest request,
+                              HttpSession session,
                               @RequestParam("username") String username,
                               @RequestParam("pw") String pw,
                               Model model,
                               RedirectAttributes ra) {
 
         LoginVO vo = loginService.login(username);
+
         if (vo != null && passwordEncoder.matches(pw, vo.getPw())) {
-//            session.setAttribute("username",vo.getUsername());
+
+            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+
+            // 사용자 인증 정보 생성
+            UsernamePasswordAuthenticationToken authenticationToken =
+                    new UsernamePasswordAuthenticationToken(userDetails, pw, userDetails.getAuthorities());
+
+            // 인증을 수행
+            Authentication authentication = authenticationManager.authenticate(authenticationToken);
+
+            // 인증 성공 후, SecurityContext에 Authentication 객체 설정
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            // 세션에 사용자 정보를 저장 (선택 사항)
+            session.setAttribute("user", userDetails);
+
             ra.addFlashAttribute("msg", "정상적으로 로그인되었습니다");
-//            System.out.println("session" + session);
             return "redirect:/movie/mains";
         } else {
             ra.addFlashAttribute("msg", "로그인에 실패했습니다.");
@@ -70,6 +107,7 @@ public class LoginController {
             return "redirect:/movie/login/login";
         }
     }
+
 
 
     @PostMapping("/login_join")
@@ -89,5 +127,9 @@ public class LoginController {
     public String return_movie_mains(){
         return "redirect:/movie/mains";
     }
+
+
+
+
 }
 

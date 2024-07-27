@@ -17,6 +17,9 @@ public class MovieController  {
 
     @GetMapping("/mains")
     public String mains(){
+
+
+
         return "movie/mains";
     }
 
