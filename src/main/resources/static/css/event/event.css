@@ -5,8 +5,7 @@ body{   width: 100%;
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
-    background-color: antiquewhite;
-
+background-color: black;
 }
 .event_board{border: 1px solid black;
 width: 60%;
@@ -45,6 +44,7 @@ display: flex;
     border: 1px solid black;
     display: flex;
     box-sizing: border-box;
+    background-color: white;
 }
 .contents_good .good_click{
     height: 100%;

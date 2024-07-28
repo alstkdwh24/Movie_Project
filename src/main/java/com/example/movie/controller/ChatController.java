@@ -7,6 +7,7 @@ import com.example.movie.util.PageVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +43,7 @@ public class ChatController {
 
 
     @GetMapping("/Question_writer")
+    @PreAuthorize("hasAnyRole('ROLE_1')")
     public String writer(){
         return "movie/chats/Question_writer";
     }

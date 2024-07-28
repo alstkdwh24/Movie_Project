@@ -38,6 +38,7 @@ public class MovieConfig {
                 .antMatchers("/movie/community/free_board_writer").hasRole("1")
                 .antMatchers("/movie/community/g_board_writer").hasRole("1")
                 .antMatchers("/movie/Reservation/reservation").hasRole("1")
+                .antMatchers("/movie/chats/**").hasRole("1")
                 .anyRequest().permitAll());
 
 

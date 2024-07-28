@@ -11,7 +11,7 @@ overflow: hidden;
 #reservation{
 height: 128%;
     width: 100%;
-    background-color: antiquewhite;
+    background-color: black;
     display: flex;
     justify-content: center;
 }
@@ -27,16 +27,16 @@ height: 128%;
 #movies_title{
     width: 33.3%;
     height: 100%;
-    border: 1px solid antiquewhite;
+    border: 1px solid black;
 }
 #place{
     width: 33.3%;
     height: 100%;
-    border: 1px solid antiquewhite;
+    border: 1px solid black;
 }
 #time{
     width: 33.3%;
     height: 100%;
-    border: 1px solid antiquewhite;
+    border: 1px solid black;
 }
 
