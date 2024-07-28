@@ -14,3 +14,10 @@
     height: 100%;
 
 }
+
+.mo_contents{
+    width:50%;
+    height:50%;
+    background-color: white;
+    border-radius: 10px;
+}

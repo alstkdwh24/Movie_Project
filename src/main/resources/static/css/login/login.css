@@ -25,7 +25,7 @@ html {
 .login_div {
     width: 25%;
     height: 36%;
-
+background-color: wheat;
     border-radius: 50px;
     position: relative;
     top: 12%;
