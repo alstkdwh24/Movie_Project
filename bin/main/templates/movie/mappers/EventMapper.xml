@@ -30,5 +30,49 @@ order by free_number desc limit #{First},#{amount}
     <select id="gallery_g_total" resultType="int" >
         select count(*) AS gallery_g_total from G_GALLERY
     </select>
+
+
+
+    <select id="freeselect" resultType="EventVO">
+        select *
+        from FREE_GALLERY
+        where free_number=${free_number}
+
+
+    </select>
+
+    <select id="free_detail_update_select" resultType="EventVO">
+        select *
+        from FREE_GALLERY
+        where free_number=${free_number}
+
+
+    </select>
+
+    <delete id="free_delete">
+delete from free_gallery
+where free_number=#{free_number}
+
+    </delete>
+
+    <select id="gSelect" resultType="EventVO">
+        select *
+        from G_GALLERY
+        where g_number=#{g_number}
+
+
+    </select>
+
+    <delete id="g_delete">
+        delete from g_gallery
+        where g_number=#{g_number}
+    </delete>
+
+    <select id="g_update">
+        select *
+        from g_GALLERY
+        where g_number=${g_number}
+
+    </select>
 </mapper>
 

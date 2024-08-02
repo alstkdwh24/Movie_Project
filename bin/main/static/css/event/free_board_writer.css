@@ -9,6 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
 }
 .blank{
     height: 4%;
@@ -37,8 +38,7 @@
     height: 30%;
     width: 100%;
     box-sizing: border-box;
-    background-color:#fee0af;
-;
+background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgba(247, 247, 247, 0.84));
 
 }
 .writer_button{
@@ -88,7 +88,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fee0af;
+    background-color: white;
     border-right: 2px solid #d39c4a;
 
 }
@@ -101,8 +101,8 @@
 .title_input{
     height: 100%;
     width: 100%;
-    background-color: #fee0af;
-    box-sizing: border-box;
+    background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgba(247, 247, 247, 0.84));
+        box-sizing: border-box;
 border: none;
 }
 .title_inputs{
@@ -124,7 +124,7 @@ border: none;
     height: 100%;
     font-size: 30px;
     box-sizing: border-box;
-    background-color: #fee0af;
+    background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgba(247, 247, 247, 0.84));
     border: none;
     text-align: start;
 

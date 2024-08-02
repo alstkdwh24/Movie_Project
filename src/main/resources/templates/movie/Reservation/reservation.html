@@ -54,9 +54,14 @@
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 <div id="reservation">
     <div id="reservation_board">
-        <div id="movies_title">영화제목</div>
-        <div id="place">극장장소</div>
-        <div id="time">시간 그리고 모달창으로 좌석 예약 하고 결제창까지</div>
+        <div class="movies_titles">
+            <div class="movie_name">원피스</div>
+            <div class="movie_name"></div>
+
+            <div class="movie_name"></div>
+
+        </div>
+
     </div>
 </div>
 
@@ -75,7 +80,8 @@
 <div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
 
 
-
+<!--jQuery js -->
+<script src="/js/jquery-3.7.1.min.js"></script>
 
 <!--소메뉴 검색 모달-->
 <script src="/js/modal/momo_modal.js"></script>
@@ -89,6 +95,9 @@
 <!--미니 메뉴-->
 <script src="/js/modal/menu_modal.js"></script>
 
+
+<!--카테고리 js-->
+<script src="/js/data/Use_Rest_js/Reservation_Rest.js"></script>
 
 </body>
 </html>

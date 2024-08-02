@@ -12,7 +12,7 @@ body {
 }
 
 #popcorn_div {
-    background-color: antiquewhite;
+    background-color: black;
     height: 128%;
     width: 100%;
     display: flex;
@@ -26,6 +26,7 @@ body {
     width: 70%;
     height: 25%;
     border: 1px solid black;
+    background-color: white;
 }
 
 #store_card {

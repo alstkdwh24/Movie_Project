@@ -31,8 +31,7 @@ public class LoginController {
     @Qualifier("loginService")
     private LoginService loginService;
 
-    @Autowired
-    private MyUserDetailService userDetailService;
+
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -97,6 +96,8 @@ public class LoginController {
 
             // 세션에 사용자 정보를 저장 (선택 사항)
             session.setAttribute("user", userDetails);
+
+            session.setMaxInactiveInterval(1800);
 
             ra.addFlashAttribute("msg", "정상적으로 로그인되었습니다");
             return "redirect:/movie/mains";

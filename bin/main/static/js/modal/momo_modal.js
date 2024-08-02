@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     // 모달 외부 클릭 시 모달 숨김
-    window.onclick = function(event) {
+    momo_modal.onclick = function(event) {
         if (momo_modal && event.target === momo_modal) {
             console.log("Window clicked outside momo_modal");
             momo_modal.style.display = "none";

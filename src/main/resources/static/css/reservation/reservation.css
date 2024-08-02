@@ -24,19 +24,32 @@ height: 128%;
     top:9%;
     display: flex;
 }
-#movies_title{
+.movies_titles{
     width: 33.3%;
     height: 100%;
     border: 1px solid black;
 }
-#place{
-    width: 33.3%;
-    height: 100%;
-    border: 1px solid black;
-}
-#time{
-    width: 33.3%;
-    height: 100%;
-    border: 1px solid black;
-}
+/*#place{*/
+/*    width: 33.3%;*/
+/*    height: 100%;*/
+/*    border: 1px solid black;*/
+/*}*/
+/*#time{*/
+/*    width: 33.3%;*/
+/*    height: 100%;*/
+/*    border: 1px solid black;*/
+/*}*/
+/*영화 이름 데이터 가져오는 div*/
+.movie_name{
+    width: 100%;
+    height: 15%;
+    border: 1px solid saddlebrown;
+background-color: #d39c4a;
+    box-shadow: bisque;
+    color:antiquewhite;
 
+    font-size: 30px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}

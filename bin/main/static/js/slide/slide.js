@@ -44,8 +44,8 @@ const sneak_entry=document.querySelector(".sneak_entry")
     sneak_close.onclick=function(){
         sneak_peek_movie_modalss.style.display="none";
     }
-    window.onclick=function(event){
-        if(event.target === sneak_peek_movie_modalss){
+    sneak_peek_movie_modalss.onclick=function(even){
+        if(even.target === sneak_peek_movie_modalss){
             sneak_peek_movie_modalss.style.display = "none";
 
         }
