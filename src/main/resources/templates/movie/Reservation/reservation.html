@@ -13,6 +13,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
+
+    <!--제아쿼리 버전 다름-->
+    <script src="/js/jquery-1.12.1.min.js"></script>
     <!--커뮤니티 제목css    -->
 
     <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
@@ -54,13 +57,7 @@
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 <div id="reservation">
     <div id="reservation_board">
-        <div class="movies_titles">
-            <div class="movie_name">원피스</div>
-            <div class="movie_name"></div>
 
-            <div class="movie_name"></div>
-
-        </div>
 
     </div>
 </div>
@@ -81,7 +78,7 @@
 
 
 <!--jQuery js -->
-<script src="/js/jquery-3.7.1.min.js"></script>
+<!--<script src="/js/jquery-3.7.1.min.js"></script>-->
 
 <!--소메뉴 검색 모달-->
 <script src="/js/modal/momo_modal.js"></script>
@@ -99,5 +96,23 @@
 <!--카테고리 js-->
 <script src="/js/data/Use_Rest_js/Reservation_Rest.js"></script>
 
+
+
+<script>
+    $.ajax({
+        type: "get",
+        url: "/getMovieCategory",
+        success: function (data) {
+            console.log(data);
+            movie_category_create(data);
+
+        },
+        error: function (err, status) {
+            console.log(err, status);
+            alert('카테고리를 불러오는데 실패하였습니다. F5를 눌러서 새로고침을 해주세요');
+        }
+    });
+
+</script>
 </body>
 </html>

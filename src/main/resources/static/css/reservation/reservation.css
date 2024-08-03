@@ -17,7 +17,7 @@ height: 128%;
 }
 
 #reservation_board{
-    width: 64%;
+    width: 46%;
     height: 50%;
     background-color: white;
     position: relative;
@@ -53,3 +53,8 @@ background-color: #d39c4a;
     justify-content:center;
     align-items:center;
 }
+
+.movies_titles > a.sub_menu_select,
+a.sub_menu_select {color: #f1f1f1; background-color: #00acac;}
+a:hover {background-color: #2196F3;}
+.movies_titles > a.on {background-color: #2196F3;}

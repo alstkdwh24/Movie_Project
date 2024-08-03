@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.movie.ReservationService.ReservationMapper">
+    <select id="getMovieCategoryChild">
+        select * from movie_category_table
+        where group_id= #{group_id}
+        and movie_category_parents_lv= #{movie_category_lv}
+        and movie_category_detail_parent_lv=#{movie_detail_lv}
+    </select>
+    <select id="getMovieCategory" resultType="CategoryVO">
+    select * from movie_category_table
+    where movie_category_lv = 1
+
+    </select>
+</mapper>
