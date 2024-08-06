@@ -14,8 +14,8 @@ $(document).ready(function() {
     });
 });
 function getMovieCategory_List(e) {
-    // e.preventDefault();
-    if (e.target.tagName != 'a') return;
+     e.preventDefault();
+    if (e.target.tagName != 'A') return;
     let dataset = $(e.target).data("set");
 
 
