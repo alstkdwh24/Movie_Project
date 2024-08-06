@@ -11,7 +11,8 @@ const momo_button=document.getElementById("menu");
     imin_menu_modal.style.justifyContent="center";
     imin_menu_modal.style.alignItems="center";
 }
-    closed.onclick=function(){
+    closed.onclick=function(e){
+        e.preventDefault();
         imin_menu_modal.style.display="none";
     }
     imin_menu_modal.onclick = function(event) {

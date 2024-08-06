@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 public interface LoginService {
      int Login_join(LoginVO vo);
 
-     public LoginVO login(String username);
+     LoginVO login(String username);
 
 
 

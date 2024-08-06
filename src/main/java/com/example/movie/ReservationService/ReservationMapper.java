@@ -8,7 +8,7 @@ import java.util.ArrayList;
 @Mapper
 public interface ReservationMapper {
 
-    public ArrayList<CategoryVO> getMovieCategory();
+    ArrayList<CategoryVO> getMovieCategory();
 
-    public ArrayList<CategoryVO> getMovieCategoryChild(CategoryVO vo);
+    ArrayList<CategoryVO> getMovieCategoryChild(CategoryVO vo);
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service("reservationService")
-public class ReservationserviceImpl implements ReservationService{
+public class ReservationServiceImpl implements ReservationService{
 
     @Autowired
     private ReservationMapper reservationMapper;
