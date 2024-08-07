@@ -13,7 +13,9 @@ height: 128%;
     width: 100%;
     background-color: black;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 #reservation_board{
@@ -64,3 +66,25 @@ text-decoration: none;
 a.sub_menu_select {color: #f1f1f1; background-color: #00acac;}
 a:hover {background-color: #2196F3;}
 .movies_titles > a.on {background-color: #2196F3;}
+
+#submit{
+    width: 10%;
+    height: 5%;
+}
+/*여기부터는 모달내용*/
+/*예약모달 내용*/
+#reservation_modal{
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: fixed;
+}
+/*모달의 몸통*/
+#reservation_modal_contents{
+    width: 40%;
+    height: 50%;
+    background-color: antiquewhite;
+}
