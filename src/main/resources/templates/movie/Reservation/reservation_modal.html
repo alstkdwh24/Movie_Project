@@ -6,8 +6,28 @@
 </head>
 <body>
 <div th:fragment="reservation_modal" id="reservation_modal">
-    <div id="reservation_modal_contents"></div>
-    <button id="closecl">ClOSE</button>
+    <button id="closecl" img=><img src="/css/img/icon/2door.png" width="64px" height="64px"
+                                   alt=""></button>
+    <div id="reservation_modal_contents">
+        <div id="reservation_content">
+            <div class="reservation_row">
+                <div class="reservation_column" style="color: white; display:flex; align-items: center; justify-content: center; font-size: 30px" >영화이름</div>
+                <div class="reservation_column" id="movie_detail_title" style="color: white; display:flex; align-items: center; justify-content: center; font-size: 30px" > </div>
+            </div>
+            <div class="reservation_row">
+                <div class="reservation_column"></div>
+                <div class="reservation_column"></div>
+            </div>
+            <div class="reservation_row">
+                <div class="reservation_column"></div>
+                <div class="reservation_column"></div>
+            </div>
+
+
+        </div>
+        <button id="next">다음</button>
+    </div>
+
 </div>
 
 </body>

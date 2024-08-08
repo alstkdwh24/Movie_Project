@@ -30,7 +30,7 @@
 <body>
 <!--소메뉴 div-->
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
-<form id="reservation">
+<form id="reservation" method="post" name="reservation" action="#">
     <div id="reservation_board">
 
     </div>
@@ -48,7 +48,7 @@
 
 <!--예약 모달-->
 <div th:replace="/movie/Reservation/reservation_modal.html :: reservation_modal"></div>
-git
+
 <!--jQuery js -->
 <!--<script src="/js/jquery-3.7.1.min.js"></script>-->
 

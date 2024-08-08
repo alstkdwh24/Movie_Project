@@ -97,7 +97,7 @@ public class LoginController {
             // 세션에 사용자 정보를 저장 (선택 사항)
             session.setAttribute("user", userDetails);
 
-            session.setMaxInactiveInterval(1800);
+            session.setMaxInactiveInterval(2000);
 
             ra.addFlashAttribute("msg", "정상적으로 로그인되었습니다");
             return "redirect:/movie/mains";
@@ -129,8 +129,13 @@ public class LoginController {
         return "redirect:/movie/mains";
     }
 
-
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); // 세션 무효화
+        return "redirect:/mains"; // 로그아웃 후 홈으로 리다이렉트
+    }
 
 
 }
+
 

@@ -20,4 +20,6 @@ public class CategoryVO {
 private String movie_write_category;
     private String group_id;
     private Integer movie_category_number;
+    private String id;
+
 }

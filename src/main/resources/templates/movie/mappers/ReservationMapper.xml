@@ -3,6 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.movie.ReservationService.ReservationMapper">
+    <insert id="resist" parameterType="ReservationVO">
+    insert into reservation_contents(movie_title,movie_place, movie_time) values(#{movie_title} ,#{movie_place}, #{movie_time});
+
+    </insert>
     <select id="getMovieCategoryChild"  resultType="CategoryVO">
         select * from movie_category_table
         where group_id= #{group_id}
@@ -14,4 +18,7 @@
     where movie_category_lv = 1
 
     </select>
+
+
+
 </mapper>

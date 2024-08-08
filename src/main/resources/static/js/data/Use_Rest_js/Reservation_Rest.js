@@ -4,7 +4,7 @@
         url: "/getMovieCategory",
         success: function (data) {
             console.log(data);
-            movie_category_create(data);
+            movie_category_createtwo(data);
             console.log("/getMovieCategory");
 
         },
@@ -102,6 +102,21 @@
             $(this).next().remove();
         }
     };
+    function movie_category_createtwo(data) {
+        console.log(data);
+        if (!Array.isArray(data)) {
+            console.log("data is not an array or is undefined:", data);
+            return;
+        }
+        console.log("data is an array or is defined:", data);
+        let movie_category = '<ul class="movies_titles" onclick="getMovieCategory_List(event);">';
+        data.forEach(function (result, index) {
+            movie_category += '<li class="movie_name"><a href="#" data-set=\'' + JSON.stringify(result) + '\'  name="movie_title">' + result.movie_detail_title + '</a></li>';
+        });
+
+        movie_category += '</ul>';
+        $("#reservation_board").append(movie_category);
+    }
 
     function movie_category_create(data) {
         console.log(data);
@@ -112,7 +127,7 @@
         console.log("data is an array or is defined:", data);
         let movie_category = '<ul class="movies_titles" onclick="getMovieCategory_List(event);">';
         data.forEach(function (result, index) {
-            movie_category += '<li class="movie_name"><a href="#" data-set=\'' + JSON.stringify(result) + '\'>' + result.movie_detail_title + '</a></li>';
+            movie_category += '<li class="movie_name"><a href="#"  data-set=\'' + JSON.stringify(result) + '\' name="movie_place">' + result.movie_detail_title + '</a></li>';
         });
 
         movie_category += '</ul>';
@@ -136,7 +151,7 @@
         console.log("data is an array or is defined:", data);
         let movie_category = '<ul class="movies_titles" onclick="Movie_reservation_modal(event);">';
         data.forEach(function (result, index) {
-            movie_category += '<li class="movie_name"><a href="#" data-set=\'' + JSON.stringify(result) + '\'>' + result.movie_detail_title + '</a></li>';
+            movie_category += '<li class="movie_name"><a href="#" data-set=\'' + JSON.stringify(result) + '\'   name="movie_time" id="reservation_submit" th:value="${result.movie_detail_title}">' + result.movie_detail_title + '</a></li>';
         });
 
         movie_category += '</ul>';
@@ -146,6 +161,15 @@
         let reservation_container=document.getElementById("reservation_modal");
         let closecl=document.getElementById("closecl");
 let reservation_modal_contents=document.getElementById("reservation_modal_contents");
+
+    let reservation_submit=document.querySelectorAll("#reservation_submit");
+    reservation_submit.onclick=function (){
+        document.reservation.action="reservation_resist";
+        document.reservation.submit();
+        document.reservation.method="Post"
+        console.log("안녕");
+    }
+
     function Movie_reservation_modal() {
 
         reservation_container.style.display="flex";
@@ -161,4 +185,20 @@ let reservation_modal_contents=document.getElementById("reservation_modal_conten
         e.preventDefault();
         reservation_container.style.display="none";
     }
+//---------------------------------------------------------------------------------------
+    //데이터 보내기
+
+    // $.ajax({
+    //     type: "get",
+    //     url: "/reservation",
+    //     success: function (data) {
+    //         console.log(data);
+    //         console.log("/getMovieCategory");
+    //     },
+    //     error: function (err, status) {
+    //         console.log(err, status);
+    //         alert('카테고리를 불러오는데 실패하였습니다. F5를 눌러서 새로고침을 해주세요');
+    //     }
+    // });
+
 
