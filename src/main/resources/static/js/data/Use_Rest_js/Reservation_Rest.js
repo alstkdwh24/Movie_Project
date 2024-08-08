@@ -102,37 +102,6 @@
             $(this).next().remove();
         }
     };
-    function movie_category_createtwo(data) {
-        console.log(data);
-        if (!Array.isArray(data)) {
-            console.log("data is not an array or is undefined:", data);
-            return;
-        }
-        console.log("data is an array or is defined:", data);
-        let movie_category = '<ul class="movies_titles" onclick="getMovieCategory_List(event);">';
-        data.forEach(function (result, index) {
-            movie_category += '<li class="movie_name"><a href="#" data-set=\'' + JSON.stringify(result) + '\'  name="movie_title">' + result.movie_detail_title + '</a></li>';
-        });
-
-        movie_category += '</ul>';
-        $("#reservation_board").append(movie_category);
-    }
-
-    function movie_category_create(data) {
-        console.log(data);
-        if (!Array.isArray(data)) {
-            console.log("data is not an array or is undefined:", data);
-            return;
-        }
-        console.log("data is an array or is defined:", data);
-        let movie_category = '<ul class="movies_titles" onclick="getMovieCategory_List(event);">';
-        data.forEach(function (result, index) {
-            movie_category += '<li class="movie_name"><a href="#"  data-set=\'' + JSON.stringify(result) + '\' name="movie_place">' + result.movie_detail_title + '</a></li>';
-        });
-
-        movie_category += '</ul>';
-        $("#reservation_board").append(movie_category);
-    }
 
     $.fn.loading = function () {
         $(".loading").css({display: "block"});
@@ -141,22 +110,47 @@
         }, 1000);
     };
 
-//---------------------------------------------------------------------------------------------------------------------------------------
-    function movie_category_creates(data) {
+
+    function movie_category_create(data){
+        createMovieCategory(data,'movie_place');
+    }
+
+
+    function movie_category_createtwo(data){
+        createMovieCategory(data,'movie_title');
+    }
+
+
+    function movie_category_creates(data){
+        createMovieCategory(data,'movie_time');
+    }
+
+    function createMovieCategory(data, clickHandler){
         console.log(data);
-        if (!Array.isArray(data)) {
-            console.log("data is not an array or is undefined:", data);
+        if(!Array.isArray(data)){
+            console.log("data is not an array or is undefined", data);
             return;
         }
-        console.log("data is an array or is defined:", data);
-        let movie_category = '<ul class="movies_titles" onclick="Movie_reservation_modal(event);">';
-        data.forEach(function (result, index) {
-            movie_category += '<li class="movie_name"><a href="#" data-set=\'' + JSON.stringify(result) + '\'   name="movie_time" id="reservation_submit" th:value="${result.movie_detail_title}">' + result.movie_detail_title + '</a></li>';
+
+        let movie_category = '<ul class="movies_titles" onclick="getMovieCategory_List(event);">';
+        data.forEach(function(result, index){
+            let onClickFunction = index === data.length -1
+                ? 'Movie_reservation_modal(event)':
+                  `${clickHandler}(event)`;
+
+            movie_category += `
+            <li class="movie_name">
+                <a href="#" data-set='${JSON.stringify(result)}' name="movie_title" onclick="${onClickFunction}">
+                    ${result.movie_detail_title}
+                </a>
+            </li>`;
+
         });
 
-        movie_category += '</ul>';
+        movie_category +='</ul>';
         $("#reservation_board").append(movie_category);
     }
+//---------------------------------------------------------------------------------------------------------------------------------------
 
         let reservation_container=document.getElementById("reservation_modal");
         let closecl=document.getElementById("closecl");
