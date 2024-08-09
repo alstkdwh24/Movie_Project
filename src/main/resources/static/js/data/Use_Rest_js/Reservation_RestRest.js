@@ -188,17 +188,17 @@ reservation_container.onclick=function (e){
 //---------------------------------------------------------------------------------------
 //데이터 보내기
 
-// $.ajax({
-//     type: "get",
-//     url: "/reservation",
-//     success: function (data) {
-//         console.log(data);
-//         console.log("/getMovieCategory");
-//     },
-//     error: function (err, status) {
-//         console.log(err, status);
-//         alert('카테고리를 불러오는데 실패하였습니다. F5를 눌러서 새로고침을 해주세요');
-//     }
-// });
+$.ajax({
+    type: "get",
+    url: "/resist_reservation",
+    success: function (data) {
+        console.log(data);
+        console.log("/getMovieCategory");
+    },
+    error: function (err, status) {
+        console.log(err, status);
+        alert('카테고리를 불러오는데 실패하였습니다. F5를 눌러서 새로고침을 해주세요');
+    }
+});
 
 

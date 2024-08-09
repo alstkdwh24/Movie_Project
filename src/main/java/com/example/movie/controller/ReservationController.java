@@ -27,17 +27,5 @@ public class ReservationController {
         return "movie/Reservation/reservation";
     }
 
-    @PostMapping("/reservation_resist")
-    public String reservation_resist(ReservationVO vo, RedirectAttributes ra) {
-        int result = reservationService.resist(vo);
-        if (result == 1) {
-            ra.addFlashAttribute("잘 전송되었습니다.");
-        } else {
-            ra.addFlashAttribute("잘 전송되지 않았습니다");
 
-
-        }
-
-        return null;
-    }
 }

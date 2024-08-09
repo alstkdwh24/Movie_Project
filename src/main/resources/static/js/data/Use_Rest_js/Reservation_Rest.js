@@ -113,9 +113,9 @@ function movie_category_createtwo(data) {
     data.forEach(function (result, index) {
         movie_category += `
     <div class="movie_name" 
-         data-set='${JSON.stringify(result)}'>
- 
-         <input type="text" name="movie_title" class="input" value="${result.movie_detail_title}" readonly>
+         data-set='${JSON.stringify(result)}' >
+ ${result.movie_detail_title}
+         <input type="hidden" name="movie_title" class="input" value="${result.movie_detail_title}"  readonly onclick="getMovieCategory_List(event);">
     </div>`;
     });
 
@@ -135,8 +135,8 @@ function movie_category_create(data) {
         movie_category += `
     <div href="#" class="movie_name" 
          data-set='${JSON.stringify(result)}'>
-    
-         <input type="text" name="movie_place" class="input" value="${result.movie_detail_title}" readonly>
+    ${result.movie_detail_title}
+         <input type="hidden" name="movie_place" class="input" value="${result.movie_detail_title}" readonly onclick="getMovieCategory_List(event);">
     </div>`});
     $("#reservation_board").append(movie_category);
 }
@@ -161,9 +161,9 @@ function movie_category_creates(data) {
     data.forEach(function (result, index) {
 
         movie_category += ` <div class="movie_name" data-set='${JSON.stringify(result)}'>
-
-        <input type="text" name="movie_time" class="input" value="${result.movie_detail_title}" 
-            readonly>
+${result.movie_detail_title}
+        <input type="hidden" name="movie_time" class="input" value="${result.movie_detail_title}" 
+            readonly onclick="getMovieCategory_List(event);">
             </div>`;
 
 
@@ -189,11 +189,10 @@ reservation_submit.onclick = function () {
 function Movie_reservation_modal() {
 
     reservation_container.style.display = "flex";
-    document.reservation.action="reservation_resist";
-    document.reservation.submit();
-    document.reservation.method="Post"
+document.reservation.action="/resist_reservation";
+document.reservation.submit();
 
-    let movie_name = document.querySelectorAll(".movie_name");
+    let movie_name = document.querySelector(".movie_name");
     if (!movie_name.hasClass("sub_menu_select")) {
         movie_name.addClass("sub_menu_select");
     }
@@ -213,17 +212,6 @@ reservation_container.onclick = function (e) {
 //---------------------------------------------------------------------------------------
 //데이터 보내기
 
-// $.ajax({
-//     type: "get",
-//     url: "/reservation",
-//     success: function (data) {
-//         console.log(data);
-//         console.log("/getMovieCategory");
-//     },
-//     error: function (err, status) {
-//         console.log(err, status);
-//         alert('카테고리를 불러오는데 실패하였습니다. F5를 눌러서 새로고침을 해주세요');
-//     }
-// });
+
 
 

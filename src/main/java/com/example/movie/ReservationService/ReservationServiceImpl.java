@@ -24,8 +24,8 @@ public class ReservationServiceImpl implements ReservationService{
     }
 
     @Override
-    public int resist(ReservationVO vo) {
-        return reservationMapper.resist(vo);
+    public int movie_report_resist(ReservationVO vo) {
+        return reservationMapper.movie_report_resist(vo);
     }
 
 }

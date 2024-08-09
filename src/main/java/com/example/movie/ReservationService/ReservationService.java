@@ -12,7 +12,7 @@ public interface ReservationService {
 
     ArrayList<CategoryVO> getMovieCategoryChild(CategoryVO vo);
 
-    public int resist(ReservationVO vo);
+    int movie_report_resist(ReservationVO vo);
 
 
 }
