@@ -1,4 +1,3 @@
-
 $.ajax({
     type: "get",
     url: "/getMovieCategory",
@@ -102,6 +101,7 @@ $.fn.movie_category_remove = function () {
         $(this).next().remove();
     }
 };
+
 function movie_category_createtwo(data) {
     console.log(data);
     if (!Array.isArray(data)) {
@@ -111,7 +111,12 @@ function movie_category_createtwo(data) {
     console.log("data is an array or is defined:", data);
     let movie_category = '<div class="movies_titles" onclick="getMovieCategory_List(event);">';
     data.forEach(function (result, index) {
-        movie_category += '<div class="movie_name" data-set=\'' + JSON.stringify(result) + '\'  >' + result.movie_detail_title + '<input type="hidden" name="movie_title" th:value="result.movie_detail_title"></div>';
+        movie_category += `
+    <div class="movie_name" 
+         data-set='${JSON.stringify(result)}'>
+ 
+         <input type="text" name="movie_title" class="input" value="${result.movie_detail_title}" readonly>
+    </div>`;
     });
 
     movie_category += '</div>';
@@ -127,10 +132,12 @@ function movie_category_create(data) {
     console.log("data is an array or is defined:", data);
     let movie_category = '<div class="movies_titles" onclick="getMovieCategory_List(event);">';
     data.forEach(function (result, index) {
-        movie_category += '<div href="#" class="movie_name" data-set=\'' + JSON.stringify(result) + '\'  >' + result.movie_detail_title + '<input type="hidden" name="movie_place" th:value="result.movie_detail_title"></div>';
-    });
-
-    movie_category += '</div>';
+        movie_category += `
+    <div href="#" class="movie_name" 
+         data-set='${JSON.stringify(result)}'>
+    
+         <input type="text" name="movie_place" class="input" value="${result.movie_detail_title}" readonly>
+    </div>`});
     $("#reservation_board").append(movie_category);
 }
 
@@ -152,43 +159,56 @@ function movie_category_creates(data) {
     console.log("data is an array or is defined:", data);
     let movie_category = '<div class="movies_titles" onclick="Movie_reservation_modal(event);">';
     data.forEach(function (result, index) {
-        movie_category += '<div class="movie_name" data-set=\'' + JSON.stringify(result) + '\'   ' +' data-id="result.movie_detail_title" th:value="${result.movie_detail_title}">' + result.movie_detail_title  + ' <input type="hidden" name="movie_time" id="movie_time" th:value="${result.movie_detail_title}"></div>';
+
+        movie_category += ` <div class="movie_name" data-set='${JSON.stringify(result)}'>
+
+        <input type="text" name="movie_time" class="input" value="${result.movie_detail_title}" 
+            readonly>
+            </div>`;
 
 
-        console.log(movie_category.value);
     });
 
 
     movie_category += '</div>';
+
+
     $("#reservation_board").append(movie_category);
 }
 
-let reservation_container=document.getElementById("reservation_modal");
-let closecl=document.getElementById("closecl");
-let reservation_modal_contents=document.getElementById("reservation_modal_contents");
+let reservation_container = document.getElementById("reservation_modal");
+let closecl = document.getElementById("closecl");
+let reservation_modal_contents = document.getElementById("reservation_modal_contents");
 
-let reservation_submit=document.querySelectorAll("#reservation_submit");
-reservation_submit.onclick=function (){
+let reservation_submit = document.querySelectorAll("#reservation_submit");
+reservation_submit.onclick = function () {
 
 }
+
 
 function Movie_reservation_modal() {
 
-    reservation_container.style.display="flex";
+    reservation_container.style.display = "flex";
     document.reservation.action="reservation_resist";
     document.reservation.submit();
     document.reservation.method="Post"
-    console.log("안녕");
+
+    let movie_name = document.querySelectorAll(".movie_name");
+    if (!movie_name.hasClass("sub_menu_select")) {
+        movie_name.addClass("sub_menu_select");
+    }
+
 }
-closecl.onclick=function (){
 
-    reservation_container.style.display="none";
+closecl.onclick = function () {
+
+    reservation_container.style.display = "none";
 
 
 }
-reservation_container.onclick=function (e){
+reservation_container.onclick = function (e) {
     e.preventDefault();
-    reservation_container.style.display="none";
+    reservation_container.style.display = "none";
 }
 //---------------------------------------------------------------------------------------
 //데이터 보내기
