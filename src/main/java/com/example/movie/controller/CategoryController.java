@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.ArrayList;
 
 @RestController
@@ -35,6 +36,14 @@ public class CategoryController {
                 .build();
         return new ResponseEntity<>(reservationService.getMovieCategoryChild(vo), HttpStatus.OK);
     }
-
+    @PostMapping("/resist_reservation")
+    public ResponseEntity<ReservationVO> createReservation(@RequestBody ReservationVO vo) {
+        int saveReservation = reservationService.movie_report_resist(vo);
+        if (saveReservation == 1) {
+            return new ResponseEntity<>(vo, HttpStatus.CREATED);
+        } else {
+            return null;
+        }
+    }
 
 }

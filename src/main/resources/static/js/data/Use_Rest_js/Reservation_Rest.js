@@ -28,18 +28,13 @@ $(document).ready(function () {
 function getMovieCategory_List(e) {
 
     e.preventDefault();
-    // if (e.target.tagName !== 'div')
-    //     return;
+    if (e.target.tagName !== 'DIV') return;
 
     let set = $(e.target).data("set");
 
     $(e.currentTarget).find("div").removeClass("sub_menu_select");
     $(e.target).addClass("sub_menu_select");
 
-    if (set.hasOwnProperty('movie_category_lv')) {
-        console.log("존재합니다.");
-        console.log("set");
-    }
 
     if (set.movie_category_lv === 1) {
         console.log("1lv");
@@ -56,7 +51,7 @@ function getMovieCategory_List(e) {
             error: function (err, status) {
                 console.log(err, status);
             }
-        });
+        })
 
         // 추가하는 과정
 
@@ -115,7 +110,7 @@ function movie_category_createtwo(data) {
     <div class="movie_name" 
          data-set='${JSON.stringify(result)}' >
  ${result.movie_detail_title}
-         <input type="hidden" name="movie_title" class="input" value="${result.movie_detail_title}"  readonly onclick="getMovieCategory_List(event);">
+         <input type="hidden" name="movie_title" class="input" value="${result.movie_detail_title}"  readonly>
     </div>`;
     });
 
@@ -136,8 +131,9 @@ function movie_category_create(data) {
     <div href="#" class="movie_name" 
          data-set='${JSON.stringify(result)}'>
     ${result.movie_detail_title}
-         <input type="hidden" name="movie_place" class="input" value="${result.movie_detail_title}" readonly onclick="getMovieCategory_List(event);">
-    </div>`});
+         <input type="hidden" name="movie_place" class="input" value="${result.movie_detail_title}" readonly >
+    </div>`
+    });
     $("#reservation_board").append(movie_category);
 }
 
@@ -157,13 +153,13 @@ function movie_category_creates(data) {
         return;
     }
     console.log("data is an array or is defined:", data);
-    let movie_category = '<div class="movies_titles" onclick="Movie_reservation_modal(event);">';
+    let movie_category = '<div class="movies_titles" onclick="Movie_reservation_modal(event)">';
     data.forEach(function (result, index) {
 
         movie_category += ` <div class="movie_name" data-set='${JSON.stringify(result)}'>
 ${result.movie_detail_title}
         <input type="hidden" name="movie_time" class="input" value="${result.movie_detail_title}" 
-            readonly onclick="getMovieCategory_List(event);">
+            readonly ">
             </div>`;
 
 
@@ -186,13 +182,35 @@ reservation_submit.onclick = function () {
 }
 
 
-function Movie_reservation_modal() {
+function Movie_reservation_modal(e) {
+
+
+
+    let reservationData = {
+        movieTitle: $('input[name="movie_title"]').val(), // 영화 제목 입력란의 값
+        movieTime: $('input[name="movie_time"]').val(),   // 영화 시간 입력란의 값
+        moviePlace: $('input[name="movie_place"]').val()   // 사용자 이름 입력란의 값
+    };
+
+        $.ajax({
+            type:"POST",
+            url:"/resist_reservation",
+            data: JSON.stringify(reservationData),
+            contentType: "application/json",
+            success: function(response) {
+                alert("예약이 완료되었습니다: " + response.movieTitle);
+            },
+            error: function(xhr) {
+                alert("예약에 실패했습니다: " + xhr.responseText);
+            }
+
+
+    } );
 
     reservation_container.style.display = "flex";
-document.reservation.action="/resist_reservation";
-document.reservation.submit();
 
-    let movie_name = document.querySelector(".movie_name");
+
+    let movie_name = $(".movie_name");
     if (!movie_name.hasClass("sub_menu_select")) {
         movie_name.addClass("sub_menu_select");
     }
@@ -209,9 +227,3 @@ reservation_container.onclick = function (e) {
     e.preventDefault();
     reservation_container.style.display = "none";
 }
-//---------------------------------------------------------------------------------------
-//데이터 보내기
-
-
-
-
