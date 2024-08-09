@@ -60,10 +60,10 @@ display: flex;
 }
 
 
-.movies_titles > a.sub_menu_select,
-a.sub_menu_select {color: #f1f1f1; background-color: #00acac;}
-a:hover {background-color: #2196F3;}
-.movies_titles > a.on {background-color: #2196F3;}
+.movies_titles > div.sub_menu_select,
+div.sub_menu_select {color: #f1f1f1; background-color: #00acac;}
+.movies_titles > div:hover {background-color: #2196F3;}
+.movies_titles > div.on {background-color: #2196F3;}
 
 #submit{
     width: 10%;
@@ -140,3 +140,4 @@ height: 10%;
     border: none;
     border-radius: 10px;
 }
+
