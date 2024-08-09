@@ -33,11 +33,11 @@ public class ReservationController {
         if (result == 1) {
             ra.addFlashAttribute("잘 전송되었습니다.");
         } else {
-            ra.addFlashAttribute("잘 전송되지 않았습니다.");
+            ra.addFlashAttribute("잘 전송되지 않았습니다");
+
+
         }
-        return "redirect:movie/Reservation/reservation";
+
+        return null;
     }
-
 }
-
-

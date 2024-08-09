@@ -22,4 +22,5 @@ private String movie_write_category;
     private Integer movie_category_number;
     private String id;
 
+
 }
