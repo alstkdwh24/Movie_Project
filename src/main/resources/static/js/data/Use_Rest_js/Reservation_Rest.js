@@ -108,9 +108,9 @@ function movie_category_createtwo(data) {
     data.forEach(function (result, index) {
         movie_category += `
     <div class="movie_name" 
-         data-set='${JSON.stringify(result)}' >
+         data-set='${JSON.stringify(result)}'  id="movie_title246">
  ${result.movie_detail_title}
-         <input type="hidden" name="movie_title" class="input" value="${result.movie_detail_title}"  readonly>
+         <input type="hidden" name="movie_title" class="input" value="${result.movie_detail_title}" readonly>
     </div>`;
     });
 
@@ -129,9 +129,9 @@ function movie_category_create(data) {
     data.forEach(function (result, index) {
         movie_category += `
     <div href="#" class="movie_name" 
-         data-set='${JSON.stringify(result)}'>
+         data-set='${JSON.stringify(result)}' id="movie_place246">
     ${result.movie_detail_title}
-         <input type="hidden" name="movie_place" class="input" value="${result.movie_detail_title}" readonly >
+         <input type="hidden" name="movie_place" class="input" value="${result.movie_detail_title}"   readonly >
     </div>`
     });
     $("#reservation_board").append(movie_category);
@@ -156,10 +156,10 @@ function movie_category_creates(data) {
     let movie_category = '<div class="movies_titles" onclick="Movie_reservation_modal(event)">';
     data.forEach(function (result, index) {
 
-        movie_category += ` <div class="movie_name" data-set='${JSON.stringify(result)}'>
+        movie_category += ` <div class="movie_name" data-set='${JSON.stringify(result)}' id="movie_time246">
 ${result.movie_detail_title}
-        <input type="hidden" name="movie_time" class="input" value="${result.movie_detail_title}" 
-            readonly ">
+        <input type="hidden" name="movie_time" class="input" value="${result.movie_detail_title}"  
+           readonly ">
             </div>`;
 
 
@@ -176,14 +176,7 @@ let reservation_container = document.getElementById("reservation_modal");
 let closecl = document.getElementById("closecl");
 let reservation_modal_contents = document.getElementById("reservation_modal_contents");
 
-let reservation_submit = document.querySelectorAll("#reservation_submit");
-reservation_submit.onclick = function () {
-
-}
-
-
 function Movie_reservation_modal(e) {
-
 
 
     let reservationData = {
@@ -209,11 +202,12 @@ function Movie_reservation_modal(e) {
 
     reservation_container.style.display = "flex";
 
-
+    movie_title_Rest(event);
     let movie_name = $(".movie_name");
     if (!movie_name.hasClass("sub_menu_select")) {
         movie_name.addClass("sub_menu_select");
     }
+
 
 }
 
