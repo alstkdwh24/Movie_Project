@@ -24,16 +24,20 @@
     <link rel="stylesheet" href="/css/login/login.css">
     <!--미니메뉴 모달-->
     <link rel="stylesheet" href="/css/mains/main_imin_menu.css">
+
+<!--    좌석예약  css-->
+    <link rel="stylesheet" href="/css/reservation/movie_chair.css">
+
+
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
 <!--소메뉴 div-->
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 <form id="reservation" method="post" name="reservation" action="#">
     <div id="reservation_board">
-
+        <div class="movie_chair"></div>
     </div>
 
 </form>
@@ -61,11 +65,8 @@
 <script src="/js/modal/Gallery_modal2.js"></script>
 <!--미니 메뉴-->
 <script src="/js/modal/menu_modal.js"></script>
-<!--카테고리 js 그리고 에약을 위해 모달 js로 연결됨-->
-<script src="/js/data/Use_Rest_js/Reservation_Rest.js"></script>
 
-<!--모달에서 데이터를 모내는  그리고 데이터를 받는 Rest-->
-<script src="/js/data/Use_Rest_js/Reservation_modal_Rest.js"></script>
+
 
 <!--<script src="/js/data/Use_Rest_js/Reservation_RestRest.js"></script>-->
 

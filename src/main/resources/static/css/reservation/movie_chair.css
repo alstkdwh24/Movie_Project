@@ -1,0 +1,27 @@
+#reservation{
+    height: 128%;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+
+#reservation_board{
+    width: 60%;
+    height: 55%;
+    background-color: antiquewhite;
+    position: relative;
+    top:5.5%;
+    display: flex;
+    overflow: auto;
+    min-width: 800px;
+    min-height: 600px;
+}
+
+
+.movie_chair{
+
+}

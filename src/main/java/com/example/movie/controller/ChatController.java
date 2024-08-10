@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 @Controller
@@ -27,7 +29,7 @@ public class ChatController {
 
 
     @GetMapping("/Question")
-    public String Chat(HttpServletRequest request, Model model, Criteria cri) {
+    public String Chat(HttpServletRequest request, Model model, Criteria cri , HttpSession session) {
         ArrayList<ChatVO>List=chatService.Question_show(cri);
         int total= chatService.Question_total(cri);
         PageVO pageVO=new PageVO(cri, total);
@@ -35,6 +37,9 @@ public class ChatController {
         model.addAttribute("pageVO",pageVO);
         System.out.println(pageVO);
 
+
+        UserDetails userDetails = (UserDetails) session.getAttribute("user");
+        model.addAttribute("userSession", userDetails);
 
         return "movie/chats/Question";
     }
@@ -44,7 +49,11 @@ public class ChatController {
 
     @GetMapping("/Question_writer")
     @PreAuthorize("hasAnyRole('ROLE_1')")
-    public String writer(){
+    public String writer(HttpSession session, Model model){
+
+
+        UserDetails userDetails = (UserDetails) session.getAttribute("user");
+        model.addAttribute("userSession", userDetails);
         return "movie/chats/Question_writer";
     }
 

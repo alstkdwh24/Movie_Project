@@ -35,12 +35,14 @@ public class EventController {
     public LoginService loginService;
 
     @GetMapping("/event")
-    public String Event2() {
+    public String Event2(HttpSession session, Model model) {
+        UserDetails userDetails = (UserDetails) session.getAttribute("user");
+        model.addAttribute("userSession", userDetails);
         return "movie/community/event";
     }
 
     @GetMapping("/gboard")
-    public String gboard(HttpServletRequest request, Model model, Criteria cri) {
+    public String gboard(HttpServletRequest request, Model model, Criteria cri, HttpSession session) {
 //        String sessionUsername=(String) session.getAttribute("username");
         ArrayList<EventVO> List = eventService.gallery_g_show(cri);
         int total = eventService.gallery_g_total(cri);
@@ -49,17 +51,24 @@ public class EventController {
         model.addAttribute("pageVO", pageVO);
         System.out.println(pageVO);
 
+        UserDetails userDetails = (UserDetails) session.getAttribute("user");
+        model.addAttribute("userSession", userDetails);
+
+
         return "movie/community/gboard";
     }
 
     @GetMapping("/freeboard")
-    public String FREEBOARD(HttpServletRequest request, Model model, Criteria cri /*@RequestParam("free_number") Integer free_number*/) {
+    public String FREEBOARD(HttpServletRequest request, Model model, Criteria cri /*@RequestParam("free_number") Integer free_number*/, HttpSession session) {
         ArrayList<EventVO> List = eventService.gallery_free_show(cri);
         int total = eventService.gallery_free_total(cri);
         PageVO pageVO = new PageVO(cri, total);
         model.addAttribute("list", List);
         model.addAttribute("pageVO", pageVO);
         System.out.println(pageVO);
+
+        UserDetails userDetails = (UserDetails) session.getAttribute("user");
+        model.addAttribute("userSession", userDetails);
 
 
         return "movie/community/freeboard";
@@ -69,6 +78,9 @@ public class EventController {
  @PreAuthorize("hasRole('ROLE_1')")
     public String g_board(HttpSession session, Model model) {
 
+
+        UserDetails userDetails = (UserDetails) session.getAttribute("user");
+        model.addAttribute("userSession", userDetails);
 //
 
 
@@ -77,25 +89,33 @@ public class EventController {
 
 
     @GetMapping("/g_board_writer_update")
-    public String g_update() {
+    public String g_update( HttpSession session, Model model) {
+
+        UserDetails userDetails = (UserDetails) session.getAttribute("user");
+        model.addAttribute("userSession", userDetails);
         return "movie/community/g_board_writer_update";
     }
 
     @GetMapping("/free_board_writer_update")
-    public String free_update() {
+    public String free_update(HttpSession session, Model model) {
+
+        UserDetails userDetails = (UserDetails) session.getAttribute("user");
+        model.addAttribute("userSession", userDetails);
         return "movie/community/free_board_writer_update";
     }
 
     @GetMapping("/free_board_writer")
 //       @PreAuthorize("hasRole('ROLE_1')")
-    public String freeBoardWriter(Model model) {
-
+    public String freeBoardWriter(Model model,HttpSession session) {
+        UserDetails userDetails = (UserDetails) session.getAttribute("user");
+        model.addAttribute("userSession", userDetails);
         return "movie/community/free_board_writer"; // 해당 뷰 반환
          }
 
         @GetMapping("/free_detail")
-        public String free_detail (@RequestParam("free_number") Integer free_number, Model model){
-
+        public String free_detail (@RequestParam("free_number") Integer free_number, Model model,HttpSession session){
+            UserDetails userDetails = (UserDetails) session.getAttribute("user");
+            model.addAttribute("userSession", userDetails);
             EventVO vo = eventService.freeselect(free_number);
             model.addAttribute("vo", vo);
 
@@ -104,8 +124,9 @@ public class EventController {
 
         @GetMapping("/g_detail")
 
-        public String g_detail (@RequestParam("g_number") Integer g_number, Model model){
-
+        public String g_detail (@RequestParam("g_number") Integer g_number, Model model,HttpSession session){
+            UserDetails userDetails = (UserDetails) session.getAttribute("user");
+            model.addAttribute("userSession", userDetails);
             EventVO vo = eventService.gSelect(g_number);
             model.addAttribute("vo", vo);
             return "movie/community/g_detail";
@@ -114,8 +135,9 @@ public class EventController {
 
         @GetMapping("/free_detail_update")
         public String free_detail_updateint (@RequestParam("free_number") Integer free_number, Model
-        model, RedirectAttributes ra){
-
+        model, RedirectAttributes ra,HttpSession session){
+            UserDetails userDetails = (UserDetails) session.getAttribute("user");
+            model.addAttribute("userSession", userDetails);
             EventVO vo = eventService.free_detail_update_select(free_number);
             model.addAttribute("vo", vo);
 
@@ -123,10 +145,14 @@ public class EventController {
         }
 
         @GetMapping("/g_update")
-        public String g_update (@RequestParam("g_number") Integer g_number, Model model){
+        public String g_update (@RequestParam("g_number") Integer g_number, Model model,HttpSession session){
 
             EventVO vo = eventService.g_update(g_number);
             model.addAttribute("vo", vo);
+
+
+            UserDetails userDetails = (UserDetails) session.getAttribute("user");
+            model.addAttribute("userSession", userDetails);
             return "movie/community/g_board_writer_update";
         }
 
