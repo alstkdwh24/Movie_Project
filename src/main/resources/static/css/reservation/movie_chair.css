@@ -1,3 +1,5 @@
+/*좌석 예매 */
+
 #reservation{
     height: 128%;
     width: 100%;
@@ -19,9 +21,54 @@
     overflow: auto;
     min-width: 800px;
     min-height: 600px;
+    flex-direction: column;
+}
+
+
+.movie_chair_sheet2{
+    width: 100%;
+    height: 20%;
+    border:1px solid black;
+    box-sizing: border-box;
+}
+
+.movie_chair_sheet3{
+    width: 100%;
+    height: 46.7%;
+    border:1px solid black;
+    box-sizing: border-box;
 }
 
 
 .movie_chair{
+    width: 100%;
+    height: 33.3%;
+    border:1px solid black;
+    box-sizing: border-box;
+}
 
+.movie_sheet_number{
+    width: 100%;
+    height: 33.3%;
+    border:1px solid black;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.chair{
+    width: 14.25%;
+    height: 100%;
+    border:1px solid black;
+    box-sizing: border-box;
+    /*border-radius: 10px;*/
+    background-color: black;
+    color:white;
+}
+
+.main_image_text {
+position: relative;
+    top:-80%;
+left: 36%;
+
+    color: white;
 }

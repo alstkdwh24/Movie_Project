@@ -25,7 +25,7 @@
     <!--미니메뉴 모달-->
     <link rel="stylesheet" href="/css/mains/main_imin_menu.css">
 
-<!--    좌석예약  css-->
+    <!--    좌석예약  css-->
     <link rel="stylesheet" href="/css/reservation/movie_chair.css">
 
 
@@ -37,7 +37,43 @@
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 <form id="reservation" method="post" name="reservation" action="#">
     <div id="reservation_board">
-        <div class="movie_chair"></div>
+        <div class="movie_chair">
+            <div class="movie_chair_sheet">
+            </div>
+
+        </div>
+        <div class="movie_chair_sheet2">
+
+        </div>
+        <div class="movie_chair_sheet3">
+            <div class="movie_sheet_number">
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">A-1</h3></div>
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">A-2</h3></div>
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">A-3</h3></div>
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">A-4</h3></div>
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">A-5</h3></div>
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">A-6</h3></div>
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">A-7</h3></div>
+            </div>
+            <div class="movie_sheet_number">
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">B-1</h3></div>
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">B-2</h3></div>
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">B-3</h3></div>
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">B-4</h3></div>
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">B-5</h3></div>
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">B_6</h3></div>
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">B-7</h3></div>
+            </div>
+            <div class="movie_sheet_number">
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">C-1</h3></div>
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">C-2</h3></div>
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">C-3</h3></div>
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">C-4</h3></div>
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">C-5</h3></div>
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">C-6</h3></div>
+                <div class="chair"><img src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자" style="width: 100%;height: 100%;"><h3 class="main_image_text" style="color: white">C-7</h3></div>
+            </div>
+        </div>
     </div>
 
 </form>
@@ -65,7 +101,6 @@
 <script src="/js/modal/Gallery_modal2.js"></script>
 <!--미니 메뉴-->
 <script src="/js/modal/menu_modal.js"></script>
-
 
 
 <!--<script src="/js/data/Use_Rest_js/Reservation_RestRest.js"></script>-->
