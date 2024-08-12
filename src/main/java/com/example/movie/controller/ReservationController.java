@@ -39,4 +39,5 @@ public class ReservationController {
         return "movie/Reservation/reservation_chair";
     }
 
+
 }
