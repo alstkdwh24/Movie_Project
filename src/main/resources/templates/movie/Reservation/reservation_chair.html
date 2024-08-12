@@ -38,9 +38,7 @@
 <form id="reservation" method="post" name="reservation" action="#">
     <div id="reservation_board">
         <div class="movie_chair">
-            <div class="movie_chair_sheet">
-            </div>
-
+            <img src="/movie/img/free-icon-movie-theater-4362681.png" alt="" width="100%" height="160%">
         </div>
         <div class="movie_chair_sheet2">
 
@@ -87,6 +85,9 @@
 <!--미니 메뉴 div-->
 <div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
 
+<!--예약모달-->
+<div th:replace="/movie/Reservation/reservation_modal.html :: reservation_modal"></div>
+
 <!--예약 모달-->
 <div th:replace="/movie/Reservation/reservation_modal.html :: reservation_modal"></div>
 
@@ -102,6 +103,8 @@
 <!--미니 메뉴-->
 <script src="/js/modal/menu_modal.js"></script>
 
+<!--좌석예매 js-->
+<script src="/js/data/Reservation_Seat/Reservation_Seat.js"></script>
 
 <!--<script src="/js/data/Use_Rest_js/Reservation_RestRest.js"></script>-->
 
