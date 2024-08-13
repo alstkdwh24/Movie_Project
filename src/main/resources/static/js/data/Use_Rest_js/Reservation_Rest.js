@@ -156,7 +156,7 @@ function movie_category_creates(data) {
     let movie_category = '<div class="movies_titles" onclick="Movie_reservation_modal(event)">';
     data.forEach(function (result, index) {
 
-        movie_category += ` <div class="movie_name" data-set='${JSON.stringify(result)}' id="movie_time246">
+        movie_category += ` <div class="movie_name" data-set='${JSON.stringify(result)}' id="movie_time246" >
 ${result.movie_detail_title}
         <input type="hidden" name="movie_time" class="input" value="${result.movie_detail_title}"  
            readonly ">
@@ -172,8 +172,7 @@ ${result.movie_detail_title}
     $("#reservation_board").append(movie_category);
 }
 
-let reservation_container = document.getElementById("reservation_modal");
-let closecl = document.getElementById("closecl");
+
 let reservation_modal_contents = document.getElementById("reservation_modal_contents");
 
 function Movie_reservation_modal(e) {
@@ -192,7 +191,9 @@ function Movie_reservation_modal(e) {
             contentType: "application/json",
             success: function(response) {
                 alert("예약이 완료되었습니다: " + response.movieTitle);
+                location.href="/movie/Reservation/reservation_chair";
             },
+
             error: function(xhr) {
                 alert("예약에 실패했습니다: " + xhr.responseText);
             }
@@ -200,7 +201,6 @@ function Movie_reservation_modal(e) {
 
     } );
 
-    reservation_container.style.display = "flex";
 
     movie_title_Rest(event);
     let movie_name = $(".movie_name");
@@ -211,13 +211,3 @@ function Movie_reservation_modal(e) {
 
 }
 
-closecl.onclick = function () {
-
-    reservation_container.style.display = "none";
-
-
-}
-reservation_container.onclick = function (e) {
-    e.preventDefault();
-    reservation_container.style.display = "none";
-}

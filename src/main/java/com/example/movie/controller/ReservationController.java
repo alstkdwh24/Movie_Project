@@ -31,13 +31,30 @@ public class ReservationController {
         model.addAttribute("userSession", userDetails);
         return "movie/Reservation/reservation";
     }
+
     @GetMapping("/reservation_chair")
-    public String reservation_chair(HttpSession session, Model model){
+    public String reservation_chair(HttpSession session, Model model) {
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
         model.addAttribute("userSession", userDetails);
 
         return "movie/Reservation/reservation_chair";
     }
 
+    @GetMapping("/reservation_report")
+    public String reservation_report(HttpSession session, Model model) {
+
+        UserDetails userDetails = (UserDetails) session.getAttribute("user");
+        model.addAttribute("userSession", userDetails);
+
+        return "movie/Reservation/reservation_report";
+
+    }
+@GetMapping("/reservation_pay")
+    public String reservation_pay(HttpSession session, Model model) {
+
+    UserDetails userDetails = (UserDetails) session.getAttribute("user");
+    model.addAttribute("userSession", userDetails);
+    return "movie/Reservation/reservation_pay";
+}
 
 }
