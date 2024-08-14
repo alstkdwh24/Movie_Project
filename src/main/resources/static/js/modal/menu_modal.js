@@ -11,12 +11,12 @@ const momo_button=document.getElementById("menu");
     imin_menu_modal.style.justifyContent="center";
     imin_menu_modal.style.alignItems="center";
 }
-    closed.onclick=function(e){
-        e.preventDefault();
-        imin_menu_modal.style.display="none";
-    }
-    imin_menu_modal.onclick = function(event) {
-        if (imin_menu_modal && event.target === imin_menu_modal) {
+    // closed.onclick=function(e){
+    //     e.preventDefault();
+    //     imin_menu_modal.style.display="none";
+    // }
+    window.onclick = function(event) {
+        if ( event.target === imin_menu_modal) {
             console.log("Window clicked outside momo_modal");
             imin_menu_modal.style.display = "none";
         }

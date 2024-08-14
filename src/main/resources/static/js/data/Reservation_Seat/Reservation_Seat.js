@@ -1,3 +1,19 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 let reservation_container = document.getElementById("reservation_modal");
 let closecl = document.getElementById("closecl");
 function open_modal() {

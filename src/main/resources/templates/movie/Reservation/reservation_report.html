@@ -10,17 +10,78 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-
+    <!--    본페이지 css-->
+    <link rel="stylesheet" href="/css/login/login.css">
     <!--    mains css-->
     <link rel="stylesheet" href="/css/login/login(menu).css">
     <link rel="stylesheet" href="/css/login/logins.css">
+    <!--    커뮤니티 css-->
+    <link rel="stylesheet" href="/css/modal/fragment_gallery_modal.css">
 
-    <!--    본페이지 css-->
-    <link rel="stylesheet" href="/css/login/login.css">
+    <!--    커뮤니티 제목css-->
 
+    <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
+
+
+    <!--    소메뉴 검색 css-->
+    <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
+
+
+    <!--    채팅 css-->
+    <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
+
+
+    <!--    커뮤니티 모닿 css-->
+    <link rel="stylesheet" href="/css/mains/modal/fragment_gallery_modal.css">
+
+
+
+    <!--    미니메뉴 모달-->
+    <link rel="stylesheet" href="/css/mains/main_imin_menu.css">
 </head>
 <body>
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+<!--커뮤니티div-->
+<div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
+
+<!--채팅 모달div-->
+<div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
+
+
+<!--소메뉴 검색css-->
+<div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
+
+
+<!--미니 메뉴 div-->
+<div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
+
+
+<!--커뮤니티 js-->
+<script src="/js/modal/Gallery_modal2.js"></script>
+
+<!--소메뉴 검색 모달-->
+<script src="/js/modal/momo_modal.js"></script>
+<!--채팅 모달js-->
+<script src="/js/modal/chat_modal.js"></script>
+
+
+<!--로그인 모달-->
+<script src="/js/login/login.js"></script>
+
+<!--미니 메뉴-->
+<script src="/js/modal/menu_modal.js"></script>
 </body>
 </html>
