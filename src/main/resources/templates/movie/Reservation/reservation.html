@@ -24,6 +24,9 @@
     <link rel="stylesheet" href="/css/login/login.css">
     <!--미니메뉴 모달-->
     <link rel="stylesheet" href="/css/mains/main_imin_menu.css">
+
+<!--   좌석 예약 모달-->
+    <link rel="stylesheet" href="/css/reservation/movie_chair.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -47,7 +50,10 @@
 <!--미니 메뉴 div-->
 <div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
 
-<!--예약 모달-->
+<!--의자 예약 모달-->
+<div th:replace="/movie/Reservation/reservation_chair.html :: reservation"></div>
+
+
 
 <!--jQuery js -->
 <!--<script src="/js/jquery-3.7.1.min.js"></script>-->

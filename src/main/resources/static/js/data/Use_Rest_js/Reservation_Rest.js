@@ -174,7 +174,7 @@ ${result.movie_detail_title}
 
 
 let reservation_modal_contents = document.getElementById("reservation_modal_contents");
-
+let reservation_two=document.getElementById("reservation_two")
 function Movie_reservation_modal(e) {
 
 
@@ -183,23 +183,24 @@ function Movie_reservation_modal(e) {
         movieTime: $('input[name="movie_time"]').val(),   // 영화 시간 입력란의 값
         moviePlace: $('input[name="movie_place"]').val()   // 사용자 이름 입력란의 값
     };
+    reservation_two.style.display="flex"
 
-        $.ajax({
-            type:"POST",
-            url:"/resist_reservation",
-            data: JSON.stringify(reservationData),
-            contentType: "application/json",
-            success: function(response) {
-                alert("예약이 완료되었습니다: " + response.movieTitle);
-                location.href="/movie/Reservation/reservation_chair";
-            },
-
-            error: function(xhr) {
-                alert("예약에 실패했습니다: " + xhr.responseText);
-            }
-
-
-    } );
+    //     $.ajax({
+    //         type:"POST",
+    //         url:"/resist_reservation",
+    //         data: JSON.stringify(reservationData),
+    //         contentType: "application/json",
+    //         success: function(response) {
+    //             alert("예약이 완료되었습니다: " + response.movieTitle);
+    //             location.href="/movie/Reservation/reservation_chair";
+    //         },
+    //
+    //         error: function(xhr) {
+    //             alert("예약에 실패했습니다: " + xhr.responseText);
+    //         }
+    //
+    //
+    // } );
 
 
     movie_title_Rest(event);
