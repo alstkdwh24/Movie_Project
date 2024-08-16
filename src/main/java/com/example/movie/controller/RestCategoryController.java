@@ -36,13 +36,12 @@ public class RestCategoryController {
         return new ResponseEntity<>(reservationService.getMovieCategoryChild(vo), HttpStatus.OK);
     }
     @PostMapping("/resist_reservation")
-    public ResponseEntity<ReservationVO> createReservation(@RequestBody ReservationVO vo) {
+    public ResponseEntity<ReservationVO> createReservation(@RequestBody  ReservationVO vo) {
         int saveReservation = reservationService.movie_report_resist(vo);
         if (saveReservation == 1) {
             return new ResponseEntity<>(vo, HttpStatus.CREATED);
         } else {
-            return null;
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 }
