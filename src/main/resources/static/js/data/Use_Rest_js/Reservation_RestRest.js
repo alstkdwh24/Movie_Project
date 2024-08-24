@@ -1,10 +1,13 @@
 
+let movieDataArray=[]
 $.ajax({
     type: "get",
     url: "/getMovieCategory",
     success: function (data) {
         console.log(data);
         movie_category_createtwo(data);
+        movie_category_creates(data);
+        movie_category_create(data)
         console.log("/getMovieCategory");
 
     },
@@ -15,12 +18,12 @@ $.ajax({
 });
 
 $(document).ready(function () {
-    $('.sub_menu_toggle > a').click(function () {
+    $('.sub_menu_toggle > div').click(function () {
         if (!$(this).hasClass("sub_menu_select")) {
-            $(this).next('ul').slideDown();
+            $(this).next('div').slideDown();
             $(this).addClass('sub_menu_select');
         } else {
-            $(this).next('ul').slideUp();
+            $(this).next('div').slideUp();
             $(this).removeClass("sub_menu_select");
         }
     });
@@ -29,18 +32,12 @@ $(document).ready(function () {
 function getMovieCategory_List(e) {
 
     e.preventDefault();
-    if (e.target.tagName !== 'A')
-        return;
+    if (e.target.tagName !== 'DIV') return;
 
     let set = $(e.target).data("set");
 
-    $(e.currentTarget).find("a").removeClass("sub_menu_select");
+    $(e.currentTarget).find("div").removeClass("sub_menu_select");
     $(e.target).addClass("sub_menu_select");
-
-    if (set.hasOwnProperty('movie_category_lv')) {
-        console.log("존재합니다.");
-        console.log("set");
-    }
 
     if (set.movie_category_lv === 1) {
         console.log("1lv");
@@ -57,7 +54,7 @@ function getMovieCategory_List(e) {
             error: function (err, status) {
                 console.log(err, status);
             }
-        });
+        })
 
         // 추가하는 과정
 
@@ -102,6 +99,7 @@ $.fn.movie_category_remove = function () {
         $(this).next().remove();
     }
 };
+
 function movie_category_createtwo(data) {
     console.log(data);
     if (!Array.isArray(data)) {
@@ -109,13 +107,19 @@ function movie_category_createtwo(data) {
         return;
     }
     console.log("data is an array or is defined:", data);
-    let movie_category = '<ul class="movies_titles" onclick="getMovieCategory_List(event);">';
+    let movie_category = '<div class="movies_titles" onclick="getMovieCategory_List(event);">';
     data.forEach(function (result, index) {
-        movie_category += '<li class="movie_name"><a href="#" data-set=\'' + JSON.stringify(result) + '\'  name="movie_title">' + result.movie_detail_title + '</a></li>';
-    });
 
-    movie_category += '</ul>';
+        movie_category += `
+    <div class="movie_name movie_title246" 
+         data-set='${JSON.stringify(result)}' >
+         
+ ${result.movie_detail_title}
+    </div>`;
+    });
+    movie_category += '</div>';
     $("#reservation_board").append(movie_category);
+
 }
 
 function movie_category_create(data) {
@@ -125,13 +129,17 @@ function movie_category_create(data) {
         return;
     }
     console.log("data is an array or is defined:", data);
-    let movie_category = '<ul class="movies_titles" onclick="getMovieCategory_List(event);">';
+    let movie_category = '<div class="movies_titles" onclick="getMovieCategory_List(event);">';
     data.forEach(function (result, index) {
-        movie_category += '<li class="movie_name"><a href="#"  data-set=\'' + JSON.stringify(result) + '\' name="movie_place">' + result.movie_detail_title + '</a></li>';
-    });
 
-    movie_category += '</ul>';
+        movie_category += `
+    <div href="#" class="movie_name movie_place246" 
+         data-set='${JSON.stringify(result)}'">
+    ${result.movie_detail_title}
+    </div>`
+    });
     $("#reservation_board").append(movie_category);
+
 }
 
 $.fn.loading = function () {
@@ -142,6 +150,7 @@ $.fn.loading = function () {
 };
 
 //---------------------------------------------------------------------------------------------------------------------------------------
+
 function movie_category_creates(data) {
     console.log(data);
     if (!Array.isArray(data)) {
@@ -149,56 +158,32 @@ function movie_category_creates(data) {
         return;
     }
     console.log("data is an array or is defined:", data);
-    let movie_category = '<ul class="movies_titles" onclick="Movie_reservation_modal(event);">';
+    let movie_category = '<div class="movies_titles" onclick="Movie_reservation_modal(event)">';
     data.forEach(function (result, index) {
-        movie_category += '<li class="movie_name"><a href="#" data-set=\'' + JSON.stringify(result) + '\'   name="movie_time"' +' data-id="result.movie_detail_title" th:value="${result.movie_detail_title}">' + result.movie_detail_title + '</a></li>';
+
+
+
+        movie_category += ` <div  class="movie_name movie_time246" data-set='${JSON.stringify(result)}'  >
+${result.movie_detail_title}
+
+            </div>`;
+
+
+
+
     });
 
-    movie_category += '</ul>';
+
+    movie_category += '</div>';
+
     $("#reservation_board").append(movie_category);
 }
 
-let reservation_container=document.getElementById("reservation_modal");
-let closecl=document.getElementById("closecl");
-let reservation_modal_contents=document.getElementById("reservation_modal_contents");
-
-let reservation_submit=document.querySelectorAll("#reservation_submit");
-reservation_submit.onclick=function (){
-    document.reservation.action="reservation_resist";
-    document.reservation.submit();
-    document.reservation.method="Post"
-    console.log("안녕");
-}
-
-function Movie_reservation_modal() {
-
-    reservation_container.style.display="flex";
-
-}
-closecl.onclick=function (){
-
-    reservation_container.style.display="none";
+let reservation_modal_contents = document.getElementById("reservation_modal_contents");
+let reservation_two = document.getElementById("reservation_two");
 
 
-}
-reservation_container.onclick=function (e){
-    e.preventDefault();
-    reservation_container.style.display="none";
-}
-//---------------------------------------------------------------------------------------
-//데이터 보내기
 
-$.ajax({
-    type: "get",
-    url: "/resist_reservation",
-    success: function (data) {
-        console.log(data);
-        console.log("/getMovieCategory");
-    },
-    error: function (err, status) {
-        console.log(err, status);
-        alert('카테고리를 불러오는데 실패하였습니다. F5를 눌러서 새로고침을 해주세요');
-    }
-});
+// 모달을 여는 함수
 
 

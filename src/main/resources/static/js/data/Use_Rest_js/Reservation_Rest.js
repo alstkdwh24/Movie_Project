@@ -39,7 +39,6 @@ function getMovieCategory_List(e) {
     $(e.currentTarget).find("div").removeClass("sub_menu_select");
     $(e.target).addClass("sub_menu_select");
 
-
     if (set.movie_category_lv === 1) {
         console.log("1lv");
         $(e.currentTarget).loading();
