@@ -6,8 +6,7 @@ $.ajax({
     success: function (data) {
         console.log(data);
         movie_category_createtwo(data);
-        movie_category_creates(data);
-        movie_category_create(data)
+
         console.log("/getMovieCategory");
 
     },
