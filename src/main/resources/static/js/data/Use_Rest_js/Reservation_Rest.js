@@ -1,4 +1,5 @@
 
+let movieDataArray=[]
 $.ajax({
     type: "get",
     url: "/getMovieCategory",
@@ -107,16 +108,17 @@ function movie_category_createtwo(data) {
     console.log("data is an array or is defined:", data);
     let movie_category = '<div class="movies_titles" onclick="getMovieCategory_List(event);">';
     data.forEach(function (result, index) {
+
         movie_category += `
-    <div class="movie_name" 
-         data-set='${JSON.stringify(result)}'  id="movie_title246">
+    <div class="movie_name movie_title246" 
+         data-set='${JSON.stringify(result)}' >
+         
  ${result.movie_detail_title}
-         <input type="hidden" class="input_movie_title" value="${result.movie_detail_title}" data-title="${result.movie_detail_title}" readonly>
     </div>`;
     });
-
     movie_category += '</div>';
     $("#reservation_board").append(movie_category);
+
 }
 
 function movie_category_create(data) {
@@ -128,14 +130,15 @@ function movie_category_create(data) {
     console.log("data is an array or is defined:", data);
     let movie_category = '<div class="movies_titles" onclick="getMovieCategory_List(event);">';
     data.forEach(function (result, index) {
+
         movie_category += `
-    <div href="#" class="movie_name" 
-         data-set='${JSON.stringify(result)}' id="movie_place246">
+    <div href="#" class="movie_name movie_place246" 
+         data-set='${JSON.stringify(result)}'">
     ${result.movie_detail_title}
-         <input type="hidden" class="input_movie_place" value="${result.movie_detail_title}" data-place="${result.movie_detail_title}"  readonly >
     </div>`
     });
     $("#reservation_board").append(movie_category);
+
 }
 
 $.fn.loading = function () {
@@ -157,11 +160,14 @@ function movie_category_creates(data) {
     let movie_category = '<div class="movies_titles" onclick="Movie_reservation_modal(event)">';
     data.forEach(function (result, index) {
 
-        movie_category += ` <div  class="movie_name" data-set='${JSON.stringify(result)}' id="movie_time246" >
+
+
+        movie_category += ` <div  class="movie_name movie_time246" data-set='${JSON.stringify(result)}'  >
 ${result.movie_detail_title}
-        <input type="hidden"  class="input_movie_time" data-time='${result.movie_detail_title}' data-set='${result.movie_detail_title}' value="${result.movie_detail_title}"  
-           readonly >
+
             </div>`;
+
+
 
 
     });
@@ -169,14 +175,11 @@ ${result.movie_detail_title}
 
     movie_category += '</div>';
 
-
     $("#reservation_board").append(movie_category);
 }
 
-
 let reservation_modal_contents = document.getElementById("reservation_modal_contents");
 let reservation_two = document.getElementById("reservation_two");
-
 
 
 
