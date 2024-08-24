@@ -12,9 +12,9 @@ function Movie_reservation_modal(e) {
 
 }
 
-reservation_two.onclick=function (){
-    reservation_two.style.display="none";
-}
+// reservation_two.onclick=function (){
+//     reservation_two.style.display="none";
+// }
 
 function button() {
     // 서버에 예약 요청
