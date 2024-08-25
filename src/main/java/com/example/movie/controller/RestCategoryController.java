@@ -24,7 +24,14 @@ public class RestCategoryController {
     public ResponseEntity<ArrayList<CategoryVO>> getMovieCategory(){
         return new ResponseEntity<>(reservationService.getMovieCategory(), HttpStatus.OK);
     }
-
+    @GetMapping("/getMovieCategory2")
+    public ResponseEntity<ArrayList<CategoryVO>> getMovieCategory2(){
+        return new ResponseEntity<>(reservationService.getMovieCategory2(), HttpStatus.OK);
+    }
+    @GetMapping("/getMovieCategory3")
+    public ResponseEntity<ArrayList<CategoryVO>> getMovieCategory3(){
+        return new ResponseEntity<>(reservationService.getMovieCategory3(), HttpStatus.OK);
+    }
     @GetMapping("/getMovieCategoryChild/{group_id}/{movie_category_lv}/{movie_detail_lv}")
     public ResponseEntity<ArrayList<CategoryVO>> getMovieCategoryChild(@PathVariable("group_id") String group_id,
                                                                         @PathVariable("movie_category_lv") Integer movie_category_lv,

@@ -19,6 +19,16 @@ public class ReservationServiceImpl implements ReservationService{
     }
 
     @Override
+    public ArrayList<CategoryVO> getMovieCategory2() {
+        return reservationMapper.getMovieCategory2();
+    }
+
+    @Override
+    public ArrayList<CategoryVO> getMovieCategory3() {
+        return reservationMapper.getMovieCategory3();
+    }
+
+    @Override
     public ArrayList<CategoryVO> getMovieCategoryChild(CategoryVO vo) {
         return reservationMapper.getMovieCategoryChild(vo);
     }

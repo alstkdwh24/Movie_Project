@@ -18,6 +18,18 @@
     where movie_category_lv = 1
 
     </select>
+    <select id="getMovieCategory2" resultType="CategoryVO">
+        select * from movie_category_table
+        where movie_category_lv = 2 and group_id="A";
+    </select>
+    <select id="getMovieCategory3"  resultType="CategoryVO">
+            SELECT *
+            FROM movie_category_table
+            where  movie_category_lv=3 and group_id="A" ;
+        </select>
+
+
+
 
 
 
