@@ -47,7 +47,7 @@
             <div id="user_id">
                 <div id="user_img">프로필 이미지</div>
                 <div id="free_feature">
-                    <div id="name">아이디</div>
+                    <div id="name" th:value="${userSession.username}"></div>
                     <div id="free_impormation">
                         <div class="small_box" id="gallery_name">자유게시판</div>
                         <div class="small_box" id="date">작성시간</div>

@@ -5,8 +5,8 @@
 
 <mapper namespace="com.example.movie.communityEventService.EventMapper">
     <insert id="gallery_free_board" parameterType="com.example.movie.commandVO.EventVO">
-        INSERT INTO FREE_GALLERY (free_title, free_contents)
-        VALUES (#{free_title}, #{free_contents})
+        INSERT INTO FREE_GALLERY (free_title, free_contents, username)
+        VALUES (#{free_title}, #{free_contents}, #{username})
     </insert>
     <select id="gallery_free_show" resultType="com.example.movie.commandVO.EventVO">
 select * from FREE_GALLERY

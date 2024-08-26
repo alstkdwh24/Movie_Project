@@ -50,7 +50,7 @@
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 <form method="post" name="free_board_writer" action="/free_board_writer" class="big_frame" >
 
-
+<input type="hidden" th:value="${userSession.username}" name="username">
     <div class="big_div" >
         <div class="big_gallery_title"><h2 class="title_big">F-WRITE</h2></div>
         <div class="blank">
