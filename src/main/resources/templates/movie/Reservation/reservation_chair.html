@@ -42,14 +42,17 @@
                 <img src="/movie/img/free-icon-movie-theater-4362681.png" alt="" width="100%" height="100%"
                      style="box-sizing: border-box;">
             </div>
-                <input type="hidden" name="movieTitle" id="movieTitleInput">
-                <input type="hidden" name="moviePlace" id="moviePlaceInput">
-                <input type="hidden" name="movieTime" id="movieTimeInput">
+            <input type="hidden" name="movieTitle" id="movieTitleInput">
+            <input type="hidden" name="moviePlace" id="moviePlaceInput">
+            <input type="hidden" name="movieTime" id="movieTimeInput">
+            <input type="hidden" name="movie_Seat" id="chair_value">
+            <input type="hidden" name="username_modal" id="username_modal" th:value="${userSession.username}">
+
 
             <div class="movie_chair_sheet3">
-                <div class="movie_sheet_number"  >
-                    <div class="chair" ><input type="hidden" value="A-1"
-                                                                                      name="movie_Seat" class="input"><img
+                <div class="movie_sheet_number">
+                    <div class="chair" value="A-1"><input type="hidden" value="A-1"
+                                                          name="movie_Seat" class="input"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">A-1</h3></div>
@@ -58,293 +61,295 @@
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;" class="input">
                         <h3 class="main_image_text" style="color: white">A-2</h3></div>
-                    <div class="chair"><input
+                    <div class="chair" value="A-3"><input
                             type="hidden" value="A-3" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">A-3</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="A-4" name="movie_Seat"><img
+                    <div class="chair" value="A-4"><input
+                            type="hidden"  name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">A-4</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="A-5" name="movie_Seat"><img
+                    <div class="chair" value="A-5"><input
+                            type="hidden"  name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">A-5</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="A-6" name="movie_Seat"><img
+                    <div class="chair" value="A-6"><input
+                            type="hidden"  name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">A-6</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="A-7" name="movie_Seat"><img
+                    <div class="chair" value="A-7"><input
+                            type="hidden"  name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">A-7</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="A-8" name="movie_Seat"><img
+                    <div class="chair"  value="A-8"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">A-8</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="A-9" name="movie_Seat"><img
+                    <div class="chair" value="A-9"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">A-9</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="A-10" name="movie_Seat"><img
+                    <div class="chair" value="A-10"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">A-10</h3></div>
                 </div>
                 <div class="movie_sheet_number">
-                    <div class="chair"><input
-                            type="hidden" value="B-1" name="movie_Seat"><img
+                    <div class="chair" value="B-1"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">B-1</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="B-2" name="movie_Seat"><img
+                    <div class="chair" value="B-2"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">B-2</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="B-3" name="movie_Seat"><img
+                    <div class="chair" value="B-3"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">B-3</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="B-4" name="movie_Seat"><img
+                    <div class="chair" value="B-4"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">B-4</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="B-5" name="movie_Seat"><img
+                    <div class="chair" value="B-5"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">B-5</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="B-6" name="movie_Seat"><img
+                    <div class="chair" value="B-6"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">B_6</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="B-7" name="movie_Seat"><img
+                    <div class="chair" value="B-7"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">B-7</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="B-8" name="movie_Seat"><img
+                    <div class="chair" value="B-8"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">B-8</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="B-9" name="movie_Seat"><img
+                    <div class="chair" value="B-9"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">B-9</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="B-10" name="movie_Seat"><img
+                    <div class="chair" value="B-10"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">B-10</h3></div>
                 </div>
-                <div class="movie_sheet_number" >
-                    <div class="chair"><input
-                            type="hidden" value="C-1" name="movie_Seat"><img
+                <div class="movie_sheet_number">
+                    <div class="chair" value="C-1"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">C-1</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="C-2" name="movie_Seat"><img
+                    <div class="chair" value="C-2"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">C-2</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="C-3" name="movie_Seat"><img
+                    <div class="chair" value="C-3"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">C-3</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="C-4" name="movie_Seat"><img
+                    <div class="chair" value="C-4"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">C-4</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="C-5" name="movie_Seat"><img
+                    <div class="chair" value="C-5"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">C-5</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="C-6" name="movie_Seat"><img
+                    <div class="chair" value="C-6"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">C-6</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="C-7" name="movie_Seat"><img
+                    <div class="chair" value="C-7"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">C-7</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="C-8" name="movie_Seat"><img
+                    <div class="chair" value="C-8"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">C-8</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="C-9" name="movie_Seat"><img
+                    <div class="chair" value="C-9"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">C-9</h3></div>
-                    <div class="chair"><input
-                            type="hidden" value="C-10" name="movie_Seat"><img
+                    <div class="chair" value="C-10"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">C-10</h3></div>
                 </div>
 
-                <div class="movie_sheet_number" >
-                    <div class="chair" ><input
-                            type="hidden" value="D-1" name="movie_Seat"><img
+                <div class="movie_sheet_number">
+                    <div class="chair" value="D-1"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">D-1</h3></div>
-                    <div class="chair" ><input
-                            type="hidden" value="D-2" name="movie_Seat"><img
+                    <div class="chair" value="D-2"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">D-2</h3></div>
-                    <div class="chair" ><input
-                            type="hidden" value="D-3" name="movie_Seat"><img
+                    <div class="chair" value="D-3"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">D-3</h3></div>
-                    <div class="chair" ><input
-                            type="hidden" value="D-4" name="movie_Seat"><img
+                    <div class="chair" value="D-4"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">D-4</h3></div>
-                    <div class="chair" ><input
-                            type="hidden" value="D-5" name="movie_Seat"><img
+                    <div class="chair" value="D-5"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">D-5</h3></div>
-                    <div class="chair" ><input
-                            type="hidden" value="D-6" name="movie_Seat"><img
+                    <div class="chair" value="D-6"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">D-6</h3></div>
-                    <div class="chair" ><input
-                            type="hidden" value="D-7" name="movie_Seat"><img
+                    <div class="chair" value="D-7"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">D-7</h3></div>
-                    <div class="chair" ><input
-                            type="hidden" value="D-8" name="movie_Seat"><img
+                    <div class="chair" value="D-8"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">D-8</h3></div>
-                    <div class="chair" ><input
-                            type="hidden" value="D-9" name="movie_Seat"><img
+                    <div class="chair" value="D-9"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">D-9</h3></div>
-                    <div class="chair" ><input
-                            type="hidden" value="D-10" name="movie_Seat"><img
+                    <div class="chair" value="D-10"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">D-10</h3></div>
                 </div>
 
-                <div class="movie_sheet_number" >
-                    <div class="chair" ><input
-                            type="hidden" value="E-1" name="movie_Seat"><img
+                <div class="movie_sheet_number">
+                    <div class="chair" value="E-1"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">E-1</h3></div>
-                    <div class="chair" ><input
-                            type="hidden" value="E-2" name="movie_Seat"><img
+                    <div class="chair" value="E-2"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">E-2</h3></div>
-                    <div class="chair" ><input
-                            type="hidden" value="E-3" name="movie_Seat"><img
+                    <div class="chair" value="E-3"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">E-3</h3></div>
-                    <div class="chair" ><input
-                            type="hidden" value="E-4" name="movie_Seat"><img
+                    <div class="chair" value="E-4"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">E-4</h3></div>
-                    <div class="chair" ><input
-                            type="hidden" value="E-5" name="movie_Seat"><img
+                    <div class="chair" value="E-5"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">E-5</h3></div>
-                    <div class="chair" ><input
-                            type="hidden" value="E-6" name="movie_Seat"><img
+                    <div class="chair" value="E-6"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">E-6</h3></div>
-                    <div class="chair" ><input
-                            type="hidden" value="E-7" name="movie_Seat"><img
+                    <div class="chair" value="E-7"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">E-7</h3></div>
-                    <div class="chair" ><input
-                            type="hidden" value="E-8" name="movie_Seat"><img
+                    <div class="chair" value="E-8"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">E-8</h3></div>
-                    <div class="chair" ><input
-                            type="hidden" value="E-9" name="movie_Seat"><img
+                    <div class="chair" value="E-9"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">E-9</h3></div>
-                    <div class="chair" ><input
-                            type="hidden" value="E-10" name="movie_Seat"><img
+                    <div class="chair" value="E-10"><input
+                            type="hidden" name="movie_Seat"><img
                             src="/css/img/icon/free-icon-cinema-seat-4222064.png" alt="의자"
                             style="width: 100%;height: 100%;">
                         <h3 class="main_image_text" style="color: white">E-10</h3></div>
+
                 </div>
+
             </div>
         </div>
-
+        <button id="seat_resist">다음</button>
     </div>
 </div>
-    <!--채팅 모달div-->
-    <div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
-    <!--소메뉴 검색css-->
-    <div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
-    <!--커뮤니티div-->
-    <div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
-    <!--미니 메뉴 div-->
-    <div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
+<!--채팅 모달div-->
+<div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
+<!--소메뉴 검색css-->
+<div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
+<!--커뮤니티div-->
+<div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
+<!--미니 메뉴 div-->
+<div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
 
-    <!--예약모달-->
-    <div th:replace="/movie/Reservation/reservation_modal.html :: reservation_modal"></div>
+<!--예약모달-->
+<div th:replace="/movie/Reservation/reservation_modal.html :: reservation_modal"></div>
 
-    <!--예약 모달-->
-    <div th:replace="/movie/Reservation/reservation_modal.html :: reservation_modal"></div>
+<!--예약 모달-->
+<div th:replace="/movie/Reservation/reservation_modal.html :: reservation_modal"></div>
 
-    <!--jQuery js -->
-    <!--<script src="/js/jquery-3.7.1.min.js"></script>-->
+<!--jQuery js -->
+<!--<script src="/js/jquery-3.7.1.min.js"></script>-->
 
-    <!--소메뉴 검색 모달-->
-    <script src="/js/modal/momo_modal.js"></script>
-    <!--채팅 모달js-->
-    <script src="/js/modal/chat_modal.js"></script>
-    <!--커뮤니티 js-->
-    <script src="/js/modal/Gallery_modal2.js"></script>
-    <!--미니 메뉴-->
-    <script src="/js/modal/menu_modal.js"></script>
+<!--소메뉴 검색 모달-->
+<script src="/js/modal/momo_modal.js"></script>
+<!--채팅 모달js-->
+<script src="/js/modal/chat_modal.js"></script>
+<!--커뮤니티 js-->
+<script src="/js/modal/Gallery_modal2.js"></script>
+<!--미니 메뉴-->
+<script src="/js/modal/menu_modal.js"></script>
 
-    <!--좌석예매 js-->
-    <script src="/js/data/Reservation_Seat/Reservation_Seat.js"></script>
+<!--좌석예매 js-->
+<script src="/js/data/Reservation_Seat/Reservation_Seat.js"></script>
 
-    <!--<script src="/js/data/Use_Rest_js/Reservation_RestRest.js"></script>-->
+<!--<script src="/js/data/Use_Rest_js/Reservation_RestRest.js"></script>-->
 
 
 </body>

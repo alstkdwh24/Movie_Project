@@ -47,7 +47,7 @@ function Movie_reservation_modal(event) {
 // 영화 시간 가져오기
     document.getElementById("movieTimeInput").value = document.querySelector(".movie_name.movie_time246.sub_menu_select3").textContent;
 // 의자 클릭 이벤트 설정
-
+    document.getElementById("username_modal").value=document.getElementById("username").value
 }
 
 // 모달을 여는 함수
@@ -56,7 +56,7 @@ function Movie_reservation_modal(event) {
 
 
 
-
+let seat_resist=document.getElementById("seat_resist");
 let chair = document.querySelectorAll(".chair");
 
 
@@ -65,29 +65,40 @@ chair.forEach(function (chairElement) {
 
     chairElement.addEventListener('click', function () {
 
-        let movieTimeInput=document.getElementById("movieTimeInput").value;
-        let moviePlaceInput=document.getElementById("moviePlaceInput").value;
-        let movieTitleInput=document.getElementById("movieTitleInput").value;
-        let movie_Seat=document.querySelector(".input").value;
-        $.ajax({
-            type: "post",
-            url: "/resist_reservation",
-            contentType: "application/json",
-            data: JSON.stringify({
-                movieTitle: movieTitleInput,
-                moviePlace: moviePlaceInput,
-                movieTime: movieTimeInput,
-                movie_Seat:movie_Seat
-            }),
-            success: function (response) {
-                alert("성공하였습니다");
-            },
-            error: function (response) {
-                alert("다시 시도하세요");
-            }
-        });
+
+        document.getElementById("chair_value").value  = chairElement.getAttribute('value'); // 클릭된 의자 값 가져오기
+
+        seat_resist.style.display="flex"
+
+
+
+
     });
 });
-reservation_two.onclick = function () {
-    reservation_two.style.display = "none";
+
+seat_resist.onclick=function (){
+    let movieTimeInput=document.getElementById("movieTimeInput").value;
+    let moviePlaceInput=document.getElementById("moviePlaceInput").value;
+    let movieTitleInput=document.getElementById("movieTitleInput").value;
+    let movieSeatInput=document.getElementById("chair_value").value
+    let usernames=document.getElementById("username_modal").value
+    $.ajax({
+        type: "post",
+        url: "/resist_reservation",
+        contentType: "application/json",
+        data: JSON.stringify({
+            movieTitle: movieTitleInput,
+            moviePlace: moviePlaceInput,
+            movieTime: movieTimeInput,
+            movieSeat:movieSeatInput,
+            username:usernames
+        }),
+        success: function (response) {
+            location.href="/movie/Reservation/reservation_report"
+            alert("성공하였습니다");
+        },
+        error: function (response) {
+            alert("다시 시도하세요");
+        }
+    });
 }

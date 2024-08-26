@@ -34,6 +34,8 @@
 
 <!--소메뉴 div-->
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
+<input type="hidden" name="username" id="username" th:value="${userSession.username}">
+
 <form id="reservation" method="post" name="reservation" action="#">
     <div id="reservation_board">
 

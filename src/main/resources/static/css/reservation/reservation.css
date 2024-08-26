@@ -195,3 +195,14 @@ height: 10%;
     justify-content: center;
 
 }
+
+#seat_resist{
+    width: 10%;
+    height: 10%;
+    position: relative;
+    right: 50%;
+    top:22%;
+    border-radius: 10px;
+    display: none;
+}
+

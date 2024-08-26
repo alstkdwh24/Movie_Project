@@ -16,8 +16,7 @@ box-sizing: border-box;
 #reservation_modal_content_two{
     width: 60%;
     height: 96%;
-    border: 1px solid antiquewhite;
-    background-color: WHITE;
+    background-color: transparent;
     /*border-radius: 10px;*/
     display: flex;
     justify-content: center;
