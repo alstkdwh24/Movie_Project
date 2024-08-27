@@ -9,8 +9,11 @@
         VALUES (#{free_title}, #{free_contents}, #{username})
     </insert>
     <select id="gallery_free_show" resultType="com.example.movie.commandVO.EventVO">
-select * from FREE_GALLERY
-order by free_number desc limit #{First},#{amount}
+        SELECT fg.*, a.nickname
+        FROM FREE_GALLERY AS fg
+                 JOIN members AS a ON fg.username = a.username
+        ORDER BY free_number DESC
+            LIMIT #{First}, #{amount}
     </select>
     <select id="gallery_free_total" resultType="int" >
         select count(*) AS gallery_free_total from FREE_GALLERY

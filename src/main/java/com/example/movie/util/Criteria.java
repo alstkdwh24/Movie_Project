@@ -9,7 +9,7 @@ public class Criteria {
     private Integer free_number;
     private int First;
     private  Integer g_number;
-
+    private String nickname;
     public Criteria(){
         this.page=1;
         this.amount=8;

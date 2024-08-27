@@ -17,5 +17,6 @@ public class ChatVO {
     private String Q_content;
     private Integer Q_count;
     private Integer Q_share_count;
-    
+    private String username;
+
 }

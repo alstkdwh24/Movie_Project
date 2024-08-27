@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class EventVO {
     private String username;
-
+    private String nickname;
     private Integer free_number;
     private Integer free_like;
     private String free_contents;
