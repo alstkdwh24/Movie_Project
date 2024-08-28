@@ -37,12 +37,12 @@
     <!--    미니메뉴 모달-->
     <link rel="stylesheet" href="/css/mains/main_imin_menu.css">
 
-<!--    공지사함 검색모달-->
+    <!--    공지사함 검색모달-->
     <link rel="stylesheet" href="/css/event/g_search_modal.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body >
+<body>
 <!--소메뉴  div-->
 
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
@@ -63,11 +63,12 @@
         <div class="mini_title_good" id="w_t">작성시간</div>
     </div>
     <div class="gallery_content">
-        <div class="gallery_blank_mini2" th:each="vo, status: ${list}" th:onclick="|location.href='@{/movie/community/g_detail(g_number=${vo.g_number})}'|">
-<input type="hidden" th:value="${vo.g_number}">
+        <div class="gallery_blank_mini2" th:each="vo, status: ${list}"
+             th:onclick="|location.href='@{/movie/community/g_detail(g_number=${vo.g_number})}'|">
+            <input type="hidden" th:value="${vo.g_number}">
             <div class="mini_title_good" id="writer_number2">[[${vo.g_number}]]</div>
             <div class="mini_title_good" id="writer_title2">[[${vo.g_title}]]</div>
-            <div class="mini_title_good" id="writer2"></div>
+            <div class="mini_title_good" id="writer2">[[${vo.nickname}]]</div>
             <div class="mini_title_good" id="w_c2"></div>
             <div class="mini_title_good" id="l_c2"></div>
             <div class="mini_title_good" id="w_t2"></div>
@@ -92,10 +93,6 @@
 
 <!--미니 메뉴 div-->
 <div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
-
-
-
-
 
 
 <!--소메뉴 검색 모달-->

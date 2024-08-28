@@ -5,8 +5,8 @@
 
 <mapper namespace="com.example.movie.communityEventService.EventMapper">
     <insert id="gallery_free_board" parameterType="com.example.movie.commandVO.EventVO">
-        INSERT INTO FREE_GALLERY (free_title, free_contents, username)
-        VALUES (#{free_title}, #{free_contents}, #{username})
+        INSERT INTO FREE_GALLERY (free_title, free_contents, username, write_time)
+        VALUES (#{free_title}, #{free_contents}, #{username}, #{write_time})
     </insert>
     <select id="gallery_free_show" resultType="com.example.movie.commandVO.EventVO">
         SELECT fg.*, a.nickname
@@ -19,30 +19,32 @@
         select count(*) AS gallery_free_total from FREE_GALLERY
     </select>
 
-
-
     <insert id="gallery_g_board" parameterType="com.example.movie.commandVO.EventVO">
-        INSERT INTO g_GALLERY (G_TITLE, G_CONTENTS)
-        VALUES (#{g_title}, #{g_contents})
+        INSERT INTO g_GALLERY (G_TITLE, G_CONTENTS, username)
+        VALUES (#{g_title}, #{g_contents}, #{username})
     </insert>
 
     <select id="gallery_g_show" resultType="com.example.movie.commandVO.EventVO">
-        select * from g_GALLERY
+        select g.* ,a.nickname from g_GALLERY AS g JOIN members AS a on g.username=a.username
         order by G_NUMBER desc limit #{First},#{amount}
     </select>
     <select id="gallery_g_total" resultType="int" >
         select count(*) AS gallery_g_total from G_GALLERY
     </select>
-
-
-
-    <select id="freeselect" resultType="EventVO">
-        select *
-        from FREE_GALLERY
-        where free_number=${free_number}
+    <select id="gSelect" resultType="EventVO">
+        select g.*,a.nickname
+        from G_GALLERY AS g join members AS a on g.username=a.username
+        where g_number=#{g_number}
 
 
     </select>
+
+    <select id="freeselect" parameterType="int"  resultType="EventVO">
+        select fg.*, a.nickname
+        from FREE_GALLERY AS fg  join members as a on fg.username=a.username
+        where free_number=${free_number}
+    </select>
+
 
     <select id="free_detail_update_select" resultType="EventVO">
         select *
@@ -52,19 +54,18 @@
 
     </select>
 
+    <update id="count">
+        UPDATE FREE_GALLERY
+        SET count = count + 1
+        WHERE free_number = #{free_number}
+    </update>
+
     <delete id="free_delete">
 delete from free_gallery
 where free_number=#{free_number}
 
     </delete>
 
-    <select id="gSelect" resultType="EventVO">
-        select *
-        from G_GALLERY
-        where g_number=#{g_number}
-
-
-    </select>
 
     <delete id="g_delete">
         delete from g_gallery

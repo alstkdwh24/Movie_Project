@@ -113,17 +113,23 @@ public class EventController {
          }
 
         @GetMapping("/free_detail")
-        public String free_detail (@RequestParam("free_number") Integer free_number, Model model,HttpSession session){
+        public String free_detail ( @RequestParam("free_number") Integer free_number, Model model,HttpSession session){
             UserDetails userDetails = (UserDetails) session.getAttribute("user");
             model.addAttribute("userSession", userDetails);
             EventVO vo = eventService.freeselect(free_number);
             model.addAttribute("vo", vo);
 
+
             return "movie/community/free_detail";
         }
 
-        @GetMapping("/g_detail")
+        @PostMapping("/movie/communithy/free_detail/{free_number}")
+    public String counts(@PathVariable("free_number") Integer free_number){
+        eventService.count(free_number);
+           return  "redirect:/movie/community/" + free_number;
+    }
 
+        @GetMapping("/g_detail")
         public String g_detail (@RequestParam("g_number") Integer g_number, Model model,HttpSession session){
             UserDetails userDetails = (UserDetails) session.getAttribute("user");
             model.addAttribute("userSession", userDetails);

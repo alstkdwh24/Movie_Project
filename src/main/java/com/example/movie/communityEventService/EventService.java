@@ -10,7 +10,7 @@ public interface EventService {
     int gallery_free_total(Criteria cri);
     ArrayList<EventVO> gallery_free_show(Criteria cri);
 
-
+    EventVO count(int free_number);
 
     int gallery_g_board(EventVO vo);
     int gallery_g_total(Criteria cri);

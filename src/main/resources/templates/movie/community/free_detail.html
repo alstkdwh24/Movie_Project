@@ -47,7 +47,7 @@
             <div id="user_id">
                 <div id="user_img">프로필 이미지</div>
                 <div id="free_feature">
-                    <div id="name" th:value="${userSession.username}"></div>
+                    <div id="name">[[${vo.nickname}]]</div>
                     <div id="free_impormation">
                         <div class="small_box" id="gallery_name">자유게시판</div>
                         <div class="small_box" id="date">작성시간</div>
@@ -104,7 +104,7 @@
 
 
 <!--소메뉴 검색  div-->
-<div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div
+<div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
 
 <!--미니 메뉴 div-->
 <div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
