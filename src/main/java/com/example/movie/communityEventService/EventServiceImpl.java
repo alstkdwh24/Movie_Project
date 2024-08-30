@@ -32,6 +32,11 @@ public class EventServiceImpl implements EventService {
         return eventMapper.count(free_number);
     }
 
+    @Override
+    public EventVO getcounttwo(int free_number) {
+        return eventMapper.getcounttwo(free_number);
+    }
+
     public int gallery_g_board(EventVO vo) {
         return eventMapper.gallery_g_board(vo);
     }

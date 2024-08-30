@@ -1,4 +1,4 @@
-package com.example.movie.controller;
+package com.example.movie.RestController;
 
 import com.example.movie.ReservationService.ReservationService;
 import com.example.movie.commandVO.CategoryVO;

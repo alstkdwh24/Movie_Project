@@ -26,6 +26,7 @@ public class PageVO {
     private int RealEnd;
     private Criteria cri;
 
+
     private List<Integer> pagelist;
     public PageVO(Criteria cri, int total){
         this.page= cri.getPage();

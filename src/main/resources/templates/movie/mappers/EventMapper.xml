@@ -6,17 +6,28 @@
 <mapper namespace="com.example.movie.communityEventService.EventMapper">
     <insert id="gallery_free_board" parameterType="com.example.movie.commandVO.EventVO">
         INSERT INTO FREE_GALLERY (free_title, free_contents, username, write_time)
-        VALUES (#{free_title}, #{free_contents}, #{username}, #{write_time})
+        VALUES (#{free_title}, #{free_contents}, #{username}, DATE_FORMAT(NOW(), '%y-%m-%d-%h-%m'));
     </insert>
+
+
     <select id="gallery_free_show" resultType="com.example.movie.commandVO.EventVO">
-        SELECT fg.*, a.nickname
-        FROM FREE_GALLERY AS fg
-                 JOIN members AS a ON fg.username = a.username
-        ORDER BY free_number DESC
-            LIMIT #{First}, #{amount}
+        SELECT
+            fg.*,
+            a.nickname,
+            DATE_FORMAT(fg.write_time, '%m %d %H:%i') AS formatted_time
+        FROM
+            FREE_GALLERY AS fg
+                JOIN
+            members AS a ON fg.username = a.username
+        ORDER BY
+            fg.free_number DESC
+            LIMIT
+            #{First}, #{amount};
     </select>
-    <select id="gallery_free_total" resultType="int" >
-        select count(*) AS gallery_free_total from FREE_GALLERY
+
+    <select id="gallery_free_total" resultType="int">
+        select count(*) AS gallery_free_total
+        from FREE_GALLERY
     </select>
 
     <insert id="gallery_g_board" parameterType="com.example.movie.commandVO.EventVO">
@@ -25,57 +36,60 @@
     </insert>
 
     <select id="gallery_g_show" resultType="com.example.movie.commandVO.EventVO">
-        select g.* ,a.nickname from g_GALLERY AS g JOIN members AS a on g.username=a.username
-        order by G_NUMBER desc limit #{First},#{amount}
+        select g.*, a.nickname
+        from g_GALLERY AS g
+                 JOIN members AS a on g.username = a.username
+        order by G_NUMBER desc limit #{First}, #{amount}
     </select>
-    <select id="gallery_g_total" resultType="int" >
-        select count(*) AS gallery_g_total from G_GALLERY
+    <select id="gallery_g_total" resultType="int">
+        select count(*) AS gallery_g_total
+        from G_GALLERY
     </select>
     <select id="gSelect" resultType="EventVO">
-        select g.*,a.nickname
-        from G_GALLERY AS g join members AS a on g.username=a.username
-        where g_number=#{g_number}
+        select g.*, a.nickname
+        from G_GALLERY AS g
+                 join members AS a on g.username = a.username
+        where g_number = #{g_number}
 
 
     </select>
 
-    <select id="freeselect" parameterType="int"  resultType="EventVO">
+    <select id="freeselect" parameterType="int" resultType="EventVO">
         select fg.*, a.nickname
-        from FREE_GALLERY AS fg  join members as a on fg.username=a.username
-        where free_number=${free_number}
+        from FREE_GALLERY AS fg
+                 join members as a on fg.username = a.username
+        where free_number = ${free_number}
     </select>
 
 
     <select id="free_detail_update_select" resultType="EventVO">
         select *
         from FREE_GALLERY
-        where free_number=${free_number}
+        where free_number = ${free_number}
 
 
     </select>
 
-    <update id="count">
-        UPDATE FREE_GALLERY
-        SET count = count + 1
-        WHERE free_number = #{free_number}
-    </update>
+
 
     <delete id="free_delete">
-delete from free_gallery
-where free_number=#{free_number}
+        delete
+        from free_gallery
+        where free_number = #{free_number}
 
     </delete>
 
 
     <delete id="g_delete">
-        delete from g_gallery
-        where g_number=#{g_number}
+        delete
+        from g_gallery
+        where g_number = #{g_number}
     </delete>
 
-    <select id="g_update">
-        select *
-        from g_GALLERY
-        where g_number=${g_number}
+    <select id="g_update" resultType="EventVO">
+        select g.*,a.nickname
+        from g_GALLERY as g JOIN members as a on g.username=a.username
+        where g_number = #{g_number}
 
     </select>
 </mapper>

@@ -12,6 +12,10 @@ public interface EventService {
 
     EventVO count(int free_number);
 
+
+    EventVO getcounttwo(int free_number);
+
+
     int gallery_g_board(EventVO vo);
     int gallery_g_total(Criteria cri);
     ArrayList<EventVO> gallery_g_show(Criteria cri);

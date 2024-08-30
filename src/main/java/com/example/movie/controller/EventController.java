@@ -123,11 +123,7 @@ public class EventController {
             return "movie/community/free_detail";
         }
 
-        @PostMapping("/movie/communithy/free_detail/{free_number}")
-    public String counts(@PathVariable("free_number") Integer free_number){
-        eventService.count(free_number);
-           return  "redirect:/movie/community/" + free_number;
-    }
+
 
         @GetMapping("/g_detail")
         public String g_detail (@RequestParam("g_number") Integer g_number, Model model,HttpSession session){

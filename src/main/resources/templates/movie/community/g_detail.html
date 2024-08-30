@@ -38,7 +38,7 @@
 
 <!--소메뉴 div-->
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
-<form name="g_delete" method="post" action="" class="input">
+<form name="g_delete" method="get" action="" class="input">
 
     <div class="free_detail">
         <input type="hidden" name="g_number" th:value="${vo.g_number}">
@@ -106,7 +106,7 @@
 
 <!--소메뉴 검색  div-->
 <div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal">
-
+</div>
     <!--미니 메뉴 div-->
     <div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
 
