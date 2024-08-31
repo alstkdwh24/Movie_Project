@@ -34,6 +34,7 @@ public class PageVO {
         this.total=total;
         this.cri=cri;
 
+
         this.End=(int)(Math.ceil(this.page/5.0)*5);
 
         this.First=this.End-5+1;

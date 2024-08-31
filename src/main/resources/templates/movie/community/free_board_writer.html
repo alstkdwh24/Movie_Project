@@ -49,7 +49,8 @@
 <!--소메뉴 div-->
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 <form method="post" name="free_board_writer" action="/free_board_writer" class="big_frame" >
-<input type="hidden" name="write_time" >
+<!--count를 input하는 것이 무조건 필요-->
+    <input type="hidden" name="count" value="0">
 <input type="hidden" th:value="${userSession.username}" name="username">
     <div class="big_div" >
         <div class="big_gallery_title"><h2 class="title_big">F-WRITE</h2></div>

@@ -5,24 +5,20 @@
 
 <mapper namespace="com.example.movie.communityEventService.EventMapper">
     <insert id="gallery_free_board" parameterType="com.example.movie.commandVO.EventVO">
-        INSERT INTO FREE_GALLERY (free_title, free_contents, username, write_time)
-        VALUES (#{free_title}, #{free_contents}, #{username}, DATE_FORMAT(NOW(), '%y-%m-%d-%h-%m'));
+        INSERT INTO FREE_GALLERY (free_title, free_contents, username, write_time, count)
+        VALUES (#{free_title}, #{free_contents}, #{username}, DATE_FORMAT(NOW(), '%y-%m-%d-%h-%m'), #{count});
     </insert>
 
 
     <select id="gallery_free_show" resultType="com.example.movie.commandVO.EventVO">
-        SELECT
-            fg.*,
-            a.nickname,
-            DATE_FORMAT(fg.write_time, '%m %d %H:%i') AS formatted_time
-        FROM
-            FREE_GALLERY AS fg
-                JOIN
-            members AS a ON fg.username = a.username
-        ORDER BY
-            fg.free_number DESC
-            LIMIT
-            #{First}, #{amount};
+        SELECT fg.*,
+               a.nickname,
+               DATE_FORMAT(fg.write_time, '%m %d %H:%i') AS formatted_time
+        FROM FREE_GALLERY AS fg
+                 JOIN
+             members AS a ON fg.username = a.username
+        ORDER BY fg.free_number DESC
+            LIMIT #{First}, #{amount};
     </select>
 
     <select id="gallery_free_total" resultType="int">
@@ -70,7 +66,10 @@
 
     </select>
 
-
+    <update id="findEventFree_Number" parameterType="int" >
+        UPDATE FREE_GALLERY
+        SET count = count + 1
+        WHERE free_number = #{freeNumber}    </update>
 
     <delete id="free_delete">
         delete
@@ -87,8 +86,9 @@
     </delete>
 
     <select id="g_update" resultType="EventVO">
-        select g.*,a.nickname
-        from g_GALLERY as g JOIN members as a on g.username=a.username
+        select g.*, a.nickname
+        from g_GALLERY as g
+                 JOIN members as a on g.username = a.username
         where g_number = #{g_number}
 
     </select>

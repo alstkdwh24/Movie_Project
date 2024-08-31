@@ -24,9 +24,11 @@ public interface EventMapper {
 
     EventVO free_detail_update_select(int free_number);
 
-    EventVO count(@Param("free_number") int free_number);
 
-    EventVO getcounttwo(int free_number);
+
+
+       int  findEventFree_Number(int freeNumber);
+
     void free_delete(int free_number);
 
     EventVO gSelect(int g_number);
@@ -34,4 +36,5 @@ public interface EventMapper {
     void g_delete(int g_number);
 
     EventVO g_update(int g_number);
+
 }

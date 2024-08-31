@@ -9,6 +9,7 @@ import com.example.movie.util.Criteria;
 import com.example.movie.util.PageVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -73,6 +74,18 @@ public class EventController {
 
         return "movie/community/freeboard";
     }
+
+    @PostMapping("/get_count")
+    @ResponseBody
+    public ResponseEntity<Integer> getCount(@RequestBody Map<String, Integer> request) {
+        Integer freeNumber = request.get("free_number");
+        // 카운트 로직을 여기에 추가
+
+        int count = eventService.findEventFree_Number(freeNumber);
+        System.out.println("count" + count);
+        return ResponseEntity.ok(count);
+    }
+
 
     @GetMapping("/g_board_writer")
  @PreAuthorize("hasRole('ROLE_1')")

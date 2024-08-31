@@ -24,18 +24,13 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public ArrayList<EventVO> gallery_free_show(Criteria cri) {
+
+
         return eventMapper.gallery_free_show(cri);
     }
 
-    @Override
-    public EventVO count(int free_number) {
-        return eventMapper.count(free_number);
-    }
 
-    @Override
-    public EventVO getcounttwo(int free_number) {
-        return eventMapper.getcounttwo(free_number);
-    }
+
 
     public int gallery_g_board(EventVO vo) {
         return eventMapper.gallery_g_board(vo);
@@ -54,6 +49,12 @@ public class EventServiceImpl implements EventService {
     @Override
     public EventVO freeselect(int free_number) {
         return eventMapper.freeselect(free_number);
+    }
+
+    @Override
+    public int findEventFree_Number(int freeNumber) {
+        System.out.println("freeNumber:" + freeNumber);
+        return eventMapper.findEventFree_Number(freeNumber);
     }
 
     @Override
