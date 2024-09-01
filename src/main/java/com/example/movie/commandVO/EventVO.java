@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.File;
 import java.security.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -48,5 +49,14 @@ public class EventVO extends TimeEntity {
     private Integer g_count;
     private String g_title;
     private Integer g_share_count;
+
+
+
+//    댓글 관련한 부분
+    private String coment;
+    @DateTimeFormat(pattern = "MM-dd-HH-mm")
+    private LocalDate coment_date;
+    private Integer comment_number;
+    private File userimage;
 
 }

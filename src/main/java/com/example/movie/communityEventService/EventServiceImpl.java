@@ -82,4 +82,10 @@ public class EventServiceImpl implements EventService {
         return eventMapper.g_update(g_number);
     }
 
+    @Override
+    public ArrayList<EventVO> get_free_comment( ) {
+        return eventMapper.get_free_comment();
+
+    }
+
 }

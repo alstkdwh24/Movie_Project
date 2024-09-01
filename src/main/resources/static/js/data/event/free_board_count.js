@@ -11,8 +11,6 @@ document.addEventListener("DOMContentLoaded", function() {
             alert("유효하지 않은 숫자입니다.");
             return; // 요청을 중단합니다.
          }
-         let url = `/movie/community/free_detail?free_number=${encodeURIComponent(w_c)}`;
-         location.href = url; // 페이지 이동
 
          // AJAX 요청
          $.ajax({
@@ -23,6 +21,9 @@ document.addEventListener("DOMContentLoaded", function() {
             success: function(response) {
                alert("성공하였습니다.");
                // AJAX 요청 성공 후 URL 이동
+               let url = `/movie/community/free_detail?free_number=${encodeURIComponent(w_c)}`;
+               location.href = url; // 페이지 이동
+
             },
             error: function(xhr, status, error) {
                alert("오류가 발생하였습니다.");

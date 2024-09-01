@@ -31,5 +31,5 @@ public interface EventService {
 
     EventVO g_update(int g_number);
 
-
+ArrayList<EventVO> get_free_comment( );
 }

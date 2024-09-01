@@ -92,5 +92,9 @@
         where g_number = #{g_number}
 
     </select>
+
+    <select id="get_free_comment" resultType="EventVO">
+        select * from comment;
+    </select>
 </mapper>
 

@@ -3,6 +3,7 @@ package com.example.movie.RestController;
 import com.example.movie.commandVO.CategoryVO;
 import com.example.movie.commandVO.EventVO;
 import com.example.movie.communityEventService.EventService;
+import com.example.movie.util.Criteria;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,7 +22,10 @@ public class Event_Board_RestController {
     @Autowired
     @Qualifier("EventService")
     private EventService eventService;
-
+    @GetMapping ("/free_board_comment")
+    public ResponseEntity<ArrayList<EventVO>> get_free_comment(  ){
+        return new ResponseEntity<>(eventService.get_free_comment(), HttpStatus.OK);
+    }
 
 
 

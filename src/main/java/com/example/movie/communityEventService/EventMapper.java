@@ -37,4 +37,6 @@ public interface EventMapper {
 
     EventVO g_update(int g_number);
 
+    ArrayList<EventVO> get_free_comment();
+
 }
