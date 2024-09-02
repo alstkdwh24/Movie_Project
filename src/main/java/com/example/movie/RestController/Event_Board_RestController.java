@@ -16,18 +16,23 @@ import java.util.ArrayList;
 import java.util.Map;
 
 @RestController
-
+@RequestMapping("/movie/community")
 public class Event_Board_RestController {
 
     @Autowired
     @Qualifier("EventService")
     private EventService eventService;
-    @GetMapping ("/free_board_comment")
-    public ResponseEntity<ArrayList<EventVO>> get_free_comment(  ){
-        return new ResponseEntity<>(eventService.get_free_comment(), HttpStatus.OK);
+
+
+    @PostMapping("/free_board_comments")
+    public ResponseEntity<EventVO> Post_comment(@RequestBody EventVO vo) {
+        int savecomment = eventService.Post_comment(vo);
+        if (savecomment == 1) {
+            return new ResponseEntity<>(vo, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(vo, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
-
-
-    }
+}

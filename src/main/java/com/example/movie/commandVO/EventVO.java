@@ -53,10 +53,10 @@ public class EventVO extends TimeEntity {
 
 
 //    댓글 관련한 부분
-    private String coment;
+    private String comment;
     @DateTimeFormat(pattern = "MM-dd-HH-mm")
     private LocalDate coment_date;
-    private Integer comment_number;
-    private File userimage;
+    private Integer coment_number;
+//    private File user_image;
 
 }

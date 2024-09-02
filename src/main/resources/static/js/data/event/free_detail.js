@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', (event) => {
+    event.preventDefault();
     const talk_button_update = document.getElementById("talk_button_update");
     talk_button_update.onclick = function () {
         document.free_detail.action = "free_detail_update";

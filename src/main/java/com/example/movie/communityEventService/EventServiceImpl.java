@@ -83,9 +83,9 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public ArrayList<EventVO> get_free_comment( ) {
-        return eventMapper.get_free_comment();
-
+    public int Post_comment(EventVO vo) {
+        return eventMapper.Post_comment(vo);
     }
+
 
 }
