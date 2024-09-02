@@ -93,8 +93,10 @@
 
     </select>
 
-    <select id="get_free_comment" resultType="EventVO">
-        select * from comment;
-    </select>
+    <insert id="Post_comment" parameterType="EventVO">
+        insert into comment(coment, coment_date) values(
+                                                           #{comment}, now()
+                                                       );
+    </insert>
 </mapper>
 

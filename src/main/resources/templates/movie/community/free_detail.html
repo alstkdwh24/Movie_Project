@@ -43,42 +43,64 @@
 
 <!--소메뉴 div-->
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
-<form name="free_detail" method="post" action="###" class="input">
+<div class="input">
+
 
     <div class="free_detail">
-        <input type="hidden" name="free_number" th:value="${vo.free_number}">
-        <div class="user_name">
-            <div id="title"><h2>[[${vo.free_title}]]</h2></div>
-            <div id="user_id">
-                <div id="user_img">프로필 이미지</div>
-                <div id="free_feature">
-                    <div id="name">[[${vo.nickname}]]</div>
-                    <div id="free_impormation">
-                        <div class="small_box" id="gallery_name">자유게시판</div>
-                        <div class="small_box" id="date">[[${vo.write_time}]]</div>
-                        <div class="small_box" id="count">[[${vo.count}]]</div>
+        <form name="free_detail" method="post" action="###" id="comment_d">
+            <input type="hidden" name="free_number" th:value="${vo.free_number}">
+            <div class="user_name">
+                <div id="title"><h2>[[${vo.free_title}]]</h2></div>
+                <div id="user_id">
+                    <div id="user_img">프로필 이미지</div>
+                    <div id="free_feature">
+                        <div id="name">[[${vo.nickname}]]</div>
+                        <div id="free_impormation">
+                            <div class="small_box" id="gallery_name">자유게시판</div>
+                            <div class="small_box" id="date">[[${vo.write_time}]]</div>
+                            <div class="small_box" id="count">[[${vo.count}]]</div>
+                        </div>
                     </div>
                 </div>
+
+            </div>
+            <div class="free_contents" th:value="${vo.free_contents}">
+                [[${vo.free_contents}]]
+
+            </div>
+        </form>
+        <div class="coment">
+            <div class="talk">
+                <input type=hidden id="user_ids" th:value="${vo.username}">
+                <div id="talk_img">
+                    <input type="image" alt="프로필 이미지" id="input_img">
+                    <input type=hidden id="user_image">
+
+                </div>
+                <div id="talk_contents">
+                    <div id="talk_contents_title">
+                        <div id="id">
+                            <div id="ids">아이디</div>
+                            <div id="username"></div>
+                        </div>
+                        <div id="write_time">
+                            <div id="write">작성시간</div>
+                            <div id="comment_date"></div>
+                        </div>
+                    </div>
+                    <div id="talk_contents_content"><label id="label">
+                        <input type="text" id="textarea" name="comment">
+                        <button id="talk_button_freetwo">댓글등록</button>
+
+                    </label>
+                    </div>
+
+                </div>
+
+
             </div>
 
-        </div>
-        <div class="free_contents" th:value="${vo.free_contents}">
-            [[${vo.free_contents}]]
-
-        </div>
-        <div class="coment">
-<!--            <div class="talk">-->
-<!--                <div id="talk_img">-->
-<!--                    <input type="image" alt="프로필 이미지" id="input_img">-->
-<!--                </div>-->
-<!--                <div id="talk_contents">-->
-<!--                    <div id="talk_contents_title">아이디 작성시간</div>-->
-<!--                    <div id="talk_contents_content"><label>-->
-<!--                        <textarea  id="textarea"></textarea>-->
-<!--                    </label></div>-->
-<!--                    <div id="notice">신고</div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <!--sj로 받아옴-->
             <div class="talk_writer">
                 <div id="talk_writer_free">
 
@@ -101,7 +123,7 @@
 
 
     </div>
-</form>
+</div>
 
 <!--커뮤니티 div-->
 <div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>

@@ -51,7 +51,7 @@
 }
 
 .free_contents {
-    height: 60%;
+    height: 90%;
     width: 100%;
     border: 1px solid black;
     box-sizing: border-box;
@@ -135,7 +135,7 @@
 
 
 
-#talk_button_free {
+#talk_button_freetwo {
     height: 100%;
     width: 18%;
     color: #b85c00;
@@ -324,7 +324,7 @@
 }
 
 #comment_date{
-    width: 80%;
+    width: 60%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -336,4 +336,9 @@
     display: flex;
     width: 100%;
     height: 100%;
+}
+
+#comment_d{
+    width: 100%;
+    height: 70%;
 }
