@@ -17,7 +17,7 @@
         FROM FREE_GALLERY AS fg
                  JOIN
              members AS a ON fg.username = a.username
-        ORDER BY fg.free_number DESC
+        ORDER BY free_number DESC
             LIMIT #{First}, #{amount};
     </select>
 
@@ -54,14 +54,14 @@
         select fg.*, a.nickname
         from FREE_GALLERY AS fg
                  join members as a on fg.username = a.username
-        where free_number = ${free_number}
+        where free_number = #{free_number}
     </select>
 
 
     <select id="free_detail_update_select" resultType="EventVO">
         select *
         from FREE_GALLERY
-        where free_number = ${free_number}
+        where free_number = #{free_number}
 
 
     </select>
@@ -94,8 +94,8 @@
     </select>
 
     <insert id="Post_comment" parameterType="EventVO">
-        insert into comment(coment, coment_date) values(
-                                                           #{comment}, now()
+        insert into comment(coment, coment_date, username, free_number) values(
+                                                           #{comment}, now(), #{username},#{free_number}
                                                        );
     </insert>
 </mapper>

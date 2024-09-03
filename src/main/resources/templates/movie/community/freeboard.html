@@ -75,12 +75,12 @@
         </div>
         <!--        자유게시판 리스트-->
         <div class="gallery_content">
-            <div class="gallery_blank_mini2" th:each="vo, status: ${list}"
-                 th:onclick="|location.href='@{/movie/community/free_detail(free_number=${vo.free_number})}'|">
-                <input type="hidden" th:value="${vo.free_number}">
-                <!--                <input type="hidden" name="free_number" th:value="${vo.free_number}">-->
+            <div class="gallery_blank_mini2" th:each="vo, status: ${list}"      th:data-free-number="${vo.free_number}"
 
-                <div class="mini_title_good" id="writer_number2">[[${vo.free_number}]]</div>
+                 th:onclick="|location.href='@{/movie/community/free_detail(free_number=${vo.free_number})}'|">
+<!--                                <input type="hidden" name="free_number" th:value="${vo.free_number}">-->
+
+                <div class="mini_title_good writer_number2">[[${vo.free_number}]]</div>
                 <div class="mini_title_good" id="writer_title2">[[${vo.free_title}]]</div>
                 <div class="mini_title_good" id="writer2">[[${vo.nickname}]]</div>
                 <div class="mini_title_good" id="w_c2">[[${vo.count}]]</div>

@@ -15,13 +15,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
 });
-let gallery_blank_mini2 = document.querySelectorAll(".gallery_blank_mini2");
-gallery_blank_mini2.forEach(function (gallery_blank_mini24) {
-    gallery_blank_mini24.onclick = function () {
-        document.free_detail.action = "/movie/community/free_detail/" + vo.free_number;
-        document.freeboard.method="Post";
-        document.freeboard.submit();
 
-    }
 
-});
+console.log(free_numbers);
+let gallery_blank_mini2 = document.querySelectorAll(".mini_title_good");
+// gallery_blank_mini2.forEach(function (gallery_blank_mini24) {
+//     gallery_blank_mini24.onclick = function () {
+//         let vo_free_number = document.getElementById("writer_number2").textContent;
+//
+//         document.freeboard.action = `/movie/community/free_detail?free_number=${vo_free_number}`;
+//         document.freeboard.method = "POST"; // 메서드를 POST로 설정
+//         document.freeboard.submit(); // 폼 제출
+//     }
+// });
+

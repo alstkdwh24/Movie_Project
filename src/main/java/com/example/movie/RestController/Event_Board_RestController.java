@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/movie/community")
+//@RequestMapping("/movie/community")
 public class Event_Board_RestController {
 
     @Autowired
