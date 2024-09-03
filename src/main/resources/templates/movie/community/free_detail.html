@@ -48,7 +48,7 @@
 
     <div class="free_detail">
         <form name="free_detail" method="post" action="###" id="comment_d">
-            <input type="hidden" name="free_number" th:value="${vo.free_number}">
+            <input type="hidden" name="free_number"  id="freenumber">
             <div class="user_name">
                 <div id="title"><h2>[[${vo.free_title}]]</h2></div>
                 <div id="user_id">
@@ -56,7 +56,7 @@
                     <div id="free_feature">
                         <div id="name">[[${vo.nickname}]]</div>
                         <div id="free_impormation">
-                            <div class="small_box" id="gallery_name">자유게시판</div>
+                            <div class="small_box" id="gallery_name" th:value="${vo.free_number}">[[${vo.free_number}]]</div>
                             <div class="small_box" id="date">[[${vo.write_time}]]</div>
                             <div class="small_box" id="count">[[${vo.count}]]</div>
                         </div>
@@ -71,11 +71,12 @@
         </form>
         <div class="coment">
             <div class="talk">
-                <input type=hidden id="user_ids" th:value="${vo.username}">
+                <input type='hidden' id="user_ids" th:value="${userSession.username}">
+                <input type="hidden" th:value="${vo.free_number}" id="hidden_free_number">
+
                 <div id="talk_img">
                     <input type="image" alt="프로필 이미지" id="input_img">
-                    <input type=hidden id="user_image">
-
+<!--                    <input type=hidden id="user_image" th:value="${vo.user_image}">-->
                 </div>
                 <div id="talk_contents">
                     <div id="talk_contents_title">

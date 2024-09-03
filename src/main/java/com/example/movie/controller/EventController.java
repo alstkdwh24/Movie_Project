@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -88,7 +89,7 @@ public class EventController {
 
 
     @GetMapping("/g_board_writer")
- @PreAuthorize("hasRole('ROLE_1')")
+    @PreAuthorize("hasRole('ROLE_1')")
     public String g_board(HttpSession session, Model model) {
 
 
@@ -102,7 +103,7 @@ public class EventController {
 
 
     @GetMapping("/g_board_writer_update")
-    public String g_update( HttpSession session, Model model) {
+    public String g_update(HttpSession session, Model model) {
 
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
         model.addAttribute("userSession", userDetails);
@@ -119,109 +120,112 @@ public class EventController {
 
     @GetMapping("/free_board_writer")
 //       @PreAuthorize("hasRole('ROLE_1')")
-    public String freeBoardWriter(Model model,HttpSession session) {
+    public String freeBoardWriter(Model model, HttpSession session) {
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
         model.addAttribute("userSession", userDetails);
         return "movie/community/free_board_writer"; // 해당 뷰 반환
-         }
+    }
 
-        @GetMapping("/free_detail")
-        public String free_detail ( @RequestParam("free_number") Integer free_number, Model model,HttpSession session){
-            UserDetails userDetails = (UserDetails) session.getAttribute("user");
+    @GetMapping("/free_detail")
+    public String free_detail(@RequestParam("free_number") Integer free_number, Model model, HttpSession session) {
+        UserDetails userDetails = (UserDetails) session.getAttribute("user");
+
+        if (userDetails == null) {
+            return "redirect:/movie/login/login";
+        } else {
             model.addAttribute("userSession", userDetails);
             EventVO vo = eventService.freeselect(free_number);
             model.addAttribute("vo", vo);
-
-
             return "movie/community/free_detail";
         }
+    }
 
 
+    @GetMapping("/g_detail")
+    public String g_detail(@RequestParam("g_number") Integer g_number, Model model, HttpSession session) {
+        UserDetails userDetails = (UserDetails) session.getAttribute("user");
+        model.addAttribute("userSession", userDetails);
+        EventVO vo = eventService.gSelect(g_number);
+        model.addAttribute("vo", vo);
+        return "movie/community/g_detail";
+    }
 
-        @GetMapping("/g_detail")
-        public String g_detail (@RequestParam("g_number") Integer g_number, Model model,HttpSession session){
-            UserDetails userDetails = (UserDetails) session.getAttribute("user");
-            model.addAttribute("userSession", userDetails);
-            EventVO vo = eventService.gSelect(g_number);
-            model.addAttribute("vo", vo);
-            return "movie/community/g_detail";
+
+    @GetMapping("/free_detail_update")
+    public String free_detail_updateint(@RequestParam("free_number") Integer free_number, Model
+            model, RedirectAttributes ra, HttpSession session) {
+        UserDetails userDetails = (UserDetails) session.getAttribute("user");
+        model.addAttribute("userSession", userDetails);
+        EventVO vo = eventService.free_detail_update_select(free_number);
+        model.addAttribute("vo", vo);
+
+        return "movie/community/free_board_writer_update";
+    }
+
+    @GetMapping("/g_update")
+    public String g_update(@RequestParam("g_number") Integer g_number, Model model, HttpSession session) {
+
+        EventVO vo = eventService.g_update(g_number);
+        model.addAttribute("vo", vo);
+
+
+        UserDetails userDetails = (UserDetails) session.getAttribute("user");
+        model.addAttribute("userSession", userDetails);
+        return "movie/community/g_board_writer_update";
+    }
+
+
+    @PostMapping("/Gallery_free_board")
+    public String Gallery_free_board(EventVO vo, RedirectAttributes ra) {
+        int result = eventService.gallery_free_board(vo);
+        if (result == 1) {
+            ra.addFlashAttribute("msg", "정상적으로 처리하였습니다.");
+            System.out.println(vo.getFree_title());
+        } else {
+            ra.addFlashAttribute("msg", "음, 이건 아니에요.");
         }
-
-
-        @GetMapping("/free_detail_update")
-        public String free_detail_updateint (@RequestParam("free_number") Integer free_number, Model
-        model, RedirectAttributes ra,HttpSession session){
-            UserDetails userDetails = (UserDetails) session.getAttribute("user");
-            model.addAttribute("userSession", userDetails);
-            EventVO vo = eventService.free_detail_update_select(free_number);
-            model.addAttribute("vo", vo);
-
-            return "movie/community/free_board_writer_update";
-        }
-
-        @GetMapping("/g_update")
-        public String g_update (@RequestParam("g_number") Integer g_number, Model model,HttpSession session){
-
-            EventVO vo = eventService.g_update(g_number);
-            model.addAttribute("vo", vo);
-
-
-            UserDetails userDetails = (UserDetails) session.getAttribute("user");
-            model.addAttribute("userSession", userDetails);
-            return "movie/community/g_board_writer_update";
-        }
-
-
-        @PostMapping("/Gallery_free_board")
-        public String Gallery_free_board (EventVO vo, RedirectAttributes ra){
-            int result = eventService.gallery_free_board(vo);
-            if (result == 1) {
-                ra.addFlashAttribute("msg", "정상적으로 처리하였습니다.");
-                System.out.println(vo.getFree_title());
-            } else {
-                ra.addFlashAttribute("msg", "음, 이건 아니에요.");
-            }
-            return "redirect:/movie/community/freeboard";
-
-        }
-        @PostMapping("/Gallery_g_board")
-        public String Gallery_g_board (EventVO vo, RedirectAttributes ra){
-            int result = eventService.gallery_g_board(vo);
-            if (result == 1) {
-                ra.addFlashAttribute("msg", "정상적으로 처리하였습니다.");
-                System.out.println(vo.getG_title());
-            } else {
-                ra.addFlashAttribute("msg", "음, 이건 아니에요.");
-            }
-            return "redirect:/movie/community/gboard";
-        }
-
-        @GetMapping("/talk_button_cancel")
-        public String talk_button_cancel (@RequestParam("free_number") Integer free_number, Model
-        model, RedirectAttributes ra){
-            eventService.free_delete(free_number);
-
-
-            return "redirect:/movie/community/freeboard";
-
-        }
-
-
-        @PostMapping("/g_delete")
-        public String g_delete (@RequestParam("g_number") Integer g_number){
-            eventService.g_delete(g_number);
-            return "redirect:/movie/community/gboard";
-        }
-
-        @GetMapping("/name")
-        public @ResponseBody String an (HttpSession session){
-            String username = (String) session.getAttribute("username");
-            if (username != null) {
-                return "세셔은 살아있다.";
-            } else {
-                return "세션살려";
-            }
-        }
+        return "redirect:/movie/community/freeboard";
 
     }
+
+    @PostMapping("/Gallery_g_board")
+    public String Gallery_g_board(EventVO vo, RedirectAttributes ra) {
+        int result = eventService.gallery_g_board(vo);
+        if (result == 1) {
+            ra.addFlashAttribute("msg", "정상적으로 처리하였습니다.");
+            System.out.println(vo.getG_title());
+        } else {
+            ra.addFlashAttribute("msg", "음, 이건 아니에요.");
+        }
+        return "redirect:/movie/community/gboard";
+    }
+
+    @GetMapping("/talk_button_cancel")
+    public String talk_button_cancel(@RequestParam("free_number") Integer free_number, Model
+            model, RedirectAttributes ra) {
+        eventService.free_delete(free_number);
+
+
+        return "redirect:/movie/community/freeboard";
+
+    }
+
+
+    @PostMapping("/g_delete")
+    public String g_delete(@RequestParam("g_number") Integer g_number) {
+        eventService.g_delete(g_number);
+        return "redirect:/movie/community/gboard";
+    }
+
+    @GetMapping("/name")
+    public @ResponseBody String an(HttpSession session) {
+        String username = (String) session.getAttribute("username");
+        if (username != null) {
+            return "세셔은 살아있다.";
+        } else {
+            return "세션살려";
+        }
+    }
+
+}
 

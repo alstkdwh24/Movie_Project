@@ -15,7 +15,7 @@ public class Criteria {
 
     private Integer page;
     private int amount;
-    private Integer free_number;
+
     private int First;
     private Integer g_number;
     private String nickname;
