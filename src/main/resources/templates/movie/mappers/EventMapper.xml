@@ -27,8 +27,8 @@
     </select>
 
     <insert id="gallery_g_board" parameterType="com.example.movie.commandVO.EventVO">
-        INSERT INTO g_GALLERY (G_TITLE, G_CONTENTS, username)
-        VALUES (#{g_title}, #{g_contents}, #{username})
+        INSERT INTO g_GALLERY (G_TITLE, G_CONTENTS, username, write_time, g_count)
+        VALUES (#{g_title}, #{g_contents}, #{username}, now(), #{count})
     </insert>
 
     <select id="gallery_g_show" resultType="com.example.movie.commandVO.EventVO">
@@ -49,6 +49,12 @@
 
 
     </select>
+
+
+    <update id="g_count" parameterType="int" >
+        UPDATE FREE_GALLERY
+        SET g_count = g_count + 1
+        WHERE free_number = #{freeNumber}    </update>
 
     <select id="freeselect" parameterType="int" resultType="EventVO">
         select fg.*, a.nickname

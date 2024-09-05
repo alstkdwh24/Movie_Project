@@ -63,13 +63,13 @@
     <form method="get" name="freeboard" action="##" class="good">
         <input type="hidden" name="page" value="1">
         <input type="hidden" name="amount" th:value="${pageVO.amount}">
-        <input type="hidden" name="count">
+        <input type="hidden" name="count" >
         <div class="gallery_blank_mini">
 
             <div class="mini_title_good" id="writer_number">글번호</div>
             <div class="mini_title_good" id="writer_title">글제목</div>
             <div class="mini_title_good" id="writer">작성자</div>
-            <div class="mini_title_good" id="w_c" data-free-number="1">조회수</div>
+            <div class="mini_title_good" id="w_c" >조회수</div>
             <div class="mini_title_good" id="l_c">좋아요</div>
             <div class="mini_title_good" id="w_t">작성일</div>
         </div>
@@ -77,13 +77,13 @@
         <div class="gallery_content">
             <div class="gallery_blank_mini2" th:each="vo, status: ${list}"      th:data-free-number="${vo.free_number}"
 
-                 th:onclick="|location.href='@{/movie/community/free_detail(free_number=${vo.free_number})}'|">
+                >
 <!--                                <input type="hidden" name="free_number" th:value="${vo.free_number}">-->
 
-                <div class="mini_title_good writer_number2">[[${vo.free_number}]]</div>
+                <div class="mini_title_good" id="writer_number2">[[${vo.free_number}]]</div>
                 <div class="mini_title_good" id="writer_title2">[[${vo.free_title}]]</div>
                 <div class="mini_title_good" id="writer2">[[${vo.nickname}]]</div>
-                <div class="mini_title_good" id="w_c2">[[${vo.count}]]</div>
+                <div class="mini_title_good" id="w_c2" data-free-number="1">[[${vo.count}]]</div>
                 <div class="mini_title_good" id="l_c2"></div>
                 <div class="mini_title_good" id="w_t2">[[${vo.write_time}]]
                 </div>

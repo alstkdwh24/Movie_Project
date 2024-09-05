@@ -45,6 +45,7 @@
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs" ></div>
 
 <form method="Post" name="Gallery_g_board" action="/" class="big_frame">
+    <input type="hidden" name="count" value="0">
     <input type="hidden" th:value="${userSession.username}" name="username">
 
     <div class="big_div">
