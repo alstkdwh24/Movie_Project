@@ -23,6 +23,7 @@ public class Event_Board_RestController {
     @Qualifier("EventService")
     private EventService eventService;
 
+//    @PostMapping("/")
 
     @PostMapping("/free_board_comments")
     public ResponseEntity<EventVO> Post_comment(@RequestBody EventVO vo) {
