@@ -7,3 +7,6 @@ submits.onclick = function (e){
     console.log(1);
     document.Gallery_g_board.submit();
 }
+
+
+

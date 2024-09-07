@@ -51,9 +51,9 @@
     </select>
 
 
-    <update id="g_count" parameterType="int" >
+    <update id="findEventFree_Number" parameterType="int" >
         UPDATE FREE_GALLERY
-        SET g_count = g_count + 1
+        SET count = count + 1
         WHERE free_number = #{freeNumber}    </update>
 
     <select id="freeselect" parameterType="int" resultType="EventVO">
@@ -72,10 +72,6 @@
 
     </select>
 
-    <update id="findEventFree_Number" parameterType="int" >
-        UPDATE FREE_GALLERY
-        SET count = count + 1
-        WHERE free_number = #{freeNumber}    </update>
 
     <delete id="free_delete">
         delete
@@ -103,6 +99,13 @@
         insert into comment(coment, coment_date, username, free_number) values(
                                                            #{comment}, now(), #{username},#{free_number}
                                                        );
-    </insert>
+
+</insert>
+
+    <update id="g_board_count" parameterType="int">
+        UPDATE G_GALLERY
+        SET g_count = g_count + 1
+        WHERE g_number = #{gNumber}    </update>
+
 </mapper>
 

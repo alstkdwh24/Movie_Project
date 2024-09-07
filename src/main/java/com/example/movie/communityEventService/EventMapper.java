@@ -39,4 +39,5 @@ public interface EventMapper {
 
     int Post_comment(EventVO vo);
 
+    int g_board_count(int gNumber);
 }

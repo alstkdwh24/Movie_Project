@@ -4,16 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper  namespace="com.example.movie.ChatService.ChatMapper">
     <insert id="Question_writer"  parameterType="com.example.movie.commandVO.ChatVO">
-INSERT INTO QUESTION (Q_title, Q_content) values(
-                                                 #{Q_title},#{Q_content}
+INSERT INTO QUESTION (Q_title, Q_content, Q_count, Q_write_time, username) values(
+                                                 #{Q_title},#{Q_content},#{Q_count},now(),#{username}
                                                 )
     </insert>
 
     <select id="Question_show" resultType="com.example.movie.commandVO.ChatVO">
-        select * from QUESTION
+        select Q.*,a.nickname  from QUESTION AS Q JOIN members AS a ON Q.username=a.username
         order by Q_NUMBER desc limit #{First},#{amount}
     </select>
-    <select id="Question_total" resultType="int" >
+    <select id="Question_total" resultType="int">
         select count(*) AS Question_total from QUESTION
     </select>
 </mapper>

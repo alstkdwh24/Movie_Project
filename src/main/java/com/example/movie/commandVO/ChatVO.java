@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,5 +21,5 @@ public class ChatVO {
     private Integer Q_count;
     private Integer Q_share_count;
     private String username;
-
+private LocalDate Q_write_time;
 }
