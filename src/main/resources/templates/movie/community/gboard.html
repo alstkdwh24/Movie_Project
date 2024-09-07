@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<!--    제이쿼리-->
+    <script src="/js/jquery-1.12.1.min.js"></script>
+
     <!--    css-->
     <!--    css 소메뉴 html크기 css-->
 
@@ -63,10 +67,10 @@
         <div class="mini_title_good" id="w_t">작성일</div>
     </div>
     <div class="gallery_content">
-        <div class="gallery_blank_mini2" th:each="vo, status: ${list}"
+        <div class="gallery_blank_mini2" th:each="vo, status: ${list}" th:data-g_number="${vo.g_number}"
              th:onclick="|location.href='@{/movie/community/g_detail(g_number=${vo.g_number})}'|">
             <input type="hidden" th:value="${vo.g_number}">
-            <div class="mini_title_good" id="writer_number2">[[${vo.g_number}]]</div>
+            <div class="mini_title_good" id="writer_number2" >[[${vo.g_number}]]</div>
             <div class="mini_title_good" id="writer_title2">[[${vo.g_title}]]</div>
             <div class="mini_title_good" id="writer2">[[${vo.nickname}]]</div>
             <div class="mini_title_good" id="w_c2"  >[[${vo.g_count}]]</div>
@@ -117,5 +121,6 @@
 <!--미니 메뉴-->
 <script src="/js/modal/menu_modal.js"></script>
 
+<script src="/js/data/event/g_board_count.js"></script>
 </body>
 </html>

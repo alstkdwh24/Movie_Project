@@ -23,7 +23,16 @@ public class Event_Board_RestController {
     @Qualifier("EventService")
     private EventService eventService;
 
-//    @PostMapping("/")
+    @PostMapping("/movie/community/g_board_count")
+    public ResponseEntity<Integer> g_board_count(@RequestBody Map<String, Integer> request) {
+        Integer gNumber = request.get("g_number");
+        int g_board_count = eventService.g_board_count(gNumber);
+
+            return ResponseEntity.ok(g_board_count);
+
+
+
+    }
 
     @PostMapping("/free_board_comments")
     public ResponseEntity<EventVO> Post_comment(@RequestBody EventVO vo) {

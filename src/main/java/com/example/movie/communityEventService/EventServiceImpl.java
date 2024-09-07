@@ -87,5 +87,12 @@ public class EventServiceImpl implements EventService {
         return eventMapper.Post_comment(vo);
     }
 
+    @Override
+    public int g_board_count(int gNumber) {
+        System.out.println("freeNumber:" + gNumber);
+
+        return eventMapper.g_board_count(gNumber);
+    }
+
 
 }

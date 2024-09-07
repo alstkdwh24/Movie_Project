@@ -33,4 +33,7 @@ public interface EventService {
 
 //댓글 등록
     int Post_comment(EventVO vo);
+
+    int g_board_count(int gNumber);
+
 }
