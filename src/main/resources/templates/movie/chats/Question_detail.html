@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="/css/event/writer2.css">
 
     <!--    본 페이지 css-->
-    <link rel="stylesheet" href="/css/event/g_detail/g_detail.css">
+    <link rel="stylesheet" href="/css/event/Question_detail/Question_detail.css">
 
 
     <!--    커뮤니티 모달 css-->
@@ -41,24 +41,24 @@
 <form name="g_delete" method="get" action="" class="input">
 
     <div class="free_detail">
-        <input type="hidden" name="g_number" th:value="${vo.g_number}">
+        <input type="hidden" name="Q_number" th:value="${vo.Q_number}">
         <div class="user_name">
-            <div id="title" th:value="${vo.g_title}"><h2>[[${vo.g_title}]]</h2></div>
+            <div id="title" th:value="${vo.Q_title}"><h2>[[${vo.Q_title}]]</h2></div>
             <div id="user_id">
                 <div id="user_img"></div>
                 <div id="free_feature">
                     <div id="name" th:value="${vo.nickname}">[[${vo.nickname}]]</div>
                     <div id="free_impormation">
-                        <div class="small_box" id="gallery_name"></div>
-                        <div class="small_box" id="date"></div>
-                        <div class="small_box" id="count"></div>
+                        <div class="small_box" id="gallery_name">[[${vo.Q_number}]]</div>
+                        <div class="small_box" id="date">[[${vo.Q_write_time}]]</div>
+                        <div class="small_box" id="count">[[${vo.Q_count}]]</div>
                     </div>
                 </div>
             </div>
 
         </div>
-        <div class="free_contents" th:value="${vo.g_contents}">
-            [[${vo.g_contents}]]
+        <div class="free_contents" th:value="${vo.Q_content}">
+            [[${vo.Q_content}]]
 
         </div>
         <div class="coment">
@@ -72,21 +72,28 @@
                     <div id="notice"></div>
                 </div>
             </div>
+            <div class="talk_writer">
+                <div id="talk_writer_free">
 
-            <div id="botton_buttom_g">
+                    <textarea id="talk_input"></textarea>
+
+                </div>
+
+            </div>
+            <div id="botton_buttom">
                 <div id="talk_button_frees"></div>
-
+                <div id="buttom_two">
+                    <button id="talk_button_update"
+                            >
+                        수정
+                    </button>
+                    <button id="talk_button_cancel">삭제</button>
+                </div>
             </div>
 
         </div>
 
-        <div id="buttom_two">
-            <button id="talk_button_update"
-                    th:onclick="|location.href='@{/movie/community/g_board_writer_update(g_number=${vo.g_number})}'|">
-                수정
-            </button>
-            <button id="talk_button_cancel">삭제</button>
-        </div>
+
     </div>
 </form>
 
@@ -100,23 +107,23 @@
 <!--소메뉴 검색  div-->
 <div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal">
 </div>
-    <!--미니 메뉴 div-->
-    <div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
+<!--미니 메뉴 div-->
+<div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
 
 
-    <!--채팅 js-->
-    <script src="/js/modal/chat_modal.js"></script>
+<!--채팅 js-->
+<script src="/js/modal/chat_modal.js"></script>
 
-    <!--소메뉴 js-->
-    <script src="/js/modal/momo_modal.js"></script>
+<!--소메뉴 js-->
+<script src="/js/modal/momo_modal.js"></script>
 
-    <!--커뮤니티 js-->
-    <script src="/js/modal/Gallery_modal2.js"></script>
+<!--커뮤니티 js-->
+<script src="/js/modal/Gallery_modal2.js"></script>
 
-    <!--삭제js-->
-    <script src="/js/data/event/g_detail.js"></script>
+<!--삭제js-->
+<script src="/js/data/event/g_detail.js"></script>
 
-    <!--미니 메뉴-->
-    <script src="/js/modal/menu_modal.js"></script>
+<!--미니 메뉴-->
+<script src="/js/modal/menu_modal.js"></script>
 </body>
 </html>

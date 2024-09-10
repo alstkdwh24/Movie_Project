@@ -1,5 +1,5 @@
 .input {
-    min-height: 1890px;
+    min-height: 1090px;
     min-width: 1700px;
     height: 100%;
     width: 100%;
@@ -10,7 +10,7 @@
 
 .free_detail {
     width: 60%;
-    height: 86%;
+    height: 84%;
     border: 1px solid black;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,7 @@
 }
 
 .user_name {
-    height: 16%;
+    height: 10%;
     border: 1px solid black;
     width: 100%;
     box-sizing: border-box;
@@ -51,7 +51,7 @@
 }
 
 .free_contents {
-    height: 100%;
+    height: 46%;
     width: 100%;
 
     box-sizing: border-box;
@@ -59,7 +59,7 @@
 }
 
 .coment {
-    height: 34%;
+    height: 38%;
     width: 100%;
     border: 1px solid black;
     box-sizing: border-box;
@@ -125,7 +125,7 @@
     flex-direction: column;
 }
 
-#botton_buttom_g{
+#botton_buttom {
     height: 100%;
     position: relative;
     display: flex;
@@ -262,8 +262,8 @@
 }
 
 #buttom_two {
-    height: 100%;
-    width: 120%;
+    height: 6%;
+    width: 100%;
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -352,87 +352,3 @@
     height: 60%;
 }
 
-#talk_writer_free{
-    width: 100%;
-    height: 24%;
-    border: 1px solid black;
-    display: flex;
-}
-
-#talk_id{
-    width: 10%;
-    height: 100%;
-    border: 1px solid black;
-    min-width: 130px;
-
-}
-
-#talk_comments{
-    width: 90%;
-    height: 100%;
-    border: 1px solid black;
-}
-
-#id_two {
-    width: 50%;
-    height: 100%;
-    display: flex;
-}
-
-#ids_two {
-    width: 20%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-}
-
-#username_two{
-    width: 80%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-}
-
-#write_time_two {
-    width: 50%;
-    height: 100%;
-    display:flex;
-}
-
-#write_two{
-    width: 20%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-}
-
-#comment_date_two{
-    width: 80%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-}
-
-#talk_contents_title_two {
-    width: 100%;
-    height: 30%;
-    border: 1px solid black;
-    box-sizing: border-box;
-    display: flex;
-}
-
-#input_img_two {
-    width: 100%;
-    height: 100%;
-    border: 1px solid black;
-    box-sizing: border-box;
-    border-radius: 50%;
-}

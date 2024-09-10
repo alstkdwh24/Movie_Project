@@ -16,4 +16,17 @@ INSERT INTO QUESTION (Q_title, Q_content, Q_count, Q_write_time, username) value
     <select id="Question_total" resultType="int">
         select count(*) AS Question_total from QUESTION
     </select>
+
+    <select id="Question_detail" parameterType="int" resultType="ChatVO">
+        select fg.*, a.nickname
+        from QUESTION AS fg
+                 join members as a on fg.username = a.username
+        where Q_number = #{Q_number}
+    </select>
+
+    <update id="Q_count" parameterType="int">
+        update Question
+        set Q_count=Q_count + 1
+        where Q_number = #{QNumber}
+    </update>
 </mapper>

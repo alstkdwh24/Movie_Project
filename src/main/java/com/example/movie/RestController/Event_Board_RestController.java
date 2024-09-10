@@ -1,5 +1,6 @@
 package com.example.movie.RestController;
 
+import com.example.movie.ChatService.ChatService;
 import com.example.movie.commandVO.CategoryVO;
 import com.example.movie.commandVO.EventVO;
 import com.example.movie.communityEventService.EventService;
@@ -23,13 +24,14 @@ public class Event_Board_RestController {
     @Qualifier("EventService")
     private EventService eventService;
 
+
+
     @PostMapping("/movie/community/g_board_count")
     public ResponseEntity<Integer> g_board_count(@RequestBody Map<String, Integer> request) {
         Integer gNumber = request.get("g_number");
         int g_board_count = eventService.g_board_count(gNumber);
 
-            return ResponseEntity.ok(g_board_count);
-
+        return ResponseEntity.ok(g_board_count);
 
 
     }
@@ -43,6 +45,5 @@ public class Event_Board_RestController {
             return new ResponseEntity<>(vo, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 
 }
