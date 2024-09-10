@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="/css/event/writer2.css">
 
     <!--    본 페이지 css-->
-    <link rel="stylesheet" href="/css/event/free_detail/freedetail.css">
+    <link rel="stylesheet" href="/css/event/g_detail/g_detail.css">
 
 
     <!--    커뮤니티 모달 css-->
@@ -72,28 +72,21 @@
                     <div id="notice"></div>
                 </div>
             </div>
-            <div class="talk_writer">
-                <div id="talk_writer_free">
 
-                    <textarea id="talk_input"></textarea>
-
-                </div>
-
-            </div>
-            <div id="botton_buttom">
+            <div id="botton_buttom_g">
                 <div id="talk_button_frees"></div>
-                <div id="buttom_two">
-                    <button id="talk_button_update"
-                            th:onclick="|location.href='@{/movie/community/g_board_writer_update(g_number=${vo.g_number})}'|">
-                        수정
-                    </button>
-                    <button id="talk_button_cancel">삭제</button>
-                </div>
+
             </div>
 
         </div>
 
-
+        <div id="buttom_two">
+            <button id="talk_button_update"
+                    th:onclick="|location.href='@{/movie/community/g_board_writer_update(g_number=${vo.g_number})}'|">
+                수정
+            </button>
+            <button id="talk_button_cancel">삭제</button>
+        </div>
     </div>
 </form>
 

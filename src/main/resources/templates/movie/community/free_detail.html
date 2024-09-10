@@ -48,7 +48,7 @@
 
     <div class="free_detail">
         <form name="free_detail" method="post" action="###" id="comment_d">
-            <input type="hidden" name="free_number"  id="freenumber">
+            <input type="hidden" name="free_number" id="freenumber">
             <div class="user_name">
                 <div id="title"><h2>[[${vo.free_title}]]</h2></div>
                 <div id="user_id">
@@ -56,7 +56,9 @@
                     <div id="free_feature">
                         <div id="name">[[${vo.nickname}]]</div>
                         <div id="free_impormation">
-                            <div class="small_box" id="gallery_name" th:value="${vo.free_number}">[[${vo.free_number}]]</div>
+                            <div class="small_box" id="gallery_name" th:value="${vo.free_number}">
+                                [[${vo.free_number}]]
+                            </div>
                             <div class="small_box" id="date">[[${vo.write_time}]]</div>
                             <div class="small_box" id="count">[[${vo.count}]]</div>
                         </div>
@@ -76,7 +78,7 @@
 
                 <div id="talk_img">
                     <input type="image" alt="프로필 이미지" id="input_img">
-<!--                    <input type=hidden id="user_image" th:value="${vo.user_image}">-->
+                    <!--                    <input type=hidden id="user_image" th:value="${vo.user_image}">-->
                 </div>
                 <div id="talk_contents">
                     <div id="talk_contents_title">
@@ -101,14 +103,28 @@
 
             </div>
 
-            <!--sj로 받아옴-->
-            <div class="talk_writer">
-                <div id="talk_writer_free">
-
-
+            <!--js로 받아올 것임-->
+            <div id="talk_writer_free">
+                <div id="talk_id">
+                    <input type="image" alt="프로필 이미지" id="input_img_two">
                 </div>
-
+                <div id="talk_comments">
+                    <div id="talk_contents_title_two">
+                        <div id="id_two">
+                            <div id="ids_two">아이디</div>
+                            <div id="username_two"></div>
+                        </div>
+                        <div id="write_time_two">
+                            <div id="write_two">작성시간</div>
+                            <div id="comment_date_two"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+        </div>
+        <div id="secrete_box">
             <div id="botton_buttom">
                 <div id="talk_button_frees"></div>
                 <div id="buttom_two">
@@ -119,11 +135,9 @@
                     <button id="talk_button_cancel">삭제</button>
                 </div>
             </div>
-
         </div>
-
-
     </div>
+
 </div>
 
 <!--커뮤니티 div-->
