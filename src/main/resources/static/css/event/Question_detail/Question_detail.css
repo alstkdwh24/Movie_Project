@@ -23,7 +23,7 @@
 }
 
 .user_name {
-    height: 16%;
+    height: 13.5%;
     border: 1px solid black;
     width: 100%;
     box-sizing: border-box;
@@ -51,7 +51,7 @@
 }
 
 .free_contents {
-    height: 100%;
+    height: 60%;
     width: 100%;
 
     box-sizing: border-box;
@@ -59,7 +59,7 @@
 }
 
 .coment {
-    height: 34%;
+    height: 60%;
     width: 100%;
     border: 1px solid black;
     box-sizing: border-box;
@@ -107,13 +107,20 @@
 }
 
 .talk {
-    height: 24%;
+    height: 18%;
     width: 100%;
     border: 1px solid black;
     box-sizing: border-box;
 
     display: flex;
     flex-direction: row;
+}
+#comment_dox{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .talk_writer {
@@ -126,7 +133,7 @@
 }
 
 #botton_buttom {
-    height: 100%;
+    height: 24%;
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -167,7 +174,7 @@
 }
 
 #talk_button_update {
-    height: 80%;
+    height: 40%;
     width: 18%;
     background-color: #FFA82E;
     color: white;
@@ -176,7 +183,6 @@
     border-radius: 5px;
     position: relative;
     display: flex;
-    top: 10%;
     font-size: 25px;
     justify-content: center;
     align-items: center;
@@ -186,7 +192,7 @@
 }
 
 #talk_button_cancel {
-    height: 80%;
+    height: 40%;
     width: 18%;
     border: none;
     background-color: #DB8B00;
@@ -195,8 +201,6 @@
     border-radius: 5px;
     position: relative;
     display: flex;
-    top: 10%;
-    right: 15%;
     font-size: 25px;
     justify-content: center;
     align-items: center;
@@ -222,6 +226,16 @@
     z-index: 10;
 }
 
+#talk_img_two {
+    width: 10%;
+    min-width: 130px;
+    height: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+
 #input_img {
     width: 100%;
     height: 100%;
@@ -231,6 +245,13 @@
 }
 
 #talk_contents {
+    width: 90%;
+    height: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+#talk_contents_two {
     width: 90%;
     height: 100%;
     border: 1px solid black;
@@ -254,7 +275,24 @@
     flex-direction: column;
 }
 
+#talk_contents_content_two {
+    width: 100%;
+    height: 70%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    display:flex;
+    flex-direction: column;
+}
+
+
 #notice {
+    width: 100%;
+
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+#notice_two {
     width: 100%;
 
     border: 1px solid black;
@@ -263,10 +301,11 @@
 
 #buttom_two {
     height: 100%;
-    width: 120%;
+    width: 100%;
     position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    align-items: center;
 
 }
 
@@ -354,7 +393,7 @@
 
 #talk_writer_free{
     width: 100%;
-    height: 24%;
+    height: 18%;
     border: 1px solid black;
     display: flex;
 }

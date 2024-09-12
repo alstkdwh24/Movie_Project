@@ -9,6 +9,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="/css/event/g_detail/g_comment.css">
+<!--제이쿼리-->
+    <script src="/js/jquery-1.12.1.min.js"></script>
+
 
     <!--소메뉴 css ,html크기 css-->
     <link rel="stylesheet" href="/css/login/login(menu).css">
@@ -41,7 +45,7 @@
 <form name="g_delete" method="get" action="" class="input">
 
     <div class="free_detail">
-        <input type="hidden" name="g_number" th:value="${vo.g_number}">
+        <input type="hidden" name="g_number" id="g_numbers" th:value="${vo.g_number}">
         <div class="user_name">
             <div id="title" th:value="${vo.g_title}"><h2>[[${vo.g_title}]]</h2></div>
             <div id="user_id">
@@ -67,9 +71,22 @@
                     <input type="image" alt="" id="input_img">
                 </div>
                 <div id="talk_contents">
-                    <div id="talk_contents_title"></div>
-                    <div id="talk_contents_content"></div>
-                    <div id="notice"></div>
+                    <div id="talk_contents_title">
+                        <div class="id_date">
+                            <div class="id_date">닉네임</div>
+                            <div class="id_date" id="nickname"></div>
+
+                        </div>
+                        <div class="id_date">
+                            <div class="id_date">작성날짜</div>
+                            <div class="id_date" id="comment_date" name="comment"></div>
+                        </div>
+                    </div>
+                    <div id="talk_contents_content">
+
+                            <input type="text"  id="textareas"></input>
+                    </div>
+                    <button id="comment_submit">댓글달기</button>
                 </div>
             </div>
 
@@ -77,10 +94,12 @@
                 <div id="talk_button_frees"></div>
 
             </div>
-
+            <div class="comment_two">
+            </div>
         </div>
 
         <div id="buttom_two">
+            <div id="one"></div>
             <button id="talk_button_update"
                     th:onclick="|location.href='@{/movie/community/g_board_writer_update(g_number=${vo.g_number})}'|">
                 수정
@@ -118,5 +137,7 @@
 
     <!--미니 메뉴-->
     <script src="/js/modal/menu_modal.js"></script>
+
+<script src="/js/data/event/g_comment.js"></script>
 </body>
 </html>

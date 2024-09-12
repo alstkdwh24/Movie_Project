@@ -181,11 +181,11 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-
+right: 24%;
 
 }
 
-#talk_button_cancel {
+#talk_button_cancel{
     height: 80%;
     width: 18%;
     border: none;
@@ -271,8 +271,8 @@
 }
 
 /*댓글 textarea*/
-#textarea {
-    width: 82%;
+#textareas {
+    width: 100%;
     height: 100%;
     border: none;
     font-size: 20px;
@@ -351,4 +351,9 @@
     width: 100%;
     height: 60%;
 }
+/*버튼간격을 위해*/
+#one{
+    width: 10%;
+}
+
 

@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
                alert("오류가 발생하였습니다.");
             }
          });
+
       };
    });
 });

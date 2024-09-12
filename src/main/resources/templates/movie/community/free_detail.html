@@ -48,7 +48,7 @@
 
     <div class="free_detail">
         <form name="free_detail" method="post" action="###" id="comment_d">
-            <input type="hidden" name="free_number" id="freenumber">
+            <input type="hidden" name="free_number" id="freenumber" th:value="${vo.free_number}">
             <div class="user_name">
                 <div id="title"><h2>[[${vo.free_title}]]</h2></div>
                 <div id="user_id">
@@ -93,7 +93,7 @@
                     </div>
                     <div id="talk_contents_content"><label id="label">
                         <input type="text" id="textarea" name="comment">
-                        <button id="talk_button_freetwo">댓글등록</button>
+                        <button id="talk_button_free_two">댓글등록</button>
 
                     </label>
                     </div>
@@ -102,37 +102,36 @@
 
 
             </div>
+            <div id="comment_two">
+                    <!--js로 받아올 것임-->
+                    <!--                <div id="talk_writer_free">-->
 
-            <!--js로 받아올 것임-->
-            <div id="talk_writer_free">
-                <div id="talk_id">
-                    <input type="image" alt="프로필 이미지" id="input_img_two">
-                </div>
-                <div id="talk_comments">
-                    <div id="talk_contents_title_two">
-                        <div id="id_two">
-                            <div id="ids_two">아이디</div>
-                            <div id="username_two"></div>
-                        </div>
-                        <div id="write_time_two">
-                            <div id="write_two">작성시간</div>
-                            <div id="comment_date_two"></div>
-                        </div>
-                    </div>
-                </div>
+                    <!--                    <div id="talk_id">-->
+                    <!--                        <input type="image" alt="프로필 이미지" id="input_img_two">-->
+                    <!--                    </div>-->
+                    <!--                    <div id="talk_comments">-->
+                    <!--                        <div id="talk_contents_title_two">-->
+                    <!--                            <div id="id_two">-->
+                    <!--                                <div id="ids_two">아이디</div>-->
+                    <!--                                <div id="username_two"></div>-->
+                    <!--                            </div>-->
+                    <!--                            <div id="write_time_two">-->
+                    <!--                                <div id="write_two">작성시간</div>-->
+                    <!--                                <div id="comment_date_two"></div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                </div>-->
             </div>
-
-
         </div>
         <div id="secrete_box">
             <div id="botton_buttom">
-                <div id="talk_button_frees"></div>
                 <div id="buttom_two">
-                    <button id="talk_button_update"
+                    <button id="talk_button_update_two"
                             th:onclick="|location.href='@{/movie/community/free_board_writer_update(free_number=${vo.free_number})}'|">
                         수정
                     </button>
-                    <button id="talk_button_cancel">삭제</button>
+                    <button id="talk_button_cancel_two">삭제</button>
                 </div>
             </div>
         </div>
