@@ -1,0 +1,29 @@
+/*댓글 보는 것*/
+.comment_two{
+    height:76%;
+    width: 100%;
+    border:1px solid black;
+}
+/*댓글 아이디랑 쓴 닐짜*/
+.id_date{
+    width:50%;
+    height: 100%;
+    border: 1px solid black;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+/*댓글입력하기 버튼*/
+#comment_submit{
+    width: 14%;
+    height: 60%;
+    position:relative;
+    top:-65%;
+    border:none;
+    left:85.5%;
+    color: #b85c00;
+    background-color: antiquewhite;
+    box-sizing: border-box;
+    font-size: 20px;
+}

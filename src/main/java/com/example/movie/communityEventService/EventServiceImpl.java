@@ -1,6 +1,7 @@
 package com.example.movie.communityEventService;
 
 import com.example.movie.commandVO.EventVO;
+import com.example.movie.commandVO.G_CommentVO;
 import com.example.movie.util.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -92,6 +93,21 @@ public class EventServiceImpl implements EventService {
         System.out.println("freeNumber:" + gNumber);
 
         return eventMapper.g_board_count(gNumber);
+    }
+//자유 게시판 댓글 기능
+    @Override
+    public ArrayList<EventVO> get_comment(int free_number) {
+        return eventMapper.get_comment(free_number);
+    }
+
+    @Override
+    public int G_Comment(G_CommentVO vo) {
+        return eventMapper.G_Comment(vo);
+    }
+
+    @Override
+    public ArrayList<G_CommentVO> G_comment_show(int g_number) {
+        return eventMapper.G_comment_show(g_number);
     }
 
 

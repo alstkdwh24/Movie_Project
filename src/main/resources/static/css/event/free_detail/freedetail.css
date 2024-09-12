@@ -63,6 +63,7 @@
     width: 100%;
     border: 1px solid black;
     box-sizing: border-box;
+    overflow: auto;
 }
 
 #user_img {
@@ -213,6 +214,11 @@
 
 }
 
+#comment_talk{
+    width: 100%;
+    height:100%;
+}
+
 #talk_img {
     width: 10%;
     min-width: 130px;
@@ -358,6 +364,7 @@
     height: 24%;
     border: 1px solid black;
     display: flex;
+
 }
 
 #talk_id{
@@ -455,4 +462,10 @@
     border: none;
 
     border-radius: 10px;
+}
+
+/*조정하려고 만든 것*/
+#comment_two{
+    width: 100%;
+    height: 100%;
 }

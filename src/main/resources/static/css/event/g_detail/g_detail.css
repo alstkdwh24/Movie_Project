@@ -271,8 +271,8 @@ right: 24%;
 }
 
 /*댓글 textarea*/
-#textarea {
-    width: 82%;
+#textareas {
+    width: 100%;
     height: 100%;
     border: none;
     font-size: 20px;
@@ -355,3 +355,5 @@ right: 24%;
 #one{
     width: 10%;
 }
+
+

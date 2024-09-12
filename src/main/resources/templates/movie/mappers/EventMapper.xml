@@ -96,7 +96,7 @@
     </select>
 
     <insert id="Post_comment" parameterType="EventVO">
-        insert into comment(coment, coment_date, username, free_number) values(
+        insert into comment(comment, comment_date, username, free_number) values(
                                                            #{comment}, now(), #{username},#{free_number}
                                                        );
 
@@ -106,6 +106,20 @@
         UPDATE G_GALLERY
         SET g_count = g_count + 1
         WHERE g_number = #{gNumber}    </update>
+<!--    댓글쓴거 보여주는 기능-->
+    <select id="get_comment" parameterType="int" resultType="EventVO">
+        SELECT * FROM comment WHERE free_number = #{free_number}
+    </select>
+
+    <insert id="G_Comment" parameterType="G_CommentVO">
+        insert into comment_g (comment, comment_date, nickname ,g_number)values(
+                                                                       #{comment},now(),#{nickname},#{g_number}
+                                                                      )
+    </insert>
+
+    <select id="G_comment_show" parameterType="int" resultType="G_CommentVO">
+        select * from comment_g where g_number=#{g_number};
+    </select>
 
 </mapper>
 

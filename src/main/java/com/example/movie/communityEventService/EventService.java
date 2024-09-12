@@ -1,6 +1,7 @@
 package com.example.movie.communityEventService;
 
 import com.example.movie.commandVO.EventVO;
+import com.example.movie.commandVO.G_CommentVO;
 import com.example.movie.util.Criteria;
 
 import java.util.ArrayList;
@@ -35,5 +36,15 @@ public interface EventService {
     int Post_comment(EventVO vo);
 
     int g_board_count(int gNumber);
+
+//자유 게시판 댓글 기능
+
+    ArrayList<EventVO> get_comment(int free_number);
+
+    int G_Comment(G_CommentVO vo);
+
+
+    ArrayList<G_CommentVO> G_comment_show(int g_number);
+
 
 }
