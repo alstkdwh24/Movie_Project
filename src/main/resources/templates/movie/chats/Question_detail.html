@@ -33,6 +33,9 @@
     <!--채팅css-->
     <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
 
+    <!--    Question 댓글-->
+    <link rel="stylesheet" href="/css/event/Question_detail/Question_comment.css">
+
 </head>
 <body>
 
@@ -68,8 +71,20 @@
                         <input type="image" alt="" id="input_img">
                     </div>
                     <div id="talk_contents">
-                        <div id="talk_contents_title"></div>
-                        <div id="talk_contents_content"></div>
+                        <div id="talk_contents_title">
+                            <div class="Question_comment_title">
+                                <div class="Question_id">닉네임</div>
+                                <div class="Question_id"></div>
+                            </div>
+                            <div class="Question_comment_title">
+                                <div class="Question_id">글쓴날짜</div>
+                                <div class="Question_id"></div>
+                            </div>
+                        </div>
+                        <div id="talk_contents_content">
+                            <textarea id="textareas"></textarea>
+                            <button id="Question_comment_two">댓글등록</button>
+                        </div>
                         <div id="notice"></div>
                     </div>
                 </div>
@@ -79,22 +94,33 @@
                         <input type="image" alt="" id="input_img_two">
                     </div>
                     <div id="talk_contents_two">
-                        <div id="talk_contents_title_two"></div>
-                        <div id="talk_contents_content_two"></div>
+                        <div id="talk_contents_title_two">
+                            <div class="Question_comment_title">
+                                <div class="Question_id">닉네임</div>
+                                <div class="Question_id"></div>
+                            </div>
+                            <div class="Question_comment_title">
+                                <div class="Question_id">글쓴날짜</div>
+                                <div class="Question_id"></div>
+                            </div>
+                        </div>
+                        <div id="talk_contents_content_two">
+
+                        </div>
                         <div id="notice_two"></div>
                     </div>
                 </div>
             </div>
 
-                <div id="botton_buttom">
-                    <div id="buttom_two">
-                        <button id="talk_button_update"
-                        >
-                            수정
-                        </button>
-                        <button id="talk_button_cancel">삭제</button>
-                    </div>
+            <div id="botton_buttom">
+                <div id="buttom_two">
+                    <button id="talk_button_update"
+                    >
+                        수정
+                    </button>
+                    <button id="talk_button_cancel">삭제</button>
                 </div>
+            </div>
 
         </div>
 
@@ -130,5 +156,8 @@
 
 <!--미니 메뉴-->
 <script src="/js/modal/menu_modal.js"></script>
+
+<!--질문 댓글js-->
+<script src="/js/data/question/question_comment.js"></script>
 </body>
 </html>

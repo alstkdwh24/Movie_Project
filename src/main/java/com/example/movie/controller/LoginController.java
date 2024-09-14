@@ -110,7 +110,7 @@ public class LoginController {
     }
 
 
-
+//회원가입 요청 
     @PostMapping("/login_join")
     public String login_join(LoginVO vo, RedirectAttributes ra){
         int result =loginService.Login_join(vo);

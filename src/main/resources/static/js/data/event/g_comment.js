@@ -22,28 +22,29 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function create_g_comment(data) {
       let  g_comment=''
         data.forEach(function (result) {
-            g_comment += '<div class="talk">' +
+            g_comment += '<div class="talks">' +
+                '<div id="g_comment_tree">'+
                 '<div id="talk_img">' +
                 '<input type="image" alt="" id="input_img">' +
                 '</div>' +
+                // '<div id="big_fan">'+
                 '<div id="talk_contents">' +
                 '<div id="talk_contents_title">' +
-                ' <div class="id_date">' +
+
                 ' <div class="id_date">닉네임</div>' +
                 '<div class="id_date" data-g_number=\'' + JSON.stringify(result) + '\'>' + result.nickname + '</div>' +
 
 
-                '        </div>' +
-                ' <div class="id_date">' +
                 ' <div class="id_date">작성날짜</div>' +
-                '<div class="id_date"> + result.comment_date + </div>' +
+                '<div class="id_date">' + result.comment_date + '</div>' +
                 '</div>' +
-                '</div>' +
+
                 ' <div id="talk_contents_content">' +
                 result.comment +
                 ' </div>' +
-                '<button id="comment_submit">댓글달기</button>' +
-                ' </div>'
+                ' </div>'+
+                '</div>'+
+                    '</div>'
         });
       $(".comment_two").append(g_comment);
     }
