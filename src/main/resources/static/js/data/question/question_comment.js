@@ -47,6 +47,10 @@ function create_question(data){
 $("#comment_dox").append(Question);
 }
 
+
+
+let nicknames=document.getElementById("name").textContent;
+console.log(nicknames)
 let Question_submit=document.getElementById("Question_comment_two");
 Question_submit.onclick=function (){
     $.ajax({
@@ -54,7 +58,9 @@ Question_submit.onclick=function (){
        contentType: "application/json",
        url:"Question_comment_resist",
        data:JSON.stringify({
-
+            nickname:nickname,
+           comment_date:comment_date_two,
+           comment:comment_submit
        })
     });
 }
