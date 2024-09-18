@@ -1,8 +1,11 @@
 package com.example.movie.RestController;
 
 import com.example.movie.ChatService.ChatService;
+import com.example.movie.commandVO.ChatVO;
+import com.example.movie.commandVO.Q_CommentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,6 +31,16 @@ public class QuestionRestcontroller {
             return null;
         }
 
+
+    }
+    @PostMapping("/Question_comment_resist")
+    public ResponseEntity<Q_CommentVO> Question_comment_resist(@RequestBody Q_CommentVO vo){
+        int Chat_for=chatService.Question_comment_resist(vo);
+        if(Chat_for==1){
+            return new ResponseEntity<>(vo, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(vo,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
     }
 }
