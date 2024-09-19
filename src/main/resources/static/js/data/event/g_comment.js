@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         type: "GET", // 대문자로 변경
         contentType: "application/json", // 대문자로 변경
         url: "/g_comment", // URL에 슬래시 추가
-        data: { g_number: g_number_two }, // 쿼리 파라미터로 전달
+        data: {g_number: g_number_two}, // 쿼리 파라미터로 전달
         success: function (data) {
             create_g_comment(data);
         },
@@ -19,36 +19,36 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 });
-    function create_g_comment(data) {
-      let  g_comment=''
-        data.forEach(function (result) {
-            g_comment += '<div class="talks">' +
-                '<div id="g_comment_tree">'+
-                '<div id="talk_img">' +
-                '<input type="image" alt="" id="input_img">' +
-                '</div>' +
-                // '<div id="big_fan">'+
-                '<div id="talk_contents">' +
-                '<div id="talk_contents_title">' +
 
-                ' <div class="id_date">닉네임</div>' +
-                '<div class="id_date" data-g_number=\'' + JSON.stringify(result) + '\'>' + result.nickname + '</div>' +
+function create_g_comment(data) {
+    let g_comment = ''
+    data.forEach(function (result) {
+        g_comment += '<div class="talks">' +
+            '<div id="g_comment_tree">' +
+            '<div id="talk_img">' +
+            '<input type="image" alt="" id="input_img">' +
+            '</div>' +
+            // '<div id="big_fan">'+
+            '<div id="talk_contents">' +
+            '<div id="talk_contents_title">' +
+
+            ' <div class="id_date">닉네임</div>' +
+            '<div class="id_date" data-g_number=\'' + JSON.stringify(result) + '\'>' + result.nickname + '</div>' +
 
 
-                ' <div class="id_date">작성날짜</div>' +
-                '<div class="id_date">' + result.comment_date + '</div>' +
-                '</div>' +
+            ' <div class="id_date">작성날짜</div>' +
+            '<div class="id_date">' + result.comment_date + '</div>' +
+            '</div>' +
 
-                ' <div id="talk_contents_content">' +
-                result.comment +
-                ' </div>' +
-                ' </div>'+
-                '</div>'+
-                    '</div>'
-        });
-      $(".comment_two").append(g_comment);
-    }
-
+            ' <div id="talk_contents_content">' +
+            result.comment +
+            ' </div>' +
+            ' </div>' +
+            '</div>' +
+            '</div>'
+    });
+    $(".comment_two").append(g_comment);
+}
 
 
 document.getElementById("nickname").textContent = document.getElementById("name").textContent

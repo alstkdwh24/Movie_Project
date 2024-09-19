@@ -16,4 +16,6 @@ public interface ChatService {
     ChatVO Question_detail(int QNumber);
 
     int Question_comment_resist(Q_CommentVO vo);
+
+    ArrayList<Q_CommentVO> question_comment(int Q_number);
 }

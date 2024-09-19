@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-<!--제이 쿼리-->
+    <!--제이 쿼리-->
     <script src="/js/jquery-1.12.1.min.js"></script>
 
     <!--소메뉴 css ,html크기 css-->
@@ -45,7 +45,7 @@
 <form name="g_delete" method="get" action="" class="input">
 
     <div class="free_detail">
-        <input type="hidden" name="Q_number" th:value="${vo.Q_number}">
+        <input type="hidden" name="Q_number" th:value="${vo.Q_number}" id="QNumber">
         <div class="user_name">
             <div id="title" th:value="${vo.Q_title}"><h2>[[${vo.Q_title}]]</h2></div>
             <div id="user_id">
@@ -83,34 +83,13 @@
                             </div>
                         </div>
                         <div id="talk_contents_content">
-                            <textarea id="textareas"></textarea>
+                            <label id="idss"><textarea id="textareas"></textarea></label>
                             <button id="Question_comment_two">댓글등록</button>
                         </div>
                         <div id="notice"></div>
                     </div>
                 </div>
-                <div id="talk_writer_free">
 
-                    <div id="talk_img_two">
-                        <input type="image" alt="" id="input_img_two">
-                    </div>
-                    <div id="talk_contents_two">
-                        <div id="talk_contents_title_two">
-                            <div class="Question_comment_title">
-                                <div class="Question_id">닉네임</div>
-                                <div class="Question_id"></div>
-                            </div>
-                            <div class="Question_comment_title">
-                                <div class="Question_id">글쓴날짜</div>
-                                <div class="Question_id"></div>
-                            </div>
-                        </div>
-                        <div id="talk_contents_content_two">
-
-                        </div>
-                        <div id="notice_two"></div>
-                    </div>
-                </div>
             </div>
 
             <div id="botton_buttom">

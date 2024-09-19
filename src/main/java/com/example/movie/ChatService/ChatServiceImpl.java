@@ -45,4 +45,9 @@ public class ChatServiceImpl implements ChatService{
     public int Question_comment_resist(Q_CommentVO vo) {
         return chatMapper.Question_comment_resist(vo);
     }
+
+    @Override
+    public ArrayList<Q_CommentVO> question_comment(int Q_number) {
+        return chatMapper.question_comment(Q_number);
+    }
 }
