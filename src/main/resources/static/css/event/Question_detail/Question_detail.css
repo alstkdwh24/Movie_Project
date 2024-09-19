@@ -272,7 +272,7 @@
     border: 1px solid black;
     box-sizing: border-box;
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 #talk_contents_content_two {
@@ -281,7 +281,7 @@
     border: 1px solid black;
     box-sizing: border-box;
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 
@@ -474,4 +474,9 @@
     border: 1px solid black;
     box-sizing: border-box;
     border-radius: 50%;
+}
+
+#idss{
+    width: 100%;
+    height: 100%;
 }

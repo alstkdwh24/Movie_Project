@@ -37,7 +37,7 @@
 <div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
 <form method="post" name="Question_writer" action="/Question" class="big_frame">
 
-<input type="hidden" th:value="${userSession.username}" name="username">
+<input type="hidden"  id="userSession" th:value="${userSession.username}" name="username">
 <input type="hidden" value="0" name="Q_count">
     <div class="big_div">
         <div class="big_gallery_title"><h2 class="title_big">Q-WRITER</h2></div>

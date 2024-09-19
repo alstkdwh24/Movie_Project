@@ -111,9 +111,8 @@
     width: 100%;
     border: 1px solid black;
     box-sizing: border-box;
+display: flex;
 
-    display: flex;
-    flex-direction: row;
 }
 
 .talk_writer {

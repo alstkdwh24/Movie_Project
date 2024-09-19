@@ -34,10 +34,10 @@ public class ChatController {
     public String Chat(HttpServletRequest request, Model model, Criteria cri, HttpSession session) {
         ArrayList<ChatVO> List = chatService.Question_show(cri);
         int total = chatService.Question_total(cri);
-        PageVO pageVO = new PageVO(cri, total);
+        PageVO PageVO = new PageVO(cri, total);
         model.addAttribute("list", List);
-        model.addAttribute("pageVO", pageVO);
-        System.out.println(pageVO);
+        model.addAttribute("pageVO", PageVO);
+        System.out.println(PageVO);
 
 
         UserDetails userDetails = (UserDetails) session.getAttribute("user");

@@ -1,8 +1,9 @@
 /*댓글 보는 것*/
 .comment_two{
-    height:76%;
+overflow: auto;
+
     width: 100%;
-    border:1px solid black;
+    height: 76%;
 }
 /*댓글 아이디랑 쓴 닐짜*/
 .id_date{
@@ -26,4 +27,30 @@
     background-color: antiquewhite;
     box-sizing: border-box;
     font-size: 20px;
+}
+
+/*해결카드*/
+#g_comment_tree{
+    width: 100%;
+    height:100%;
+    display: flex;
+    flex-direction: row;
+
+}
+
+/*!*글쓰는거 보는 것과 나누기*!*/
+/*#big_fan{*/
+/*    width: 90%;*/
+/*    height: 100%;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
+/*talk하고 다른 것*/
+.talks {
+    height: 32%;
+    width: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    display: flex;
+
 }

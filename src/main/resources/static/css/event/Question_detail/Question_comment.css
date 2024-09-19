@@ -1,0 +1,43 @@
+#textareas {
+    width: 86%;
+    height: 100%;
+    border: none;
+    font-size: 20px;
+    padding: 0; /* 내부 여백 제거 */
+    margin: 0; /* 외부 여백 제거 */
+    text-align: start;
+    box-sizing: border-box;
+    vertical-align: top;
+    resize: none;
+
+}
+
+#Question_comment_two{
+    width: 14%;
+    height: 100%;
+    background-color: #FFA82E;
+    color: white;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 20px;
+
+}
+
+.Question_comment_title{
+    width: 50%;
+    height: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    display:flex;
+}
+
+.Question_id{
+    width: 50%;
+    height: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
