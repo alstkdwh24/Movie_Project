@@ -3,6 +3,7 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+        <entry key="file://$PROJECT_DIR$/src/main/resources/templates/movie/chats/Question_detail.html" value="file://$PROJECT_DIR$/src/main/resources/templates/movie/chats" />
         <entry key="file://$PROJECT_DIR$/src/main/resources/templates/movie/community/free_detail.html" value="file://$PROJECT_DIR$/src/main/resources/templates/movie/community" />
         <entry key="file://$PROJECT_DIR$/src/main/resources/templates/movie/community/freeboard.html" value="file://$PROJECT_DIR$/src/main/resources/templates/movie/community" />
         <entry key="file://$PROJECT_DIR$/src/main/resources/templates/movie/mains_fragment/mains_menus.html" value="file://$PROJECT_DIR$/src/main/resources/templates/movie/mains_fragment" />

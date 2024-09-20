@@ -42,7 +42,9 @@ public class QuestionRestcontroller {
     @PostMapping("/Question_comment_resist")
     public ResponseEntity<Q_CommentVO> Question_comment_resist(@RequestBody Q_CommentVO vo){
         int Chat_for=chatService.Question_comment_resist(vo);
+
         if(Chat_for==1){
+
             return new ResponseEntity<>(vo, HttpStatus.CREATED);
         }else{
             return new ResponseEntity<>(vo,HttpStatus.INTERNAL_SERVER_ERROR);

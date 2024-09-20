@@ -21,7 +21,7 @@ public class G_CommentVO {
     private String comment;
     private String username;
 //    private File userimage;
-    private Integer g_number;
+    private Integer  g_number;
     private String nickname;
     @DateTimeFormat(pattern = "MM-dd-HH-mm")
     private LocalDate comment_date;

@@ -50,4 +50,5 @@ public class ChatServiceImpl implements ChatService{
     public ArrayList<Q_CommentVO> question_comment(int Q_number) {
         return chatMapper.question_comment(Q_number);
     }
+
 }

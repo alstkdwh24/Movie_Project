@@ -45,7 +45,7 @@
 <form name="g_delete" method="get" action="" class="input">
 
     <div class="free_detail">
-        <input type="hidden" name="Q_number" th:value="${vo.Q_number}" id="QNumber">
+
         <div class="user_name">
             <div id="title" th:value="${vo.Q_title}"><h2>[[${vo.Q_title}]]</h2></div>
             <div id="user_id">
@@ -70,12 +70,16 @@
                 <div class="talk">
                     <div id="talk_img">
                         <input type="image" alt="" id="input_img">
+                        <input type="hidden" name="Q_number" th:value="${vo.Q_number}" id="QNumber">
+
                     </div>
                     <div id="talk_contents">
                         <div id="talk_contents_title">
                             <div class="Question_comment_title">
                                 <div class="Question_id">닉네임</div>
                                 <div class="Question_id"></div>
+                                <input type="hidden" id="QNumbers">
+
                             </div>
                             <div class="Question_comment_title">
                                 <div class="Question_id">글쓴날짜</div>
@@ -86,7 +90,8 @@
                             <label id="idss"><textarea id="textareas"></textarea></label>
                             <button id="Question_comment_two">댓글등록</button>
                         </div>
-                        <div id="notice"></div>
+                        <div id="notice">
+                        </div>
                     </div>
                 </div>
 
