@@ -1,7 +1,5 @@
-
 document.addEventListener('DOMContentLoaded', (event) => {
     let Q_number = document.getElementById("gallery_name").textContent;
-
     $.ajax({
         type: "get",
         contentType: "application/json",
@@ -43,37 +41,42 @@ function create_question(data) {
     });
     $("#comment_dox").append(Question);
 }
-
-
 let comment_date_two = new Date().toISOString(); // 현재 날짜와 시간을 ISO 형식으로 설정
 
 let nicknames = document.getElementById("name").textContent;
-console.log(nicknames)
+console.log(nicknames);
 let Question_submit = document.getElementById("Question_comment_two");
 console.log(Question_submit);
 
-let Q_numbers=document.getElementById("QNumber").textContent;
-
-console.log(Q_numbers)
+// gallery_name에서 Q_number 추출
+let Q_number = parseInt(document.getElementById("gallery_name").textContent, 10);
+console.log(Q_number);
 Question_submit.onclick = function () {
+
     let comments = document.getElementById("textareas").value;
 
+
+
+
+
     $.ajax({
-        type: "POST",
+        type: "POST", // POST 메소드로 설정
         contentType: "application/json",
         url: "/movie/chats/Question_comment_resist",
         data: JSON.stringify({
             nickname: nicknames,
             comment_date: comment_date_two,
             comment: comments,
-            Q_number:Q_numbers
+            q_number: Q_number,
+            username: "나야"
         }),
         success: function (response) {
-            alert("성공하였습니다")
-        }, error:
-            function (error) {
-                alert("아쉽습니다.")
-            }
-
+            alert("성공하였습니다");
+        },
+        error: function (error) {
+            console.error("AJAX 요청 실패:", error);
+            alert("아쉽습니다.");
+        }
     });
+
 }

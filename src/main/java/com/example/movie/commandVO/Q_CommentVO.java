@@ -2,6 +2,7 @@ package com.example.movie.commandVO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +18,6 @@ public class Q_CommentVO {
     private LocalDateTime comment_date;
     private String username;
     private String nickname;
-    private Integer Q_number;
+    private Integer q_number;
 
 }

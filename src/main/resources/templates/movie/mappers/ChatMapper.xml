@@ -36,14 +36,14 @@ INSERT INTO QUESTION (Q_title, Q_content, Q_count, Q_write_time, username, nickn
     </update>
 
     <insert id="Question_comment_resist" parameterType="com.example.movie.commandVO.Q_CommentVO">
-        insert into comment_q (coment, coment_date, nickname,Q_number,username) values(#{comment},
-                                       now(),#{nickname}, #{Q_number},#{username})
+        INSERT INTO comment_q (comment, comment_date, nickname, q_number, username)
+        VALUES (#{comment}, NOW(), #{nickname}, #{q_number}, #{username})
     </insert>
 
     <select id="question_comment" parameterType="int" resultType="Q_CommentVO">
-        SELECT q.*, tion.Q_number
+        SELECT q.*, tion.q_number
         FROM comment_q AS q
-                 JOIN question AS tion ON q.Q_number = tion.Q_number
-        WHERE tion.Q_number = #{Q_number}
+                 JOIN question AS tion ON q.q_number = tion.Q_number
+        WHERE tion.Q_number = #{q_number}
     </select>
 </mapper>
