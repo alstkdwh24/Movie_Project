@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>공지사항</title>
@@ -47,7 +47,7 @@
     <div class="free_detail">
 
         <div class="user_name">
-            <div id="title" th:value="${vo.Q_title}"><h2>[[${vo.Q_title}]]</h2></div>
+            <div id="title"><h2 th:value="${vo.Q_title}">[[${vo.Q_title}]]</h2></div>
             <div id="user_id">
                 <div id="user_img"></div>
                 <div id="free_feature">
@@ -70,7 +70,7 @@
                 <div class="talk">
                     <div id="talk_img">
                         <input type="image" alt="" id="input_img">
-                        <input type="hidden" name="Q_number" th:value="${vo.Q_number}" id="QNumber">
+                        <input type="hidden" name="Q_number" th:value="${userSession.username}" id="QNumber">
 
                     </div>
                     <div id="talk_contents">
