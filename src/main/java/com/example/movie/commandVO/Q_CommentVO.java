@@ -19,5 +19,6 @@ public class Q_CommentVO {
     private String username;
     private String nickname;
     private Integer q_number;
+    private String Q_title; // 이 필드가 존재해야 함
 
 }

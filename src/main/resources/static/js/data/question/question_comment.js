@@ -51,6 +51,8 @@ console.log(Question_submit);
 // gallery_name에서 Q_number 추출
 let Q_number = parseInt(document.getElementById("gallery_name").textContent, 10);
 console.log(Q_number);
+
+let QNumber=document.getElementById("QNumber").value;
 Question_submit.onclick = function () {
 
     let comments = document.getElementById("textareas").value;
@@ -68,7 +70,7 @@ Question_submit.onclick = function () {
             comment_date: comment_date_two,
             comment: comments,
             q_number: Q_number,
-            username: "나야"
+            username: QNumber
         }),
         success: function (response) {
             alert("성공하였습니다");
