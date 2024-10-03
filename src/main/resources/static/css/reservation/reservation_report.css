@@ -1,0 +1,74 @@
+body{
+    width:100%;
+    height: 140%;
+    background-color:black;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.main_title{
+    top:0;
+    height: 14%;
+    width: 100%;
+}
+
+#middle{
+    border:1px solid white;
+    width: 100%;
+    height: 126%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#reservation_board{
+    width: 70%;
+    height: 80%;
+    border:1px solid white;
+overflow: auto;
+}
+
+#reservation_list{
+    height:6%;
+    width:100%;
+    border:1px solid white;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+}
+
+.list_top{
+    box-sizing: border-box;
+    border: 1px solid white;
+display: flex;
+justify-content: center;
+align-items: center;
+    color:white;
+    width: 12.5%;
+    height: 100%;
+    font-size:16px;
+}
+
+#reservation_lists{
+    height:6%;
+    width:100%;
+    border:1px solid white;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+}
+
+.submit{
+    border: none;
+    width: 50%;
+    height: 80%;
+    border-radius: 20px;
+}
+
+.submit_pay{
+    border: none;
+    width: 50%;
+    height: 80%;
+    border-radius: 20px;
+}
