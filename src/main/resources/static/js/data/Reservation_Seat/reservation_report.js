@@ -35,13 +35,35 @@
 //     $("#reservation_board").append(reservation_pay);
 //
 // }
-let cancel=document.querySelectorAll(".submit");
-cancel.forEach(event=>{
-  event.onclick=function(event){
-      event.preventDefault();
-      document.reservation.method="Post"
 
-      document.reservation.action="reservation_Delete"
-      document.reservation.submit();
-  }
+
+
+
+let cancel = document.querySelectorAll(".submit");
+cancel.forEach(button => {
+    button.onclick = function (event) {
+        event.preventDefault();
+        let reservationItem=event.target.closest("#reservation_lists");
+        if(reservationItem){
+            let reservationNumber=reservationItem.querySelector('input[name="reservation_number"]').value;
+        fetch('/movie/Reservation/reservation_Delete',{
+            method: "post",
+            headers:{
+                'Content-Type':'application/json',
+            },
+            body:JSON.stringify({reservation_number:reservationNumber}),
+        })
+            .then(response=>{
+                if(response.ok){
+                    reservationItem.remove();
+                }else{
+                    console.log("삭제 요청 실패:", response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('삭제 요청 중 에러 발생:', error);
+            });
+        }
+
+    }
 })

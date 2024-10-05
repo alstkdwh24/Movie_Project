@@ -25,7 +25,7 @@ public interface ReservationMapper {
 
     int movie_report_resist(ReservationVO vo);
 
-    void reservation_Delete(int reservation_number);
+    void reservation_Delete(ReservationVO vo);
 
 
 }

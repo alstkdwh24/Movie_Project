@@ -21,7 +21,7 @@ public interface ReservationService {
 
     ArrayList<ReservationVO> getReservation_pay(Criteria cri);
 
-    void reservation_Delete(int reservation_number);
+    void reservation_Delete(ReservationVO vo);
 
 
 }

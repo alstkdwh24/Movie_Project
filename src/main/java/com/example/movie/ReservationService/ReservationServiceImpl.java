@@ -50,8 +50,8 @@ public class ReservationServiceImpl implements ReservationService{
     }
 
     @Override
-    public void reservation_Delete(int reservation_number) {
-        reservationMapper.reservation_Delete(reservation_number);
+    public void reservation_Delete(ReservationVO vo) {
+        reservationMapper.reservation_Delete(vo);
     }
 
 }

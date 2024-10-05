@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-<!--제이쿼리-->
+    <!--제이쿼리-->
     <script src="/js/jquery-1.12.1.min.js"></script>
 
     <!--구글 폰트-->
@@ -59,9 +59,11 @@
             <div class="list_top">결제진행</div>
 
         </div>
-        <div id="reservation_lists" th:each="vo, status:${list}">
-            <input type="hidden" name="reservation_number" th:value="${vo.reservation_number}">
-            <div class="list_top" name="reservation_number">[[${vo.reservation_number}]]</div>
+        <div id="reservation_lists" th:each="vo, status:${list}" data-reservation-number="${vo.reservation_number}"
+        >
+            <div class="list_top">[[${vo.reservation_number}]]</div>
+            <input type="hidden" name="reservation_number"
+                   th:value="${vo.reservation_number}">
 
             <div class="list_top">[[${vo.movie_title}]]</div>
             <div class="list_top">[[${vo.movie_place}]]</div>
@@ -81,6 +83,8 @@
 
             <div class="list_top">
                 <button class="submit_pay">결제진행</button>
+                <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+                <script src="/main.js"></script>
             </div>
 
         </div>

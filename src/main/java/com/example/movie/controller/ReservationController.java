@@ -66,11 +66,6 @@ public class ReservationController {
     model.addAttribute("userSession", userDetails);
     return "movie/Reservation/reservation_pay";
 }
-    @PostMapping("/reservation_Delete")
-    public String reservation_Delete(@RequestParam("reservation_number") Integer reservation_number){
-        reservationService.reservation_Delete(reservation_number);
-        return "redirect:/movie/Reservation/reservation_report";
-    }
 
 
 }
