@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!--제이쿼리-->
+    <script src="/js/jquery-1.12.1.min.js"></script>
+
 
     <!--구글 폰트-->
     <link rel="stylesheet"
@@ -19,39 +22,75 @@
     <link rel="stylesheet" href="/css/modal/fragment_gallery_modal.css">
 
     <!--    커뮤니티 제목css-->
-
     <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
-
 
     <!--    소메뉴 검색 css-->
     <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
 
-
     <!--    채팅 css-->
     <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
-
 
     <!--    커뮤니티 모닿 css-->
     <link rel="stylesheet" href="/css/mains/modal/fragment_gallery_modal.css">
 
-
-
     <!--    미니메뉴 모달-->
     <link rel="stylesheet" href="/css/mains/main_imin_menu.css">
+
+    <!--    reservation_report css-->
+    <link rel="stylesheet" href="/css/reservation/reservation_report.css">
 </head>
 <body>
+
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 
+<input type="hidden" th:value="${userSession.username}" id="username">
+<form id="middle" action="/reservation_report" name="reservation">
+    <div id="reservation_board">
+        <div id="reservation_list">
+            <div class="list_top">예약번호</div>
 
+            <div class="list_top">영화이름</div>
+            <div class="list_top">영화관</div>
+            <div class="list_top">상영시작 시간</div>
+            <div class="list_top">좌석</div>
+            <div class="list_top">가격</div>
+            <div class="list_top">예약취소</div>
+            <!--            <div class="list_top">결제방법</div>-->
 
+            <div class="list_top">결제진행</div>
 
+        </div>
+        <div id="reservation_lists">
+            <div class="reservation_item" th:each="vo, status:${list}" data-reservation-number="${vo.reservation_number}">
+                <div class="list_top">[[${vo.reservation_number}]]</div>
+                <input type="hidden" name="reservation_number"
+                       th:value="${vo.reservation_number}">
 
+                <div class="list_top" id="movie_title">[[${vo.movie_title}]]</div>
+                <div class="list_top" id="movie_place">[[${vo.movie_place}]]</div>
+                <div class="list_top" id="movie_time">[[${vo.movie_time}]]</div>
+                <div class="list_top" id="movie_Seat">[[${vo.movie_Seat}]]</div>
+                <div class="list_top" id="reservation_price">[[${vo.reservation_price}]]원</div>
 
+                <div class="list_top">
+                    <button class="submit">예약취소</button>
+                </div>
+                <!--            <div class="list_top">-->
+                <!--                <select>-->
+                <!--                    <option value="신용카드">신용카드</option>-->
+                <!--                    <option value="토스페이">토스페이</option>-->
+                <!--                    <option value="네이버페이">네이버페이</option>-->
+                <!--                </select></div>-->
 
+                <div class="list_top">
+                    <button type="button" class="submit_pay">결제진행</button>
+                </div>
 
+            </div>
+        </div>
+    </div>
 
-
-
+</form>
 
 
 <!--커뮤니티div-->
@@ -83,5 +122,13 @@
 
 <!--미니 메뉴-->
 <script src="/js/modal/menu_modal.js"></script>
+
+<!--js reservation_report-->
+<script src="/js/data/Reservation_Seat/reservation_report.js"></script>
+<!--    portone js-->
+<script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+
+
 </body>
 </html>

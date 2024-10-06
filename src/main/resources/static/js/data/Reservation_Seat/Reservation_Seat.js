@@ -82,6 +82,9 @@ seat_resist.onclick=function (){
     let movieTitleInput=document.getElementById("movieTitleInput").value;
     let movieSeatInput=document.getElementById("chair_value").value
     let usernames=document.getElementById("username_modal").value
+    let reservation_prices=document.getElementById("reservation_price").value;
+    console.log(reservation_prices);
+    // 가격
     $.ajax({
         type: "post",
         url: "/resist_reservation",
@@ -91,7 +94,8 @@ seat_resist.onclick=function (){
             moviePlace: moviePlaceInput,
             movieTime: movieTimeInput,
             movieSeat:movieSeatInput,
-            username:usernames
+            username:usernames,
+            reservation_price:reservation_prices
         }),
         success: function (response) {
             location.href="/movie/Reservation/reservation_report"

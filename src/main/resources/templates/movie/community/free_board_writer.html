@@ -28,8 +28,6 @@
     <link rel="stylesheet" href="/css/event/free_board_writer.css">
 
 
-
-
     <!--    커뮤니티 모달 제목 css-->
     <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
 
@@ -37,7 +35,7 @@
     <!--소메뉴 검색 모달css-->
     <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
 
-<!--    소메뉴 채팅-->
+    <!--    소메뉴 채팅-->
     <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
 
 
@@ -48,11 +46,11 @@
 <body>
 <!--소메뉴 div-->
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
-<form method="post" name="free_board_writer" action="/free_board_writer" class="big_frame" >
-<!--count를 input하는 것이 무조건 필요-->
+<form method="post" name="free_board_writer" action="/free_board_writer" class="big_frame">
+    <!--count를 input하는 것이 무조건 필요-->
     <input type="hidden" name="count" value="0">
-<input type="hidden" th:value="${userSession.username}" name="username">
-    <div class="big_div" >
+    <input type="hidden" th:value="${userSession.username}" name="username">
+    <div class="big_div">
         <div class="big_gallery_title"><h2 class="title_big">F-WRITE</h2></div>
         <div class="blank">
             <div class="f-write_title"><h2 class="title_word">글제목</h2></div>
@@ -69,7 +67,9 @@
             </label>
         </div>
         <div class="blank"></div>
-        <div class="big_content_file"></div>
+<!--        <div class="big_content_file">-->
+<!--            파일을 마우스로 끌어 오세오.-->
+<!--        </div>-->
         <div class="writer_button">
             <div class="button_bottom">
                 <button class="bottom_submit">SUBMIT</button>
@@ -88,13 +88,11 @@
 <div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
 
 
-
 <!--소메뉴 검색 모달 div-->
 <div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
 
 <!--미니 메뉴 div-->
 <div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
-
 
 
 <!--이 페이지에 필요한 js-->

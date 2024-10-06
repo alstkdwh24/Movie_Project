@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.movie.ReservationService.ReservationMapper">
     <insert id="movie_report_resist" parameterType="ReservationVO">
-    insert into reservation_contents(movie_title,movie_place, movie_time, movie_Seat, username)   values  (#{movieTitle}, #{moviePlace}, #{movieTime},#{movieSeat}, #{username});
+    insert into reservation_contents(movie_title,movie_place, movie_time, movie_Seat, username, reservation_price)   values  (#{movieTitle}, #{moviePlace}, #{movieTime},#{movieSeat}, #{username}, #{reservation_price});
 
     </insert>
     <select id="getMovieCategoryChild"  resultType="CategoryVO">
@@ -28,7 +28,22 @@
             where  movie_category_lv=3 and group_id="A" ;
         </select>
 
+<!--    예약 SQL-->
+    <select id="getReservation_board" resultType="int">
+        select count(*) from  reservation_contents;
 
+    </select>
+
+
+    <select id="getReservation_pay" resultType="ReservationVO">
+        select * from reservation_contents;
+    </select>
+
+    <delete id="reservation_Delete">
+        delete
+        from reservation_contents
+        where reservation_number=#{reservation_number}
+    </delete>
 
 
 

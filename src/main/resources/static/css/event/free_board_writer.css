@@ -41,6 +41,11 @@
 background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgba(247, 247, 247, 0.84));
 
 }
+
+.big_content_file.hover{
+    border-color: #333;
+
+}
 .writer_button{
     height: 10%;
     width: 100%;

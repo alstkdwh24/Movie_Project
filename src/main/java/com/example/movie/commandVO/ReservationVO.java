@@ -16,4 +16,9 @@ public class ReservationVO {
     private String moviePlace;   // CamelCase로 변경
     private Integer reservation_number;
     private String movieSeat;
+    private String movie_title;
+    private String movie_place;
+    private String movie_time;
+    private String movie_Seat;
+    private String reservation_price;
 }

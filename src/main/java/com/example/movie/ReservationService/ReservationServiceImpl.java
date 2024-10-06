@@ -2,6 +2,7 @@ package com.example.movie.ReservationService;
 
 import com.example.movie.commandVO.CategoryVO;
 import com.example.movie.commandVO.ReservationVO;
+import com.example.movie.util.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +35,23 @@ public class ReservationServiceImpl implements ReservationService{
     }
 
     @Override
+    public int getReservation_board(Criteria cri) {
+        return reservationMapper.getReservation_board(cri);
+    }
+
+    @Override
     public int movie_report_resist(ReservationVO vo) {
         return reservationMapper.movie_report_resist(vo);
+    }
+
+    @Override
+    public ArrayList<ReservationVO> getReservation_pay(Criteria cri) {
+        return reservationMapper.getReservation_pay(cri);
+    }
+
+    @Override
+    public void reservation_Delete(ReservationVO vo) {
+        reservationMapper.reservation_Delete(vo);
     }
 
 }
