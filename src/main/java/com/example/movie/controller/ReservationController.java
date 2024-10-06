@@ -67,5 +67,11 @@ public class ReservationController {
     return "movie/Reservation/reservation_pay";
 }
 
+@GetMapping("success_reservation_page")
+    public String success_reservation_page(HttpSession session, Model model){
+    UserDetails userDetails = (UserDetails) session.getAttribute("user");
+    model.addAttribute("userSession", userDetails);
+return "movie/Reservation/success_reservation_page";
+}
 
 }
