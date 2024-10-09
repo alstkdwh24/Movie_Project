@@ -23,6 +23,12 @@ public class Criteria {
     @Getter
     private String username;
 
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+
     public Criteria() {
         this.page = 1;
         this.amount = 8;

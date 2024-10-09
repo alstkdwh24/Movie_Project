@@ -5,6 +5,7 @@ import com.example.movie.commandVO.PaymentVO;
 import com.example.movie.commandVO.ReservationVO;
 import com.example.movie.util.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -48,6 +49,7 @@ public class ReservationServiceImpl implements ReservationService{
 
     @Override
     public List<ReservationVO> getReservation_pay(Criteria cri) {
+
 
         return reservationMapper.getReservation_pay(cri);
     }

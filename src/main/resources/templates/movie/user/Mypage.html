@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+<!--    제이쿼리js-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
     <!--    본페이지 css-->
     <link rel="stylesheet" href="/css/login/login.css">
 
@@ -41,56 +46,62 @@
 <body>
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 <div id="Mypage">
+    <input type="hidden" th:value="${userSession.username}" id="user">
     <div id="Mypage_account">
-        <div class="Mypage_titles"> 회원 수정</div>
-        <div class="Mypage_input">
-            <div class="top_left">이름</div>
-            <div class="top_right"><input type="text" class="account_text"></div>
-        </div>
-        <div class="blank"></div>
-        <div class="Mypage_input">
-            <div class="top_left">아이디</div>
-            <div class="top_right"><input type="text" class="account_text"></div>
-        </div>
-        <div class="blank"></div>
+        <div id="add"></div>
+<!--        <div class="Mypage_titles"> 회원 수정</div>-->
+<!--        <div class="Mypage_input">-->
+<!--            <div class="top_left">이름</div>-->
+<!--            <div class="top_right"><input type="text" class="account_text"></div>-->
+<!--        </div>-->
+<!--        <div class="blank"></div>-->
+<!--        <div class="Mypage_input">-->
+<!--            <div class="top_left">아이디</div>-->
+<!--            <div class="top_right"><input type="text" class="account_text"></div>-->
+<!--        </div>-->
+<!--        <div class="blank"></div>-->
 
-        <div class="Mypage_input">
-            <div class="top_left">비밀번호</div>
-            <div class="top_right"><input type="text" class="account_text"></div>
-        </div>
-        <div class="blank"></div>
+<!--        <div class="Mypage_input">-->
+<!--            <div class="top_left">비밀번호</div>-->
+<!--            <div class="top_right"><input type="text" class="account_text"></div>-->
+<!--        </div>-->
+<!--        <div class="blank"></div>-->
 
-        <div class="Mypage_input">
-            <div class="top_left">핸드폰번호</div>
-            <div class="top_right"><input type="text" class="account_text"></div>
-        </div>
-        <div class="blank"></div>
+<!--        <div class="Mypage_input">-->
+<!--            <div class="top_left">핸드폰번호</div>-->
+<!--            <div class="top_right"><input type="text" class="account_text"></div>-->
+<!--        </div>-->
+<!--        <div class="blank"></div>-->
 
-        <div class="Mypage_input">
-            <div class="top_left">생년월일</div>
-            <div class="top_right"><input type="text" class="account_text"></div>
-        </div>
-        <div class="blank"></div>
+<!--        <div class="Mypage_input">-->
+<!--            <div class="top_left">생년월일</div>-->
+<!--            <div class="top_right"><input type="text" class="account_text"></div>-->
+<!--        </div>-->
+<!--        <div class="blank"></div>-->
 
-        <div class="Mypage_input">
-            <div class="top_left">성별</div>
-            <div class="top_right"><input type="text" class="account_text"></div>
-        </div>
-        <div class="blank"></div>
+<!--        <div class="Mypage_input">-->
+<!--            <div class="top_left">성별</div>-->
+<!--            <div class="top_right"><input type="text" class="account_text"></div>-->
+<!--        </div>-->
+<!--        <div class="blank"></div>-->
 
-        <div class="Mypage_input">
-            <div class="top_left">직업</div>
-            <div class="top_right"><input type="text" class="account_text"></div>
-        </div>
-        <div class="blank"></div>
+<!--        <div class="Mypage_input">-->
+<!--            <div class="top_left">직업</div>-->
+<!--            <div class="top_right"><input type="text" class="account_text"></div>-->
+<!--        </div>-->
+<!--        <div class="blank"></div>-->
 
-        <div class="Mypage_input">
-            <div class="top_left">이메일</div>
-            <div class="top_right"><input type="text" class="account_text"></div>
-        </div>
-        <div class="Mypage_title">
-            <button type="button" id="correction">수정</button>
-            <button type="button" id="cancel">취소</button>
+<!--        <div class="Mypage_input">-->
+<!--            <div class="top_left">이메일</div>-->
+<!--            <div class="top_right"><input type="text" class="account_text"></div>-->
+<!--        </div>-->
+<!--        <div class="Mypage_title">-->
+<!--            <button type="button" id="correction">수정</button>-->
+<!--            <button type="button" id="cancel">취소</button>-->
+<!--        </div>-->
+          <div class="Mypage_title">
+         <button type="button" class="corrections">수정</button>
+        <button type="button" id="cancel" onclick="location.href='/movie/mains'">취소</button>
         </div>
     </div>
 
@@ -124,6 +135,12 @@
 
 <!--미니 메뉴-->
 <script src="/js/modal/menu_modal.js"></script>
+
+<!--account js-->
+<script src="/js/data/User/Mypage.js"></script>
+
+<!--motify js-->
+<script src="/js/data/User/modify.js"></script>
 </body>
 
 </html>

@@ -8,6 +8,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/resources/templates/movie/community/freeboard.html" value="file://$PROJECT_DIR$/src/main/resources/templates/movie/community" />
         <entry key="file://$PROJECT_DIR$/src/main/resources/templates/movie/mains_fragment/mains_menus.html" value="file://$PROJECT_DIR$/src/main/resources/templates/movie/mains_fragment" />
         <entry key="file://$PROJECT_DIR$/src/main/resources/templates/movie/sub_menu-fragment/sub_menu_fragment.html" value="file://$PROJECT_DIR$/src/main/resources/templates/movie/sub_menu-fragment" />
+        <entry key="file://$PROJECT_DIR$/src/main/resources/templates/movie/user/Mypage.html" value="file://$PROJECT_DIR$/src/main/resources/templates/movie/user" />
       </map>
     </option>
   </component>

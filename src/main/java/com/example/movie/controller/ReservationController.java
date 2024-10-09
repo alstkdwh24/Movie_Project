@@ -45,14 +45,13 @@ public class ReservationController {
 
     @GetMapping("/reservation_report")
     public String reservation_report(HttpSession session, Model model  , Criteria cri, ReservationVO vo) {
-        List<ReservationVO> List = reservationService.getReservation_pay(cri);
-
-
 
         int total=reservationService.getReservation_board(cri);
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
+        cri.setUsername(userDetails.getUsername()); // 세션에서 가져온 username 사용
+        List<ReservationVO> List = reservationService.getReservation_pay(cri);
+
         PageVO pageVO = new PageVO(cri, total);
-        cri.setUsername(userDetails.getUsername());
         model.addAttribute("userSession", userDetails);
         model.addAttribute("list",List);
 
