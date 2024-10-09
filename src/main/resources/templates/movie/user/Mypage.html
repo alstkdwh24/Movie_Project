@@ -3,14 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+<!--    제이쿼리js-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
     <!--    본페이지 css-->
     <link rel="stylesheet" href="/css/login/login.css">
+
+    <!--    mypage css-->
+    <link rel="stylesheet" href="/css/User/Mypage.css">
 
     <!--    mains css-->
     <link rel="stylesheet" href="/css/login/login(menu).css">
     <!--    <link rel="stylesheet" href="/css/login/logins.css">-->
     <link rel="stylesheet" href="/css/login/join(memus).css">
     <link rel="stylesheet" href="/css/login/join.css">
+
+    <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
+
+
+    <!--    채팅 css-->
+    <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
+
+
+    <!--    커뮤니티 모닿 css-->
+    <link rel="stylesheet" href="/css/mains/modal/fragment_gallery_modal.css">
+
+
+
+    <!--    미니메뉴 모달-->
+    <link rel="stylesheet" href="/css/mains/main_imin_menu.css">
 
     <!--구글 폰트-->
     <link rel="stylesheet"
@@ -22,6 +45,102 @@
 </head>
 <body>
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
+<div id="Mypage">
+    <input type="hidden" th:value="${userSession.username}" id="user">
+    <div id="Mypage_account">
+        <div id="add"></div>
+<!--        <div class="Mypage_titles"> 회원 수정</div>-->
+<!--        <div class="Mypage_input">-->
+<!--            <div class="top_left">이름</div>-->
+<!--            <div class="top_right"><input type="text" class="account_text"></div>-->
+<!--        </div>-->
+<!--        <div class="blank"></div>-->
+<!--        <div class="Mypage_input">-->
+<!--            <div class="top_left">아이디</div>-->
+<!--            <div class="top_right"><input type="text" class="account_text"></div>-->
+<!--        </div>-->
+<!--        <div class="blank"></div>-->
 
+<!--        <div class="Mypage_input">-->
+<!--            <div class="top_left">비밀번호</div>-->
+<!--            <div class="top_right"><input type="text" class="account_text"></div>-->
+<!--        </div>-->
+<!--        <div class="blank"></div>-->
+
+<!--        <div class="Mypage_input">-->
+<!--            <div class="top_left">핸드폰번호</div>-->
+<!--            <div class="top_right"><input type="text" class="account_text"></div>-->
+<!--        </div>-->
+<!--        <div class="blank"></div>-->
+
+<!--        <div class="Mypage_input">-->
+<!--            <div class="top_left">생년월일</div>-->
+<!--            <div class="top_right"><input type="text" class="account_text"></div>-->
+<!--        </div>-->
+<!--        <div class="blank"></div>-->
+
+<!--        <div class="Mypage_input">-->
+<!--            <div class="top_left">성별</div>-->
+<!--            <div class="top_right"><input type="text" class="account_text"></div>-->
+<!--        </div>-->
+<!--        <div class="blank"></div>-->
+
+<!--        <div class="Mypage_input">-->
+<!--            <div class="top_left">직업</div>-->
+<!--            <div class="top_right"><input type="text" class="account_text"></div>-->
+<!--        </div>-->
+<!--        <div class="blank"></div>-->
+
+<!--        <div class="Mypage_input">-->
+<!--            <div class="top_left">이메일</div>-->
+<!--            <div class="top_right"><input type="text" class="account_text"></div>-->
+<!--        </div>-->
+<!--        <div class="Mypage_title">-->
+<!--            <button type="button" id="correction">수정</button>-->
+<!--            <button type="button" id="cancel">취소</button>-->
+<!--        </div>-->
+          <div class="Mypage_title">
+         <button type="button" class="corrections">수정</button>
+        <button type="button" id="cancel" onclick="location.href='/movie/mains'">취소</button>
+        </div>
+    </div>
+
+</div>
+<!--커뮤니티div-->
+<div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
+
+<!--채팅 모달div-->
+<div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
+
+
+<!--소메뉴 검색css-->
+<div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
+
+
+<!--미니 메뉴 div-->
+<div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
+
+
+<!--커뮤니티 js-->
+<script src="/js/modal/Gallery_modal2.js"></script>
+
+<!--소메뉴 검색 모달-->
+<script src="/js/modal/momo_modal.js"></script>
+<!--채팅 모달js-->
+<script src="/js/modal/chat_modal.js"></script>
+
+
+<!--로그인 모달-->
+<script src="/js/login/login.js"></script>
+
+<!--미니 메뉴-->
+<script src="/js/modal/menu_modal.js"></script>
+
+<!--account js-->
+<script src="/js/data/User/Mypage.js"></script>
+
+<!--motify js-->
+<script src="/js/data/User/modify.js"></script>
 </body>
+
 </html>

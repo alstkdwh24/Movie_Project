@@ -1,12 +1,15 @@
 package com.example.movie.ReservationService;
 
 import com.example.movie.commandVO.CategoryVO;
+import com.example.movie.commandVO.PaymentVO;
 import com.example.movie.commandVO.ReservationVO;
 import com.example.movie.util.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service("reservationService")
 public class ReservationServiceImpl implements ReservationService{
@@ -45,13 +48,20 @@ public class ReservationServiceImpl implements ReservationService{
     }
 
     @Override
-    public ArrayList<ReservationVO> getReservation_pay(Criteria cri) {
+    public List<ReservationVO> getReservation_pay(Criteria cri) {
+
+
         return reservationMapper.getReservation_pay(cri);
     }
 
     @Override
     public void reservation_Delete(ReservationVO vo) {
         reservationMapper.reservation_Delete(vo);
+    }
+
+    @Override
+    public int paymentVO(PaymentVO vo) {
+        return reservationMapper.paymentVO(vo);
     }
 
 }

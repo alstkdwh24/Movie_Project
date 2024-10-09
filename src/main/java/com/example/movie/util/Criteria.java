@@ -1,6 +1,7 @@
 package com.example.movie.util;
 
 import lombok.Data;
+import lombok.Getter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +20,14 @@ public class Criteria {
     private int First;
     private Integer g_number;
     private String nickname;
+    @Getter
+    private String username;
+
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
 
     public Criteria() {
         this.page = 1;
@@ -36,3 +45,4 @@ public class Criteria {
     }
 
 }
+

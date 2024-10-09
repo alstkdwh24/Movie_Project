@@ -35,8 +35,9 @@
     </select>
 
 
-    <select id="getReservation_pay" resultType="ReservationVO">
-        select * from reservation_contents;
+    <select id="getReservation_pay" parameterType="com.example.movie.util.Criteria" resultType="ReservationVO">
+        select * from reservation_contents
+        where username=#{username};
     </select>
 
     <delete id="reservation_Delete">
@@ -44,6 +45,11 @@
         from reservation_contents
         where reservation_number=#{reservation_number}
     </delete>
+
+    <insert id="paymentVO" parameterType="com.example.movie.commandVO.PaymentVO">
+        insert into movie_payment (username, movie_title, movie_time, movie_place,paymentId,reservation_price,movie_Seat,payment_time)
+        values (#{username},#{movie_title}, #{movie_time}, #{movie_place}, #{paymentId},#{reservation_price},#{movie_Seat}, #{payment_time})
+    </insert>
 
 
 

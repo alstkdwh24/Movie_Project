@@ -1,0 +1,118 @@
+#Mypage {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#Mypage_account {
+    width: 60%;
+    background-color: white;
+    height: 78%;
+}
+/*수정 제목*/
+.Mypage_title {
+    width: 100%;
+    height: 14%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    top:-13%;
+
+}
+
+.Mypage_titles {
+    width: 100%;
+    height: 12%;
+    border: 1px solid black;
+    font-size: 40px;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+
+}
+
+.Mypage_input{
+    width: 100%;
+    height: 7.5%;
+    border:1px solid black;
+    box-sizing: border-box;
+    display: flex;
+
+
+}
+
+.blank{
+    width: 100%;
+    height: 2%;
+    border: 1px solid black;
+}
+
+.corrections{
+    width: 20%;
+    height: 60%;
+    border-radius: 10px;
+    background-color:black;
+    border: none;
+    font-size: 24px;
+    color:white;
+}
+
+#cancel{
+    width: 20%;
+    height: 60%;
+    border-radius: 10px;
+    background-color:black;
+    border: none;
+    font-size: 24px;
+    color:white;
+}
+
+.top_left{
+    width: 30%;
+    height: 100%;
+    border: 1px solid black;
+    font-weight: bolder;
+    font-size: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#888888;
+}
+
+.top_right{
+    width: 70%;
+    height: 100%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color:white;
+
+}
+
+.account_text{
+    width: 100%;
+    height: 70%;
+    font-size: 20px;
+    background-color: black;
+    border: none;
+    color: white;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+#add{
+    width: 100%;
+    height:100%;
+    box-sizing: border-box;
+}

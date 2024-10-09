@@ -1,10 +1,12 @@
 package com.example.movie.ReservationService;
 
 import com.example.movie.commandVO.CategoryVO;
+import com.example.movie.commandVO.PaymentVO;
 import com.example.movie.commandVO.ReservationVO;
 import com.example.movie.util.Criteria;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface ReservationService {
 
@@ -19,9 +21,12 @@ public interface ReservationService {
     int getReservation_board(Criteria cri);
     int movie_report_resist(ReservationVO vo);
 
-    ArrayList<ReservationVO> getReservation_pay(Criteria cri);
+    List<ReservationVO> getReservation_pay(Criteria cri);
 
     void reservation_Delete(ReservationVO vo);
+
+    int paymentVO(PaymentVO vo);
+
 
 
 }
