@@ -5,6 +5,9 @@
     <title>Title</title>
     <!--    본페이지 css-->
     <link rel="stylesheet" href="/css/login/login.css">
+<!--제이쿼리-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
     <!--    mains css-->
     <link rel="stylesheet" href="/css/login/login(menu).css">
@@ -41,7 +44,7 @@
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 <div id="product_list">
     <div id="product_list_top">
-        <div class="list_bottom">주문번호</div>
+        <div id="movie_paymentId">주문번호</div>
         <div class="list_bottom">영화제목</div>
         <div class="list_bottom">영화시간</div>
         <div class="list_bottom">영화관</div>
@@ -50,16 +53,7 @@
         <div class="list_bottom">결제시간</div>
         <div class="list_bottom">아이디</div>
     </div>
-    <div class="product_list_top">
-        <div class="list_bottom">주문번호</div>
-        <div class="list_bottom">영화제목</div>
-        <div class="list_bottom">영화시간</div>
-        <div class="list_bottom">영화관</div>
-        <div class="list_bottom">영화좌석</div>
-        <div class="list_bottom">영화가격</div>
-        <div class="list_bottom">결제시간</div>
-        <div class="list_bottom">아이디</div>
-    </div>
+
 </div>
 
 <!--소메뉴 커뮤니티 모달 div-->
@@ -86,4 +80,7 @@
 
 <!--미니 메뉴-->
 <script src="/js/modal/menu_modal.js"></script>
+
+<!--구매상품 js-->
+<script src="/js/data/User/movie_myproduct.js"></script>
 </html>

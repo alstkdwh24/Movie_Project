@@ -31,5 +31,7 @@ public interface ReservationMapper {
 
     int paymentVO(PaymentVO vo);
 
+    ArrayList<PaymentVO> getPayment_report();
+
 
 }

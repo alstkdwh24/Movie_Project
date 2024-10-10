@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @RestController
 public class RestPaymentController {
 
@@ -26,4 +28,13 @@ public class RestPaymentController {
            return new ResponseEntity<>(vo,HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @GetMapping("/movie/payment/report")
+    public ResponseEntity<ArrayList<PaymentVO>> payment_report(){
+ArrayList<PaymentVO> paymentReport=reservationService.getPayment_report();
+return new ResponseEntity<>(paymentReport,HttpStatus.OK);
+
+    }
+
+
+
 }

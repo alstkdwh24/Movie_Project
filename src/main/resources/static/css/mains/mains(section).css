@@ -1,3 +1,5 @@
+
+/*여기가 영화 상영 예정작*/
 section{
     height: 22%;
     width: 100%;
@@ -47,3 +49,51 @@ color: white;
     height: 7%;
     color: white;
 }
+
+.movie_title_ex{
+    height: 81%;
+    width: 100%;
+    border: 1px solid white;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+
+}
+
+.movie_picture{
+    border: 1px solid white;
+    height: 100%;
+    width:20%;
+    box-sizing: border-box;
+
+}
+
+.movie_image{
+    border: 1px solid white;
+    height: 84%;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.movie_gle{
+    border: 1px solid white;
+    height: 16%;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.movie_real_image{
+    width: 90%;
+    height: 90%;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+

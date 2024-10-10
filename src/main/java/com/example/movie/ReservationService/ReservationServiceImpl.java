@@ -64,4 +64,10 @@ public class ReservationServiceImpl implements ReservationService{
         return reservationMapper.paymentVO(vo);
     }
 
+    @Override
+    public ArrayList<PaymentVO> getPayment_report() {
+        return reservationMapper.getPayment_report();
+    }
+
+
 }

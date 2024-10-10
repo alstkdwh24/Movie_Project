@@ -36,7 +36,7 @@ body{
 
 
 .list_bottom{
-    width: 12.5%;
+    width: 11.4%;
     height: 100%;
     box-sizing: border-box;
     border: 1px solid white;
@@ -45,4 +45,30 @@ body{
     align-items: center;
     font-size:16px;
     color:white;
+}
+
+#paymentId{
+    width: 20%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:16px;
+    color:white;
+
+}
+
+#movie_paymentId{
+    width: 20%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:16px;
+    color:white;
+
 }

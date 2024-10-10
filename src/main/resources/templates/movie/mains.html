@@ -5,23 +5,26 @@
     <meta charset="UTF-8">
     <!--    &#45;&#45;css파일-->
 
+<!--    제이쿼리 js파일-->
+    <script src="/js/jquery-3.7.1.min.js"></script>
+
     <link rel="stylesheet" href="/css/mains/mains(article).css">
     <link rel="stylesheet" href="/css/mains/mains(section).css">
     <link rel="stylesheet" href="/css/mains/mains(section2).css">
     <link rel="stylesheet" href="/css/mains/mains_movie_store.css">
     <link rel="stylesheet" href="/css/mains/modal/mains_botton_modal.css">
-   <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
     <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
     <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
-   <link rel="stylesheet" href="/css/mains/modal/sneak_modal.css">
+    <link rel="stylesheet" href="/css/mains/modal/sneak_modal.css">
 
 
-<!--    미니메뉴 모달-->
+    <!--    미니메뉴 모달-->
     <link rel="stylesheet" href="/css/mains/main_imin_menu.css">
 
     <!--    모달 css-->
-<!--    <link rel="stylesheet" href="/css/modal/modal.css">-->
-<!--    <link rel="stylesheet" href="/css/modal/chat_modal.css">-->
+    <!--    <link rel="stylesheet" href="/css/modal/modal.css">-->
+    <!--    <link rel="stylesheet" href="/css/modal/chat_modal.css">-->
     <!--    제이쿼이 -->
     <script src="/js/jquery-3.7.1.min.js"></script>
 
@@ -43,36 +46,47 @@
 </head>
 <body>
 <div class="overflow">
-<div th:replace="/movie/mains_fragment/mains_menus.html :: article_div" >
+    <div th:replace="/movie/mains_fragment/mains_menus.html :: article_div">
 
-</div>
+    </div>
     <div th:replace="/movie/mains_fragment/modal/mains_menu_modal.html :: mains_menu_modal"></div>
 
 </div>
 <section>
-<div class="movie_list">
-    <div class="good_movie"></div>
-    <div class="movie_title">
-        <div class="sort">
-            <div class="watch_movie">상영중영화</div>|
-            <div class="watch_movie">상영예정인영화</div>
+    <div class="movie_list">
+        <div class="good_movie"></div>
+        <div class="movie_title">
+            <div class="sort">
+                <div class="watch_movie" id="moving">상영중영화</div>
+                |
+                <div class="watch_movie" id="movie_watch">상영예정인영화</div>
+            </div>
+            <div class="sort" id="right"></div>
         </div>
-        <div class="sort" id="right"></div>
-    </div>
-    <div class="movie_title_ex">
-        <div class="movie_image"></div>
-        <div class="ex">
-            <div class="movie_title_real"></div>
-            <div class="date">
-                <div class="movie_buy"></div>
-                <div class="movie_socore"><div>
-                </div>
-                </div>
+        <div class="movie_title_ex">
+            <div class="movie_picture">
+
+                    <div class="movie_image">
+                        <div class="movie_real_image"></div>
+                    </div>
+                <div class="movie_gle">영화제목</div>
+
+            </div>
+            <div class="movie_picture">
+
+            </div>
+            <div class="movie_picture">
+
+            </div>
+            <div class="movie_picture">
+
+            </div>
+            <div class="movie_picture">
+
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 
 </section>
 <div th:replace="/movie/mains_fragment/mains_fragment.html :: mains_fragment"></div><!--영화관 이벤트-->
@@ -90,9 +104,19 @@
 
 <script src="/js/modal/mains_menu_modal.js"></script>
 <script src="/js/modal/modal.js"></script>
-s<script src="/js/modal/chat_modal.js"></script>
+
+<script src="/js/modal/chat_modal.js"></script>
 <script src="/js/slide/slide.js"></script>
 <script src="/js/modal/chat_modal.js"></script>
 <script src="/js/modal/menu_modal.js"></script>
+
+<!--section1 js-->
+<script src="/js/slide/section1.js"></script>
+
+<!--section2 js-->
+<script src="/js/slide/section2.js"></script>
+
+<!--section3 js-->
+<script src="/js/slide/section3.js"></script>
 </body>
 </html>
