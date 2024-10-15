@@ -18,4 +18,5 @@ public class PaymentVO {
     private int reservation_price;
     private String payment_time;
     private String username;
+    private String UserPhone;
 }

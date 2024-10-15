@@ -1,8 +1,12 @@
 document.addEventListener('DOMContentLoaded',(event)=>{
-   $.ajax({
+   let username=document.getElementById("username").value;
+   console.log(username.textContent);
+    $.ajax({
+
        type:"get",
-       url:"/movie/payment/report",
+       url:`/movie/payment/report`,
        contentType:"application/json",
+       data:{username:username},
        success:function (data) {
             payment_report(data);
        }

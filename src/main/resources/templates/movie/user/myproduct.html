@@ -42,6 +42,7 @@
 </head>
 <body>
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
+<input type="hidden" id="username" th:value="${userSession.username}">
 <div id="product_list">
     <div id="product_list_top">
         <div id="movie_paymentId">주문번호</div>

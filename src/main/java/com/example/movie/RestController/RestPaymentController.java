@@ -2,6 +2,7 @@ package com.example.movie.RestController;
 
 import com.example.movie.ReservationService.ReservationService;
 import com.example.movie.commandVO.PaymentVO;
+import com.example.movie.commandVO.ReservationVO;
 import com.example.movie.communityEventService.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,10 +30,15 @@ public class RestPaymentController {
         }
     }
     @GetMapping("/movie/payment/report")
-    public ResponseEntity<ArrayList<PaymentVO>> payment_report(){
-ArrayList<PaymentVO> paymentReport=reservationService.getPayment_report();
+    public ResponseEntity<ArrayList<PaymentVO>> payment_report(@RequestParam("username") String username){
+ArrayList<PaymentVO> paymentReport=reservationService.getPayment_report(username);
 return new ResponseEntity<>(paymentReport,HttpStatus.OK);
 
+    }
+    @GetMapping("/payment/status")
+    public ResponseEntity<?> pay_same(@RequestParam("username") String username,@RequestParam("paymentId")String paymentId){
+        ReservationVO paymentId_same=reservationService.paymentId_same(username,paymentId);
+        return ResponseEntity.ok(paymentId_same);
     }
 
 

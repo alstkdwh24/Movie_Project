@@ -48,11 +48,11 @@ dependencies {
 
     // 아임포트 REST 클라이언트
     // 아임포트 REST 클라이언트
-//    implementation 'com.github.iamport:iamport-rest-client-java-hc:0.0.3'
+    implementation 'com.github.iamport:iamport-rest-client-java-hc:0.0.2'
 
-    // 필요하다면 JitPack 라이브러리 추가
+//    // 필요하다면 JitPack 라이브러리 추가
      implementation 'com.github.iamport:iamport-rest-client-java:0.2.23'
-    //테스트모듈 트러블슈팅
+//    //테스트모듈 트러블슈팅
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
 }
