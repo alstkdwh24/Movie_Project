@@ -84,8 +84,12 @@ submit_pay.forEach(submit_pays => {
         let email = "alstkdwh24@naver.com";
         let UserPhone = "01043324254";// class로 변경
         let paymentId = reservationItem.querySelector("#paymentId").textContent;
-
-
+        function generateMerchantUid() {
+            const timestamp = Date.now(); // 현재 시간
+            const randomNum = Math.floor(Math.random() * 100000); // 랜덤 숫자 생성
+            return `merchant_${timestamp}_${randomNum}`; // 고유한 merchant_uid 생성
+        }
+        const merchantUid = generateMerchantUid();
         console.log()
         console.log(paymentId)
         let response = await PortOne.requestPayment({
@@ -109,11 +113,14 @@ submit_pay.forEach(submit_pays => {
                 phoneNumber: UserPhone,
                 email: email
             },
+            merchant_uid: merchantUid
 
         })
+
         if (response && response.paymentId) {
             await paymentId_check(response.paymentId, response, reservationItem, movie_title, movie_place, movie_time, movie_Seat, reservation_price, username, email, UserPhone)
-
+            const merchantUid = response.response.merchant_uid;
+            console.log(merchantUid)
         } else {
             alert("paymentId요청 실패");
         }
@@ -146,7 +153,7 @@ submit_pay.forEach(submit_pays => {
                             email: email,
                             UserPhone: UserPhone
                         }),
-                        success: async function () {
+                        success: async function (response) {
                             console.log("성공");
                             let reservationNumber = reservationItem.querySelector('input[name="reservation_number"]').value;
 
@@ -158,9 +165,11 @@ submit_pay.forEach(submit_pays => {
 
 // 비동기 함수로 감싸기
                             })
-                            reservationItem.remove();
+                                reservationItem.remove();
+                                alert("결제가 완료되었습니다.");
 
-                            alert("결제가 완료되었습니다.");
+
+
                         }
                     })
 
