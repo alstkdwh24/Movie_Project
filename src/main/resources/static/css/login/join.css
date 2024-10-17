@@ -22,7 +22,7 @@ body {
 }
 
 #id_title {
-    height: 14%;
+    height: 12%;
     width: 100%;
     /*border: 1px solid black;*/
     display: flex;
@@ -41,7 +41,7 @@ body {
 }
 
 .black {
-    height: 3%;
+    height: 2.5%;
     width: 100%;
     /*border: 1px solid black;*/
 }
@@ -90,7 +90,7 @@ label{
 }
 
 .div_button{
-height: 17.1%;
+height: 14.5%;
     width: 100%;
     /*border: 1px solid black;*/
     box-sizing: border-box;
@@ -103,7 +103,7 @@ height: 17.1%;
 /*버튼*/
 .botton_button{
     width: 20%;
-    height: 40%;
+    height: 50%;
     border-radius: 10px;
     background-color:tan;
     border: none;

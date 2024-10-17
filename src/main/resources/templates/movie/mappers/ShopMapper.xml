@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.movie.ShopService.ShopMapper">
+    <insert id="delicious_Resist" parameterType="DeliciousVO">
+        insert into delicious (delicious_name,delicious_filename, uuid, reg_date, movie_filepath)
+        values (#{delicious_name},#{delicious_filename}, #{uuid}, now(),#{movie_filepath})
+    </insert>
+
+</mapper>

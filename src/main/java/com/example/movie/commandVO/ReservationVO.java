@@ -21,4 +21,6 @@ public class ReservationVO {
     private String movie_time;
     private String movie_Seat;
     private String reservation_price;
+    private String UserPhone;
+    private String paymentId;
 }

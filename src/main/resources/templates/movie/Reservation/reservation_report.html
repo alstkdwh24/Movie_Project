@@ -44,6 +44,7 @@
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 
 <input type="hidden" th:value="${userSession.username}" id="username" >
+
 <form id="middle" action="/reservation_report" name="reservation">
     <div id="reservation_board">
         <div id="reservation_list">
@@ -65,7 +66,7 @@
                 <div class="list_top">[[${vo.reservation_number}]]</div>
                 <input type="hidden" name="reservation_number"
                        th:value="${vo.reservation_number}">
-
+                <div class="hidden" th:value="${vo.paymentId}" id="paymentId">[[${vo.paymentId}]]</div>
                 <div class="list_top" id="movie_title">[[${vo.movie_title}]]</div>
                 <div class="list_top" id="movie_place">[[${vo.movie_place}]]</div>
                 <div class="list_top" id="movie_time">[[${vo.movie_time}]]</div>
@@ -106,6 +107,7 @@
 
 <!--미니 메뉴 div-->
 <div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
+<!-- PortOne 라이브러리의 올바른 경로를 사용 -->
 
 
 <!--커뮤니티 js-->
@@ -127,7 +129,6 @@
 <script src="/js/data/Reservation_Seat/reservation_report.js"></script>
 <!--    portone js-->
 <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
-<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 
 
 </body>

@@ -27,7 +27,10 @@ public interface ReservationService {
 
     int paymentVO(PaymentVO vo);
 
-    ArrayList<PaymentVO> getPayment_report();
+    ArrayList<PaymentVO> getPayment_report(String username);
+
+    ReservationVO paymentId_same(String username,String paymentId);
+
 
 
 }
