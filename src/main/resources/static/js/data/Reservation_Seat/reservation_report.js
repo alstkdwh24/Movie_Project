@@ -65,10 +65,9 @@ cancel.forEach(button => {
 
     }
 })
-
-
 let submit_pay = document.querySelectorAll(".submit_pay");
 submit_pay.forEach(submit_pays => {
+
     submit_pays.onclick = async function (event) {
         console.log("버튼 클릭됨");
 
@@ -80,108 +79,54 @@ submit_pay.forEach(submit_pays => {
         let movie_time = reservationItem.querySelector("#movie_time").textContent;
         let movie_Seat = reservationItem.querySelector("#movie_Seat").textContent;
         let reservation_price = reservationItem.querySelector("#reservation_price").textContent;
-        let username = document.getElementById("username").value; // 사용자 이름은 여전히 전체에서 가져옵니다.
+        let username = document.getElementById("username").value;
         let email = "alstkdwh24@naver.com";
-        let UserPhone = "01043324254";// class로 변경
+        let UserPhone = "01043324254"; // class로 변경
         let paymentId = reservationItem.querySelector("#paymentId").textContent;
+        let merchant_uid="12313131"+Math.floor(Math.random()*1000);
+        let imp_uid="12313131"+Math.floor(Math.random()*1000);
         function generateMerchantUid() {
-            const timestamp = Date.now(); // 현재 시간
-            const randomNum = Math.floor(Math.random() * 100000); // 랜덤 숫자 생성
+            const timestamp = Date.now();
+            const randomNum = Math.floor(Math.random() * 100000);
             return `merchant_${timestamp}_${randomNum}`; // 고유한 merchant_uid 생성
         }
+
         const merchantUid = generateMerchantUid();
-        console.log()
-        console.log(paymentId)
-        let response = await PortOne.requestPayment({
+        console.log(paymentId);
+        IMP.init("imp00205734");
 
-            storeId: "store-c84ff70f-5317-4896-b83f-9fb7b7d9ea75",
-            paymentId: paymentId, // 이 부분이 유효한지 확인
-            movie_place: movie_place,
-            movie_time: movie_time,
-            movie_Seat: movie_Seat,
-            orderName: movie_title,
-            totalAmount: parseInt(reservation_price), // 실제 결제 금액으로 설정
-            currency: "KRW",
-            channelKey: "channel-key-a8834583-df61-4d0a-82b0-976ae5f3d428",
-            payMethod: "CARD",
-            onClose: function() {
-                console.log("결제가 취소되었습니다.");
-                // 취소 시 필요한 추가 처리
-            },
-            customer: {
-                fullName: username,
-                phoneNumber: UserPhone,
-                email: email
-            },
-            merchant_uid: merchantUid
-
-        })
-
-        if (response && response.paymentId) {
-            await paymentId_check(response.paymentId, response, reservationItem, movie_title, movie_place, movie_time, movie_Seat, reservation_price, username, email, UserPhone)
-            const merchantUid = response.response.merchant_uid;
-            console.log(merchantUid)
-        } else {
-            alert("paymentId요청 실패");
-        }
-
-
-        async function paymentId_check(paymentId, response, reservationItem, movie_title, movie_place, movie_time, movie_Seat, reservation_price, username, email, UserPhone) {
-
-            try {
-                let responses = await fetch(`/payment/status?paymentId=${paymentId}&username=${username}`);
-                if (responses.ok) {
-
-                    let paymentStatus = await responses.json();
-                    if (paymentStatus.status === "cancel") {
-                        alert("결제가 취소되었습니다.")
-                        stop();
-                    }
-                    await $.ajax({
-                        url: "/payment/complete",
-                        method: "POST",
-                        contentType: "application/json",
-                        data: JSON.stringify({
-                            username: username,
-                            paymentId: paymentId,
-                            movie_title: movie_title,
-                            movie_place: movie_place,
-                            movie_time: movie_time,
-                            movie_Seat: movie_Seat,
-                            reservation_price: parseInt(reservation_price),
-                            payment_time: new Date().toISOString(),
-                            email: email,
-                            UserPhone: UserPhone
-                        }),
-                        success: async function (response) {
-                            console.log("성공");
-                            let reservationNumber = reservationItem.querySelector('input[name="reservation_number"]').value;
-
-                            await fetch('/movie/Reservation/reservation_Delete', {
-                                method: "post",
-                                headers: {'Content-Type': 'application/json'},
-                                body: JSON.stringify({reservation_number: reservationNumber}),
-                                // class로 변경
-
-// 비동기 함수로 감싸기
-                            })
-                                reservationItem.remove();
-                                alert("결제가 완료되었습니다.");
-
-
-
-                        }
-                    })
-
-                }
-            } catch
-                (error) {
-                alert("수정하세요")
+        IMP.request_pay({
+         channelKey: "channel-key-b59867e5-cbbe-463d-a06d-7a441a0c3533",
+            pay_method:"card",
+            merchant_uid:merchant_uid,
+            name:movie_title,
+            amount: parseInt(reservation_price),
+            buyer_email:email,
+            buyer_name:username,
+            buyer_tel:UserPhone,
+            current:"KRW",
+            vbank_due:"2025-12-24",
+            m_redirect_url:"https://naver.com",
+            period: {
+                from: "20240527",
+                to: "20241231"
             }
-        }
+        }, );
+
 
     }
-});
 
+})
+function get(response) {
 
-// 결제 완료 처리 함수
+    if (response.response && response.response.merchant_uid) {
+        const imp_uid = response.response.imp_uid;
+        const merchant_uid = response.response.merchant_uid;  // 주문 고유 번호
+        const paymentId = response.response.paymentId;
+        console.log("포트원 고유 거래번호 (imp_uid): ", imp_uid);
+        console.log("상점 고유 주문번호 (merchant_uid): ", merchant_uid);
+        console.log("결제 고유 ID: ", paymentId);
+    } else {
+        alert("요청실패")
+    }
+}
