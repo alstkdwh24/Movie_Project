@@ -10,8 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class TokenVO {
-    private String imp_key;
-    private String imp_secret;
+
+    private String apiSecret;
+
 
 
 }
