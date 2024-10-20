@@ -195,3 +195,4 @@ submit_pay.forEach(submit_pays => {
     // }
 
 });
+$.ajax({})
