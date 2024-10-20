@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.*;
+import org.springframework.security.access.method.P;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -62,6 +63,27 @@ public class RestPaymentController {
 
         return ResponseEntity.ok(response.getBody()); // 클라이언트에 응답 반환
     }
+
+//    @GetMapping("/payments/{paymentId}")
+//    @CrossOrigin(origins = "*")
+//    public ResponseEntity<PaymentVO> preEristerPayment(@PathVariable String paymentId,
+//                                               @RequestHeader("Authorization") String accessToken) {
+//        String url = String.format("https://api.portone.io/payments/%s", paymentId);
+//
+//        HttpHeaders headers=new HttpHeaders();
+//        headers.set("Authorization",accessToken);
+//        headers.setContentType(MediaType.APPLICATION_JSON); // JSON 형식으로 설정
+//
+//        HttpEntity<Void> entity = new HttpEntity<>(headers);
+//
+//        ResponseEntity<PaymentVO> response=restTemplate.exchange(url, HttpMethod.GET, entity, PaymentVO.class);
+//
+//
+//
+//
+//        return ResponseEntity.ok(response.getBody());
+//
+//    }
 }
 
 //    @PostMapping("/getToken")

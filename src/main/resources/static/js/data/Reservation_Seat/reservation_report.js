@@ -48,17 +48,13 @@ cancel.forEach(button => {
                 method: "post", headers: {
                     'Content-Type': 'application/json',
                 }, body: JSON.stringify({reservation_number: reservationNumber}),
+            }).then(response => {
+                if (response.ok) {
+                    reservationItem.remove();
+                } else {
+                    console.log("삭제 요청 실패:", response.statusText);
+                }
             })
-                .then(response => {
-                    if (response.ok) {
-                        reservationItem.remove();
-                    } else {
-                        console.log("삭제 요청 실패:", response.statusText);
-                    }
-                })
-                .catch(error => {
-                    console.error('삭제 요청 중 에러 발생:', error);
-                });
         }
 
     }
@@ -89,7 +85,7 @@ submit_pay.forEach(submit_pays => {
 
         const merchant_uid = generateMerchantUid();
         console.log("생성된 merchant_uid: ", merchant_uid);
-
+        console.log(paymentId)
         // 결제 요청 함수 호출
 
         const response = await PortOne.requestPayment({
@@ -102,8 +98,7 @@ submit_pay.forEach(submit_pays => {
             orderName: movie_title,
             totalAmount: parseInt(reservation_price),
             username: username,
-            movie_Seat: movie_Seat,
-            // buyer_email: email,
+            movie_Seat: movie_Seat, // buyer_email: email,
             // buyer_name: username,
             // buyer_tel: UserPhone,  // 개인정보 주의
             currency: "CURRENCY_KRW",
@@ -117,49 +112,65 @@ submit_pay.forEach(submit_pays => {
             return alert(response.message);
         }
         $.ajax({
-            url:"/api/Tokens",
-            type:"POST",
+            url: "/payment/complete",
+            method: "POST",
             headers: {"Content-Type": "application/json"},
-            data:JSON.stringify({
-                apiSecret:"H1jLKhQTtkseyRU1Y5jIDuYdiliP05toRLkPXArC58qW1y1GMXHjBZi7Rp8sjJFcGMtgaG8gqcspANLf"
+            data: JSON.stringify({
+                paymentId: paymentId,
+                orderName: movie_title,
+                storeId: "store-c84ff70f-5317-4896-b83f-9fb7b7d9ea75",
+                channelKey: "channel-key-406e8389-2fe6-43a1-a04b-0f1f2db5aef3",
+                payMethod: "CARD",
+                currency: "CURRENCY_KRW",
+                movie_place: movie_place,
+                movie_time: movie_time,
+                username: username,
+                movie_Seat: movie_Seat,
+                m_redirect_url: "https://naver.com",
+                customer: {
+                    fullName: "포트원", phoneNumber: "010-0000-1234", email: email
+                },
+
+                totalAmount: parseInt(reservation_price)
             }),
-            success:async function (response) {
-                let accessToken = response.accessToken;
-                console.log(accessToken);
+            success: await function (response) {
+                let paymentId = response.paymentId;
+                console.log(paymentId);
+                let imp_uid = response.imp_uid;
+                console.log(imp_uid)
                 $.ajax({
-                    url: "/payment/complete",
-                    method: "POST",
+                    url: "/api/Tokens",
+                    type: "POST",
                     headers: {"Content-Type": "application/json"},
                     data: JSON.stringify({
-                        paymentId: paymentId,
-                        orderName: movie_title,
-                        storeId: "store-c84ff70f-5317-4896-b83f-9fb7b7d9ea75",
-                        channelKey: "channel-key-406e8389-2fe6-43a1-a04b-0f1f2db5aef3",
-                        payMethod: "CARD",
-                        currency: "CURRENCY_KRW",
-                        movie_place: movie_place,
-                        movie_time: movie_time,
-                        username: username,
-                        movie_Seat: movie_Seat,
-                        m_redirect_url: "https://naver.com",
-                        customer: {
-                            fullName: "포트원", phoneNumber: "010-0000-1234", email: email
-                        },
-
-                        totalAmount: parseInt(reservation_price)
+                        apiSecret: "H1jLKhQTtkseyRU1Y5jIDuYdiliP05toRLkPXArC58qW1y1GMXHjBZi7Rp8sjJFcGMtgaG8gqcspANLf"
                     }),
-                    success: await function (response) {
-                        let paymentId = response.paymentId;
+                    success: function (response) {
+                        let accessToken = response.accessToken;
+                        console.log(accessToken);
                         console.log(paymentId);
-                        let imp_uid = response.imp_uid;
-                        console.log(imp_uid)
+
                         $.ajax({
-                            type: "POST",
-                            url: "payments/paymentId/pre-register",
-                            headers: {"Content-Type": "application/json"},
-                            data: JSON.stringify({
-                                paymentId: paymentId
-                            })
+                            type: "GET", url: `https://api.portone.io/payments/${paymentId}`, headers: {
+                                "Content-Type": "application/json", "Authorization": `Bearer ${accessToken}`
+                            }, success: function (event) {
+                                console.log(event.transactionId)
+                                let transactionId = event.transactionId;
+                                if (transactionId !== null) {
+                                    fetch('/movie/Reservation/reservation_Delete', {
+                                        method: "post", headers: {
+                                            'Content-Type': 'application/json',
+                                        }, body: JSON.stringify({reservation_number: reservationNumber}),
+                                    }).then(response => {
+                                        if (response.ok) {
+                                            reservationItem.remove();
+                                        } else {
+                                            console.log("삭제 요청 실패:", response.statusText);
+                                        }
+                                    })
+                                }
+                            }
+
                         })
                     }
                 })

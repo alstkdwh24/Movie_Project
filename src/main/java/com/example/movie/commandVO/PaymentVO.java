@@ -21,4 +21,5 @@ public class PaymentVO {
     private String UserPhone;
     private String Token;
     private String imp_uid;
+    private String accessToken;
 }
