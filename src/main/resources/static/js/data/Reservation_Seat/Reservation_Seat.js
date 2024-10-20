@@ -83,6 +83,8 @@ seat_resist.onclick=function (){
     let movieSeatInput=document.getElementById("chair_value").value
     let usernames=document.getElementById("username_modal").value
     let reservation_prices=document.getElementById("reservation_price").value;
+    document.getElementById('paymentId').value="01043324254"+Math.floor(Math.random()*100000).toString();
+    let paymentId=document.getElementById('paymentId').value;
     console.log(reservation_prices);
     // 가격
     $.ajax({
@@ -95,7 +97,10 @@ seat_resist.onclick=function (){
             movieTime: movieTimeInput,
             movieSeat:movieSeatInput,
             username:usernames,
-            reservation_price:reservation_prices
+            reservation_price:reservation_prices,
+            email:"alstkdwh24@naver.com",
+            phone:"01043324254",
+            paymentId: paymentId
         }),
         success: function (response) {
             location.href="/movie/Reservation/reservation_report"

@@ -65,8 +65,13 @@ public class ReservationServiceImpl implements ReservationService{
     }
 
     @Override
-    public ArrayList<PaymentVO> getPayment_report() {
-        return reservationMapper.getPayment_report();
+    public ArrayList<PaymentVO> getPayment_report(String username) {
+        return reservationMapper.getPayment_report(username);
+    }
+
+    @Override
+    public ReservationVO paymentId_same(String username, String paymentId) {
+        return reservationMapper.paymentId_same(username,paymentId);
     }
 
 

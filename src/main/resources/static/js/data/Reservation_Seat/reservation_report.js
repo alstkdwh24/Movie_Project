@@ -41,107 +41,157 @@ let cancel = document.querySelectorAll(".submit");
 cancel.forEach(button => {
     button.onclick = function (event) {
         event.preventDefault();
-        let reservationItems = event.target.closest(".reservation_item");
-        if (reservationItems) {
-            let reservationNumber = reservationItems.querySelector('input[name="reservation_number"]').value;
+        let reservationItem = event.target.closest(".reservation_item");
+        if (reservationItem) {
+            let reservationNumber = reservationItem.querySelector('input[name="reservation_number"]').value;
             fetch('/movie/Reservation/reservation_Delete', {
                 method: "post", headers: {
                     'Content-Type': 'application/json',
                 }, body: JSON.stringify({reservation_number: reservationNumber}),
+            }).then(response => {
+                if (response.ok) {
+                    reservationItem.remove();
+                } else {
+                    console.log("삭제 요청 실패:", response.statusText);
+                }
             })
-                .then(response => {
-                    if (response.ok) {
-                        reservationItems.remove();
-                    } else {
-                        console.log("삭제 요청 실패:", response.statusText);
-                    }
-                })
-                .catch(error => {
-                    console.error('삭제 요청 중 에러 발생:', error);
-                });
         }
 
     }
 })
-
-const BASE_URL = "http://localhost:9494/movie/Reservation/success_reservation_page";
 let submit_pay = document.querySelectorAll(".submit_pay");
 submit_pay.forEach(submit_pays => {
     submit_pays.onclick = async function (event) {
         console.log("버튼 클릭됨");
 
         // 클릭한 버튼의 부모 요소인 reservationItem을 찾습니다.
-        let reservationItem = event.target.closest(".reservation_item"); // class로 변경
-        if (reservationItem) {
-            // 해당 항목의 데이터만 가져옵니다.
-            let reservationNumber = reservationItem.querySelector('input[name="reservation_number"]').value;
-            let movie_title = reservationItem.querySelector("#movie_title").textContent;
-            console.log(movie_title)
-            let movie_place = reservationItem.querySelector("#movie_place").textContent;
-            let movie_time = reservationItem.querySelector("#movie_time").textContent;
-            let movie_Seat = reservationItem.querySelector("#movie_Seat").textContent;
-            let reservation_price = reservationItem.querySelector("#reservation_price").textContent;
-            let username = document.getElementById("username").value; // 사용자 이름은 여전히 전체에서 가져옵니다.
-            const now = new Date();
-            const formattedDate = now.toISOString();
-            console.log("선택된 예약 번호:", reservationNumber); // 선택된 예약 번호 출력
+        let reservationItem = event.target.closest(".reservation_item");
+        let reservationNumber = reservationItem.querySelector('input[name="reservation_number"]').value;
+        let movie_title = reservationItem.querySelector("#movie_title").textContent;
+        let movie_place = reservationItem.querySelector("#movie_place").textContent;
+        let movie_time = reservationItem.querySelector("#movie_time").textContent;
+        let movie_Seat = reservationItem.querySelector("#movie_Seat").textContent;
+        let reservation_price = reservationItem.querySelector("#reservation_price").textContent;
+        let username = document.getElementById("username").value;
+        let email = "alstkdwh24@naver.com";  // 실제 이메일로 변경 필요
+        let UserPhone = "01043324254";  // 개인정보 주의
+        let paymentId = reservationItem.querySelector("#paymentId").textContent;
 
-            // 결제 요청
-            const response = await PortOne.requestPayment({
-                storeId: "store-c84ff70f-5317-4896-b83f-9fb7b7d9ea75",
-                paymentId: "12121212121" + Math.floor(Math.random()*100000000000),
-                orderName: movie_title,
-                totalAmount: parseInt(reservation_price), // 실제 결제 금액으로 설정
-                currency: "KRW",
-                channelKey: "channel-key-f1dd6390-3f83-4437-b1ba-9a964c60dfdb", // channelKey: "channel-key-ef1eb1f6-6217-4723-909c-d1f77002edeb",
-                // channelKey: "channel-key-a8834583-df61-4d0a-82b0-976ae5f3d428",
-                payMethod: "EASY_PAY",
-                easyPay: {
-                    easyPayProvider: "KAKAOPAY",
-                },
-                customer: {
-                    fullName: username, phoneNumber: "0", email: "alstkdwh24@naver.com"
-                },
-            })
-            $.ajax({
-                url: "/payment/complete", method: "POST", contentType: "application/json", // headers에서 content-type 설정
-                data: JSON.stringify({
-                    username:username,
-                    paymentId: response.paymentId, // 이 값이 실제로 올바른지 확인
-                    movie_title: movie_title,
-                    movie_place: movie_place,
-                    movie_time: movie_time,
-                    movie_Seat: movie_Seat,
-                    reservation_price: parseInt(reservation_price), // 숫자로 변환
-                    payment_time: new Date().toISOString()
-                }), success: function (response) {
-                    console.log("결제 완료:", response);
-                    let reservationItems = event.target.closest(".reservation_item");
-
-                    fetch('/movie/Reservation/reservation_Delete', {
-                        method: "post", headers: {
-                            'Content-Type': 'application/json',
-                        }, body: JSON.stringify({reservation_number: reservationNumber}),
-                    })
-                        .then(response => {
-                            if (response.ok) {
-                                reservationItems.remove();
-                            } else {
-                                console.log("삭제 요청 실패:", response.statusText);
-                            }
-                        })
-                        .catch(error => {
-                            console.error('삭제 요청 중 에러 발생:', error);
-                        });
-                }, error: function (xhr, status, error) {
-                    console.error("결제 실패:", status, error);
-                }
-            })
-
-            
+        function generateMerchantUid() {
+            const timestamp = Date.now();
+            const randomNum = Math.floor(Math.random() * 100000);
+            return `merchant_${timestamp}_${randomNum}`; // 고유한 merchant_uid 생성
         }
+
+        const merchant_uid = generateMerchantUid();
+        console.log("생성된 merchant_uid: ", merchant_uid);
+        console.log(paymentId)
+        // 결제 요청 함수 호출
+
+        const response = await PortOne.requestPayment({
+            storeId: "store-c84ff70f-5317-4896-b83f-9fb7b7d9ea75",
+            paymentId: paymentId,
+            channelKey: "channel-key-406e8389-2fe6-43a1-a04b-0f1f2db5aef3",
+            payMethod: "CARD",
+            movie_place: movie_place,
+            movie_time: movie_time,
+            orderName: movie_title,
+            totalAmount: parseInt(reservation_price),
+            username: username,
+            movie_Seat: movie_Seat, // buyer_email: email,
+            // buyer_name: username,
+            // buyer_tel: UserPhone,  // 개인정보 주의
+            currency: "CURRENCY_KRW",
+            m_redirect_url: "https://naver.com",
+            customer: {
+                fullName: "포트원", phoneNumber: "010-0000-1234", email: email
+            },
+
+        });
+        if (response.code != null) {
+            return alert(response.message);
+        }
+        $.ajax({
+            url: "/payment/complete",
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            data: JSON.stringify({
+                paymentId: paymentId,
+                orderName: movie_title,
+                storeId: "store-c84ff70f-5317-4896-b83f-9fb7b7d9ea75",
+                channelKey: "channel-key-406e8389-2fe6-43a1-a04b-0f1f2db5aef3",
+                payMethod: "CARD",
+                currency: "CURRENCY_KRW",
+                movie_place: movie_place,
+                movie_time: movie_time,
+                username: username,
+                movie_Seat: movie_Seat,
+                m_redirect_url: "https://naver.com",
+                customer: {
+                    fullName: "포트원", phoneNumber: "010-0000-1234", email: email
+                },
+
+                totalAmount: parseInt(reservation_price)
+            }),
+            success: await function (response) {
+                let paymentId = response.paymentId;
+                console.log(paymentId);
+                let imp_uid = response.imp_uid;
+                console.log(imp_uid)
+                $.ajax({
+                    url: "/api/Tokens",
+                    type: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    data: JSON.stringify({
+                        apiSecret: "H1jLKhQTtkseyRU1Y5jIDuYdiliP05toRLkPXArC58qW1y1GMXHjBZi7Rp8sjJFcGMtgaG8gqcspANLf"
+                    }),
+                    success: function (response) {
+                        let accessToken = response.accessToken;
+                        console.log(accessToken);
+                        console.log(paymentId);
+
+                        $.ajax({
+                            type: "GET", url: `https://api.portone.io/payments/${paymentId}`, headers: {
+                                "Content-Type": "application/json", "Authorization": `Bearer ${accessToken}`
+                            }, success: function (event) {
+                                console.log(event.transactionId)
+                                let transactionId = event.transactionId;
+                                if (transactionId !== null) {
+                                    fetch('/movie/Reservation/reservation_Delete', {
+                                        method: "post", headers: {
+                                            'Content-Type': 'application/json',
+                                        }, body: JSON.stringify({reservation_number: reservationNumber}),
+                                    }).then(response => {
+                                        if (response.ok) {
+                                            reservationItem.remove();
+                                        } else {
+                                            console.log("삭제 요청 실패:", response.statusText);
+                                        }
+                                    })
+                                }
+                            }
+
+                        })
+                    }
+                })
+            }
+
+
+        })
+
     }
+
+
+    // function handleResponse(response) {
+    //     if (response.success) {
+    //         const imp_uid = response.response.imp_uid;
+    //         console.log("포트원 고유 거래번호 (imp_uid): ", imp_uid);
+    //         console.log("상점 고유 주문번호 (merchant_uid): ", response.response.merchant_uid);
+    //         console.log("결제 고유 ID: ", response.response.paymentId);
+    //         alert("결제가 성공하였습니다.");
+    //     } else {
+    //         alert("결제에 실패하였습니다: " + response.error_msg);
+    //     }
+    // }
+
 });
-
-
-
