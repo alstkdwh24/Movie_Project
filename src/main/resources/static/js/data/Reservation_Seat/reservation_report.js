@@ -143,7 +143,6 @@ submit_pay.forEach(submit_pays => {
                     type: "POST",
                     headers: {"Content-Type": "application/json"},
                     data: JSON.stringify({
-                        apiSecret: "H1jLKhQTtkseyRU1Y5jIDuYdiliP05toRLkPXArC58qW1y1GMXHjBZi7Rp8sjJFcGMtgaG8gqcspANLf"
                     }),
                     success: function (response) {
                         let accessToken = response.accessToken;
