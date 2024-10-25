@@ -1,20 +1,24 @@
 package com.example.movie.RestController;
 
 import com.example.movie.ReservationService.ReservationService;
+import com.example.movie.commandVO.PaymentResponseVO;
 import com.example.movie.commandVO.PaymentVO;
-import com.example.movie.commandVO.ReservationVO;
 import com.example.movie.commandVO.TokenVO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
-import org.springframework.security.access.method.P;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @RestController
 @CrossOrigin("*")
@@ -33,7 +37,9 @@ public class RestPaymentController {
 
     @PostMapping("/payment/complete")
     @CrossOrigin(origins = "*") // 모든 출처 허용
-    public ResponseEntity<PaymentVO> paymentVO(@RequestBody PaymentVO vo) {
+    public ResponseEntity<PaymentVO> paymentVO(@RequestBody PaymentVO vo, HttpSession session2, Model model) {
+
+
         int savePayment = reservationService.paymentVO(vo);
         if (savePayment == 1) {
             return new ResponseEntity<>(vo, HttpStatus.CREATED);
@@ -51,9 +57,12 @@ public class RestPaymentController {
 
     @PostMapping("/api/Tokens")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<?> getToken(@RequestBody TokenVO tokenVO) {
+    public ResponseEntity<?> getToken(@RequestBody TokenVO tokenVO,HttpSession session2) {
         String url = "https://api.portone.io/login/api-secret";
         ResponseEntity<?> response;
+
+        session2.setAttribute("accessToken",tokenVO.getAccessToken());
+
         try {
             // TokenVO 객체를 사용하여 요청을 보냅니다.
             response = restTemplate.postForEntity(url, tokenVO, Object.class);
@@ -64,39 +73,74 @@ public class RestPaymentController {
         return ResponseEntity.ok(response.getBody()); // 클라이언트에 응답 반환
     }
 
-//    @GetMapping("/payments/{paymentId}")
-//    @CrossOrigin(origins = "*")
-//    public ResponseEntity<PaymentVO> preEristerPayment(@PathVariable String paymentId,
-//                                               @RequestHeader("Authorization") String accessToken) {
-//        String url = String.format("https://api.portone.io/payments/%s", paymentId);
-//
-//        HttpHeaders headers=new HttpHeaders();
-//        headers.set("Authorization",accessToken);
-//        headers.setContentType(MediaType.APPLICATION_JSON); // JSON 형식으로 설정
-//
-//        HttpEntity<Void> entity = new HttpEntity<>(headers);
-//
-//        ResponseEntity<PaymentVO> response=restTemplate.exchange(url, HttpMethod.GET, entity, PaymentVO.class);
-//
-//
-//
-//
-//        return ResponseEntity.ok(response.getBody());
-//
-//    }
+    @PostMapping("/api/access_token")
+    public ResponseEntity<TokenVO> getToken(HttpSession session2,
+                                           @RequestBody String accessToken
+            ) {
+        TokenVO tokenVO = new TokenVO();
+        tokenVO.setAccessToken(String.valueOf(accessToken));
+        session2.setAttribute("token",tokenVO.getAccessToken());
+        session2.setMaxInactiveInterval(5000);
+        System.out.println("토큰"+session2.getAttribute("token"));
+        System.out.println(session2);
+        return ResponseEntity.ok(tokenVO); // 성공적으로 토큰을 반환
+
+    }
+
+
+    @GetMapping("/payments")
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<List<PaymentVO>> getPayments(HttpSession session2) throws JsonProcessingException {
+        String url = "https://api.portone.io/payments";
+
+        // 세션에서 TokenVO 객체 가져오기
+        String tokenJson = (String) session2.getAttribute("token"); // String으로 가져오기
+
+        // null 체크
+        if (tokenJson == null) {
+            System.out.println("세션에 'token'이 없습니다.");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null); // 401 Unauthorized
+        }
+
+        // JSON 문자열을 TokenVO 객체로 변환
+        ObjectMapper objectMapper = new ObjectMapper();
+        TokenVO tokenVO = objectMapper.readValue(tokenJson, TokenVO.class);
+
+        // 액세스 토큰 가져오기
+        String accessToken = tokenVO.getAccessToken();
+        if (accessToken == null) {
+            System.out.println("accessToken이 null입니다.");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null); // 401 Unauthorized
+        }
+
+        System.out.println("tokensVO: " + tokenVO);
+
+        // 헤더 설정
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + accessToken);
+
+        // 요청 엔티티 생성
+        HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
+
+        ResponseEntity<PaymentResponseVO> response;
+        try {
+            response = restTemplate.exchange(url, HttpMethod.GET, requestEntity,
+                    new ParameterizedTypeReference<PaymentResponseVO>() {});
+        } catch (HttpClientErrorException e) {
+            System.out.println("HTTP 상태 코드: " + e.getStatusCode());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); // 500 Internal Server Error
+        }
+
+        // 응답 반환
+        List<PaymentVO> payments = Objects.requireNonNull(response.getBody()).getPayments();
+        if (payments == null || payments.isEmpty()) {
+            return ResponseEntity.ok(new ArrayList<>()); // 빈 리스트 반환
+        }
+        // 응답 반환
+        return ResponseEntity.ok(payments);
+    }
+
+
 }
 
-//    @PostMapping("/getToken")
-//    @CrossOrigin(origins = "*")
-//    public ResponseEntity<?> getToken(@RequestBody TokenVO tokenRequest) {
-//        String url = "https://api.iamport.kr/users/getToken";
-//
-//        // IAMPORT API에 요청 보낼 데이터
-//        TokenVO request = new TokenVO(tokenRequest.getImp_key(), tokenRequest.getImp_secret());
-//
-//        // API 요청
-//        ResponseEntity<?> response = restTemplate.postForEntity(url, request, Object.class);
-//        System.out.println("ascde"+response);
-//
-//        return ResponseEntity.ok(response.getBody()); // 클라이언트에 응답 반환
-//    }
+

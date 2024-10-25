@@ -11,7 +11,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PaymentVO {
+public class PaymentResponseVO {
+    private List<PaymentVO> Payments;
+
     private String paymentId;
     private String movie_title;
     private String movie_place;
@@ -24,5 +26,4 @@ public class PaymentVO {
     private String Token;
     private String imp_uid;
     private String accessToken;
-    private List<PaymentResponseVO> payments;
 }

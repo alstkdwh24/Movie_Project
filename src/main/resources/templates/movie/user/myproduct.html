@@ -43,6 +43,7 @@
 <body>
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 <input type="hidden" id="username" th:value="${userSession.username}">
+<input type="hidden" id="getToken">
 <div id="product_list">
     <div id="product_list_top">
         <div id="movie_paymentId">주문번호</div>
@@ -86,6 +87,9 @@
 
 <!--구매상품 js-->
 <script src="/js/data/User/movie_myproduct.js"></script>
+
+<!--reservation_resort.js-->
+<script src="/js/data/Reservation_Seat/reservation_report.js"></script>
 
 <!--    portone js-->
 <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>

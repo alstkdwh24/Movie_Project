@@ -27,7 +27,7 @@ public class MovieTest {
     public void makeFolder(){
         String movie_filepath = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
         File file=new File(uploadPath + '/' +movie_filepath);
-        if (file.exists() == false) {//해당 파일이 있으면 true, 없으면 false
+        if (!file.exists()) {//해당 파일이 있으면 true, 없으면 false
             file.mkdirs();
 
         }
