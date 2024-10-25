@@ -13,6 +13,8 @@ public class TokenVO {
 
     private String apiSecret;
     private String accessToken;
+    private int page;
+    private int size;
 
 
 }

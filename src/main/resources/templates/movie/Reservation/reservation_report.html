@@ -60,6 +60,8 @@
 
             <div class="list_top">결제진행</div>
 
+<!--            토큰 저장-->
+            <input type="hidden" th:value="${accessToken}" name="accessToken">
         </div>
         <div id="reservation_lists">
             <div class="reservation_item" th:each="vo, status:${list}" data-reservation-number="${vo.reservation_number}">

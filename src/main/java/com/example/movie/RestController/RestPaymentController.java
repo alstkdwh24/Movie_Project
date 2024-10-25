@@ -1,20 +1,24 @@
 package com.example.movie.RestController;
 
 import com.example.movie.ReservationService.ReservationService;
+import com.example.movie.commandVO.PaymentResponseVO;
 import com.example.movie.commandVO.PaymentVO;
 import com.example.movie.commandVO.TokenVO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpSession;
-import java.io.DataInput;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @RestController
 @CrossOrigin("*")
@@ -33,7 +37,9 @@ public class RestPaymentController {
 
     @PostMapping("/payment/complete")
     @CrossOrigin(origins = "*") // 모든 출처 허용
-    public ResponseEntity<PaymentVO> paymentVO(@RequestBody PaymentVO vo) {
+    public ResponseEntity<PaymentVO> paymentVO(@RequestBody PaymentVO vo, HttpSession session2, Model model) {
+
+
         int savePayment = reservationService.paymentVO(vo);
         if (savePayment == 1) {
             return new ResponseEntity<>(vo, HttpStatus.CREATED);
@@ -51,10 +57,11 @@ public class RestPaymentController {
 
     @PostMapping("/api/Tokens")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<?> getToken(@RequestBody TokenVO tokenVO,HttpSession session) {
+    public ResponseEntity<?> getToken(@RequestBody TokenVO tokenVO,HttpSession session2) {
         String url = "https://api.portone.io/login/api-secret";
         ResponseEntity<?> response;
 
+        session2.setAttribute("accessToken",tokenVO.getAccessToken());
 
         try {
             // TokenVO 객체를 사용하여 요청을 보냅니다.
@@ -67,15 +74,15 @@ public class RestPaymentController {
     }
 
     @PostMapping("/api/access_token")
-    public ResponseEntity<TokenVO> getToken(HttpSession session,
+    public ResponseEntity<TokenVO> getToken(HttpSession session2,
                                            @RequestBody String accessToken
             ) {
         TokenVO tokenVO = new TokenVO();
         tokenVO.setAccessToken(String.valueOf(accessToken));
-        session.setAttribute("token",tokenVO.getAccessToken());
-        session.setMaxInactiveInterval(5000);
-        System.out.println("토큰"+session.getAttribute("token"));
-        System.out.println(session);
+        session2.setAttribute("token",tokenVO.getAccessToken());
+        session2.setMaxInactiveInterval(5000);
+        System.out.println("토큰"+session2.getAttribute("token"));
+        System.out.println(session2);
         return ResponseEntity.ok(tokenVO); // 성공적으로 토큰을 반환
 
     }
@@ -83,11 +90,11 @@ public class RestPaymentController {
 
     @GetMapping("/payments")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<PaymentVO> getPayments(HttpSession session) throws JsonProcessingException {
+    public ResponseEntity<List<PaymentVO>> getPayments(HttpSession session2) throws JsonProcessingException {
         String url = "https://api.portone.io/payments";
 
         // 세션에서 TokenVO 객체 가져오기
-        String tokenJson = (String) session.getAttribute("token"); // String으로 가져오기
+        String tokenJson = (String) session2.getAttribute("token"); // String으로 가져오기
 
         // null 체크
         if (tokenJson == null) {
@@ -115,18 +122,22 @@ public class RestPaymentController {
         // 요청 엔티티 생성
         HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
 
-        // API 호출
-        ResponseEntity<PaymentVO> response;
+        ResponseEntity<PaymentResponseVO> response;
         try {
-            response = restTemplate.exchange(url, HttpMethod.GET, requestEntity, PaymentVO.class);
+            response = restTemplate.exchange(url, HttpMethod.GET, requestEntity,
+                    new ParameterizedTypeReference<PaymentResponseVO>() {});
         } catch (HttpClientErrorException e) {
             System.out.println("HTTP 상태 코드: " + e.getStatusCode());
-            System.out.println("응답 본문: " + e.getResponseBodyAsString());
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null); // 401 Unauthorized
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); // 500 Internal Server Error
         }
 
         // 응답 반환
-        return ResponseEntity.ok(response.getBody());
+        List<PaymentVO> payments = Objects.requireNonNull(response.getBody()).getPayments();
+        if (payments == null || payments.isEmpty()) {
+            return ResponseEntity.ok(new ArrayList<>()); // 빈 리스트 반환
+        }
+        // 응답 반환
+        return ResponseEntity.ok(payments);
     }
 
 
