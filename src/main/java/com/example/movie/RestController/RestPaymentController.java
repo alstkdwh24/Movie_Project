@@ -55,13 +55,14 @@ public class RestPaymentController {
 
     }
 
+
     @PostMapping("/api/Tokens")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<?> getToken(@RequestBody TokenVO tokenVO,HttpSession session2) {
+    public ResponseEntity<?> getToken(@RequestBody TokenVO tokenVO,HttpSession session) {
         String url = "https://api.portone.io/login/api-secret";
         ResponseEntity<?> response;
 
-        session2.setAttribute("accessToken",tokenVO.getAccessToken());
+        session.setAttribute("accessToken",tokenVO.getAccessToken());
 
         try {
             // TokenVO 객체를 사용하여 요청을 보냅니다.
@@ -72,6 +73,7 @@ public class RestPaymentController {
 
         return ResponseEntity.ok(response.getBody()); // 클라이언트에 응답 반환
     }
+
 
     @PostMapping("/api/access_token")
     public ResponseEntity<TokenVO> getToken(HttpSession session2,

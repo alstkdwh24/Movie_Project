@@ -7,6 +7,7 @@ import com.example.movie.commandVO.ReservationVO;
 import com.example.movie.commandVO.TokenVO;
 import com.example.movie.util.Criteria;
 import com.example.movie.util.PageVO;
+import org.hibernate.cache.spi.support.StorageAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
