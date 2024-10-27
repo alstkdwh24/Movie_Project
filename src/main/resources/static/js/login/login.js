@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded",()=>
             type: "POST",
             headers: {"Content-Type": "application/json"},
             data: JSON.stringify({
-                apiSecret: "H1jLKhQTtkseyRU1Y5jIDuYdiliP05toRLkPXArC58qW1y1GMXHjBZi7Rp8sjJFcGMtgaG8gqcspANLf"
             }),
             success:function (response) {
                 alert("성공했습니다.")
