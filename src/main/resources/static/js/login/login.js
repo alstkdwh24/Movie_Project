@@ -2,10 +2,13 @@ document.addEventListener("DOMContentLoaded",()=>
 {
     const close=document.getElementById("login_button");
 
-    close.onclick=function(){
-    document.login_form.action="Login_form";
-    document.login_form.submit();
-    document.login_form.method="post";
+    close.onclick=function(event) {
+        event.preventDefault();
+
+        document.login_form.action = "Login_form";
+        document.login_form.submit();
+        document.login_form.method = "post";
+    }
         $.ajax({
             url: "/api/Tokens",
             type: "POST",
@@ -16,13 +19,13 @@ document.addEventListener("DOMContentLoaded",()=>
                 alert("성공했습니다.")
                 console.log(response.accessToken);
                 let accessToken=response.accessToken;
-                sessionStorage.setItem("accessToken",response.accessToken);
                 console.log(accessToken)
+                sessionStorage.setItem("accessToken", accessToken);
 
             }
-            
+
         })
 
-    }
+
 
 });
