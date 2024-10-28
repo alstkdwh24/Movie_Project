@@ -21,8 +21,8 @@ public class PaymentVO {
     private String payment_time;
     private String username;
     private String UserPhone;
-    private String Token;
-    private String imp_uid;
+//    private String Token;
+//    private String imp_uid;
     private String accessToken;
     private List<PaymentResponseVO> payments;
 }

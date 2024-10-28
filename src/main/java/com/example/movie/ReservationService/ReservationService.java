@@ -1,6 +1,7 @@
 package com.example.movie.ReservationService;
 
 import com.example.movie.commandVO.CategoryVO;
+import com.example.movie.commandVO.PaymentIdVO;
 import com.example.movie.commandVO.PaymentVO;
 import com.example.movie.commandVO.ReservationVO;
 import com.example.movie.util.Criteria;
@@ -30,6 +31,9 @@ public interface ReservationService {
     ArrayList<PaymentVO> getPayment_report(String username);
 
     ReservationVO paymentId_same(String username,String paymentId);
+
+
+    int paymentIdSave(PaymentIdVO vo);
 
 
 

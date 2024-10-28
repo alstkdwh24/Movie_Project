@@ -60,6 +60,11 @@
         select * from reservation_contents where username=#{username} and paymentId=#{paymentId};
     </select>
 
+<!--    paymentId 데이터베이스-->
+    <insert id="paymentIdSave" parameterType="PaymentIdVO">
+        insert into paymentIdvo(paymentId,reservation_price, username, payment_time) values(#{paymentId}, #{reservation_price}, #{username}, #{payment_time})
+    </insert>
+
 
 
 </mapper>

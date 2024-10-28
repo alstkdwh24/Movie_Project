@@ -1,6 +1,7 @@
 package com.example.movie.ReservationService;
 
 import com.example.movie.commandVO.CategoryVO;
+import com.example.movie.commandVO.PaymentIdVO;
 import com.example.movie.commandVO.PaymentVO;
 import com.example.movie.commandVO.ReservationVO;
 import com.example.movie.util.Criteria;
@@ -72,6 +73,11 @@ public class ReservationServiceImpl implements ReservationService{
     @Override
     public ReservationVO paymentId_same(String username, String paymentId) {
         return reservationMapper.paymentId_same(username,paymentId);
+    }
+
+    @Override
+    public int paymentIdSave(PaymentIdVO vo) {
+        return reservationMapper.paymentIdSave(vo);
     }
 
 
