@@ -1,10 +1,7 @@
 package com.example.movie.RestController;
 
 import com.example.movie.ReservationService.ReservationService;
-import com.example.movie.commandVO.PaymentIdVO;
-import com.example.movie.commandVO.PaymentResponseVO;
-import com.example.movie.commandVO.PaymentVO;
-import com.example.movie.commandVO.TokenVO;
+import com.example.movie.commandVO.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -156,6 +153,25 @@ public class RestPaymentController {
         return new ResponseEntity<>(vo, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+
+    //paymentIdVO List
+    @GetMapping("/paymentIdVOList")
+    public ResponseEntity<ArrayList<PaymentId_ListVO>> paymentId_ListVO(@RequestParam("paymentId") String paymentId){
+        ArrayList<PaymentId_ListVO> PaymentIdList=reservationService.PaymentIdList(paymentId);
+        return new ResponseEntity<>(PaymentIdList,HttpStatus.OK);
+
+    }
+
+
+//    movie_payment테이블에서 paymentId열을 추가하는 부분
+    @PostMapping("/movie_payment_paymentId")
+    public ResponseEntity<PaymentVO> movie_payment_paymentId(@RequestBody PaymentVO vo) {
+        int movie_payment_paymentId_save = reservationService.movie_payment_paymentId(vo);
+        if (movie_payment_paymentId_save == 1) {
+            return new ResponseEntity<>(vo, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(vo, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
 
 

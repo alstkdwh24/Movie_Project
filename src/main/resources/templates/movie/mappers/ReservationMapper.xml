@@ -65,6 +65,18 @@
         insert into paymentIdvo(paymentId,reservation_price, username, payment_time) values(#{paymentId}, #{reservation_price}, #{username}, #{payment_time})
     </insert>
 
+<!--    movie_payment테이블에서 paymentId열을 추가한것-->
+    <insert id="movie_payment_paymentId" parameterType="PaymentVO">
+        insert into movie_payment_paymentId(paymentId, movie_title, movie_time, movie_place, movie_Seat,
+                                            reservation_price, payment_time, username)
+        values (#{paymentId}, #{movie_title}, #{movie_time},#{movie_place}, #{movie_Seat}, #{reservation_price}, #{payment_time}, #{username})
+    </insert>
+
+<!--    결제 결과 보기-->
+    <select id="PaymentIdList" resultType="PaymentId_ListVO">
+        select b.paymentId, a.movie_title, a.movie_time, a.movie_place,a.movie_Seat, a.reservation_price, b.payment_time, a.username
+        from movie_payment_paymentid as a left join paymentidvo as b on a.paymentId = b.paymentId
+    </select>
 
 
 </mapper>
