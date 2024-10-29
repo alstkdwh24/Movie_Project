@@ -17,12 +17,12 @@ public class PaymentVO {
     private String movie_place;
     private String movie_time;
     private String movie_Seat;
-    private int reservation_price;
+    private String reservation_price;
     private String payment_time;
     private String username;
     private String UserPhone;
-    private String Token;
-    private String imp_uid;
+//    private String Token;
+//    private String imp_uid;
     private String accessToken;
     private List<PaymentResponseVO> payments;
 }

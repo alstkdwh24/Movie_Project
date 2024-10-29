@@ -1,9 +1,7 @@
 package com.example.movie.RestController;
 
 import com.example.movie.ReservationService.ReservationService;
-import com.example.movie.commandVO.PaymentResponseVO;
-import com.example.movie.commandVO.PaymentVO;
-import com.example.movie.commandVO.TokenVO;
+import com.example.movie.commandVO.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,11 +56,11 @@ public class RestPaymentController {
 
     @PostMapping("/api/Tokens")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<?> getToken(@RequestBody TokenVO tokenVO,HttpSession session) {
+    public ResponseEntity<?> getToken(@RequestBody TokenVO tokenVO, HttpSession session) {
         String url = "https://api.portone.io/login/api-secret";
         ResponseEntity<?> response;
 
-        session.setAttribute("accessToken",tokenVO.getAccessToken());
+        session.setAttribute("accessToken", tokenVO.getAccessToken());
 
         try {
             // TokenVO 객체를 사용하여 요청을 보냅니다.
@@ -77,13 +75,13 @@ public class RestPaymentController {
 
     @PostMapping("/api/access_token")
     public ResponseEntity<TokenVO> getToken(HttpSession session2,
-                                           @RequestBody String accessToken
-            ) {
+                                            @RequestBody String accessToken
+    ) {
         TokenVO tokenVO = new TokenVO();
         tokenVO.setAccessToken(String.valueOf(accessToken));
-        session2.setAttribute("token",tokenVO.getAccessToken());
+        session2.setAttribute("token", tokenVO.getAccessToken());
         session2.setMaxInactiveInterval(5000);
-        System.out.println("토큰"+session2.getAttribute("token"));
+        System.out.println("토큰" + session2.getAttribute("token"));
         System.out.println(session2);
         return ResponseEntity.ok(tokenVO); // 성공적으로 토큰을 반환
 
@@ -127,7 +125,8 @@ public class RestPaymentController {
         ResponseEntity<PaymentResponseVO> response;
         try {
             response = restTemplate.exchange(url, HttpMethod.GET, requestEntity,
-                    new ParameterizedTypeReference<PaymentResponseVO>() {});
+                    new ParameterizedTypeReference<PaymentResponseVO>() {
+                    });
         } catch (HttpClientErrorException e) {
             System.out.println("HTTP 상태 코드: " + e.getStatusCode());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); // 500 Internal Server Error
@@ -143,6 +142,36 @@ public class RestPaymentController {
     }
 
 
+    //PaymentIdVO 데이터베이스 저장
+    @PostMapping("/new_payment")
+    public ResponseEntity<PaymentIdVO> PaymentIdVO(@RequestBody PaymentIdVO vo) {
+        int savePaymentId=reservationService.paymentIdSave(vo);
+        if(savePaymentId==1){
+            return new ResponseEntity<>(vo, HttpStatus.CREATED);
+        }
+
+        return new ResponseEntity<>(vo, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+    //paymentIdVO List
+    @GetMapping("/paymentIdVOList")
+    public ResponseEntity<ArrayList<PaymentId_ListVO>> paymentId_ListVO(@RequestParam("paymentId") String paymentId){
+        ArrayList<PaymentId_ListVO> PaymentIdList=reservationService.PaymentIdList(paymentId);
+        return new ResponseEntity<>(PaymentIdList,HttpStatus.OK);
+
+    }
+
+
+//    movie_payment테이블에서 paymentId열을 추가하는 부분
+    @PostMapping("/movie_payment_paymentId")
+    public ResponseEntity<PaymentVO> movie_payment_paymentId(@RequestBody PaymentVO vo) {
+        int movie_payment_paymentId_save = reservationService.movie_payment_paymentId(vo);
+        if (movie_payment_paymentId_save == 1) {
+            return new ResponseEntity<>(vo, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(vo, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
 
 

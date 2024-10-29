@@ -1,8 +1,6 @@
 package com.example.movie.ReservationService;
 
-import com.example.movie.commandVO.CategoryVO;
-import com.example.movie.commandVO.PaymentVO;
-import com.example.movie.commandVO.ReservationVO;
+import com.example.movie.commandVO.*;
 import com.example.movie.util.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -72,6 +70,21 @@ public class ReservationServiceImpl implements ReservationService{
     @Override
     public ReservationVO paymentId_same(String username, String paymentId) {
         return reservationMapper.paymentId_same(username,paymentId);
+    }
+
+    @Override
+    public int paymentIdSave(PaymentIdVO vo) {
+        return reservationMapper.paymentIdSave(vo);
+    }
+
+    @Override
+    public ArrayList<PaymentId_ListVO> PaymentIdList(String paymentId) {
+        return reservationMapper.PaymentIdList(paymentId);
+    }
+
+    @Override
+    public int movie_payment_paymentId(PaymentVO vo) {
+        return reservationMapper.movie_payment_paymentId(vo);
     }
 
 
