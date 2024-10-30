@@ -98,23 +98,6 @@ function movie_category_create_two(data) {
                     }
                 })
                 $(event.target).movie_category_set();
-            } else if (set.movie_category_lv === 2) {
-                console.log("1lv");
-                $(event.currentTarget).loading();
-                $(event.currentTarget).movie_category_remove();
-
-                $.ajax({
-                    type: "get",
-                    url: "/getMovieCategoryChild/" + set.group_id + "/" + set.movie_category_lv + "/" + set.movie_detail_lv,
-                    success: function (data) {
-                        console.log(data);
-                        movie_category_creates(data);
-                    }, error: function (err, status) {
-                        console.log(err, status);
-
-                    }
-                });
-                $(event.target).movie_category_set();
             }
         });
     });
@@ -139,6 +122,7 @@ function movie_category_create(data) {
             ${result.movie_detail_title}
     </div>`
     });
+
     $("#reservation_board").append(movie_category);
     let movies_titles = document.querySelectorAll(".movies_titles");
     movies_titles.forEach(function (movie_title) {
@@ -150,12 +134,19 @@ function movie_category_create(data) {
             }
             let set = $(event.target).data("set");
 
-            $(event.currentTarget).find("div").removeClass("sub_menu_select");
-            $(event.target).addClass("sub_menu_select");
+            $(event.currentTarget).find("div").removeClass("sub_menu_select2");
+            $(event.target).addClass("sub_menu_select2");
+            let Place_Input=$(event.target).addClass("sub_menu_select2").text()
+
+            const now = Date.now(); // 현재 시간 (밀리초)
+            const expiryTime = now + 30 * 10000; // 30초 후 만료 시간
+            const data = { Place_Input: Place_Input, expiry: expiryTime };
+            sessionStorage.setItem("movie_place",JSON.stringify(data));
 
 
-            if (set.movie_category_lv === 1) {
-                console.log("1lv");
+
+            if (set.movie_category_lv === 2) {
+                console.log("2lv");
                 $(event.currentTarget).loading();
                 $(event.currentTarget).movie_category_remove();
 
@@ -164,7 +155,7 @@ function movie_category_create(data) {
                     url: "/getMovieCategoryChild/" + set.group_id + "/" + set.movie_category_lv + "/" + set.movie_detail_lv,
                     success: function (data) {
                         console.log(data);
-                        movie_category_create(data)
+                        movie_category_creates(data)
 
                     }, error: function (err, status) {
                         console.log(err, status);
@@ -172,27 +163,9 @@ function movie_category_create(data) {
                     }
                 })
                 $(event.target).movie_category_set();
-            } else if (set.movie_category_lv === 2) {
-                console.log("1lv");
-                $(event.currentTarget).loading();
-                $(event.currentTarget).movie_category_remove();
-
-                $.ajax({
-                    type: "get",
-                    url: "/getMovieCategoryChild/" + set.group_id + "/" + set.movie_category_lv + "/" + set.movie_detail_lv,
-                    success: function (data) {
-                        console.log(data);
-                        movie_category_creates(data);
-                    }, error: function (err, status) {
-                        console.log(err, status);
-
-                    }
-                });
-                $(event.target).movie_category_set();
             }
 
         })
-
     })
     // $.ajax({
     //     type: "get", url: "/getMovieCategory3", success: function (data) {
@@ -210,6 +183,8 @@ function movie_category_create(data) {
 }
 
 function movie_category_creates(data) {
+    let set = $(event.target).data("set");
+
     console.log(data);
     if (!Array.isArray(data)) {
         console.log("data is not an array or is undefined:", data);
@@ -231,6 +206,29 @@ ${result.movie_detail_title}
 
 
     movie_category += '</div>';
-
     $("#reservation_board").append(movie_category);
+
+
+    let movies_titles = document.querySelectorAll(".movies_titles");
+    movies_titles.forEach(function (movie_title) {
+        movie_title.addEventListener('click', function (event) {
+
+            $(event.currentTarget).find("div").removeClass("sub_menu_select3");
+            $(event.target).addClass("sub_menu_select3");
+            let movie_Time=$(event.target).addClass("sub_menu_select3").text()
+            if (movie_Time) {
+                const now = Date.now(); // 현재 시간 (밀리초)
+                const expiryTime = now + 30 * 10000; // 30초 후 만료 시간
+                const data = { movie_Time: movie_Time, expiry: expiryTime }; // 속성 이름 간소화
+                try {
+                    sessionStorage.setItem("movie_time", JSON.stringify(data));
+                } catch (error) {
+                    console.error("세션 저장 오류:", error);
+                }
+            }
+            console.log("1");
+            event.preventDefault();
+        })
+    })
+
 }
