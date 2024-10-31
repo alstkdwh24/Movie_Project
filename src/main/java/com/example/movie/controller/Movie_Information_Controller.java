@@ -22,7 +22,10 @@ public class Movie_Information_Controller {
 
 
     @GetMapping("/movie_information")
-    public String movie_information(HttpSession session, Model model){
+    public String movie_information(HttpSession session, Model model,HttpSession session2){
+
+        String roles= (String) session2.getAttribute("roles");
+        model.addAttribute("roles",roles);
 
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
         model.addAttribute("userSession", userDetails);

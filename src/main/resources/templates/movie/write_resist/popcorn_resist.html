@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
     <!--    본페이지 css-->
     <link rel="stylesheet" href="/css/login/login.css">
-<!--제이쿼리-->
+    <!--제이쿼리-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!--글 등록 모달-->
@@ -32,7 +33,7 @@
     <!--    미니메뉴 모달-->
     <link rel="stylesheet" href="/css/mains/main_imin_menu.css">
 
-<!--    product css-->
+    <!--    product css-->
     <link rel="stylesheet" href="/css/User/myproduct.css">
 
     <!--구글 폰트-->
@@ -43,23 +44,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 </head>
 <body>
-<div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
-<input type="hidden" id="username" th:value="${userSession.username}">
-<input type="hidden" id="getToken">
-<div id="product_list">
-    <div id="product_list_top">
-        <div id="movie_paymentId">주문번호</div>
-        <div class="list_bottom">영화제목</div>
-        <div class="list_bottom">영화시간</div>
-        <div class="list_bottom">영화관</div>
-        <div class="list_bottom">영화좌석</div>
-        <div class="list_bottom">영화가격</div>
-        <div class="list_bottom">결제시간</div>
-        <div class="list_bottom">아이디</div>
-    </div>
-
-</div>
-
 <!--소메뉴 커뮤니티 모달 div-->
 <div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
 <!--소메뉴 채팅 모달 div-->

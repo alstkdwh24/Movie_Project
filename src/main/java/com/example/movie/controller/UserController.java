@@ -13,7 +13,10 @@ import javax.servlet.http.HttpSession;
 public class UserController {
 
     @GetMapping("Mypage")
-    public String Mypage(HttpSession session, Model model){
+    public String Mypage(HttpSession session, Model model,HttpSession session2){
+
+        String roles= (String) session2.getAttribute("roles");
+        model.addAttribute("roles",roles);
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
         model.addAttribute("userSession", userDetails);
 
@@ -21,7 +24,9 @@ public class UserController {
     }
 
     @GetMapping("/myproduct")
-    public String myproduct(HttpSession session, Model model){
+    public String myproduct(HttpSession session, Model model, HttpSession session2){
+        String roles= (String) session2.getAttribute("roles");
+        model.addAttribute("roles",roles);
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
         model.addAttribute("userSession", userDetails);
         return "movie/user/myproduct";

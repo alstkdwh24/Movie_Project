@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <!--    &#45;&#45;css파일-->
 
-<!--    제이쿼리 js파일-->
+    <!--    제이쿼리 js파일-->
     <script src="/js/jquery-3.7.1.min.js"></script>
 
     <link rel="stylesheet" href="/css/mains/mains(article).css">
@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
     <link rel="stylesheet" href="/css/mains/modal/sneak_modal.css">
 
-
+    <!--글 등록 모달-->
+    <link rel="stylesheet" href="/css/resist_contents/resist_modal.css">
     <!--    미니메뉴 모달-->
     <link rel="stylesheet" href="/css/mains/main_imin_menu.css">
 
@@ -66,9 +67,9 @@
         <div class="movie_title_ex">
             <div class="movie_picture">
 
-                    <div class="movie_image">
-                        <div class="movie_real_image"></div>
-                    </div>
+                <div class="movie_image">
+                    <div class="movie_real_image"></div>
+                </div>
                 <div class="movie_gle">영화제목</div>
 
             </div>
@@ -89,17 +90,19 @@
     </div>
 
 </section>
+<div th:replace="/movie/write_resist/resist_modal.html :: resist_fragment"></div>
+
 <div th:replace="/movie/mains_fragment/mains_fragment.html :: mains_fragment"></div><!--영화관 이벤트-->
 <div th:replace="/movie/shops/movie_store.html :: movie_SHOP"></div>
 <div th:replace="/movie/mains_fragment/modal/mains_bottom.html :: mains_bottom">
 </div>
+
 <div th:replace="/movie/mains_fragment/modal/mains_menu_modal_important.html :: important"></div>
 <div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
 <div th:replace="/movie/mains_fragment/modal/mains_modal.html :: mains_modal"></div>
 <div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
 <div th:replace="/movie/sneak_peek/sneak_peek.html :: sneak_peek"></div>
 <div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
-
 <!--    js파일-->
 
 <script src="/js/modal/mains_menu_modal.js"></script>
@@ -118,5 +121,8 @@
 
 <!--section3 js-->
 <script src="/js/slide/section3.js"></script>
+
+<!--글등록 모달-->
+<script src="/js/resist_modal/resist_modal.js"></script>
 </body>
 </html>

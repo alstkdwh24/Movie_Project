@@ -46,7 +46,24 @@
             <div class="small_icon"  onclick="location.href='https://pf.kakao.com/_HPBhu'"><img width="40%" height="60%" src="https://img.icons8.com/color/48/kakaotalk.png"
                                          alt="kakaotalk"/></div>
         </div>
-        <div class="menu_function">
+
+        <div th:if="${roles=='ROLE_1'}" class="menu_function">
+            <div class="plus_menu" onclick="location.href='https://pedia.watcha.com/ko-KR/'">영화정보</div>
+            <div class="plus_menu" ><div class="con">커뮤니티</div></div>
+            <div class="plus_menu" onclick="location.href='/movie/Reservation/reservation'">예매</div>
+            <div class="plus_menu" onclick="location.href='/movie/community/event'">이벤트</div>
+            <div class="plus_menu" onclick="location.href='/movie/shops/popcorn_store'">스토어</div>
+        </div>
+        <div th:if="${roles=='ROLE_2'}" class="menu_function">
+            <div class="plus_menu" onclick="location.href='https://pedia.watcha.com/ko-KR/'">영화정보</div>
+            <div class="plus_menu" ><div class="con">커뮤니티</div></div>
+            <div class="plus_menu" onclick="location.href='/movie/Reservation/reservation'">예매</div>
+            <div class="plus_menu" onclick="location.href='/movie/community/event'">이벤트</div>
+            <div class="plus_menu" onclick="location.href='/movie/shops/popcorn_store'">스토어</div>
+            <div class="plus_menu" onclick="movie_modal_resist(event)">글등록</div>
+
+        </div>
+        <div th:if="${roles != 'ROLE_1' && roles != 'ROLE_2'}" class="menu_function">
             <div class="plus_menu" onclick="location.href='https://pedia.watcha.com/ko-KR/'">영화정보</div>
             <div class="plus_menu" ><div class="con">커뮤니티</div></div>
             <div class="plus_menu" onclick="location.href='/movie/Reservation/reservation'">예매</div>
@@ -75,5 +92,7 @@ menu
 </div>
 
 <div th:replace="movie/movie_menu/menu_modal.html :: menu_fragment"></div>
+<!--글 등록-->
+<div th:replace="/movie/write_resist/resist_modal.html :: resist_fragment"></div>
 
 </body>

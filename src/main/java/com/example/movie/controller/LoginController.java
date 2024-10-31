@@ -63,6 +63,7 @@ public class LoginController {
     @GetMapping("/name")
     public @ResponseBody String an(HttpSession session){
         String username=(String) session.getAttribute("username");
+
         if(username!=null){
             return "세셔은 살아있다.";
         }else{
@@ -73,6 +74,8 @@ public class LoginController {
     @PostMapping("/Login_form")
     public String login_login(HttpServletRequest request,
                               HttpSession session,
+                              HttpSession session2,
+
                               @RequestParam("username") String username,
                               @RequestParam("pw") String pw,
                               Model model,
@@ -98,6 +101,11 @@ public class LoginController {
             session.setAttribute("user", userDetails);
 
             session.setMaxInactiveInterval(2000);
+
+            session2.setAttribute("roles",vo.getRoles());
+            session2.setMaxInactiveInterval(2000);
+
+            System.out.println("roless"+ vo.getRoles());
 
             ra.addFlashAttribute("msg", "정상적으로 로그인되었습니다");
             return "redirect:/movie/mains";
@@ -130,8 +138,9 @@ public class LoginController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession session) {
+    public String logout(HttpSession session,HttpSession session2) {
         session.invalidate(); // 세션 무효화
+        session2.invalidate();
         return "redirect:/mains"; // 로그아웃 후 홈으로 리다이렉트
     }
 

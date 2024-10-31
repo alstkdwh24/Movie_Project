@@ -31,7 +31,8 @@ public class ChatController {
 
 
     @GetMapping("/Question")
-    public String Chat(HttpServletRequest request, Model model, Criteria cri, HttpSession session) {
+    public String Chat(HttpServletRequest request, Model model, Criteria cri, HttpSession session, HttpSession session2) {
+
         ArrayList<ChatVO> List = chatService.Question_show(cri);
         int total = chatService.Question_total(cri);
         PageVO PageVO = new PageVO(cri, total);
@@ -41,6 +42,10 @@ public class ChatController {
 
 
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
+        String roles= (String) session2.getAttribute("roles");
+
+        System.out.println("rolesss"+roles);
+        model.addAttribute("roles",roles);
         model.addAttribute("userSession", userDetails);
 
         return "movie/chats/Question";
@@ -49,8 +54,9 @@ public class ChatController {
 
     @GetMapping("/Question_writer")
     @PreAuthorize("hasAnyRole('ROLE_1')")
-    public String writer(HttpSession session, Model model) {
-
+    public String writer(HttpSession session, Model model,HttpSession session2) {
+        String roles= (String) session2.getAttribute("roles");
+        model.addAttribute("roles",roles);
 
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
         model.addAttribute("userSession", userDetails);
@@ -58,9 +64,10 @@ public class ChatController {
     }
 
     @GetMapping("/Question_detail")
-    public String Question_detail(@RequestParam("Q_number") Integer Q_number, Model model, HttpSession session) {
+    public String Question_detail(@RequestParam("Q_number") Integer Q_number, Model model, HttpSession session, HttpSession session2) {
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
-
+        String roles= (String) session2.getAttribute("roles");
+        model.addAttribute("roles",roles);
 
         if (userDetails == null) {
             return "redirect:/movie/login/login";

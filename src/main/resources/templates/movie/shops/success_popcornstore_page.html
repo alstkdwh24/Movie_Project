@@ -11,6 +11,9 @@
     <!--    본페이지 css-->
     <link rel="stylesheet" href="/css/reservation/success_reservation_page.css">
 
+    <!--글 등록 모달-->
+    <link rel="stylesheet" href="/css/resist_contents/resist_modal.css">
+
     <!--소메뉴 html크기 css-->
     <link rel="stylesheet" href="/css/login/login.css">
 </head>
@@ -21,5 +24,31 @@
         결제가 성공하였습니다.
     </div>
 </div>
+
+<!--커뮤니티div-->
+<div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
+
+<!--채팅 모달div-->
+<div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
+
+
+<!--소메뉴 검색css-->
+<div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
+
+
+<!--미니 메뉴 div-->
+<div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
+<!-- PortOne 라이브러리의 올바른 경로를 사용 -->
 </body>
+
+<!--커뮤니티 js-->
+<script src="/js/modal/Gallery_modal2.js"></script>
+
+<!--소메뉴 검색 모달-->
+<script src="/js/modal/momo_modal.js"></script>
+<!--채팅 모달js-->
+<script src="/js/modal/chat_modal.js"></script>
+
+<!--글등록 모달-->
+<script src="/js/resist_modal/resist_modal.js"></script>
 </html>
