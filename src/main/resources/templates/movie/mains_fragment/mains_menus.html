@@ -80,7 +80,44 @@
 
                         </div>
                     </div>
-                    <div class="real_title_bottom_two">
+                    <div class="real_title_bottom_two" th:if="${roles=='ROLE_1'}">
+                        <div class="real_title_bottom_two_reservation"
+                             onclick="location.href='https://pedia.watcha.com/ko-KR/'">영화정보
+                        </div>
+                        <div class="real_title_bottom_two_reservation"><a class="community">커뮤니티
+                        </a></div>
+                        <div class="real_title_bottom_two_reservation"
+                             onclick="location.href='/movie/Reservation/reservation'">예매
+                        </div>
+                        <div class="real_title_bottom_two_reservation" onclick="location.href='/movie/community/event'">
+                            이벤트
+                        </div>
+                        <div class="real_title_bottom_two_reservation"
+                             onclick="location.href='/movie/shops/popcorn_store'">스토어
+                        </div>
+                    </div>
+
+                    <div class="real_title_bottom_two" th:if="${roles=='ROLE_2'}">
+                        <div class="real_title_bottom_two_reservation"
+                             onclick="location.href='https://pedia.watcha.com/ko-KR/'">영화정보
+                        </div>
+                        <div class="real_title_bottom_two_reservation"><a class="community">커뮤니티
+                        </a></div>
+                        <div class="real_title_bottom_two_reservation"
+                             onclick="location.href='/movie/Reservation/reservation'">예매
+                        </div>
+                        <div class="real_title_bottom_two_reservation" onclick="location.href='/movie/community/event'">
+                            이벤트
+                        </div>
+                        <div class="real_title_bottom_two_reservation"
+                             onclick="location.href='/movie/shops/popcorn_store'">스토어
+                        </div>
+                        <div class="real_title_bottom_two_reservation"  onclick="movie_modal_resist(event)">글등록
+                        </div>
+
+                    </div>
+
+                    <div class="real_title_bottom_two" th:if="${roles!='ROLE_2' && roles!='ROLE_1'}">
                         <div class="real_title_bottom_two_reservation"
                              onclick="location.href='https://pedia.watcha.com/ko-KR/'">영화정보
                         </div>
@@ -141,6 +178,7 @@ arrow_circle_right
         </div>
     </div>
     <div th:replace="/movie/mains_fragment/modal/mains_menu_modal.html :: mains_menu_modal"></div>
+<!--    글등록 div-->
 </div>
 </body>
 </html>

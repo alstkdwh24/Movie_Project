@@ -41,16 +41,16 @@ public class MovieConfig {
     public SecurityFilterChain SecurityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests((authorize) -> authorize.antMatchers("/movie").authenticated()
-                .antMatchers("/movie/user/**").hasRole("1")
-                .antMatchers("/movie/chat/**").hasRole("1")
+                .antMatchers("/movie/user/**").hasAnyRole("1", "2")
+                .antMatchers("/movie/chat/**").hasAnyRole("1", "2")
                 .antMatchers("/admin/**").hasRole("admin")
-                .antMatchers("/movie/community/free_board_writer").hasRole("1")
-                .antMatchers("/movie/community/free_board_detail").hasRole("1")
-                .antMatchers("/movie/community/g_board_writer").hasRole("1")
-                .antMatchers("/movie/community/g_board_detail").hasRole("1")
-                .antMatchers("/movie/Reservation/reservation").hasRole("1")
-                .antMatchers("/movie/Reservation/**").hasRole("1")
-                .antMatchers("/movie/chats/**").hasRole("1")
+                .antMatchers("/movie/community/free_board_writer").hasAnyRole("1", "2")
+                .antMatchers("/movie/community/free_board_detail").hasAnyRole("1", "2")
+                .antMatchers("/movie/community/g_board_writer").hasAnyRole("1", "2")
+                .antMatchers("/movie/community/g_board_detail").hasAnyRole("1", "2")
+                .antMatchers("/movie/Reservation/reservation").hasAnyRole("1", "2")
+                .antMatchers("/movie/Reservation/**").hasAnyRole("1", "2")
+                .antMatchers("/movie/chats/**").hasAnyRole("1", "2")
                 .antMatchers("/payments/**").permitAll()
                 .anyRequest().permitAll());
 

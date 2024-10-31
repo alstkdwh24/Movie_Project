@@ -39,7 +39,7 @@ public class EventController {
     //자유게시판 CEUD
 
     @GetMapping("/freeboard")
-    public String FREEBOARD(HttpServletRequest request, Model model, Criteria cri /*@RequestParam("free_number") Integer free_number*/, HttpSession session) {
+    public String FREEBOARD(HttpServletRequest request, Model model, Criteria cri /*@RequestParam("free_number") Integer free_number*/, HttpSession session, HttpSession session2) {
         ArrayList<EventVO> List = eventService.gallery_free_show(cri);
         int total = eventService.gallery_free_total(cri);
         PageVO pageVO = new PageVO(cri, total);
@@ -50,30 +50,39 @@ public class EventController {
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
         model.addAttribute("userSession", userDetails);
 
+        String roles= (String) session2.getAttribute("roles");
+        model.addAttribute("roles",roles);
+
 
         return "movie/community/freeboard";
     }
 
     @GetMapping("/free_board_writer_update")
-    public String free_update(HttpSession session, Model model) {
+    public String free_update(HttpSession session, Model model, HttpSession session2) {
 
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
         model.addAttribute("userSession", userDetails);
+
+        String roles= (String) session2.getAttribute("roles");
+        model.addAttribute("roles",roles);
         return "movie/community/free_board_writer_update";
     }
 
     @GetMapping("/free_board_writer")
 //       @PreAuthorize("hasRole('ROLE_1')")
-    public String freeBoardWriter(Model model, HttpSession session) {
+    public String freeBoardWriter(Model model, HttpSession session, HttpSession session2) {
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
         model.addAttribute("userSession", userDetails);
+        String roles= (String) session2.getAttribute("roles");
+        model.addAttribute("roles",roles);
         return "movie/community/free_board_writer"; // 해당 뷰 반환
     }
 
     @GetMapping("/free_detail")
-    public String free_detail(@RequestParam("free_number") Integer free_number, Model model, HttpSession session) {
+    public String free_detail(@RequestParam("free_number") Integer free_number, Model model, HttpSession session, HttpSession session2) {
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
-
+        String roles= (String) session2.getAttribute("roles");
+        model.addAttribute("roles",roles);
         if (userDetails == null) {
             return "redirect:/movie/login/login";
         } else {

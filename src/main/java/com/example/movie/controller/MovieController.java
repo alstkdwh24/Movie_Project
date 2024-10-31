@@ -24,7 +24,11 @@ public class MovieController  {
     public MovieService movieService;
 
     @GetMapping("/mains")
-    public String mains(HttpSession session, Model model) {
+    public String mains(HttpSession session, Model model, HttpSession session2) {
+
+        String roles= (String) session2.getAttribute("roles");
+        model.addAttribute("roles",roles);
+
         // 세션에서 사용자 정보를 가져옵니다.
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
         model.addAttribute("userSession", userDetails);
