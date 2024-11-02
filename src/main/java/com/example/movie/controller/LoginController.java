@@ -43,13 +43,21 @@ public class LoginController {
     private AuthenticationManager authenticationManager;
     //회원가입 화면
     @GetMapping("/join")
-    public String join() {
+    public String join(HttpSession session2 ,Model model) {
+        String roles= (String) session2.getAttribute("roles");
+        model.addAttribute("roles",roles);
+
+
+
         return "movie/login/join";
     }
 
     //    로그인 화면
     @GetMapping("/login")
-    public String login() {
+    public String login(HttpSession session2, Model model) {
+        String roles= (String) session2.getAttribute("roles");
+        model.addAttribute("roles",roles);
+
         return "movie/login/login";
     }
 

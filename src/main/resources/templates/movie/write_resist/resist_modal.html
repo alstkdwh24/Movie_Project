@@ -5,11 +5,24 @@
     <title>Title</title>
 </head>
 <body>
-<div th:fragment="resist_fragment" class="resist_black" >
+<div th:fragment="resist_fragment" class="resist_black">
     <div id="resist_modal">
-        <div>영화 등록</div>
-        <div>스토어 메뉴 등록</div>
-        <div>이벤트 등록</div>
+        <div id="resist_modal_top">
+            <h2 id="JCGX_NAME">JCGX</h2>
+        </div>
+        <div id="resist_modal_middle">
+            <div id="resist_modal_middle_top">
+                <div class="movies_resist" style="background-color:deepskyblue" onclick="location.href='/movie/write_resist/movie_resist'">영화 등록</div>
+                <div class="movies_resist" style="background-color:#b85c00" onclick="location.href='/movie/write_resist/movie_resist'">영화 등록</div>
+
+            </div>
+            <div id="resist_modal_middle_bottom">
+                <div class="movies_resist" style="background-color:red" onclick="location.href='/movie/write_resist/popcorn_resist'">스토어 메뉴 등록</div>
+                <div class="movies_resist" style="background-color:gold" onclick="location.href='/movie/write_resist/event_resist'">이벤트 등록</div>
+            </div>
+
+
+        </div>
     </div>
 </div>
 </body>
