@@ -1,74 +1,106 @@
-#top_resist_top{
+#top_resist_top {
     height: 20%;
     width: 100%;
     border: 1px solid black;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 
 }
 
-#resist_title{
+#resist_title {
     width: 80%;
     height: 40%;
+    background-color: black;
+    color: white;
 }
 
-#middle_resist_middle{
+#middle_resist_middle {
     height: 40%;
     width: 100%;
     border: 1px solid black;
-display:flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#resist_image{
-    height: 100%;
-    width: 42%;
-    border:1px solid black;
-
-}
-
-#resist_img{
-    height: 90%;
-    width: 100%;
-    border: 1px solid black;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-#resist_image_two{
-    width: 100%;
-    height: 10%;
-    font-size: 20px;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#resist_img_two{
-    width: 80%;
-    height:84%;
-    border:1px solid black;
-    border-radius: 30px;
-
-}
-
-#bottom_resist_bottom{
-    height: 40%;
-    width: 100%;
-    border:1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#resist_textarea{
+#resist_image {
+    height: 100%;
+    width: 46%;
+    border: 1px solid black;
+
+}
+#resist_image .hover {
+    border-color: #333;
+}
+
+#resist_img {
+    height: 90%;
+    width: 100%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#resist_image_two {
+    width: 100%;
+    height: 10%;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#resist_img_two {
+    width: 80%;
+    height: 84%;
+    border: 1px solid black;
+    border-radius: 30px;
+
+}
+
+#bottom_resist_bottom {
+    height: 28%;
+    width: 100%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#resist_textarea {
     width: 86%;
     height: 70%;
     resize: none;
     font-size: 20px;
+    background-color: black;
+    color: white;
 }
 
+#resist_bottom_bottom {
+    height: 12%;
+    width: 100%;
+    justify-content: space-evenly;
+    display: flex;
+    align-items: center;
+}
+
+.button {
+    width: 16%;
+    height: 50%;
+    border: none;
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+}
+
+#button_submit {
+    background-color: #0eb4fc;
+}
+
+#button_conceal {
+    background-color: #d12907;
+}
