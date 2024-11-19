@@ -18,4 +18,8 @@ public class EventVO_Board {
     private String uuid;
     private LocalDateTime reg_date;
     private String movie_filepath;
+    private String resist_textarea;
+
+    public void setFileSize(long size) {
+    }
 }
