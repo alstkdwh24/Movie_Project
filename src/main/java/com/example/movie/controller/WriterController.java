@@ -40,4 +40,14 @@ public class WriterController {
 
         return "/movie/write_resist/popcorn_resist";
     }
+
+    @GetMapping("/delicious_resist")
+    public String delicious_resist(){
+        return "/movie/write_resist/delicious_resist";
+    }
+
+    @GetMapping("/movie_gift_card_resist")
+    public String movie_gift_card_resist(){
+        return "/movie/write_resist/movie_gift_card_resist";
+    }
 }

@@ -1,7 +1,7 @@
 
 let resist_img=document.getElementById("resist_image");
-let currentFiles; // 현재 파일을 저장할 변수
 
+let currentFiles; // 현재 파일을 저장할 변수
 
 resist_img.ondragover=function (event) {
     event.preventDefault();
@@ -16,6 +16,7 @@ resist_img.ondragleave=function () {
 resist_img.ondrop=function (event) {
     event.preventDefault();
     resist_img.classList.remove("hover");
+    resist_img.textContent='';
 
     const files=event.dataTransfer.files;
     movie_resist(files);
