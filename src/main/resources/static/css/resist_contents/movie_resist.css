@@ -107,3 +107,8 @@
 #button_conceal {
     background-color: #d12907;
 }
+
+#fileElem{
+    height: 100%;
+    width: 100%;
+}

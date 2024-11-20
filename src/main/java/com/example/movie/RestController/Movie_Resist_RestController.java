@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
@@ -37,35 +41,92 @@ public class Movie_Resist_RestController {
         return filepath;
     }
 
-    @PostMapping(value = "/event_resist", consumes = "multipart/form-data")
-    public ResponseEntity<EventVO_Board> event_resist(@RequestParam("event_name") String eventName,
-                                                      @RequestParam("resist_textarea") String resistText, @RequestParam("movie_filename") MultipartFile file) {
-        String originName = file.getOriginalFilename();
 
-        originName = originName.substring(originName.lastIndexOf("\\") + 1);
+    @PostMapping("/upload_ok/movie_resist_two")
+    public ResponseEntity<MovieVO> movie_resist_two(@RequestParam("file") MultipartFile movie_resist_file,String imageFilePath,
 
-        long size = file.getSize();
-        // 동일한 파일로 업로드가 되면 덮어지기 때문에, 랜덤한 이름을 생성해야 한다.
-        String uuid = UUID.randomUUID().toString();
+                                                    @RequestParam("movie_filename") String movie_filename) throws IOException {
 
-        //날짜별로 폴더 생성
+
+        long size =movie_resist_file.getSize();
+        String uuid=UUID.randomUUID().toString();
         String filepath = makeFolder();
+        String savePath=uploadPath + "/" + filepath +"/" + uuid + "_" + movie_filename;
 
-        String savePath = uploadPath + "/" + filepath + '/' + uuid + "_" + originName;
-        System.out.println("파일명:" + originName); //원본파일명 DB저장
+        System.out.println("파일명:" + movie_filename); //원본파일명 DB저장
         System.out.println("파일 사이즈:" + size); //폴더명 DB저장
         System.out.println("파일 구분:" + uuid); //파일 구분 DB저장
         System.out.println("업로그 할 경로:" + savePath); //업로드할 경로 저장
 
 
-        EventVO_Board vo = new EventVO_Board();
-        vo.setEvent_name(eventName);
-        vo.setResist_textarea(resistText);
-        vo.setMovie_filename(uuid + "_" + originName); // 저장된 파일 이름
-        vo.setFileSize(size); // 파일 크기
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(vo);
+        File saveFile = new File(savePath);
+
+        movie_resist_file.transferTo(saveFile);//업로드 바로
+
+        return ResponseEntity.ok(MovieVO.builder().build());
     }
-
-
 }
+
+//    @PostMapping(value = "/event_resist", consumes = "multipart/form-data")
+//    public ResponseEntity<EventVO_Board> event_resist(@RequestParam("event_name") String eventName,
+//                                                      @RequestParam("resist_textarea") String resistText, @RequestParam("movie_filename") MultipartFile file) {
+//        String originName = file.getOriginalFilename();
+//
+//        originName = originName.substring(originName.lastIndexOf("\\") + 1);
+//
+//        long size = file.getSize();
+//        // 동일한 파일로 업로드가 되면 덮어지기 때문에, 랜덤한 이름을 생성해야 한다.
+//        String uuid = UUID.randomUUID().toString();
+//
+//        //날짜별로 폴더 생성
+//        String filepath = makeFolder();
+//
+//        String savePath = uploadPath + "/" + filepath + '/' + uuid + "_" + originName;
+//        System.out.println("파일명:" + originName); //원본파일명 DB저장
+//        System.out.println("파일 사이즈:" + size); //폴더명 DB저장
+//        System.out.println("파일 구분:" + uuid); //파일 구분 DB저장
+//        System.out.println("업로그 할 경로:" + savePath); //업로드할 경로 저장
+//
+//
+//        EventVO_Board vo = new EventVO_Board();
+//        vo.setEvent_name(eventName);
+//        vo.setResist_textarea(resistText);
+//        vo.setMovie_filename(uuid + "_" + originName); // 저장된 파일 이름
+//        vo.setFileSize(size); // 파일 크기
+//
+//        return ResponseEntity.status(HttpStatus.CREATED).body(vo);
+//    }
+//
+//    @PostMapping(value = "/movie_resist", consumes = "multipart/form-data")
+//    public ResponseEntity<MovieVO> event_resist(@RequestParam("movie_title") String movie_title,
+//                                                      @RequestParam("movie_textarea") String movie_textarea, @RequestParam("movie_filename") MultipartFile file) {
+//        String originName = file.getOriginalFilename();
+//
+//        originName = originName.substring(originName.lastIndexOf("\\") + 1);
+//
+//        long size = file.getSize();
+//        // 동일한 파일로 업로드가 되면 덮어지기 때문에, 랜덤한 이름을 생성해야 한다.
+//        String uuid = UUID.randomUUID().toString();
+//
+//        //날짜별로 폴더 생성
+//        String filepath = makeFolder();
+//
+//        String savePath = uploadPath + "/" + filepath + '/' + uuid + "_" + originName;
+//        System.out.println("파일명:" + originName); //원본파일명 DB저장
+//        System.out.println("파일 사이즈:" + size); //폴더명 DB저장
+//        System.out.println("파일 구분:" + uuid); //파일 구분 DB저장
+//        System.out.println("업로그 할 경로:" + savePath); //업로드할 경로 저장
+//
+//
+//        MovieVO vo = new MovieVO();
+//        vo.setMovie_title(movie_title);
+//        vo.setMovie_textarea(movie_textarea);
+//        vo.setMovie_filename(uuid + "_" + originName); // 저장된 파일 이름
+//        vo.setFIleSize(size); // 파일 크기
+//
+//        return ResponseEntity.status(HttpStatus.CREATED).body(vo);
+//    }
+//
+
+
