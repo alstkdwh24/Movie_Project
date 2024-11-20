@@ -42,12 +42,18 @@ public class WriterController {
     }
 
     @GetMapping("/delicious_resist")
-    public String delicious_resist(){
+    public String delicious_resist(HttpSession session2, Model model){
+        String roles = (String) session2.getAttribute("roles");
+        model.addAttribute("roles", roles);
+
         return "/movie/write_resist/delicious_resist";
     }
 
     @GetMapping("/movie_gift_card_resist")
-    public String movie_gift_card_resist(){
+    public String movie_gift_card_resist(HttpSession session2, Model model){
+        String roles = (String) session2.getAttribute("roles");
+        model.addAttribute("roles", roles);
+
         return "/movie/write_resist/movie_gift_card_resist";
     }
 }

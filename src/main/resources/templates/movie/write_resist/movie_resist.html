@@ -57,20 +57,21 @@
             <input type="text" id="resist_title">
         </div>
         <div id="middle_resist_middle">
-            <div id="resist_image">
-<!--                <input type="file" id="fileElem" multiple style="display:none;">-->
-                여기에 파일을 넣어주세요
-            </div>
+            <label id="resist_image" class="resist_image_two" for="fileElem">
+                여기에 파일을 넣어주세요                여기에 파일을 넣어주세요
+            </label>
 
         </div>
         <div id="bottom_resist_bottom">
             <textarea id="resist_textarea"></textarea>
         </div>
         <div id="resist_bottom_bottom">
-            <button class="button" id="button_submit">제출</button>
+            <button class="button" id="button_submit" >제출</button>
             <button class="button" id="button_conceal">취소</button>
         </div>
     </div>
+    <input type="file" id="fileElem" multiple style="display:none;" >
+
 </div>
 <!--소메뉴 커뮤니티 모달 div-->
 <div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
@@ -127,4 +128,6 @@
 
 <!--이미지 관련 js-->
 <script src="/js/resist_modal/movie_resist.js"></script>
+
+<script src="/js/resist_modal/movie_resist_two.js"></script>
 </html>
