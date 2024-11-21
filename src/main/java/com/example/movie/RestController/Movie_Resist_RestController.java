@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import retrofit2.http.Multipart;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,11 +43,11 @@ public class Movie_Resist_RestController {
     }
 
 
-    @PostMapping("/upload_ok/movie_resist_two")
-    public ResponseEntity<MovieVO> movie_resist_two(@RequestParam("file") MultipartFile movie_resist_file,String imageFilePath,
-
-                                                    @RequestParam("movie_filename") String movie_filename) throws IOException {
-
+    @PostMapping(value = "/upload_ok/movie_resist_two", consumes = "Multipart/form-data")
+    public ResponseEntity<MovieVO> movie_resist_two(@RequestParam("movie_title") String movie_title,
+                                                    @RequestParam("file") MultipartFile movie_resist_file
+                                                    ,@RequestParam("movie_textarea") String movie_textarea,
+                                                    @RequestParam("movie_filename") String movie_filename ) throws IOException {
 
         long size =movie_resist_file.getSize();
         String uuid=UUID.randomUUID().toString();
@@ -63,6 +64,15 @@ public class Movie_Resist_RestController {
         File saveFile = new File(savePath);
 
         movie_resist_file.transferTo(saveFile);//업로드 바로
+       MovieVO vo=new MovieVO();
+       
+       vo.setMovie_title(movie_title);
+       vo.setMovie_filename(movie_filename);
+        vo.setUuid(uuid);
+        vo.setSize(size);
+        vo.setMovie_resist_filePath(savePath);
+        vo.setMovie_textarea(movie_textarea);
+        int Movie_resist_people=movie_Image_Service.movie_resist(vo);
 
         return ResponseEntity.ok(MovieVO.builder().build());
     }
