@@ -19,7 +19,8 @@ public class MovieVO {
     private String uuid;
     private LocalDateTime reg_date;
     private String filepath;
+    private long size;
+    private String movie_resist_filePath;
 
-    public void setFIleSize(long size) {
-    }
+
 }

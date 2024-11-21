@@ -70,7 +70,7 @@ resist_img.onclick = function () {
         const a = document.createElement('a');
         console.log("newImage_src:" + newImage_src)
         a.href = newImage_src;
-        a.download = filename;
+        a.download = Math.floor(Math.random()*1000).toString()+filename ;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a); // 링크 제거
@@ -101,8 +101,8 @@ if(photo.length>0){
         $.ajax({
             type: "POST",
             url: "/movie_resist/upload_ok/movie_resist_two",
-            processData: false,
-            contentType: false,
+            processData: false, // jQuery가 데이터를 처리하지 않도록 설정
+            contentType: false, // jQuery가 Content-Type을 설정하지 않도록 설정
             data: formData,
             success: function () {
                 console.log(1);
