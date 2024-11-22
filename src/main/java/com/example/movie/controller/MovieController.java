@@ -38,16 +38,20 @@ public class MovieController  {
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
         model.addAttribute("userSession", userDetails);
         ArrayList<MovieVO> movie_list=movie_image_service.movie_resist_list(vo);
-        StringBuilder html=new StringBuilder();
-        for(MovieVO movie:movie_list){
-            String uuid = movie.getUuid();
-            String imageUrl = movie.getMovie_resist_filePath(); // URL 생성
-            html.append("<img src='").append(imageUrl).append("' alt='").append("' />");
-        }
-        model.addAttribute("movieHtml",html.toString());
-
+        String movieHtml=movie_resist_html(movie_list);
         System.out.println("movie_list" + movie_list);
         model2.addAttribute("movie_list",movie_list);
+        model2.addAttribute("movieHtml",movieHtml);
         return "movie/mains";
+    }
+    private String movie_resist_html(ArrayList<MovieVO> movie_list){
+        StringBuilder html=new StringBuilder();
+        for(MovieVO movieVO: movie_list){
+            String imageUrl=movieVO.getMovie_resist_filePath();
+            html.append("<img src='").append(imageUrl).append("' alt='영화 이미지' />");
+
+        }
+        return html.toString();
+
     }
 }
