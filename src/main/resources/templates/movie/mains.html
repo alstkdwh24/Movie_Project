@@ -65,15 +65,10 @@
             <div class="sort" id="right"></div>
         </div>
         <div class="movie_title_ex">
-            <div class="movie_picture" th:each="vo, status:${movie_list}">
+            <div class="movie_picture" th:each="vo, status:${movie_list}" th:utext="${movieHtml}">
 
-                <div class="movie_image">
-                    <div class="movie_real_image" th:utext="${movieHtml}">
-<!--                        <img th:src="${vo.movie_resist_filePath}/${vo.uuid}" th:alt="${vo.movie_title}" style="width: 100%; height: 100%" />-->
 
-                    </div>
-                </div>
-                <div class="movie_gle">[[${vo.movie_title}]]</div>
+
 
             </div>
 
