@@ -25,7 +25,7 @@ import java.io.IOException;
 
 @Configuration //설정파일임
 @EnableWebSecurity
-public class MovieConfig {
+public class MovieConfig  {
 //    @Autowired
 //    private MyUserDetailService userDetailService;
 

@@ -1,22 +1,22 @@
 package com.example.movie.RestController;
 
-import com.example.movie.commandVO.MainsVO.EventVO_Board;
+import com.example.movie.ImageProperties.ImageProperties;
 import com.example.movie.commandVO.MainsVO.MovieVO;
 import com.example.movie.movie_image_service.Movie_Image_Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import retrofit2.http.Multipart;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
@@ -28,18 +28,21 @@ public class Movie_Resist_RestController {
     @Value("${project.upload.path}")
     private String uploadPath;
 
+
     @Autowired
     @Qualifier("movie_Image_Service")
     private Movie_Image_Service movie_Image_Service;
 
-    public String makeFolder() {
-        String filepath = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+String filePath="";
 
-        File file = new File(uploadPath + '/' + filepath);
+    public String makeFolder() {
+         filePath = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+
+        File file = new File(uploadPath + '/' + filePath);
         if (!file.exists()) { //해당 파일이 있으면 true, 없으면!
             file.mkdirs();
         }
-        return filepath;
+        return filePath;
     }
 
 
@@ -47,16 +50,19 @@ public class Movie_Resist_RestController {
     public ResponseEntity<MovieVO> movie_resist_two(@RequestParam("movie_title") String movie_title,
                                                     @RequestParam("file") MultipartFile movie_resist_file
                                                     ,@RequestParam("movie_textarea") String movie_textarea,
-                                                    @RequestParam("movie_filename") String movie_filename ) throws IOException {
+                                                    @RequestParam("movie_filename") String movie_filename,
+                                                    @RequestParam("uploadPaths") String uploadPaths) throws IOException {
 
         long size =movie_resist_file.getSize();
-        String uuid=UUID.randomUUID().toString();
-        String filepath = makeFolder();
-        String savePath=uploadPath + "/" + filepath +"/" + uuid + "_" + movie_filename;
-
+//        String uuid=UUID.randomUUID().toString();
+        String filePath = makeFolder();
+        uploadPaths=uploadPath;
+        String savePath=uploadPath + "/" + filePath+"/" +movie_filename;
+//        String name=uuid+movie_filename;
+//        System.out.println("savePath_two:"+savePath_two);
         System.out.println("파일명:" + movie_filename); //원본파일명 DB저장
         System.out.println("파일 사이즈:" + size); //폴더명 DB저장
-        System.out.println("파일 구분:" + uuid); //파일 구분 DB저장
+//        System.out.println("파일 구분:" + uuid); //파일 구분 DB저장
         System.out.println("업로그 할 경로:" + savePath); //업로드할 경로 저장
 
 
@@ -64,11 +70,13 @@ public class Movie_Resist_RestController {
         File saveFile = new File(savePath);
 
         movie_resist_file.transferTo(saveFile);//업로드 바로
+        System.out.println();
        MovieVO vo=new MovieVO();
-       
+       vo.setFilePath(filePath);
+       vo.setUploadPaths(uploadPaths);
        vo.setMovie_title(movie_title);
        vo.setMovie_filename(movie_filename);
-        vo.setUuid(uuid);
+//        vo.setUuid(uuid);
         vo.setSize(size);
         vo.setMovie_resist_filePath(savePath);
         vo.setMovie_textarea(movie_textarea);
@@ -76,6 +84,10 @@ public class Movie_Resist_RestController {
 
         return ResponseEntity.ok(MovieVO.builder().build());
     }
+
+
+
+
 }
 
 //    @PostMapping(value = "/event_resist", consumes = "multipart/form-data")
