@@ -18,9 +18,10 @@ public class MovieVO {
     private String movie_filename;
     private String uuid;
     private LocalDateTime reg_date;
-    private String filepath;
+    private String filePath;
     private long size;
     private String movie_resist_filePath;
+    private String uploadPaths;
 
 
 }

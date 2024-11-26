@@ -4,12 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.movie.movie_image_service.Movie_Image_Mapper">
     <insert id="movie_resist" parameterType="com.example.movie.commandVO.MainsVO.MovieVO">
-        insert into movie_title (movie_title, movie_filename, uuid, reg_date, movie_resist_filePath, sizes, movie_textarea)
-        values (#{movie_title}, #{movie_filename}, #{uuid}, now(), #{movie_resist_filePath}, #{size}, #{movie_textarea});
+        insert into movie_title (movie_title, movie_filename, uuid, reg_date, movie_resist_filePath, sizes, movie_textarea, uploadPaths, filePath)
+        values (#{movie_title}, #{movie_filename}, #{uuid}, now(), #{movie_resist_filePath}, #{size}, #{movie_textarea},#{uploadPaths}, #{filePath});
 
     </insert>
 
     <select id="movie_resist_list" resultType="movieVO">
-    select movie_title,movie_filename,uuid,movie_resist_filePath, sizes,movie_textarea from movie_title;
+    select movie_title,movie_filename,uuid,movie_resist_filePath, sizes,movie_textarea, uploadPaths,filePath from movie_title;
     </select>
 </mapper>

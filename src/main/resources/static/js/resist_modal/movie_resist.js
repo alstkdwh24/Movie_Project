@@ -1,3 +1,4 @@
+
 let resist_img = document.getElementById("resist_image");
 let currentFiles; // 현재 파일을 저장할 변수
 let button_submit = document.getElementById("button_submit");
@@ -35,6 +36,7 @@ resist_img.onchange=function onchange(event) {
 function movie_resist(files) {
     for (const file of files) {
         let movie_resist_file = file.name ;
+        console.log(movie_resist_file);
         resist_img.setAttribute("data", movie_resist_file);
         const reader = new FileReader();
         reader.onload = function (e) {
@@ -86,17 +88,20 @@ if(photo.length>0){
     for(let i=0;i<photo.length;i++){
         let photo_file=photo[i];
         console.log("photo_file"+ photo_file)
+        // let uuid=UUID.randomUUID().toString();
+
         let movie_filename = resist_img.getAttribute("data");
         let newImage_src = sessionStorage.getItem("newImage_src");
         let movie_title = document.getElementById("resist_title").value;
         let movie_textarea = document.getElementById("resist_textarea").value;
-
+        let uploadPaths=""
         // /\    console.log("fileelem"+ fileElem);
         let formData = new FormData();
         formData.append("movie_filename", movie_filename);
         formData.append("movie_textarea", movie_textarea);
         formData.append("movie_title", movie_title);
         formData.append("file",photo_file);
+        formData.append("uploadPaths",uploadPaths)
 
         $.ajax({
             type: "POST",
@@ -108,6 +113,7 @@ if(photo.length>0){
                 console.log(1);
             }
         })
+
     }
 
 }
