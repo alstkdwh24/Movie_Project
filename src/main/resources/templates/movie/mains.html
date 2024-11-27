@@ -41,7 +41,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title></title>
 
 </head>
@@ -79,9 +79,21 @@
         </div>
 
     </div>
+    <div class="secrete_div" th:each="vo, status : ${movie_list}">
+        <div class="filePath">
+            [[${vo.filePath}]]
+        </div>
+        <div class="movie_filename">
+            [[${vo.movie_filename}]]
+        </div>
+        <div class="uuid">
+            [[${vo.uuid}]]
+        </div>
 
+    </div>
 
 </section>
+
 <div th:replace="/movie/write_resist/resist_modal.html :: resist_fragment"></div>
 
 <div th:replace="/movie/mains_fragment/mains_fragment.html :: mains_fragment"></div><!--영화관 이벤트-->

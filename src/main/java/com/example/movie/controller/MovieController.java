@@ -10,6 +10,7 @@ import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.core.io.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -87,14 +88,12 @@ public class MovieController {
         model.addAttribute("userSession", userDetails);
         // 영화 목록을 가져옵니다.
         ArrayList<MovieVO> movie_list = movie_image_service.movie_resist_list(vo);
+        model.addAttribute("movie_list",movie_list);
 
-        List<String> imageUrls = new ArrayList<>();
 
         for (int i = 0; i < movie_list.toArray().length; i++) {
 
-                String filename = movie_list.get(i).getUploadPaths()+"/"+ movie_list.get(i).getFilePath() + "/" + movie_list.get(i).getMovie_filename();
                 String firstFile=movie_list.get(i).getFilePath() + "/" + movie_list.get(i).getMovie_filename();
-                String filePath=movie_list.get(i).getFilePath();
             filenames =  movie_list.get(i).getFilePath() + "/" + movie_list.get(i).getMovie_filename(); // 파일 이름만 사용
 
             System.out.println("filenames2:"+ filenames);
@@ -114,12 +113,12 @@ public class MovieController {
         // HTML 생성
         String movieHtml = generateMovieHtml(movie_list);
 
+
         // 생성된 HTML을 모델에 추가
         modelAndView.addObject("movieHtml", movieHtml);
 
         return modelAndView; // ModelAndView 반환
     }
-    @CrossOrigin(origins = "http://localhost:9494") // 적절한 출처 설정
     private String generateMovieHtml(ArrayList<MovieVO> movie_list) {
         StringBuilder html = new StringBuilder();
 
@@ -144,29 +143,6 @@ public class MovieController {
         }
 
         return html.toString(); // 생성된 HTML을 반환
-    }
-    @CrossOrigin(origins = "http://localhost:9494")
-    @GetMapping("/files/{filename}")
-    @ResponseBody
-    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
-        System.out.println("Full file path: " + filePath);
-        Path filePath = Paths.get("C:/Users/alstk/2course/JAVA/portfolio_project/files/").resolve(filename);
-        System.out.println("Requested file path: " + filePath);
-
-        Resource resource = new FileSystemResource(filePath.toFile());
-
-        // 파일 존재 여부 확인
-        if (!resource.exists()) {
-            return ResponseEntity.notFound().build(); // 404 Not Found 반환
-        }
-
-        // 파일의 MIME 타입 결정
-
-
-        // 파일 반환
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + resource.getFilename() + "\"")
-                .body(resource);
     }
 
 }
