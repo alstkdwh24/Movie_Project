@@ -1,6 +1,7 @@
 package com.example.movie.RestController;
 
 import com.example.movie.ImageProperties.ImageProperties;
+import com.example.movie.commandVO.MainsVO.EventVO_Board;
 import com.example.movie.commandVO.MainsVO.MovieVO;
 import com.example.movie.movie_image_service.Movie_Image_Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,12 +93,14 @@ public class Movie_Resist_RestController {
         return ResponseEntity.ok(MovieVO.builder().build());
     }
 
-    @GetMapping("/files/{finalFilename_one}/{finalFilename_two:.+}")
+
+
+    @GetMapping("/files/{filePaths}/{movie_filename_two}/{movietitles}")
     @ResponseBody
-    public ResponseEntity<Resource> serveFile(@PathVariable String finalFilename_one, @PathVariable String finalFilename_two) {
-        System.out.println("finalFilename_one"+ finalFilename_one);
+    public ResponseEntity<Resource> serveFile(@PathVariable String filePaths, @PathVariable String movie_filename_two, @PathVariable String movietitles) {
+        System.out.println("finalFilename_one"+ filePath);
         try {
-            Path path = Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/" + finalFilename_one + "/" + finalFilename_two);
+            Path path = Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/" + filePaths + "/" + movie_filename_two);
             File file = path.toFile();
             String mimeType = Files.probeContentType(path);
             MediaType mediaType = MediaType.parseMediaType(mimeType != null ? mimeType : "application/octet-stream");

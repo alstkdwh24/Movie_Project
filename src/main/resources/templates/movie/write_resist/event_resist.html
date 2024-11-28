@@ -59,12 +59,13 @@
             </label>
         </div>
         <div id="middle_resist_middle">
-            <div id="resist_image">
+            <label id="resist_image" class="resist_image_two" for="fileElem">
                 여기에 파일을 넣어주세요
-
-            </div>
+            </label>
 
         </div>
+
+
         <div id="bottom_resist_bottom">
             <label for="resist_textarea"><textarea id="resist_textarea"></textarea></label>
         </div>
@@ -73,6 +74,7 @@
             <button class="button" id="button_conceal">취소</button>
         </div>
     </div>
+    <input type="file" id="fileElem" multiple style="display:none;">
 </div>
 <!--소메뉴 커뮤니티 모달 div-->
 <div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
@@ -125,12 +127,12 @@
 <script src="/js/data/User/modify.js"></script>
 
 <!--글등록 모달-->
-<script src="/js/resist_modal/resist_modal.js"></script>
+<script src="/js/resist_image_file/resist_modal.js"></script>
 
 <!--이미지 관련 js-->
 <!--<script src="/js/resist_modal/movie_resist.js"></script>-->
 
 <!--이벤트 이미지 관련 js-->
-<script src="/js/resist_modal/event_resist.js"></script>
+<script src="/js/resist_image_file/event_resist.js"></script>
 <!--비동기적 ajax 이미지 처리-->
 </html>

@@ -10,6 +10,6 @@
     </insert>
 
     <select id="movie_resist_list" resultType="movieVO">
-    select movie_title,movie_filename,uuid,movie_resist_filePath, sizes,movie_textarea, uploadPaths,filePath from movie_title;
+    select * from movie_title;
     </select>
 </mapper>
