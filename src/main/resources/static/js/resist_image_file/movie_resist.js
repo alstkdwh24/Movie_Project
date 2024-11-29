@@ -18,9 +18,10 @@ resist_img.ondrop = function (event) {
     event.preventDefault();
     resist_img.classList.remove("hover");
     resist_img.textContent = "";
+    let dataTransfer = new DataTransfer();
+
     const files=event.dataTransfer.files;
     movie_resist(files);
-    let dataTransfer = new DataTransfer();
 
    for(let i=0; i < files.length; i++){
        dataTransfer.items.add(files[i]);

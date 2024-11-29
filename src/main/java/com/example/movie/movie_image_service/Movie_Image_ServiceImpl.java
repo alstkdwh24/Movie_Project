@@ -29,4 +29,9 @@ public class Movie_Image_ServiceImpl implements Movie_Image_Service{
         // 영화 리스트를 조회하여 반환합니다.
         return movieImageMapper.movie_resist_list(vo);
     }
+
+    @Override
+    public int event_board_resist(EventVO_Board vo) {
+        return movieImageMapper.event_board_resist(vo);
+    }
 }

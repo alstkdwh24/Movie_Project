@@ -10,6 +10,11 @@
     </insert>
 
     <select id="movie_resist_list" resultType="movieVO">
-    select movie_title,movie_filename,uuid,movie_resist_filePath, sizes,movie_textarea, uploadPaths,filePath from movie_title;
+    select * from movie_title;
     </select>
+    
+    <insert id="event_board_resist" parameterType="com.example.movie.commandVO.MainsVO.EventVO_Board">
+        insert into event_board_image (filePath, event_name,uploadPaths, size, movie_filename,resist_textarea,movie_resist_filepath)
+        values(#{filePath}, #{event_name},#{uploadPaths},#{size},#{movie_filename}, #{resist_textarea}, #{movie_resist_filePath})
+    </insert>
 </mapper>

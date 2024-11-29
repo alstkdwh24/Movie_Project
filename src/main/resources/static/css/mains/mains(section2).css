@@ -58,3 +58,8 @@
     box-sizing: border-box;
     border-radius: 20px;
 }
+
+.secrete_div{
+    width: 0;
+    height: 0;
+}

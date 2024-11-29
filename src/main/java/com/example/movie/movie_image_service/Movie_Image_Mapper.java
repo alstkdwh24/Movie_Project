@@ -14,4 +14,5 @@ public interface Movie_Image_Mapper {
     int movie_resist(MovieVO vo);
     ArrayList<MovieVO> movie_resist_list(MovieVO vo);
 
+    int event_board_resist(EventVO_Board vo);
 }

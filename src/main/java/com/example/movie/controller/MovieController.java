@@ -10,6 +10,7 @@ import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.core.io.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -87,20 +88,17 @@ public class MovieController {
         model.addAttribute("userSession", userDetails);
         // 영화 목록을 가져옵니다.
         ArrayList<MovieVO> movie_list = movie_image_service.movie_resist_list(vo);
+        model.addAttribute("movie_list", movie_list);
 
-        List<String> imageUrls = new ArrayList<>();
 
         for (int i = 0; i < movie_list.toArray().length; i++) {
 
-                String filename = movie_list.get(i).getUploadPaths()+"/"+ movie_list.get(i).getFilePath() + "/" + movie_list.get(i).getMovie_filename();
-                String firstFile=movie_list.get(i).getFilePath() + "/" + movie_list.get(i).getMovie_filename();
-                String filePath=movie_list.get(i).getFilePath();
-            filenames =  movie_list.get(i).getFilePath() + "/" + movie_list.get(i).getMovie_filename(); // 파일 이름만 사용
+            String firstFile = movie_list.get(i).getFilePath() + "/" + movie_list.get(i).getMovie_filename();
+            filenames = movie_list.get(i).getFilePath() + "/" + movie_list.get(i).getMovie_filename(); // 파일 이름만 사용
 
-            System.out.println("filenames2:"+ filenames);
+            System.out.println("filenames2:" + filenames);
             session.setAttribute("firstFile", firstFile);
             model.addAttribute("staticImageUrls", filenames);
-
 
 
         }
@@ -114,59 +112,42 @@ public class MovieController {
         // HTML 생성
         String movieHtml = generateMovieHtml(movie_list);
 
+
         // 생성된 HTML을 모델에 추가
         modelAndView.addObject("movieHtml", movieHtml);
 
         return modelAndView; // ModelAndView 반환
     }
-    @CrossOrigin(origins = "http://localhost:9494") // 적절한 출처 설정
+
     private String generateMovieHtml(ArrayList<MovieVO> movie_list) {
         StringBuilder html = new StringBuilder();
 
-        for (MovieVO movieVO : movie_list) {
+        for (int i = 0; i < movie_list.size(); i++) {
+            MovieVO movieVO=movie_list.get(i);
             String imageUrl = movieVO.getUploadPaths(); // 영화 파일 경로 가져오기
             String movieTitle = movieVO.getMovie_title(); // 영화 제목 가져오기
             System.out.println("imageUrl: " + imageUrl);
 
             // 정적 리소스 경로 설정 (필요에 따라 수정)
-            String filename =  movieVO.getFilePath() + "/" + movieVO.getMovie_filename(); // 파일 이름만 사용
+            String filename = movieVO.getFilePath() + "/" + movieVO.getMovie_filename(); // 파일 이름만 사용
 
 
             System.out.println("staticImageUrl2" + filename);
             // HTML 생성
-            html.append("<div class=\"movie_picture\"> ")
+            html.append("<div class=\"movie_picture\">")
                     .append("<div class=\"movie_image\">")
-                    .append("<div class=\"movie_real_image\">")
-//                    .append("<img src='").append(staticImageUrl).append("' alt='영화 이미지' />") // 정적 리소스 URL 사용
-                    .append("</div></div>")
-                    .append("<div class=\"movie_gle\">").append(movieTitle).append("</div>\n")
-                    .append("</div>");
+                    .append("<div class='movie_movie'>")
+                    .append("<div id=\"'movie_real_image'\"").append("class='movie_real_image'>") // ID 설정
+                    .append("</div>")
+                    .append("</div>") // th:each div 종료
+                    .append("</div>") // movie_image div 종료
+                    .append("<div class=\"movie_gle\">")
+                    .append(movieTitle) // 영화 제목 추가
+                    .append("</div>")
+                    .append("</div>"); // movie_picture div 종료
         }
 
         return html.toString(); // 생성된 HTML을 반환
-    }
-    @CrossOrigin(origins = "http://localhost:9494")
-    @GetMapping("/files/{filename}")
-    @ResponseBody
-    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
-        System.out.println("Full file path: " + filePath);
-        Path filePath = Paths.get("C:/Users/alstk/2course/JAVA/portfolio_project/files/").resolve(filename);
-        System.out.println("Requested file path: " + filePath);
-
-        Resource resource = new FileSystemResource(filePath.toFile());
-
-        // 파일 존재 여부 확인
-        if (!resource.exists()) {
-            return ResponseEntity.notFound().build(); // 404 Not Found 반환
-        }
-
-        // 파일의 MIME 타입 결정
-
-
-        // 파일 반환
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + resource.getFilename() + "\"")
-                .body(resource);
     }
 
 }

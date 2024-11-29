@@ -364,7 +364,7 @@ cursor: pointer;
     height: 100%;
     position: relative;
     z-index: 2;
-
+overflow: scroll;
     display: flex;
 
     justify-content: center;

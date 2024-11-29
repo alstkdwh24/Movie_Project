@@ -41,7 +41,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title></title>
 
 </head>
@@ -62,7 +62,6 @@
                 |
                 <div class="watch_movie" id="movie_watch">상영예정인영화</div>
             </div>
-            <div class="sort" id="right"></div>
         </div>
         <div class="movie_title_ex" th:utext="${movieHtml}">
 <!--            <div class="movie_picture" th:each="vo, status:${movie_list}">-->
@@ -79,9 +78,28 @@
         </div>
 
     </div>
+    <div class="secrete_div" th:each="vo : ${movie_list}">
+        <div id="title">
+            [[${vo.movie_title}]]
+        </div>
+        <div class="integer">
+            [[${vo.movie_integer}]]
+        </div>
+        <div id="filePath">
+            [[${vo.filePath}]]
+        </div>
+        <div id="movie_filename">
+            [[${vo.movie_filename}]]
+        </div>
+        <div class="uuid">
+            [[${vo.uuid}]]
+        </div>
 
+        <h3 th:text="${vo.movie_title}">Movie Title</h3>
+    </div>
 
 </section>
+
 <div th:replace="/movie/write_resist/resist_modal.html :: resist_fragment"></div>
 
 <div th:replace="/movie/mains_fragment/mains_fragment.html :: mains_fragment"></div><!--영화관 이벤트-->
@@ -96,9 +114,14 @@
 <div th:replace="/movie/sneak_peek/sneak_peek.html :: sneak_peek"></div>
 <div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
 
+<script th:inline="javascript">
 
-<!--section1 js-->
-<script src="/js/slide/section1.js"></script>
+
+
+
+
+</script>
+
 
 <!--    js파일-->
 
@@ -112,6 +135,8 @@
 
 <!--영화등록 이미지 불러오는 js-->
 <script src="/js/data/mains_Image/movie_Image.js"></script>
+<!--section1 js-->
+<script src="/js/slide/section1.js"></script>
 
 <!--section2 js-->
 <script src="/js/slide/section2.js"></script>
@@ -120,7 +145,7 @@
 <script src="/js/slide/section3.js"></script>
 
 <!--글등록 모달-->
-<script src="/js/resist_modal/resist_modal.js"></script>
+<script src="/js/resist_image_file/resist_modal.js"></script>
 </body>
 
 </html>
