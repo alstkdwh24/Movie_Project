@@ -17,9 +17,12 @@ public class EventVO_Board {
     private String movie_filename;
     private String uuid;
     private LocalDateTime reg_date;
-    private String movie_filepath;
+    private String filePath;
     private String resist_textarea;
+    private String uploadPaths;
+    private long size;
+    private String movie_resist_filePath;
+ private String movie_filepath;
 
-    public void setFileSize(long size) {
-    }
+
 }

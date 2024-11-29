@@ -7,13 +7,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -44,15 +42,36 @@ public class Event_Resist_RestController {
     }
 
     @PostMapping(value = "/event_resist", consumes = "Multipart/form-data")
-    public ResponseEntity<EventVO_Board> eventVOBoardResponseEntity(@RequestParam("event_name")String event_name,
+    public ResponseEntity<EventVO_Board> eventVOBoardResponseEntity(@RequestParam("event_name") String event_name,
                                                                     @RequestParam("movie_filename") String movie_filename,
-                                                                    @RequestParam("movie_filepath") String movie_filepath,
                                                                     @RequestParam("resist_textarea") String resist_textarea,
-                                                                    @RequestParam("file") MultipartFile event_resist_file){
+                                                                    @RequestParam("file") MultipartFile event_resist_file,
+            @RequestParam("uploadPaths") String uploadPaths) throws IOException {
 
-        long size=event_resist_file.getSize();
-        String filePath=makeFolder();
+        long size = event_resist_file.getSize();
+        String filePath = makeFolder();
+        uploadPaths = uploadPath;
+        String savePath = uploadPath + "/" + filePath + "/" + movie_filename;
+        System.out.println("파일명:" + movie_filename);
 
-        return ResponseEntity.ok(EventVO_Board.builder().build());
+        File saveFile = new File(savePath);
+        event_resist_file.transferTo(saveFile);
+        EventVO_Board vo = new EventVO_Board();
+        vo.setFilePath(filePath);
+        vo.setEvent_name(event_name);
+        vo.setUploadPaths(uploadPaths);
+        vo.setSize(size);
+        vo.setMovie_filename(movie_filename);
+        vo.setResist_textarea(resist_textarea);
+        vo.setMovie_resist_filePath(savePath);
+        int movie_resist_people = movie_Image_Service.event_board_resist(vo);
+        if (movie_resist_people == 1) {
+            return ResponseEntity.ok(EventVO_Board.builder().build());
+
+        } else {
+            return ResponseEntity.internalServerError().build(); // 500 Internal Server Error 반환;
+        }
     }
+    @GetMapping("")
+
 }
