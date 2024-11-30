@@ -17,4 +17,8 @@
         insert into event_board_image (filePath, event_name,uploadPaths, size, movie_filename,resist_textarea,movie_resist_filepath)
         values(#{filePath}, #{event_name},#{uploadPaths},#{size},#{movie_filename}, #{resist_textarea}, #{movie_resist_filePath})
     </insert>
+
+    <select id="get_event_list">
+        select * from event_board_image;
+    </select>
 </mapper>

@@ -34,4 +34,9 @@ public class Movie_Image_ServiceImpl implements Movie_Image_Service{
     public int event_board_resist(EventVO_Board vo) {
         return movieImageMapper.event_board_resist(vo);
     }
+
+    @Override
+    public ArrayList<EventVO_Board> get_event_list(EventVO_Board vo) {
+        return movieImageMapper.get_event_list(vo);
+    }
 }

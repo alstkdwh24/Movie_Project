@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/movie_resist")
@@ -72,6 +75,12 @@ public class Event_Resist_RestController {
             return ResponseEntity.internalServerError().build(); // 500 Internal Server Error 반환;
         }
     }
-    @GetMapping("")
+    @GetMapping("/event_list")
+    public ResponseEntity<ArrayList<EventVO_Board>> event_list(EventVO_Board vo, Model model){
+
+        ArrayList<EventVO_Board> get_event_list=movie_Image_Service.get_event_list(vo);
+        model.addAttribute("get_event_list", get_event_list);
+        return new ResponseEntity<>(get_event_list, HttpStatus.CREATED);
+    }
 
 }
