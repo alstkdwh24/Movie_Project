@@ -19,6 +19,7 @@
     height: 16%;
     border:1px solid white;
     box-sizing: border-box;
+    display: block;
 
 }
 
@@ -62,4 +63,17 @@
 .secrete_div{
     width: 0;
     height: 0;
+    display: none;
+}
+
+#event_title_board{
+    height: 100%;
+    width: 25%;
+ display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    font-size: 26px;
+    border: 1px solid white;
+    float: left;
 }

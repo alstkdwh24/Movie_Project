@@ -11,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -28,9 +30,10 @@ public class Event_Resist_RestController {
     @Autowired
     private ResourceLoader resourceLoader;
 
-    String filePath = "";
+    public String imageUrl;
 
-
+    public String filePath;
+    public String filenames;
     @Autowired
     @Qualifier("movie_Image_Service")
     private Movie_Image_Service movie_Image_Service;
@@ -49,7 +52,7 @@ public class Event_Resist_RestController {
                                                                     @RequestParam("movie_filename") String movie_filename,
                                                                     @RequestParam("resist_textarea") String resist_textarea,
                                                                     @RequestParam("file") MultipartFile event_resist_file,
-            @RequestParam("uploadPaths") String uploadPaths) throws IOException {
+                                                                    @RequestParam("uploadPaths") String uploadPaths) throws IOException {
 
         long size = event_resist_file.getSize();
         String filePath = makeFolder();
@@ -75,12 +78,25 @@ public class Event_Resist_RestController {
             return ResponseEntity.internalServerError().build(); // 500 Internal Server Error 반환;
         }
     }
-    @GetMapping("/event_list")
-    public ResponseEntity<ArrayList<EventVO_Board>> event_list(EventVO_Board vo, Model model){
 
-        ArrayList<EventVO_Board> get_event_list=movie_Image_Service.get_event_list(vo);
+    @GetMapping("/event_list")
+    public ResponseEntity<ArrayList<EventVO_Board>> event_list(EventVO_Board vo, Model model, HttpSession session) {
+
+        ArrayList<EventVO_Board> get_event_list = movie_Image_Service.get_event_list(vo);
         model.addAttribute("get_event_list", get_event_list);
+        for (int i = 0; i < get_event_list.toArray().length; i++) {
+            String firstFile = get_event_list.get(i).getFilePath() + "/" + get_event_list.get(i).getMovie_filename();
+            filenames = get_event_list.get(i).getFilePath() + "/" + get_event_list.get(i).getMovie_filename();
+
+            session.setAttribute("firstFile", firstFile);
+            model.addAttribute("staticImageUrls", filenames);
+
+
+        }
+        session.setAttribute("get_event_list", get_event_list);
         return new ResponseEntity<>(get_event_list, HttpStatus.CREATED);
+
     }
+
 
 }

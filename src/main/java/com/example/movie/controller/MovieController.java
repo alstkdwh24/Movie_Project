@@ -116,6 +116,8 @@ public class MovieController {
         // 생성된 HTML을 모델에 추가
         modelAndView.addObject("movieHtml", movieHtml);
 
+
+
         return modelAndView; // ModelAndView 반환
     }
 
