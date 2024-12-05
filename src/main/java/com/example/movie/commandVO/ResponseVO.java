@@ -1,4 +1,4 @@
-package com.example.movie.ResponseVO;
+package com.example.movie.commandVO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

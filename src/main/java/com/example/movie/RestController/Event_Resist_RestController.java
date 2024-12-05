@@ -1,19 +1,17 @@
 package com.example.movie.RestController;
 
-import com.example.movie.ResponseVO.ResponseVO;
+import com.example.movie.commandVO.ResponseVO;
 import com.example.movie.commandVO.MainsVO.EventVO_Board;
 import com.example.movie.movie_image_service.Movie_Image_Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -82,32 +80,33 @@ public class Event_Resist_RestController {
         }
     }
 
-    @GetMapping("/event_list")
-    public ResponseEntity<ArrayList<ResponseVO>> event_list(EventVO_Board vo, Model model, HttpSession session) {
+    @GetMapping("/event_list_two")
+    public ResponseEntity<ArrayList<ResponseVO>> event_list(EventVO_Board vo, Model model) {
+        ArrayList<EventVO_Board> event=movie_Image_Service.get_event_list(vo);
+        ArrayList<ResponseVO> Response=new ArrayList<>();
+        for(EventVO_Board event_two:event){
+            ResponseVO responseItem = new ResponseVO();
+            responseItem.setImageUrl(event_two.getUploadPaths());
+            String htmlContent = createEventHtml(event_two); // 메서드 이름 변경
+            responseItem.setHtmlContent(htmlContent);
+            Response.add(responseItem);
+            model.addAttribute("htmlContent",htmlContent);
 
-        ArrayList<EventVO_Board> get_event_list = movie_Image_Service.get_event_list(vo);
-        ArrayList<ResponseVO> response=new ArrayList<>();
-        model.addAttribute("get_event_list", get_event_list);
-        for (EventVO_Board event:get_event_list) {
-//            String firstFile = get_event_list.get(i).getFilePath() + "/" + get_event_list.get(i).getMovie_filename();
-            String imageUrl=event.getUploadPaths()+"/"+event.getFilePath() + "/" + event.getMovie_filename();;
-          String htmlContent=generateHtml(event);
-
-            response.add(new ResponseVO(imageUrl, htmlContent));
         }
-        session.setAttribute("get_event_list", get_event_list);
-        return new ResponseEntity<>(response, HttpStatus.OK);
-
+        return ResponseEntity.ok(Response);
     }
-    private String generateHtml(EventVO_Board event) {
-        StringBuilder html = new StringBuilder();
-        html.append("<div class=\"movie_event_notice\">\n")
-                .append("    <div class=\"movie_image_notice\">\n")
-                .append("        <img src=\"").append(event.getUploadPaths()).append("/").append(event.getFilePath()).append("/").append(event.getMovie_filename()).append("\" alt=\"\">\n")
-                .append("    </div>\n")
-                .append("    <div class=\"movie_event_title\">").append(event.getEvent_name()).append("</div>\n")
+
+
+    private String createEventHtml(EventVO_Board event_two){
+        StringBuilder html=new StringBuilder();
+        html.append("      <div class=\"movie_event_notice\">")
+                .append("<div class=\"movie_image_notice\">")
+                .append("</div>")
+                .append("<div class=\"movie_event_title\">")
+                .append(event_two.getEvent_name())
+                .append("</div>")
                 .append("</div>");
+
         return html.toString();
     }
-
 }
