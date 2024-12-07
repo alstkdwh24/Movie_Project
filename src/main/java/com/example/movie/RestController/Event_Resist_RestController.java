@@ -6,7 +6,10 @@ import com.example.movie.movie_image_service.Movie_Image_Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -86,6 +91,8 @@ public class Event_Resist_RestController {
         ArrayList<ResponseVO> Response=new ArrayList<>();
         for(EventVO_Board event_two:event){
             ResponseVO responseItem = new ResponseVO();
+            responseItem.setMovie_filename(event_two.getMovie_filename());
+            responseItem.setFilePath(event_two.getFilePath());
             responseItem.setImageUrl(event_two.getUploadPaths());
             String htmlContent = createEventHtml(event_two); // 메서드 이름 변경
             responseItem.setHtmlContent(htmlContent);
@@ -100,7 +107,7 @@ public class Event_Resist_RestController {
     private String createEventHtml(EventVO_Board event_two){
         StringBuilder html=new StringBuilder();
         html.append("      <div class=\"movie_event_notice\">")
-                .append("<div class=\"movie_image_notice\">")
+                .append("<div class=\"movie_image_notice\" id=\"movie_image_notice\">")
                 .append("</div>")
                 .append("<div class=\"movie_event_title\">")
                 .append(event_two.getEvent_name())
@@ -109,4 +116,20 @@ public class Event_Resist_RestController {
 
         return html.toString();
     }
+
+    @GetMapping("/event_list_two/files/{filePath}/{movie_filename}")
+    public ResponseEntity<Resource> event_image_list_saveFile( @PathVariable String filePath,
+                                                              @PathVariable String movie_filename) throws IOException {
+        Path path= Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/"+ filePath + "/"+ movie_filename);
+        File file= path.toFile();
+        String mimeType= Files.probeContentType(path);
+        MediaType mediaType=MediaType.parseMediaType(mimeType !=null?mimeType: "application/octet-stream");
+
+        return ResponseEntity.ok()
+                .contentType(mediaType)
+                .header(HttpHeaders.CONTENT_DISPOSITION,"inline; filename=\"" + file.getName() + "\"")
+                .body(new org.springframework.core.io.FileSystemResource(file));
+
+    }
+
 }

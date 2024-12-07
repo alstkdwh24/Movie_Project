@@ -14,4 +14,6 @@ public class ResponseVO {
 
     private String imageUrl;
     private String htmlContent;
+    private String filePath;
+    private String movie_filename;
 }
