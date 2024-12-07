@@ -33,7 +33,7 @@ resist_img.ondrop = function (event) {
 function movie_resist(files) {
     for (const file of files) {
         let movie_resist_file = file.name ;
-
+        sessionStorage.setItem("data",movie_resist_file)
         console.log(file.name);
         resist_img.setAttribute("data", movie_resist_file);
 
@@ -82,7 +82,7 @@ button_submit.onclick = function () {
             let photo_file = photo[i];
             console.log(photo_file,"photo_file")
 
-            let event_file_name = document.getElementById("resist_image_two");
+            let event_file_name = sessionStorage.getItem("data");
             console.log("event_file_name" + event_file_name);
 
             let formData = new FormData();
@@ -109,6 +109,7 @@ button_submit.onclick = function () {
 
                 success: function () {
                     console.log("1")
+                    alert("등록에 성공하였습니다.")
 
                 }
             })

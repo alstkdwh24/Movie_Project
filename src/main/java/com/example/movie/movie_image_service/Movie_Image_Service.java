@@ -14,5 +14,5 @@ public interface Movie_Image_Service {
 
     int event_board_resist(EventVO_Board vo);
 
-
+    ArrayList<EventVO_Board> get_event_list(EventVO_Board vo);
 }

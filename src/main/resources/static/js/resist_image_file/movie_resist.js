@@ -112,6 +112,7 @@ if(photo.length>0){
             data: formData,
             success: function () {
                 console.log(1);
+                alert("등록에 성공했습니다.")
             }
         })
 

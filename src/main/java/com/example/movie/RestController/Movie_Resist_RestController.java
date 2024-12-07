@@ -115,6 +115,7 @@ public class Movie_Resist_RestController {
         }
 
     }
+
 }
 
 //    @PostMapping(value = "/event_resist", consumes = "multipart/form-data")
