@@ -57,7 +57,7 @@
             <input type="text" id="resist_title">
         </div>
         <div id="middle_resist_middle">
-            <div id="resist_image">
+            <div id="resist_image" class="resist_image_two" for="fileElem">
                 여기에 파일을 넣어주세요
 
             </div>
@@ -71,6 +71,7 @@
             <button class="button" id="button_conceal">취소</button>
         </div>
     </div>
+    <input type="file" id="fileElem" multiple style="display:none;">
 </div>
 <!--소메뉴 커뮤니티 모달 div-->
 <div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>

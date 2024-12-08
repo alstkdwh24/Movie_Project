@@ -2,6 +2,7 @@ package com.example.movie.movie_image_service;
 
 import com.example.movie.commandVO.MainsVO.EventVO_Board;
 import com.example.movie.commandVO.MainsVO.MovieVO;
+import com.example.movie.commandVO.MainsVO.Movie_gifticonVO;
 
 import java.util.ArrayList;
 
@@ -15,4 +16,6 @@ public interface Movie_Image_Service {
     int event_board_resist(EventVO_Board vo);
 
     ArrayList<EventVO_Board> get_event_list(EventVO_Board vo);
+
+    int gifticon_resist(Movie_gifticonVO vo);
 }

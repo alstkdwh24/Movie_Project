@@ -11,11 +11,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class movie_gifticonVO {
+public class Movie_gifticonVO {
     private Integer Gifticon_number;
     private String Gifticon_name;
     private String Gifticon_filename;
     private String uuid;
     private String movie_filepath;
     private LocalDateTime reg_date;
+    private String uploadPaths;
+    private long size;
+    private String movie_resist_filePath;
+    private String resist_textarea;
 }
