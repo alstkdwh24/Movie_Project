@@ -18,4 +18,6 @@ public interface Movie_Image_Service {
     ArrayList<EventVO_Board> get_event_list(EventVO_Board vo);
 
     int gifticon_resist(Movie_gifticonVO vo);
+
+    ArrayList<Movie_gifticonVO> gifticon_select(Movie_gifticonVO vo);
 }

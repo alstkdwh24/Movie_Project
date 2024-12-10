@@ -21,4 +21,7 @@ public interface Movie_Image_Mapper {
 
     int gifticon_resist(Movie_gifticonVO vo);
 
+    ArrayList<Movie_gifticonVO> gifticon_select(Movie_gifticonVO vo);
+
+
 }

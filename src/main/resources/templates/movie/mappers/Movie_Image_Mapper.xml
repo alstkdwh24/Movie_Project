@@ -26,4 +26,9 @@
         insert into movie_gifticon(Gifticon_name, Gifticon_filename, uuid, reg_date, movie_filepath, resist_textarea, size, uploadPaths)
         values(#{Gifticon_name},#{Gifticon_filename}, #{uuid} ,now(), #{movie_filepath}, #{resist_textarea}, #{size}, #{uploadPaths})
     </insert>
+
+    <select id="gifticon_select" resultType="Movie_gifticonVO">
+        select * from movie_gifticon;
+
+    </select>
 </mapper>

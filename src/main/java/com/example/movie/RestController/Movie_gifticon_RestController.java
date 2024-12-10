@@ -1,22 +1,22 @@
 package com.example.movie.RestController;
 
 import com.example.movie.commandVO.MainsVO.Movie_gifticonVO;
+import com.example.movie.commandVO.Response.Movie_gifticonVO_Responses;
 import com.example.movie.movie_image_service.Movie_Image_Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/movie_resist")
@@ -79,6 +79,49 @@ public class Movie_gifticon_RestController {
             return null;
         }
 
+    }
+
+    @GetMapping("/movie_gifticon_list")
+    public ResponseEntity<ArrayList<Movie_gifticonVO_Responses>> movie_gifticon(Movie_gifticonVO vo, Movie_gifticonVO_Responses responses, Model model){
+        ArrayList<Movie_gifticonVO> Gifticon_resist=movie_Image_Service.gifticon_select(vo);
+        ArrayList<Movie_gifticonVO_Responses> Gifticon_Response=new ArrayList<>();
+
+        for(Movie_gifticonVO gifticonVO:Gifticon_resist){
+            Movie_gifticonVO_Responses movie_gifticonVO_responses=new Movie_gifticonVO_Responses();
+            movie_gifticonVO_responses.setImageUrl(gifticonVO.getUploadPaths());
+            movie_gifticonVO_responses.setGifticon_name(gifticonVO.getGifticon_name());
+            movie_gifticonVO_responses.setFilePath(gifticonVO.getMovie_filepath());
+
+
+            String htmlCotent=createGifticon(gifticonVO);
+            movie_gifticonVO_responses.setHtmlContent(htmlCotent);
+
+            Gifticon_Response.add(movie_gifticonVO_responses);
+            System.out.println(htmlCotent+"GifticonHtml25");
+            System.out.println(movie_gifticonVO_responses.getGifticon_name()+"movie_gifticonVO_responses.getGifticon_name()");
+            model.addAttribute("GifticonHtml",htmlCotent);
+
+        }
+        return ResponseEntity.ok(Gifticon_Response);
+    }
+
+    private String createGifticon(Movie_gifticonVO gifticonVO){
+        StringBuilder html=new StringBuilder();
+        html.append("<div class=\"ant_three\">")
+                .append("<div class=\"contents_img\">")
+                .append("</div>")
+                .append("<div class=\"contents_ant\">")
+                .append("<div class=\"ant_big_title\">")
+                .append(gifticonVO.getGifticon_name())
+                .append("</div>")
+                .append("<div class=\"ant_big_title\">")
+                .append(gifticonVO.getGifticon_name())
+                .append("</div>").append("</div>").
+                append("</div>");
+
+        System.out.println(gifticonVO.getGifticon_name()+"gifticonVO.getGifticon_name()");
+
+                return html.toString();
     }
 
 }

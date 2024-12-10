@@ -44,4 +44,9 @@ public class Movie_Image_ServiceImpl implements Movie_Image_Service{
     public int gifticon_resist(Movie_gifticonVO vo) {
         return movieImageMapper.gifticon_resist(vo);
     }
+
+    @Override
+    public ArrayList<Movie_gifticonVO> gifticon_select(Movie_gifticonVO vo) {
+        return movieImageMapper.gifticon_select(vo);
+    }
 }

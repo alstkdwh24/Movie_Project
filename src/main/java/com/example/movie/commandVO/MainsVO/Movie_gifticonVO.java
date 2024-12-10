@@ -22,4 +22,5 @@ public class Movie_gifticonVO {
     private long size;
     private String movie_resist_filePath;
     private String resist_textarea;
+    private String GifticonHtml;
 }

@@ -84,6 +84,12 @@
 
 }
 
+.ant_three{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
 .contents_img{
     height: 100%;
     border: 1px solid white;
