@@ -4,18 +4,18 @@ document.addEventListener("DOMContentLoaded", event => {
     let filePath = [];
     let movie_filename = [];
 let movie_image=[];
-
+ let   movie_image_notice=[];
     $.ajax({
         type: "get",
         url: "/movie_resist/event_list_two",
         contentType: "application/json",
         success: function (data) {
             console.log(data); // 전체 데이터 로그
-     let movie_image_notice = document.querySelectorAll("#movie_image_notice"); // 요소 배열로 변환
-        movie_image_notice.forEach((movie_images,index)=>{
-            movie_image[index]=movie_images;
-            console.log(movie_image[index]);
-        })
+     // let movie_image_notice = document.querySelectorAll("#movie_image_notice"); // 요소 배열로 변환
+     //    movie_image_notice.forEach((movie_images,index)=>{
+     //        movie_image[index]=movie_images;
+     //        console.log(movie_image[index]);
+     //    })
 
             if (Array.isArray(data) && data.length > 0) {
 
@@ -41,7 +41,7 @@ let movie_image=[];
                         success: function (response, status, xhr) {
                             let movie_image_notice = document.querySelectorAll("#movie_image_notice"); // 요소 배열로 변환
                             movie_image_notice.forEach((movie_image,index)=>{
-
+                                movie_image_notice[index]=movie_image;
                             })
                             let blob = new Blob([response], {type: xhr.getResponseHeader('Content-Type')});
                             let url = URL.createObjectURL(blob);

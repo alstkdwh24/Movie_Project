@@ -2,13 +2,14 @@ package com.example.movie.movie_image_service;
 
 import com.example.movie.commandVO.MainsVO.EventVO_Board;
 import com.example.movie.commandVO.MainsVO.MovieVO;
+import com.example.movie.commandVO.MainsVO.Movie_gifticonVO;
+import com.example.movie.commandVO.MainsVO.Movie_ticketVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
 @Service("movie_Image_Service")
-
 public class Movie_Image_ServiceImpl implements Movie_Image_Service{
 
     @Autowired
@@ -38,5 +39,25 @@ public class Movie_Image_ServiceImpl implements Movie_Image_Service{
     @Override
     public ArrayList<EventVO_Board> get_event_list(EventVO_Board vo) {
         return movieImageMapper.get_event_list(vo);
+    }
+
+    @Override
+    public int gifticon_resist(Movie_gifticonVO vo) {
+        return movieImageMapper.gifticon_resist(vo);
+    }
+
+    @Override
+    public ArrayList<Movie_gifticonVO> gifticon_select(Movie_gifticonVO vo) {
+        return movieImageMapper.gifticon_select(vo);
+    }
+
+    @Override
+    public int movie_ticket_resist(Movie_ticketVO vo) {
+        return movieImageMapper.movie_ticket_resist(vo);
+    }
+
+    @Override
+    public ArrayList<Movie_ticketVO> movie_ticket_resist_list(Movie_ticketVO vo) {
+        return movieImageMapper.movie_ticket_resist_list(vo);
     }
 }

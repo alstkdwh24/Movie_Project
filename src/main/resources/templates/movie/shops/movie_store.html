@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-<!--    모달적용-->
+    <!--    모달적용-->
     <link rel="stylesheet" href="/css/mains/modal/mains_botton_modal.css">
     <link rel="stylesheet" href="/css/mains/modal/menu_modal.css">
     <link rel="stylesheet" href="/css/mains/modal/momo_modal.css">
@@ -32,7 +32,6 @@
     <link rel="stylesheet" href="/css/event/Gallery_modal.css">
 
 
-
     <meta charset="UTF-8">
     <title>JCGX SHOP</title>
 </head>
@@ -46,15 +45,19 @@
                 <div class="set_title_button"></div>
 
                 <div class="set_title_h2"><h2>맛난세트</h2></div>
-                <div class="set_title_button"><button class="button_store"  onclick="location.href='/movie/shops/popcorn_store'">더보기</button></div>
-            </div>
-            <div class="ant_contents">
-                <div class="contents_img">
-이미지
+                <div class="set_title_button">
+                    <button class="button_store" onclick="location.href='/movie/shops/popcorn_store'">더보기</button>
                 </div>
-                <div class="contents_ant">
-                    <div class="ant_big_title">s</div>
-                    <div class="ant_big_title">s</div>
+            </div>
+            <div class="ant_contents" id="ant_one">
+                <div class="ant_three">
+                    <div class="contents_img">
+                        이미지
+                    </div>
+                    <div class="contents_ant">
+                        <div class="ant_big_title">s</div>
+                        <div class="ant_big_title">s</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,16 +66,20 @@
                 <div class="set_title_button"></div>
 
                 <div class="set_title_h2"><h2>영화관람권</h2></div>
-                <div class="set_title_button"><button class="button_store"  onclick="location.href='/movie/shops/popcorn_store'">더보기</button></div>
+                <div class="set_title_button">
+                    <button class="button_store" onclick="location.href='/movie/shops/popcorn_store'">더보기</button>
+                </div>
             </div>
-            <div class="ant_contents">
-                <div class="contents_img">
-                    이미지
-                </div>
-                <div class="contents_ant">
-                    <div class="ant_big_title">s</div>
-                    <div class="ant_big_title">s</div>
-                </div>
+            <div class="ant_contents" id="ant_two" th:utext="${movie_ticket_htmlContent}">
+<!--                <div class="ant_three">-->
+<!--                    <div class="contents_img">-->
+<!--                        이미지-->
+<!--                    </div>-->
+<!--                    <div class="contents_ant">-->
+<!--                        <div class="ant_big_title">s</div>-->
+<!--                        <div class="ant_big_title">s</div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
         <div class="ant">
@@ -80,16 +87,20 @@
                 <div class="set_title_button"></div>
 
                 <div class="set_title_h2"><h2>기프트카트</h2></div>
-                <div class="set_title_button"><button class="button_store" onclick="location.href='/movie/shops/popcorn_store'">더보기</button></div>
+                <div class="set_title_button">
+                    <button class="button_store" onclick="location.href='/movie/shops/popcorn_store'">더보기</button>
+                </div>
             </div>
-            <div class="ant_contents">
-                <div class="contents_img">
-                    이미지
-                </div>
-                <div class="contents_ant">
-                    <div class="ant_big_title">s</div>
-                    <div class="ant_big_title">s</div>
-                </div>
+            <div class="ant_contents" id="ant_threes" th:utext="${GifticonHtml}">
+<!--                <div class="ant_three">-->
+<!--                    <div class="contents_img">-->
+<!--                        이미지-->
+<!--                    </div>-->
+<!--                    <div class="contents_ant">-->
+<!--                        <div class="ant_big_title">s</div>-->
+<!--                        <div class="ant_big_title">s</div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
     </div>
@@ -101,7 +112,6 @@
 
 <div th:replace="/movie/mains_fragment/modal/mains_menu_modal.html :: mains_menu_modal"></div>
 <div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
-
 
 
 <script src="/js/modal/Gallery_modal.js"></script>

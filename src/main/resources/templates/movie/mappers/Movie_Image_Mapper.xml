@@ -21,4 +21,23 @@
     <select id="get_event_list" resultType="EventVO_Board">
         select * from event_board_image;
     </select>
+
+    <insert id="gifticon_resist" parameterType="com.example.movie.commandVO.MainsVO.Movie_gifticonVO">
+        insert into movie_gifticon(Gifticon_name, Gifticon_filename, uuid, reg_date, movie_filepath, resist_textarea, size, uploadPaths)
+        values(#{Gifticon_name},#{Gifticon_filename}, #{uuid} ,now(), #{movie_filepath}, #{resist_textarea}, #{size}, #{uploadPaths})
+    </insert>
+
+    <select id="gifticon_select" resultType="Movie_gifticonVO">
+        select * from movie_gifticon;
+
+    </select>
+
+    <insert id="movie_ticket_resist" parameterType="com.example.movie.commandVO.MainsVO.Movie_ticketVO">
+        insert into movie_ticket(movie_ticket_name, movie_ticket_filename,uuid, reg_date, movie_filepath, uploadPaths ,size, resist_textarea, filePath)
+        values (#{movie_ticket_name},#{movie_ticket_filename},#{uuid},now(),#{movie_filepath}, #{uploadPaths}, #{size},#{resist_textarea},#{filePath})
+    </insert>
+
+    <select id="movie_ticket_resist_list" resultType="Movie_ticketVO">
+        select * from movie_ticket;
+    </select>
 </mapper>
