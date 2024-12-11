@@ -1,21 +1,19 @@
-package com.example.movie.commandVO.MainsVO;
+package com.example.movie.commandVO.Response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class movie_ticketVO {
-    private Integer movie_ticket_number;
+public class Movie_ticketVO_Responses {
+    private String movie_ticket_url;
+    private String movie_ticket_htmlContent;
+    private String filePath;
     private String movie_ticket_name;
     private String movie_ticket_filename;
-    private String uuid;
-    private LocalDate reg_date;
     private String movie_filepath;
 }

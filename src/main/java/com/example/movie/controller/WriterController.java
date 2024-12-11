@@ -1,15 +1,11 @@
 package com.example.movie.controller;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @Controller
 @RequestMapping("/movie/write_resist")
@@ -33,12 +29,12 @@ public class WriterController {
         return "/movie/write_resist/movie_resist";
     }
 
-    @GetMapping("/popcorn_resist")
+    @GetMapping("/movie_ticket_resist")
     public String popcorn_resist(HttpSession session2, Model model) {
         String roles = (String) session2.getAttribute("roles");
         model.addAttribute("roles", roles);
 
-        return "/movie/write_resist/popcorn_resist";
+        return "/movie/write_resist/movie_ticket_resist";
     }
 
     @GetMapping("/delicious_resist")

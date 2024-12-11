@@ -6,7 +6,10 @@ import com.example.movie.movie_image_service.Movie_Image_Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -88,19 +93,17 @@ public class Movie_gifticon_RestController {
 
         for(Movie_gifticonVO gifticonVO:Gifticon_resist){
             Movie_gifticonVO_Responses movie_gifticonVO_responses=new Movie_gifticonVO_Responses();
+            movie_gifticonVO_responses.setGifticon_filename(gifticonVO.getGifticon_filename());
             movie_gifticonVO_responses.setImageUrl(gifticonVO.getUploadPaths());
             movie_gifticonVO_responses.setGifticon_name(gifticonVO.getGifticon_name());
             movie_gifticonVO_responses.setFilePath(gifticonVO.getMovie_filepath());
-
-
-            String htmlCotent=createGifticon(gifticonVO);
-            movie_gifticonVO_responses.setHtmlContent(htmlCotent);
+            String htmlContent=createGifticon(gifticonVO);
+            movie_gifticonVO_responses.setHtmlContent(htmlContent);
 
             Gifticon_Response.add(movie_gifticonVO_responses);
-            System.out.println(htmlCotent+"GifticonHtml25");
-            System.out.println(movie_gifticonVO_responses.getGifticon_name()+"movie_gifticonVO_responses.getGifticon_name()");
-            model.addAttribute("GifticonHtml",htmlCotent);
-
+            System.out.println(htmlContent+"GifticonHtml25");
+            model.addAttribute("GifticonHtml",htmlContent);
+            System.out.println(gifticonVO.getGifticon_filename()+ "movie_gifticonVO_responses.setGifticon_name(gifticonVO.getGifticon_name());");
         }
         return ResponseEntity.ok(Gifticon_Response);
     }
@@ -108,7 +111,7 @@ public class Movie_gifticon_RestController {
     private String createGifticon(Movie_gifticonVO gifticonVO){
         StringBuilder html=new StringBuilder();
         html.append("<div class=\"ant_three\">")
-                .append("<div class=\"contents_img\">")
+                .append("<div class=\"contents_img\" id=\"contents_img\">")
                 .append("</div>")
                 .append("<div class=\"contents_ant\">")
                 .append("<div class=\"ant_big_title\">")
@@ -122,6 +125,22 @@ public class Movie_gifticon_RestController {
         System.out.println(gifticonVO.getGifticon_name()+"gifticonVO.getGifticon_name()");
 
                 return html.toString();
+    }
+
+
+    @GetMapping("/movie_gifticon_list/file/{filePath}/{Gifticon_filename}")
+    public ResponseEntity<Resource> gifticon_img(@PathVariable String filePath, @PathVariable String Gifticon_filename) throws IOException {
+
+        Path path= Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/"+ filePath + "/"+ Gifticon_filename);
+        File file=path.toFile();
+        String mimeType= Files.probeContentType(path);
+        MediaType mediaType=MediaType.parseMediaType(mimeType !=null? mimeType:"application/octet-stream");
+
+        return ResponseEntity.ok()
+                .contentType(mediaType)
+                .header(HttpHeaders.CONTENT_DISPOSITION,"inline; Gifticon_filename=\""+ file.getName()+"\"")
+                .body(new org.springframework.core.io.FileSystemResource(file));
+
     }
 
 }
