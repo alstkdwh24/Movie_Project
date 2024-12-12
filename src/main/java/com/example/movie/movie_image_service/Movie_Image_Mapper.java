@@ -1,9 +1,6 @@
 package com.example.movie.movie_image_service;
 
-import com.example.movie.commandVO.MainsVO.EventVO_Board;
-import com.example.movie.commandVO.MainsVO.MovieVO;
-import com.example.movie.commandVO.MainsVO.Movie_gifticonVO;
-import com.example.movie.commandVO.MainsVO.Movie_ticketVO;
+import com.example.movie.commandVO.MainsVO.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.ArrayList;
@@ -27,6 +24,10 @@ public interface Movie_Image_Mapper {
     int movie_ticket_resist(Movie_ticketVO vo);
 
     ArrayList<Movie_ticketVO>movie_ticket_resist_list(Movie_ticketVO vo);
+
+    int DeliciousVO_image(DeliciousVO vo);
+
+    ArrayList<DeliciousVO> deliciousVO_list(DeliciousVO vo);
 
 
 

@@ -40,4 +40,13 @@
     <select id="movie_ticket_resist_list" resultType="Movie_ticketVO">
         select * from movie_ticket;
     </select>
+
+    <insert id="DeliciousVO_image" parameterType="com.example.movie.commandVO.MainsVO.DeliciousVO">
+        insert into delicious (delicious_name, delicious_filename,uuid, reg_date, movie_filepath, size, resist_textarea, filePath, uploadPaths, movie_resist_filePath)
+        values (#{delicious_name}, #{delicious_filename}, #{uuid} , now(), #{movie_filepath} , #{size}, #{resist_textarea}, #{filePath} , #{uploadPaths}, #{movie_resist_filePath})
+    </insert>
+
+    <select id="deliciousVO_list" resultType="DeliciousVO">
+        select * from delicious;
+    </select>
 </mapper>
