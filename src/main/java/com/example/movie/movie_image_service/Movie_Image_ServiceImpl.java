@@ -67,4 +67,9 @@ public class Movie_Image_ServiceImpl implements Movie_Image_Service{
     public ArrayList<DeliciousVO> deliciousVO_list(DeliciousVO vo) {
         return movieImageMapper.deliciousVO_list(vo);
     }
+
+    @Override
+    public ArrayList<DeliciousVO> deliciousVO_two_list(DeliciousVO vo) {
+        return movieImageMapper.deliciousVO_two_list(vo);
+    }
 }

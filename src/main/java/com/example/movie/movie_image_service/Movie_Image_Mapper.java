@@ -30,6 +30,9 @@ public interface Movie_Image_Mapper {
     ArrayList<DeliciousVO> deliciousVO_list(DeliciousVO vo);
 
 
+    ArrayList<DeliciousVO> deliciousVO_two_list(DeliciousVO vo);
+
+
 
 
 }

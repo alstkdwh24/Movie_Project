@@ -49,4 +49,8 @@
     <select id="deliciousVO_list" resultType="DeliciousVO">
         select * from delicious;
     </select>
+
+    <select id="deliciousVO_two_list" resultType="DeliciousVO">
+        select * from delicious;
+    </select>
 </mapper>

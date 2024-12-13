@@ -104,7 +104,7 @@ public class Delicious_resist_RestController {
 
             deliciousVO_Responses_list.add(deliciousVO_Responses);
 
-            model.addAttribute("delicious_htmlContent",delicious_htmlContent);
+            model.addAttribute("delicious_htmlContent", delicious_htmlContent);
 
 
         }
@@ -115,7 +115,12 @@ public class Delicious_resist_RestController {
 
     private String create_delicious_htmlContent(DeliciousVO deliciousVO_list_two) {
         StringBuilder delicious_htmlContent = new StringBuilder();
-        delicious_htmlContent.append("<div class=\"ant_three\">")
+
+
+        delicious_htmlContent.append("<div class=\"ant_three\" >")
+                .append("<div class=\"delicious_number\">")
+                .append(deliciousVO_list_two.getDelicious_number())
+                .append("</div>")
                 .append("<div class=\"contents_img\" id=\"contents_img_four\">")
                 .append("</div>")
                 .append("<div class=\"contents_ant\">")
@@ -133,17 +138,121 @@ public class Delicious_resist_RestController {
 
 
     @GetMapping("/DeliciousVO_list/files/{filePath}/{delicious_filename}")
-    public ResponseEntity<Resource>  delicious_image(@PathVariable String filePath, @PathVariable String delicious_filename) throws IOException {
+    public ResponseEntity<Resource> delicious_image(@PathVariable String filePath, @PathVariable String delicious_filename) throws IOException {
 
-        Path path= Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/"+ filePath + "/"+ delicious_filename);
-        File file=path.toFile();
-        String mimeType= Files.probeContentType(path);
-        MediaType mediaType=MediaType.parseMediaType(mimeType !=null? mimeType:"application/octet-stream");
+        Path path = Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/" + filePath + "/" + delicious_filename);
+        File file = path.toFile();
+        String mimeType = Files.probeContentType(path);
+        MediaType mediaType = MediaType.parseMediaType(mimeType != null ? mimeType : "application/octet-stream");
 
         return ResponseEntity.ok()
                 .contentType(mediaType)
-                .header(HttpHeaders.CONTENT_DISPOSITION,"inline; delicious_filename=\""+ file.getName()+"\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; delicious_filename=\"" + file.getName() + "\"")
                 .body(new org.springframework.core.io.FileSystemResource(file));
     }
+
+
+    @GetMapping("/DeliciousVO_list_two")
+    public ResponseEntity<ArrayList<DeliciousVO_Responses>> DeliciousVO_Responses_list(DeliciousVO vo, Model model) {
+        ArrayList<DeliciousVO> Delicious_list = movie_Image_Service.deliciousVO_two_list(vo);
+        ArrayList<DeliciousVO_Responses> Delicious_Responses = new ArrayList<>();
+
+        for (DeliciousVO Delicious_list_two : Delicious_list) {
+
+            DeliciousVO_Responses deliciousVO_responses = new DeliciousVO_Responses();
+            deliciousVO_responses.setDelicious_url(Delicious_list_two.getUploadPaths());
+            deliciousVO_responses.setDelicious_number(Delicious_list_two.getDelicious_number());
+            deliciousVO_responses.setDelicious_name(Delicious_list_two.getDelicious_name());
+            deliciousVO_responses.setDelicious_filename(Delicious_list_two.getDelicious_filename());
+            deliciousVO_responses.setFilePath(Delicious_list_two.getFilePath());
+
+            String deliciousVO_response_two_htmlContent = deliciousVO_html_createElement(Delicious_list_two);
+            deliciousVO_responses.setDelicious_htmlContent(deliciousVO_response_two_htmlContent);
+            Delicious_Responses.add(deliciousVO_responses);
+
+            model.addAttribute("deliciousVO_response_two_htmlContent", deliciousVO_response_two_htmlContent);
+        }
+        return ResponseEntity.ok(Delicious_Responses);
+    }
+
+
+    private String deliciousVO_html_createElement(DeliciousVO Delicious_list_two) {
+
+        StringBuilder deliciousVO_response_two_htmlContent = new StringBuilder();
+
+
+        deliciousVO_response_two_htmlContent.append("<div class=\"popcorn_pakage\">")
+                .append("<div class=\"pakage_img\" id=\"pakage_imgs\">")
+                .append("</div>")
+                .append("<div class=\"pakage_title\">")
+                .append("<div class=\"pakage_title_big\">")
+                .append("<h2>")
+                .append(Delicious_list_two.getDelicious_filename())
+                .append("</h2>")
+                .append("</div>")
+                .append("<div class=\"pakage_title_small\">")
+                .append("<h5>")
+                .append("</h5></div>")
+                .append("</div>")
+                .append("</div>");
+
+
+        return deliciousVO_response_two_htmlContent.toString();
+    }
+
+
+    @GetMapping("DeliciousVO_list_three")
+    public ResponseEntity<ArrayList<DeliciousVO_Responses>> DeliciousVO_list_three(DeliciousVO vo, Model model) {
+        ArrayList<DeliciousVO> Delicious_list = movie_Image_Service.deliciousVO_two_list(vo);
+        ArrayList<DeliciousVO_Responses> Delicious_Responses = new ArrayList<>();
+
+        for (DeliciousVO Delicious_list_two : Delicious_list) {
+
+            DeliciousVO_Responses deliciousVO_responses = new DeliciousVO_Responses();
+            deliciousVO_responses.setDelicious_url(Delicious_list_two.getUploadPaths());
+            deliciousVO_responses.setDelicious_number(Delicious_list_two.getDelicious_number());
+            deliciousVO_responses.setDelicious_name(Delicious_list_two.getDelicious_name());
+            deliciousVO_responses.setDelicious_filename(Delicious_list_two.getDelicious_filename());
+            deliciousVO_responses.setFilePath(Delicious_list_two.getFilePath());
+
+            String deliciousVO_response_two_htmlContent = deliciousVO_html_createElement(Delicious_list_two);
+            deliciousVO_responses.setDelicious_htmlContent(deliciousVO_response_two_htmlContent);
+            Delicious_Responses.add(deliciousVO_responses);
+
+            model.addAttribute("deliciousVO_response_two_htmlContent", deliciousVO_response_two_htmlContent);
+        }
+        return ResponseEntity.ok(Delicious_Responses);
+
+
+    }
+
+    @GetMapping("/DeliciousVO_list_two/files/{filePath}/{delicious_filename}")
+    public ResponseEntity<Resource> delicious_image_two(@PathVariable String filePath, @PathVariable String delicious_filename) throws IOException {
+
+        Path path = Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/" + filePath + "/" + delicious_filename);
+        File file = path.toFile();
+        String mimeType = Files.probeContentType(path);
+        MediaType mediaType = MediaType.parseMediaType(mimeType != null ? mimeType : "application/octet-stream");
+
+        return ResponseEntity.ok()
+                .contentType(mediaType)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; delicious_filename=\"" + file.getName() + "\"")
+                .body(new org.springframework.core.io.FileSystemResource(file));
+    }
+
+    @GetMapping("/DeliciousVO_list_three/files/{filePath}/{delicious_filename}")
+    public ResponseEntity<Resource> delicious_image_three(@PathVariable String filePath, @PathVariable String delicious_filename) throws IOException {
+
+        Path path = Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/" + filePath + "/" + delicious_filename);
+        File file = path.toFile();
+        String mimeType = Files.probeContentType(path);
+        MediaType mediaType = MediaType.parseMediaType(mimeType != null ? mimeType : "application/octet-stream");
+
+        return ResponseEntity.ok()
+                .contentType(mediaType)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; delicious_filename=\"" + file.getName() + "\"")
+                .body(new org.springframework.core.io.FileSystemResource(file));
+    }
+
 
 }
