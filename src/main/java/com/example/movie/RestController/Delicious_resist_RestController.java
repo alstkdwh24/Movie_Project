@@ -154,10 +154,10 @@ public class Delicious_resist_RestController {
 
     @GetMapping("/DeliciousVO_list_two")
     public ResponseEntity<ArrayList<DeliciousVO_Responses>> DeliciousVO_Responses_list(DeliciousVO vo, Model model) {
-        ArrayList<DeliciousVO> Delicious_list = movie_Image_Service.deliciousVO_two_list(vo);
+        ArrayList<DeliciousVO> delicious_list = movie_Image_Service.deliciousVO_two_list(vo);
         ArrayList<DeliciousVO_Responses> Delicious_Responses = new ArrayList<>();
 
-        for (DeliciousVO Delicious_list_two : Delicious_list) {
+        for (DeliciousVO Delicious_list_two : delicious_list) {
 
             DeliciousVO_Responses deliciousVO_responses = new DeliciousVO_Responses();
             deliciousVO_responses.setDelicious_url(Delicious_list_two.getUploadPaths());
@@ -187,10 +187,11 @@ public class Delicious_resist_RestController {
                 .append("<div class=\"pakage_title\">")
                 .append("<div class=\"pakage_title_big\">")
                 .append("<h2>")
-                .append(Delicious_list_two.getDelicious_filename())
+                .append(Delicious_list_two.getDelicious_name())
                 .append("</h2>")
                 .append("</div>")
                 .append("<div class=\"pakage_title_small\">")
+                .append(Delicious_list_two.getResist_textarea())
                 .append("<h5>")
                 .append("</h5></div>")
                 .append("</div>")

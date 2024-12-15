@@ -33,8 +33,8 @@
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 <div id="popcorn_div">
     <div class="store">
-        <div id="pakage_store"></div>
-        <div id="pakage_store_popcorn">
+        <div id="pakage_store">스토어</div>
+        <div id="pakage_store_popcorn" th:utext="${deliciousVO_response_two_htmlContent}">
 <!--            <div class="popcorn_pakage">-->
 <!--                <div class="pakage_img">이미지</div>-->
 <!--                <div class="pakage_title">-->
@@ -67,7 +67,7 @@
     </div>
     <div class="store">
         <div id="combo_store"></div>
-        <div id="pakage_store_combo">
+        <div id="pakage_store_combo" th:utext="${deliciousVO_response_two_htmlContent}">
 <!--            <div class="popcorn_pakage">-->
 <!--                <div class="pakage_img">이미지</div>-->
 <!--                <div class="pakage_title">-->

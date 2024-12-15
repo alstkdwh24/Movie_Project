@@ -143,4 +143,11 @@ public class Movie_gifticon_RestController {
 
     }
 
+    @GetMapping("/gifticonVO_Responses_two_list")
+    public ResponseEntity<Movie_gifticonVO_Responses> gifticonVO_Responses_two(){
+
+
+        return null;
+    }
+
 }
