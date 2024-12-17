@@ -29,5 +29,7 @@ public interface Movie_Image_Service {
 
     ArrayList<DeliciousVO> deliciousVO_two_list(DeliciousVO vo);
 
+    ArrayList<Movie_gifticonVO> Movie_gifticon_list(Movie_gifticonVO vo);
+
 
 }

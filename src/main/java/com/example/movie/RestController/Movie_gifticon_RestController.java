@@ -1,5 +1,6 @@
 package com.example.movie.RestController;
 
+import com.example.movie.commandVO.MainsVO.DeliciousVO;
 import com.example.movie.commandVO.MainsVO.Movie_gifticonVO;
 import com.example.movie.commandVO.Response.Movie_gifticonVO_Responses;
 import com.example.movie.movie_image_service.Movie_Image_Service;
@@ -144,7 +145,9 @@ public class Movie_gifticon_RestController {
     }
 
     @GetMapping("/gifticonVO_Responses_two_list")
-    public ResponseEntity<Movie_gifticonVO_Responses> gifticonVO_Responses_two(){
+    public ResponseEntity<Movie_gifticonVO_Responses> gifticonVO_Responses_two(Movie_gifticonVO vo){
+        ArrayList<Movie_gifticonVO> Movie_gifticon_list=movie_Image_Service.Movie_gifticon_list(vo);
+        ArrayList<Movie_gifticonVO_Responses> Movie_gifticonVO_Responses_list = new ArrayList<>();
 
 
         return null;

@@ -145,10 +145,37 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     })
 
-
+let gifticon_name=[];
+    let gifticon_filename=[];
+    let filePath_two=[];
+    let imageUrl=[];
     $.ajax({
         type:"get",
         url:"/movie_resist/gifticonVO_Responses_two_list",
+        contentType:"application/json",
+        success: function (data) {
+            if(Array.isArray(data) && data.length ){
+                data.forEach(function (item, index) {
+                    if(index <3){
+                        gifticon_filename[index]=item.gifticon_filename;
+                        console.log("gifticon_filename[index]",gifticon_filename[index]);
 
+                        imageUrl[index]=item.imageUrl
+                        console.log("imageUrl[index]",imageUrl[index]);
+
+                        filePath_two[index]=item.filePath;
+                        console.log("filePath_two[index]", filePath_two[index]);
+
+                        gifticon_name[index]=item.gifticon_name;
+
+                        $("#pakage_store_combo").append(item.imageUrl_two);
+
+
+                    }
+
+                })
+
+            }
+        }
     })
 })

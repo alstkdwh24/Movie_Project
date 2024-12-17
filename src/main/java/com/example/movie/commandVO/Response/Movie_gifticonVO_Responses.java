@@ -18,5 +18,5 @@ public class Movie_gifticonVO_Responses {
     private String gifticon_filename;
 
     private String gifticon_name;
-
+    private String imageUrl_two;
 }

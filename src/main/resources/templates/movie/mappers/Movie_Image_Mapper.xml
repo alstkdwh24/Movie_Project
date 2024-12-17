@@ -53,4 +53,8 @@
     <select id="deliciousVO_two_list" resultType="DeliciousVO">
         select * from delicious;
     </select>
+
+    <select id="Movie_gifticon_list" resultType="Movie_gifticonVO">
+        select * from movie_gifticon;
+    </select>
 </mapper>
