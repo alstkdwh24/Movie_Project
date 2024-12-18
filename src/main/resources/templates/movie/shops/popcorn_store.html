@@ -22,6 +22,7 @@
 
     <!--    미니메뉴 모달-->
     <link rel="stylesheet" href="/css/mains/main_imin_menu.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
     <!--    스토어 상점-->
@@ -32,69 +33,69 @@
 <div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
 <div id="popcorn_div">
     <div class="store">
-        <div id="pakage_store"></div>
-        <div id="pakage_store_popcorn">
-            <div class="popcorn_pakage">
-                <div class="pakage_img">이미지</div>
-                <div class="pakage_title">
-                    <div class="pakage_title_big"><h2>영화패키지 이름</h2></div>
-                    <div class="pakage_title_small"><h5>영화패키지 소이름</h5></div>
-                </div>
-            </div>
-            <div class="popcorn_pakage">
-                <div class="pakage_img">이미지</div>
-                <div class="pakage_title">
-                    <div class="pakage_title_big"><h2>영화패키지 이름</h2></div>
-                    <div class="pakage_title_small"><h5>영화패키지 소이름</h5></div>
-                </div>
-            </div>
-            <div class="popcorn_pakage">
-                <div class="pakage_img">이미지</div>
-                <div class="pakage_title">
-                    <div class="pakage_title_big"><h2>영화패키지 이름</h2></div>
-                    <div class="pakage_title_small"><h5>영화패키지 소이름</h5></div>
-                </div>
-            </div>
-            <div class="popcorn_pakage">
-                <div class="pakage_img">이미지</div>
-                <div class="pakage_title">
-                    <div class="pakage_title_big"><h2>영화패키지 이름</h2></div>
-                    <div class="pakage_title_small"><h5>영화패키지 소이름</h5></div>
-                </div>
-            </div>
+        <div id="pakage_store">스토어</div>
+        <div id="pakage_store_popcorn" th:utext="${deliciousVO_response_two_htmlContent}">
+<!--            <div class="popcorn_pakage">-->
+<!--                <div class="pakage_img">이미지</div>-->
+<!--                <div class="pakage_title">-->
+<!--                    <div class="pakage_title_big"><h2>영화패키지 이름</h2></div>-->
+<!--                    <div class="pakage_title_small"><h5>영화패키지 소이름</h5></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="popcorn_pakage">-->
+<!--                <div class="pakage_img">이미지</div>-->
+<!--                <div class="pakage_title">-->
+<!--                    <div class="pakage_title_big"><h2>영화패키지 이름</h2></div>-->
+<!--                    <div class="pakage_title_small"><h5>영화패키지 소이름</h5></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="popcorn_pakage">-->
+<!--                <div class="pakage_img">이미지</div>-->
+<!--                <div class="pakage_title">-->
+<!--                    <div class="pakage_title_big"><h2>영화패키지 이름</h2></div>-->
+<!--                    <div class="pakage_title_small"><h5>영화패키지 소이름</h5></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="popcorn_pakage">-->
+<!--                <div class="pakage_img">이미지</div>-->
+<!--                <div class="pakage_title">-->
+<!--                    <div class="pakage_title_big"><h2>영화패키지 이름</h2></div>-->
+<!--                    <div class="pakage_title_small"><h5>영화패키지 소이름</h5></div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
     <div class="store">
         <div id="combo_store"></div>
-        <div id="pakage_store_combo">
-            <div class="popcorn_pakage">
-                <div class="pakage_img">이미지</div>
-                <div class="pakage_title">
-                    <div class="pakage_title_big"><h2>영화패키지 이름</h2></div>
-                    <div class="pakage_title_small"><h5>영화패키지 소이름</h5></div>
-                </div>
-            </div>
-            <div class="popcorn_pakage">
-                <div class="pakage_img">이미지</div>
-                <div class="pakage_title">
-                    <div class="pakage_title_big"><h2>영화패키지 이름</h2></div>
-                    <div class="pakage_title_small"><h5>영화패키지 소이름</h5></div>
-                </div>
-            </div>
-            <div class="popcorn_pakage">
-                <div class="pakage_img">이미지</div>
-                <div class="pakage_title">
-                    <div class="pakage_title_big"><h2>영화패키지 이름</h2></div>
-                    <div class="pakage_title_small"><h5>영화패키지 소이름</h5></div>
-                </div>
-            </div>
-            <div class="popcorn_pakage">
-                <div class="pakage_img">이미지</div>
-                <div class="pakage_title">
-                    <div class="pakage_title_big"><h2>영화패키지 이름</h2></div>
-                    <div class="pakage_title_small"><h5>영화패키지 소이름</h5></div>
-                </div>
-            </div>
+        <div id="pakage_store_combo" th:utext="${deliciousVO_response_two_htmlContent}">
+<!--            <div class="popcorn_pakage">-->
+<!--                <div class="pakage_img">이미지</div>-->
+<!--                <div class="pakage_title">-->
+<!--                    <div class="pakage_title_big"><h2>영화패키지 이름</h2></div>-->
+<!--                    <div class="pakage_title_small"><h5>영화패키지 소이름</h5></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="popcorn_pakage">-->
+<!--                <div class="pakage_img">이미지</div>-->
+<!--                <div class="pakage_title">-->
+<!--                    <div class="pakage_title_big"><h2>영화패키지 이름</h2></div>-->
+<!--                    <div class="pakage_title_small"><h5>영화패키지 소이름</h5></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="popcorn_pakage">-->
+<!--                <div class="pakage_img">이미지</div>-->
+<!--                <div class="pakage_title">-->
+<!--                    <div class="pakage_title_big"><h2>영화패키지 이름</h2></div>-->
+<!--                    <div class="pakage_title_small"><h5>영화패키지 소이름</h5></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="popcorn_pakage">-->
+<!--                <div class="pakage_img">이미지</div>-->
+<!--                <div class="pakage_title">-->
+<!--                    <div class="pakage_title_big"><h2>영화패키지 이름</h2></div>-->
+<!--                    <div class="pakage_title_small"><h5>영화패키지 소이름</h5></div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
 
         <div></div>
@@ -102,60 +103,60 @@
     <div class="store" id="store_card">
         <div class="card">
             <div class="card_title">제목</div>
-            <div class="card_body">
-                <div class="body_gift">
-                    <div class="gift_img">이미지</div>
-                    <div class="gift_title">
-                        <div class="gift_title_big">큰 제목</div>
-                        <div class="gift_title_small">작은 이름</div>
+            <div class="card_body_1" th:utext="${GifticonHtml}">
+<!--                <div class="body_gift">-->
+<!--                    <div class="gift_img">이미지</div>-->
+<!--                    <div class="gift_title">-->
+<!--                        <div class="gift_title_big">큰 제목</div>-->
+<!--                        <div class="gift_title_small">작은 이름</div>-->
 
-                    </div>
-                </div>
-                <div class="body_gift">
-                    <div class="gift_img"></div>
-                    <div class="gift_title">
-                        <div class="gift_title_big"></div>
-                        <div class="gift_title_small"></div>
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="body_gift">-->
+<!--                    <div class="gift_img"></div>-->
+<!--                    <div class="gift_title">-->
+<!--                        <div class="gift_title_big"></div>-->
+<!--                        <div class="gift_title_small"></div>-->
 
-                    </div>
-                </div>
-                <div class="body_gift">
-                    <div class="gift_img"></div>
-                    <div class="gift_title">
-                        <div class="gift_title_big"></div>
-                        <div class="gift_title_small"></div>
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="body_gift">-->
+<!--                    <div class="gift_img"></div>-->
+<!--                    <div class="gift_title">-->
+<!--                        <div class="gift_title_big"></div>-->
+<!--                        <div class="gift_title_small"></div>-->
 
-                    </div>
-                </div>
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
         <div class="card">
             <div class="card_title"></div>
-            <div class="card_body">
-                <div class="body_gift">
-                    <div class="gift_img"></div>
-                    <div class="gift_title">
-                        <div class="gift_title_big"></div>
-                        <div class="gift_title_small"></div>
+            <div class="card_body" th:utext="${movie_ticket_htmlContent}">
+<!--                <div class="body_gift">-->
+<!--                    <div class="gift_img"></div>-->
+<!--                    <div class="gift_title">-->
+<!--                        <div class="gift_title_big"></div>-->
+<!--                        <div class="gift_title_small"></div>-->
 
-                    </div>
-                </div>
-                <div class="body_gift">
-                    <div class="gift_img"></div>
-                    <div class="gift_title">
-                        <div class="gift_title_big"></div>
-                        <div class="gift_title_small"></div>
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="body_gift">-->
+<!--                    <div class="gift_img"></div>-->
+<!--                    <div class="gift_title">-->
+<!--                        <div class="gift_title_big"></div>-->
+<!--                        <div class="gift_title_small"></div>-->
 
-                    </div>
-                </div>
-                <div class="body_gift">
-                    <div class="gift_img"></div>
-                    <div class="gift_title">
-                        <div class="gift_title_big"></div>
-                        <div class="gift_title_small"></div>
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="body_gift">-->
+<!--                    <div class="gift_img"></div>-->
+<!--                    <div class="gift_title">-->
+<!--                        <div class="gift_title_big"></div>-->
+<!--                        <div class="gift_title_small"></div>-->
 
-                    </div>
-                </div>
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
     </div>
@@ -173,9 +174,14 @@
 <script src="/js/modal/chat_modal.js"></script>
 <script src="/js/modal/momo_modal.js"></script>
 <script src="/js/modal/Gallery_modal2.js"></script>
+
 <!--미니 메뉴-->
 <script src="/js/modal/menu_modal.js"></script>
+
 <!--글등록 모달-->
 <script src="/js/resist_image_file/resist_modal.js"></script>
+
+<!--popcorn_store.js 입니다.-->
+<script src="/js/popcorn_store/popcorn_store.js"></script>
 </body>
 </html>

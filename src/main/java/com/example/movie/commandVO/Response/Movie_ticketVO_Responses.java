@@ -16,4 +16,5 @@ public class Movie_ticketVO_Responses {
     private String movie_ticket_name;
     private String movie_ticket_filename;
     private String movie_filepath;
+    private String resist_textarea;
 }

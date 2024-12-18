@@ -1,9 +1,6 @@
 package com.example.movie.movie_image_service;
 
-import com.example.movie.commandVO.MainsVO.EventVO_Board;
-import com.example.movie.commandVO.MainsVO.MovieVO;
-import com.example.movie.commandVO.MainsVO.Movie_gifticonVO;
-import com.example.movie.commandVO.MainsVO.Movie_ticketVO;
+import com.example.movie.commandVO.MainsVO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,5 +56,30 @@ public class Movie_Image_ServiceImpl implements Movie_Image_Service{
     @Override
     public ArrayList<Movie_ticketVO> movie_ticket_resist_list(Movie_ticketVO vo) {
         return movieImageMapper.movie_ticket_resist_list(vo);
+    }
+
+    @Override
+    public int DeliciousVO_image(DeliciousVO vo) {
+        return movieImageMapper.DeliciousVO_image(vo);
+    }
+
+    @Override
+    public ArrayList<DeliciousVO> deliciousVO_list(DeliciousVO vo) {
+        return movieImageMapper.deliciousVO_list(vo);
+    }
+
+    @Override
+    public ArrayList<DeliciousVO> deliciousVO_two_list(DeliciousVO vo) {
+        return movieImageMapper.deliciousVO_two_list(vo);
+    }
+
+    @Override
+    public ArrayList<Movie_gifticonVO> Movie_gifticon_list(Movie_gifticonVO vo) {
+        return movieImageMapper.Movie_gifticon_list(vo);
+    }
+
+    @Override
+    public ArrayList<Movie_ticketVO> movie_ticketVOS_list(Movie_ticketVO vo) {
+        return movieImageMapper.movie_ticketVOS_list(vo);
     }
 }
