@@ -145,12 +145,56 @@ public class Movie_gifticon_RestController {
     }
 
     @GetMapping("/gifticonVO_Responses_two_list")
-    public ResponseEntity<Movie_gifticonVO_Responses> gifticonVO_Responses_two(Movie_gifticonVO vo){
+    public ResponseEntity<ArrayList<Movie_gifticonVO_Responses>> gifticonVO_Responses_two(Movie_gifticonVO vo, Model model){
         ArrayList<Movie_gifticonVO> Movie_gifticon_list=movie_Image_Service.Movie_gifticon_list(vo);
         ArrayList<Movie_gifticonVO_Responses> Movie_gifticonVO_Responses_list = new ArrayList<>();
+        for(Movie_gifticonVO movie_gifticon : Movie_gifticon_list ){
+            Movie_gifticonVO_Responses movie_gifticonVO_responses=new Movie_gifticonVO_Responses();
+            movie_gifticonVO_responses.setFilePath(movie_gifticon.getMovie_filepath());
+            movie_gifticonVO_responses.setGifticon_filename(movie_gifticon.getGifticon_filename());
+            movie_gifticonVO_responses.setGifticon_name(movie_gifticon.getGifticon_name());
+            movie_gifticonVO_responses.setImageUrl(movie_gifticon.getUploadPaths());
 
+            String GifticonHtml=Gifticon_createElement(movie_gifticon);
+            movie_gifticonVO_responses.setImageUrl(GifticonHtml);
 
-        return null;
+            model.addAttribute("GifticonHtml",GifticonHtml);
+
+            Movie_gifticonVO_Responses_list.add(movie_gifticonVO_responses);
+        }
+
+        return ResponseEntity.ok(Movie_gifticonVO_Responses_list);
     }
+        private String Gifticon_createElement(Movie_gifticonVO movie_gifticonVO){
+                StringBuilder GifticonHtml=new StringBuilder();
+            GifticonHtml.append(" <div class=\"body_gift\">")
+                    .append("<div class=\"gift_img\">")
+                    .append("</div>")
+                    .append("<div class=\"gift_title\">")
+                    .append("<div class=\"gift_title_big\">")
+                    .append(movie_gifticonVO.getGifticon_name())
+                    .append("</div>")
+                    .append("<div class=\"gift_title_small\">")
+                    .append(movie_gifticonVO.getResist_textarea())
+                    .append("</div>")
+                    .append("</div>");
+
+            return GifticonHtml.toString();
+        }
+
+        @GetMapping("/gifticonVO_Responses_two_list/files/{filePath_two}/{gifticon_filename}")
+        public ResponseEntity<Resource> gifticonVO_Resource(@PathVariable String filePath_two, @PathVariable String gifticon_filename) throws IOException {
+
+            Path path = Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/" + filePath_two + "/" + gifticon_filename);
+            File file = path.toFile();
+            String mimeType = Files.probeContentType(path);
+            MediaType mediaType = MediaType.parseMediaType(mimeType != null ? mimeType : "application/octet-stream");
+
+            return ResponseEntity.ok()
+                    .contentType(mediaType)
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "inline; delicious_filename=\"" + file.getName() + "\"")
+                    .body(new org.springframework.core.io.FileSystemResource(file));
+
+        }
 
 }

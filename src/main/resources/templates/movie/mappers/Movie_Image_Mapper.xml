@@ -57,4 +57,8 @@
     <select id="Movie_gifticon_list" resultType="Movie_gifticonVO">
         select * from movie_gifticon;
     </select>
+
+    <select id="movie_ticketVOS_list" resultType="Movie_ticketVO">
+        select * from movie_ticket;
+    </select>
 </mapper>

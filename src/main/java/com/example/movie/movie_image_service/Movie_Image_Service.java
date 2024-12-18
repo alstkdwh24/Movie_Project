@@ -31,5 +31,6 @@ public interface Movie_Image_Service {
 
     ArrayList<Movie_gifticonVO> Movie_gifticon_list(Movie_gifticonVO vo);
 
+    ArrayList<Movie_ticketVO> movie_ticketVOS_list(Movie_ticketVO vo);
 
 }

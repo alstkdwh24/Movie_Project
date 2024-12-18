@@ -77,4 +77,9 @@ public class Movie_Image_ServiceImpl implements Movie_Image_Service{
     public ArrayList<Movie_gifticonVO> Movie_gifticon_list(Movie_gifticonVO vo) {
         return movieImageMapper.Movie_gifticon_list(vo);
     }
+
+    @Override
+    public ArrayList<Movie_ticketVO> movie_ticketVOS_list(Movie_ticketVO vo) {
+        return movieImageMapper.movie_ticketVOS_list(vo);
+    }
 }

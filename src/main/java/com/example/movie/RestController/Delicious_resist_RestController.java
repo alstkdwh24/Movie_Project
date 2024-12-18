@@ -118,9 +118,7 @@ public class Delicious_resist_RestController {
 
 
         delicious_htmlContent.append("<div class=\"ant_three\" >")
-                .append("<div class=\"delicious_number\">")
-                .append(deliciousVO_list_two.getDelicious_number())
-                .append("</div>")
+
                 .append("<div class=\"contents_img\" id=\"contents_img_four\">")
                 .append("</div>")
                 .append("<div class=\"contents_ant\">")

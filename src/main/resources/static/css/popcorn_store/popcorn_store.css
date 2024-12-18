@@ -141,6 +141,14 @@ body {
     box-sizing: border-box;
 }
 
+.card_body_1 {
+    height: 90%;
+    width: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+
 .body_gift {
     height: 33.3%;
     width: 100%;

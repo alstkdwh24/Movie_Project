@@ -104,8 +104,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         console.log("delicious_name", delicious_name[index]);
 
 
-
-
                         $("#pakage_store_combo").append(item.delicious_htmlContent);
 
 
@@ -145,31 +143,60 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     })
 
-let gifticon_name=[];
-    let gifticon_filename=[];
-    let filePath_two=[];
-    let imageUrl=[];
+    let gifticon_name = [];
+    let gifticon_filename = [];
+    let filePath_two = [];
+    let imageUrl = [];
+    let gift_img_two = [];
     $.ajax({
-        type:"get",
-        url:"/movie_resist/gifticonVO_Responses_two_list",
-        contentType:"application/json",
+        type: "get",
+        url: "/movie_resist/gifticonVO_Responses_two_list",
+        contentType: "application/json",
         success: function (data) {
-            if(Array.isArray(data) && data.length ){
+
+            if (Array.isArray(data) && data.length) {
                 data.forEach(function (item, index) {
-                    if(index <3){
-                        gifticon_filename[index]=item.gifticon_filename;
-                        console.log("gifticon_filename[index]",gifticon_filename[index]);
+                    if (index < 3) {
+                        gifticon_filename[index] = item.gifticon_filename;
+                        console.log("gifticon_filename[index]", gifticon_filename[index]);
 
-                        imageUrl[index]=item.imageUrl
-                        console.log("imageUrl[index]",imageUrl[index]);
+                        imageUrl[index] = item.imageUrl
+                        console.log("imageUrl[index]", imageUrl[index]);
 
-                        filePath_two[index]=item.filePath;
+                        filePath_two[index] = item.filePath;
                         console.log("filePath_two[index]", filePath_two[index]);
 
-                        gifticon_name[index]=item.gifticon_name;
+                        gifticon_name[index] = item.gifticon_name;
 
-                        $("#pakage_store_combo").append(item.imageUrl_two);
+                        $(".card_body_1").append(item.imageUrl);
+                        $.ajax({
+                            type: "get",
+                            url: `/movie_resist/gifticonVO_Responses_two_list/files/${filePath_two[index]}/${gifticon_filename[index]}`,
+                            xhrFields: {
+                                responseType: "blob"
+                            },
+                            success: function (response, status, xhr) {
+                                let gift_img = document.querySelectorAll(".gift_img")
+                                gift_img.forEach((gift_img_twos, index) => {
+                                    gift_img_two[index] = gift_img_twos;
+                                })
 
+                                let blob = new Blob([response], {type: xhr.getResponseHeader('Content-Type')});
+                                let url = URL.createObjectURL(blob);
+
+                                let img = document.createElement("img");
+
+
+                                img.src = url;
+                                img.alt = "영화 이미지";
+
+                                img.className = "img";
+
+
+                                gift_img_two[index].appendChild(img);
+                                gift_img_two[index].querySelector(".loader").remove();
+                            }
+                        })
 
                     }
 
@@ -177,5 +204,63 @@ let gifticon_name=[];
 
             }
         }
+    })
+
+    let movie_ticket_url_two=[];
+    let filePath_ticket=[];
+    let movie_ticket_filename_array=[];
+    let movie_filepath=[];
+    let movie_ticket_name=[];
+    let ticket_img_two_one=[];
+    $.ajax({
+        type: "get",
+        url: "/movie_resist/popcon_store/movie_ticket_resist_list_two",
+        contentType: "application/json",
+        success: function (data) {
+            if (Array.isArray(data) && data.length > 0) {
+                data.forEach((item, index) => {
+                    if (index < 3) {
+
+                        movie_ticket_url_two[index] = item.movie_ticket_url;
+                        filePath_ticket[index] = item.filePath;
+                        movie_ticket_filename_array[index] = item.movie_ticket_filename;
+                        movie_filepath[index] = item.movie_filepath;
+                        movie_ticket_name[index] = item.movie_ticket_name;
+
+                        $(".card_body").append(item.movie_ticket_htmlContent);
+
+                        $.ajax({
+                            type:"get",
+                            url:`/movie_resist/popcon_store/movie_ticket_resist_list_two/files/${filePath_ticket[index]}/${movie_ticket_filename_array[index]}`,
+                            xhrFields: {
+                                responseType: "blob"
+                            },
+                            success:function (response,status,xhr) {
+                                let ticket_img=document.querySelectorAll(".gift_img_two");
+                                ticket_img.forEach((ticket_img_two,index)=>{
+                                    ticket_img_two_one[index]=ticket_img_two;
+                                })
+
+                                let blob = new Blob([response], {type: xhr.getResponseHeader('Content-Type')});
+                                let url = URL.createObjectURL(blob);
+
+                                let img = document.createElement("img");
+
+
+                                img.src = url;
+                                img.alt = "영화 이미지";
+
+                                img.className = "img";
+
+                                ticket_img_two_one[index].appendChild(img);
+                                ticket_img_two_one[index].querySelector(".loader").remove();
+                            }
+                        })
+                    }
+
+                })
+            }
+        }
+
     })
 })

@@ -2,6 +2,7 @@ package com.example.movie.RestController;
 
 import com.example.movie.commandVO.MainsVO.Movie_gifticonVO;
 import com.example.movie.commandVO.MainsVO.Movie_ticketVO;
+import com.example.movie.commandVO.Response.Movie_gifticonVO_Responses;
 import com.example.movie.commandVO.Response.Movie_ticketVO_Responses;
 import com.example.movie.movie_image_service.Movie_Image_Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -121,7 +122,7 @@ public class Movie_ticket_resist_RestController {
                 .append(movie_ticket_list.getMovie_ticket_name())
                 .append("</div>")
                 .append("<div class=\"ant_big_title\">")
-                .append(movie_ticket_list.getMovie_ticket_name())
+                .append(movie_ticket_list.getResist_textarea())
                 .append("</div>")
                 .append("</div>")
                 .append("</div>");
@@ -143,5 +144,58 @@ public class Movie_ticket_resist_RestController {
                 .header(HttpHeaders.CONTENT_DISPOSITION,"inline; filename=\"" + file.getName() + "\"")
                 .body(new org.springframework.core.io.FileSystemResource(file));
 
+    }
+
+    @GetMapping("/popcon_store/movie_ticket_resist_list_two")
+    public ResponseEntity<ArrayList<Movie_ticketVO_Responses>> movie_ticket_resist_list_two(Movie_ticketVO vo, Model model){
+        ArrayList<Movie_ticketVO> movie_ticketVOS=movie_Image_Service.movie_ticketVOS_list(vo);
+        ArrayList<Movie_ticketVO_Responses> movie_ticketVO_responses=new ArrayList<>();
+        for(Movie_ticketVO movie_ticketVO_two: movie_ticketVOS){
+            Movie_ticketVO_Responses movie_ticketVO_responses1=new Movie_ticketVO_Responses();
+            movie_ticketVO_responses1.setFilePath(movie_ticketVO_two.getFilePath());
+            movie_ticketVO_responses1.setMovie_ticket_filename(movie_ticketVO_two.getMovie_ticket_filename());
+            movie_ticketVO_responses1.setMovie_ticket_name(movie_ticketVO_two.getMovie_ticket_name());
+            movie_ticketVO_responses1.setMovie_filepath(movie_ticketVO_two.getMovie_filepath());
+            movie_ticketVO_responses1.setFilePath(movie_ticketVO_two.getFilePath());
+
+            String movie_ticket_htmlContent=movie_ticket_htmlContent_createElement(movie_ticketVO_two);
+            movie_ticketVO_responses1.setMovie_ticket_htmlContent(movie_ticket_htmlContent);
+            movie_ticketVO_responses.add(movie_ticketVO_responses1);
+
+            model.addAttribute("movie_ticket_htmlContent",movie_ticket_htmlContent);
+        }
+        return ResponseEntity.ok(movie_ticketVO_responses);
+    }
+
+    private String movie_ticket_htmlContent_createElement(Movie_ticketVO movie_ticketVO_two){
+        StringBuilder movie_ticket_htmlContent=new StringBuilder();
+        movie_ticket_htmlContent.append("<div class=\"body_gift\">")
+                .append("<div class=\"gift_img_two\">")
+                .append("</div>")
+                .append("<div class=\"gift_title\">")
+                .append("<div class=\"gift_title_big\">")
+                .append(movie_ticketVO_two.getMovie_ticket_name())
+                .append("</div>")
+                .append("<div class=\"gift_title_small\">")
+                .append(movie_ticketVO_two.getResist_textarea())
+                .append("</div>")
+                .append("</div>")
+                .append("</div>");
+        return movie_ticket_htmlContent.toString();
+    }
+
+    @GetMapping("/popcon_store/movie_ticket_resist_list_two/files/{filePath_ticket}/{movie_ticket_filename_array}")
+    public ResponseEntity<Resource> movie_ticket_filename_array(@PathVariable String filePath_ticket, @PathVariable String movie_ticket_filename_array) throws IOException {
+
+        Path path= Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/"+ filePath_ticket + "/"+ movie_ticket_filename_array);
+        File file=path.toFile();
+        String mimeType= Files.probeContentType(path);
+        MediaType mediaType=MediaType.parseMediaType(mimeType !=null? mimeType:"application/octet-stream\"");
+
+
+        return ResponseEntity.ok()
+                .contentType(mediaType)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; movie_ticket_filename=\"" + file.getName() + "\"")
+                .body(new org.springframework.core.io.FileSystemResource(file));
     }
 }
