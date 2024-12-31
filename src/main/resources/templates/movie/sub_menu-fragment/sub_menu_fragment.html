@@ -11,12 +11,12 @@
 <div th:fragment="article_divs" class="main_title">
     <div class="big_sub_main">
         <div class="week_title">
-            <div class="bird"  onclick="location.href='/movie/shops/popcorn_store'"><img width="80%"
-                                   height="100%"
+            <div class="bird" id="bird_popcorn" onclick="location.href='/movie/shops/popcorn_store'"><img width="50%"
+                                   height="70%"
                                    src="https://img.icons8.com/arcade/64/popcorn.png"
                                    alt="popcorn"/></div>
-            <div class="bird" onclick="location.href='/movie/Reservation/reservation'"><img
-                    width="80%" height="100%" src="/css/img/icon/movies.png" alt=""></div>
+            <div class="bird"  id="bird_ticket" onclick="location.href='/movie/Reservation/reservation'"><img
+                    width="40%" height="60%" src="/css/img/icon/movies.png" alt=""></div>
 
 
         </div>
@@ -26,12 +26,12 @@
             <div class="icons">
 
     <div class="clouds">
-       <div class="a_word">
+       <div class="a_word" id="left">
            <a th:if="${userSession==null}" onclick="location.href='/movie/login/login'">로그인</a>
         <a th:if="${userSession!=null}" onclick="location.href='/movie/login/logout'">로그아웃</a></div>
 
-        <div class="a_word"><a onclick="location.href='/movie/login/join'">회원가입</a></div>
-        <div class="a_word">   <a onclick="location.href='/movie/chats/Question'">문의사항</a></div>
+        <div class="a_word" id="middle"><a onclick="location.href='/movie/login/join'">회원가입</a></div>
+        <div class="a_word" id="right">   <a onclick="location.href='/movie/chats/Question'">문의사항</a></div>
         </div>
             </div>
         </div>
@@ -39,11 +39,11 @@
     <div class="small_sub_main">
         <div class="week_menu_function">
 
-            <div class="small_icon"         onclick="location.href='https://www.instagram.com/lottecinema_official/'"><img width="30%" height="50%" alt="" src="/css/img/icon/5296499_fb_facebook_facebook%20logo_icon.png"> </div>
-            <div class="small_icon" onclick="location.href='https://www.facebook.com/LotteCinema.kr/?locale=ko_KR'"><img width="30%" height="50%"  alt="" src="/css/img/icon/5296765_camera_instagram_instagram%20logo_icon.png">
+            <div class="small_icon"         onclick="location.href='https://www.instagram.com/lottecinema_official/'"><img width="48%" height="70%" alt="" src="/css/img/icon/5296499_fb_facebook_facebook%20logo_icon.png"> </div>
+            <div class="small_icon" id="small_icon1" onclick="location.href='https://www.facebook.com/LotteCinema.kr/?locale=ko_KR'"><img width="48%" height="70%"  alt="" src="/css/img/icon/5296765_camera_instagram_instagram%20logo_icon.png">
             </div>
-            <div class="small_icon"                           onclick="location.href='https://www.youtube.com/@LOTTECINEMA'"> <img width="30%" height="60%" src="/css/img/icon/4375133_logo_youtube_icon.png" alt=""> </div>
-            <div class="small_icon"  onclick="location.href='https://pf.kakao.com/_HPBhu'"><img width="40%" height="60%" src="https://img.icons8.com/color/48/kakaotalk.png"
+            <div class="small_icon"  id="small_icon2"                         onclick="location.href='https://www.youtube.com/@LOTTECINEMA'"> <img width="48%" height="70%" src="/css/img/icon/4375133_logo_youtube_icon.png" alt=""> </div>
+            <div class="small_icon" id="small_icon3" onclick="location.href='https://pf.kakao.com/_HPBhu'"><img width="48%" height="70%" src="https://img.icons8.com/color/48/kakaotalk.png"
                                          alt="kakaotalk"/></div>
         </div>
 

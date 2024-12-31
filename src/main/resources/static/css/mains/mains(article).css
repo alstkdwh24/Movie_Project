@@ -5,8 +5,8 @@
 
 html {
     width: 100%;
-    height: 2400px;
-    min-width: 1900px;
+    height: 2000px;
+    min-width: 1500px;
     /*overflow-x: hidden;*/
     box-sizing: border-box;
     background-size : cover;
@@ -63,7 +63,7 @@ body {
 /*영화 사이트 제목 쓰는 곳과 메뉴 쓰는곳*/
 .real_title {
     height: 100%;
-    width: 70%;
+    width: 60%;
     box-sizing: border-box;
     min-width: 1200px;
 
@@ -82,7 +82,7 @@ body {
     justify-content: center;
     align-items: center;
     color: red;
-    font-size: 40px;
+    font-size: 30px;
 
 }
 
@@ -109,7 +109,7 @@ body {
     height: 50%;
     float: right;
 
-    font-size: 15px;
+    font-size: 13px;
     box-sizing: border-box;
 
     display: flex;
@@ -188,6 +188,7 @@ border-bottom: 1px solid white;
     border:none;
     background-color: transparent;
     cursor:pointer;
+    top:20%;
 }
 
 .example-class{
@@ -230,28 +231,33 @@ width: 70%;
 }
 #menu{
     color: antiquewhite;
-    font-size: 45px;
+    font-size: 36px;
     position: relative;
     top:4%;
+    left: 10%;
 
 }
 #menus{
+    position: relative;
     color: antiquewhite;
-    font-size: 40px;
+    font-size: 30px;
+    left:50%;
 }
 
 #menutwo{
     color: antiquewhite;
-    font-size: 35px;
+    font-size: 30px;
     top:10%;
     right: 10%;
     position: relative;
+    left: 20%;
 }
 
 #menulogin{
     color: antiquewhite;
-    font-size: 40px;
-    top:30%;
+    font-size: 30px;
+    top:34%;
+    left: 40%;
     position: relative;
 }
 .real_title_bottom_two_reservation {
@@ -264,8 +270,8 @@ cursor: pointer;
     align-items: center;
     color: antiquewhite;
     font-style: initial;
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 13px;
+    font-weight:bold;
 }
 
 #account_div {
