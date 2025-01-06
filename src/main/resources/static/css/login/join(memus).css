@@ -30,7 +30,7 @@
 .strong_title{
     width: 32%;
     height: 100%;
-    font-size: 40px;
+    font-size: 26px;
     color: black;
     display: flex;
     justify-content: center;
@@ -69,6 +69,7 @@
     align-items: center;
     text-decoration: underline;
     cursor:pointer;
+    font-size: 13px;
 }
 .plus_menu2{
     width: 20%;

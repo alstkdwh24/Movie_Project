@@ -1,44 +1,51 @@
-body{   width: 100%;
+body {
+    width: 100%;
     height: 140%;
 
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
-background-color: black;
+    background-color: black;
 }
-.event_board{border: 1px solid black;
-width: 60%;
-height: 68%;
-position: relative;
-top:-10%;
-    min-width: 1100px;
-min-height: 800px;
-    box-sizing: border-box;}
 
-#event_title .h2{
+.event_board {
+    border: 1px solid black;
+    width: 60%;
+    height: 68%;
+    position: relative;
+    top: -10%;
+    min-width: 860px;
+    min-height: 600px;
+    box-sizing: border-box;
+}
+
+#event_title .h2 {
     color: black;
     font-size: 30px;
     box-sizing: border-box;
 
 }
-.event_board #event_title{
+
+.event_board #event_title {
     width: 100%;
     height: 10%;
     border: 1px solid black;
-display: flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     background-color: white;
     box-sizing: border-box;
 }
-.event_board #event_contents{
+
+.event_board #event_contents {
     height: 90%;
     width: 100%;
     border: 1px solid black;
     box-sizing: border-box;
 }
-#event_contents .contents_good{
+
+#event_contents .contents_good {
     height: 50%;
     width: 100%;
     border: 1px solid black;
@@ -46,7 +53,8 @@ display: flex;
     box-sizing: border-box;
     background-color: white;
 }
-.contents_good .good_click{
+
+.contents_good .good_click {
     height: 100%;
     width: 34%;
     border: 1px solid black;
@@ -54,22 +62,26 @@ display: flex;
     flex-direction: column;
     box-sizing: border-box;
 }
-.good_click .click_div{
+
+.good_click .click_div {
     border: 1px solid black;
     height: 80%;
     width: 100%;
 
-    box-sizing: border-box;}
-.good_click .click_bottom{
+    box-sizing: border-box;
+}
+
+.good_click .click_bottom {
     border: 1px solid black;
     height: 20%;
     width: 100%;
     box-sizing: border-box;
 }
-.click_bottom .bottom_top{
+
+.click_bottom .bottom_top {
     height: 66%;
     width: 100%;
-    border:1px solid black ;
+    border: 1px solid black;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
@@ -78,10 +90,10 @@ display: flex;
     color: #c06a16;
 }
 
-.click_bottom .bottom_bottom{
+.click_bottom .bottom_bottom {
     width: 100%;
     height: 34%;
-    border:1px solid black ;
+    border: 1px solid black;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
@@ -89,41 +101,49 @@ display: flex;
     align-items: center;
 }
 
-.bottom_bottom .bottom_left{
-width:50%;
+.bottom_bottom .bottom_left {
+    width: 50%;
     height: 100%;
-    border:1px solid black;
-    box-sizing: border-box;
-display: flex;
-}
-.bottom_bottom .bottom_right{
-    width:50%;
-    height: 100%;
-    border:1px solid black;
+    border: 1px solid black;
     box-sizing: border-box;
     display: flex;
-flex-direction: row;
 }
-.bottom_left .right_text{
+
+.bottom_bottom .bottom_right {
+    width: 50%;
+    height: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+}
+
+.bottom_left .right_text {
     width: 50%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid black;
+    font-size: 12px;
+
 
 
 }
-.bottom_left .right_word{
+
+.bottom_left .right_word {
     width: 50%;
     height: 100%;
     border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 12px;
 
 }
-.bottom_right .right_text{
+
+.bottom_right .right_text {
     width: 50%;
     height: 100%;
     box-sizing: border-box;
@@ -131,8 +151,12 @@ flex-direction: row;
     justify-content: center;
     align-items: center;
     border: 1px solid black;
+    font-size: 12px;
+
+
 }
-.bottom_right .right_word{
+
+.bottom_right .right_word {
     width: 50%;
     height: 100%;
     border: 1px solid black;
@@ -144,12 +168,12 @@ flex-direction: row;
 }
 
 
-.community{
+.community {
     width: 100%;
     height: 100%;
 }
 
-.super_bad{
+.super_bad {
     width: 100%;
     height: 100%;
 }

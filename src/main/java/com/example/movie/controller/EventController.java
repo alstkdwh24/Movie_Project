@@ -75,7 +75,7 @@ public class EventController {
         model.addAttribute("userSession", userDetails);
         String roles= (String) session2.getAttribute("roles");
         model.addAttribute("roles",roles);
-        return "movie/community/free_board_writer"; // 해당 뷰 반환
+        return "/movie/community/free_board_writer"; // 해당 뷰 반환
     }
 
     @GetMapping("/free_detail")
@@ -122,6 +122,9 @@ public class EventController {
     public String Event2(HttpSession session, Model model) {
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
         model.addAttribute("userSession", userDetails);
+        String roles= (String) session.getAttribute("roles");
+        model.addAttribute("roles",roles);
+
         return "movie/community/event";
     }
 

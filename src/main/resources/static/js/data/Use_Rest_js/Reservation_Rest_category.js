@@ -167,18 +167,7 @@ function movie_category_create(data) {
 
         })
     })
-    // $.ajax({
-    //     type: "get", url: "/getMovieCategory3", success: function (data) {
-    //         console.log(data);
-    //         movie_category_creates(data);
-    //
-    //         console.log("/getMovieCategory3");
-    //
-    //     }, error: function (err, status) {
-    //         console.log(err, status);
-    //         alert('카테고리를 불러오는데 실패하였습니다. F5를 눌러서 새로고침을 해주세요');
-    //     }
-    // });
+
 
 }
 
