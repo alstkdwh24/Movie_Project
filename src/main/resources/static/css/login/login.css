@@ -33,7 +33,7 @@ background-color: wheat;
     /*justify-content: center;*/
     align-items: center;
     flex-direction: column;
-    min-width: 450px;
+    min-width: 400px;
     box-shadow: rgb(0, 0, 0, 0.5);
 }
 
