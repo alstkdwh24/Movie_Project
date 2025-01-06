@@ -109,7 +109,7 @@ seat_resist.onclick = function () {
     let movieSeatInput = document.getElementById("chair_value").value
     let usernames = document.getElementById("username_modal").value
     let reservation_prices = document.getElementById("reservation_price").value;
-    document.getElementById('paymentId').value = "01043324254" + Math.floor(Math.random() * 100000).toString();
+    document.getElementById('paymentId').value = Math.floor(Math.random() * 1000000000).toString();
     let paymentId = document.getElementById('paymentId').value;
     console.log(reservation_prices);
     if (movieTimeInput != null && moviePlaceInput != null && movieTitleInput != null && movieSeatInput != null) {

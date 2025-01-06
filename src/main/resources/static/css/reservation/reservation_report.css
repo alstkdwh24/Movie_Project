@@ -26,6 +26,7 @@ body{
     width: 100%;
     height: 126%;
     display:flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
