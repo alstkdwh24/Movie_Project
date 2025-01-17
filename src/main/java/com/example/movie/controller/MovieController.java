@@ -107,7 +107,7 @@ public class MovieController {
         session.setAttribute("movie_list", movie_list);
 
         // ModelAndView 객체 생성
-        ModelAndView modelAndView = new ModelAndView("/movie/mains.html"); // "movieView"는 Thymeleaf 템플릿 이름입니다.
+        ModelAndView modelAndView = new ModelAndView("movie/mains"); // "movieView"는 Thymeleaf 템플릿 이름입니다.
 
         // HTML 생성
         String movieHtml = generateMovieHtml(movie_list);

@@ -18,7 +18,7 @@ public class WriterController {
         model.addAttribute("roles", roles);
 
 
-        return "/movie/write_resist/event_resist";
+        return "movie/write_resist/event_resist";
     }
 
     @GetMapping("/movie_resist")
@@ -26,7 +26,7 @@ public class WriterController {
         String roles = (String) session2.getAttribute("roles");
         model.addAttribute("roles", roles);
 
-        return "/movie/write_resist/movie_resist";
+        return "movie/write_resist/movie_resist";
     }
 
     @GetMapping("/movie_ticket_resist")
@@ -34,7 +34,7 @@ public class WriterController {
         String roles = (String) session2.getAttribute("roles");
         model.addAttribute("roles", roles);
 
-        return "/movie/write_resist/movie_ticket_resist";
+        return "movie/write_resist/movie_ticket_resist";
     }
 
     @GetMapping("/delicious_resist")
@@ -42,7 +42,7 @@ public class WriterController {
         String roles = (String) session2.getAttribute("roles");
         model.addAttribute("roles", roles);
 
-        return "/movie/write_resist/delicious_resist";
+        return "movie/write_resist/delicious_resist";
     }
 
     @GetMapping("/movie_gift_card_resist")
@@ -50,6 +50,6 @@ public class WriterController {
         String roles = (String) session2.getAttribute("roles");
         model.addAttribute("roles", roles);
 
-        return "/movie/write_resist/movie_gift_card_resist";
+        return "movie/write_resist/movie_gift_card_resist";
     }
 }
