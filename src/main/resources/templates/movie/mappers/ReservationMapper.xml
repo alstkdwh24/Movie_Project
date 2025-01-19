@@ -75,7 +75,7 @@
 <!--    결제 결과 보기-->
     <select id="PaymentIdList" resultType="PaymentId_ListVO">
         select b.paymentId, a.movie_title, a.movie_time, a.movie_place,a.movie_Seat, a.reservation_price, b.payment_time, a.username
-        from movie_payment_paymentid as a left join paymentidvo as b on a.paymentId = b.paymentId
+        from movie_payment_paymentId as a left join paymentIdvo as b on a.paymentId = b.paymentId
     </select>
 
 

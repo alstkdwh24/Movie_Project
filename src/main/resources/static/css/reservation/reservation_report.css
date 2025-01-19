@@ -31,6 +31,11 @@ body{
     align-items: center;
 }
 
+#username2{
+    width: 100%;
+    height: 100%;
+}
+
 #reservation_board{
     width: 70%;
     height: 80%;

@@ -45,9 +45,9 @@
 </head>
 <body>
 
-<div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
+<div th:replace="movie/sub_menu-fragment/sub_menu_fragment :: article_divs"></div>
 
-<input type="hidden" th:value="${userSession.username}" id="username" >
+<input type="hidden" th:value="${userSession.username}" id="username">
 
 <form id="middle_report" action="/reservation_report" name="reservation">
     <p style="color: white">테스트 환경입니다. 결제가 되도 다음날 이전까지는 환불됩니다. 안되면 문의사항에 글 남겨 주세요</p>
@@ -66,11 +66,13 @@
 
             <div class="list_top">결제진행</div>
 
-<!--            토큰 저장-->
+            <!--            토큰 저장-->
             <input type="hidden" th:value="${accessToken}" name="accessToken">
         </div>
         <div id="reservation_lists">
-            <div class="reservation_item" th:each="vo, status:${list}" data-reservation-number="${vo.reservation_number}">
+            <div class="reservation_item" th:each="vo, status:${list}"
+                 data-reservation-number="${vo.reservation_number}"
+            >
                 <div class="list_top">[[${vo.reservation_number}]]</div>
                 <input type="hidden" name="reservation_number"
                        th:value="${vo.reservation_number}">
@@ -96,6 +98,9 @@
                 </div>
 
             </div>
+            <div th:unless="${username} eq ${vo.username}">
+                <div class="list_top">이 예약은 다른 사용자에 의해 생성되었습니다.</div>
+            </div>
         </div>
     </div>
 
@@ -103,18 +108,18 @@
 
 
 <!--커뮤니티div-->
-<div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
+<div th:replace="movie/community/fragment_gallery_modal :: mains_menu_modal"></div>
 
 <!--채팅 모달div-->
-<div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
+<div th:replace="movie/mains_fragment/modal/mains_chat_modal :: chat"></div>
 
 
 <!--소메뉴 검색css-->
-<div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
+<div th:replace="movie/mains_fragment/modal/mains_search_modal :: mains_search_modal"></div>
 
 
 <!--미니 메뉴 div-->
-<div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
+<div th:replace="movie/mains_fragment/modal/mini_main_modal :: sneak_peeks"></div>
 <!-- PortOne 라이브러리의 올바른 경로를 사용 -->
 
 

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/css/login/login.css">
 </head>
 <body>
-<div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
+<div th:replace="movie/sub_menu-fragment/sub_menu_fragment :: article_divs"></div>
 <div class="message">
     <div id="success_message">
         결제가 성공하였습니다.
@@ -26,18 +26,18 @@
 </div>
 
 <!--커뮤니티div-->
-<div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
+<div th:replace="movie/community/fragment_gallery_modal :: mains_menu_modal"></div>
 
 <!--채팅 모달div-->
-<div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
+<div th:replace="movie/mains_fragment/modal/mains_chat_modal :: chat"></div>
 
 
 <!--소메뉴 검색css-->
-<div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
+<div th:replace="movie/mains_fragment/modal/mains_search_modal :: mains_search_modal"></div>
 
 
 <!--미니 메뉴 div-->
-<div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
+<div th:replace="movie/mains_fragment/modal/mini_main_modal :: sneak_peeks"></div>
 <!-- PortOne 라이브러리의 올바른 경로를 사용 -->
 </body>
 

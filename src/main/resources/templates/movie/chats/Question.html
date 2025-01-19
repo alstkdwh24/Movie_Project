@@ -18,7 +18,9 @@
 
     <!--글 등록 모달-->
     <link rel="stylesheet" href="/css/resist_contents/resist_modal.css">
-
+    <link rel="stylesheet" href="/css/mains/modal/fragment_gallery_modal.css">
+    <!--    미니메뉴 모달-->
+    <link rel="stylesheet" href="/css/mains/main_imin_menu.css">
     <!--모달 css-->
     <link rel="stylesheet" href="/css/modal/free_board_modal.css">
     <link rel="stylesheet" href="/css/event/Gallery_modal.css">
@@ -36,7 +38,7 @@
 <body>
 
 <!--소메뉴 css-->
-<div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
+<div th:replace="movie/sub_menu-fragment/sub_menu_fragment :: article_divs"></div>
 
 
 
@@ -66,15 +68,15 @@
 
 
 <!--자유게시판 seatch 모달 게시판 공통-->
-<div th:replace="/movie/chats/Question_modal.html :: Question_modal"></div>
+<div th:replace="movie/chats/Question_modal :: Question_modal"></div>
 
 
 <!--소메뉴 모달-->
-<div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
-<div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
+<div th:replace="movie/mains_fragment/modal/mains_chat_modal :: chat"></div>
+<div th:replace="movie/mains_fragment/modal/mains_search_modal :: mains_search_modal"></div>
 
 <!--미니 메뉴 div-->
-<div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
+<div th:replace="movie/mains_fragment/modal/mini_main_modal :: sneak_peeks"></div>
 
 
 <!--미니 메뉴-->

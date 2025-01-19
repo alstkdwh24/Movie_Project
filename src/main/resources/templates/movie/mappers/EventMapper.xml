@@ -5,7 +5,7 @@
 
 <mapper namespace="com.example.movie.communityEventService.EventMapper">
     <insert id="gallery_free_board" parameterType="com.example.movie.commandVO.EventVO">
-        INSERT INTO FREE_GALLERY (free_title, free_contents, username, write_time, count)
+        INSERT INTO free_gallery (free_title, free_contents, username, write_time, count)
         VALUES (#{free_title}, #{free_contents}, #{username}, DATE_FORMAT(NOW(), '%y-%m-%d-%h-%m'), #{count});
     </insert>
 
@@ -14,7 +14,7 @@
         SELECT fg.*,
                a.nickname,
                DATE_FORMAT(fg.write_time, '%m %d %H:%i') AS formatted_time
-        FROM FREE_GALLERY AS fg
+        FROM free_gallery AS fg
                  JOIN
              members AS a ON fg.username = a.username
         ORDER BY free_number DESC
@@ -23,27 +23,27 @@
 
     <select id="gallery_free_total" resultType="int">
         select count(*) AS gallery_free_total
-        from FREE_GALLERY
+        from free_gallery
     </select>
 
     <insert id="gallery_g_board" parameterType="com.example.movie.commandVO.EventVO">
-        INSERT INTO g_GALLERY (G_TITLE, G_CONTENTS, username, write_time, g_count)
+        INSERT INTO g_gallery (G_TITLE, G_CONTENTS, username, write_time, g_count)
         VALUES (#{g_title}, #{g_contents}, #{username}, now(), #{count})
     </insert>
 
     <select id="gallery_g_show" resultType="com.example.movie.commandVO.EventVO">
         select g.*, a.nickname
-        from g_GALLERY AS g
+        from g_gallery AS g
                  JOIN members AS a on g.username = a.username
         order by G_NUMBER desc limit #{First}, #{amount}
     </select>
     <select id="gallery_g_total" resultType="int">
         select count(*) AS gallery_g_total
-        from G_GALLERY
+        from g_gallery
     </select>
     <select id="gSelect" resultType="EventVO">
         select g.*, a.nickname
-        from G_GALLERY AS g
+        from g_gallery AS g
                  join members AS a on g.username = a.username
         where g_number = #{g_number}
 
@@ -52,13 +52,13 @@
 
 
     <update id="findEventFree_Number" parameterType="int" >
-        UPDATE FREE_GALLERY
+        UPDATE free_gallery
         SET count = count + 1
         WHERE free_number = #{freeNumber}    </update>
 
     <select id="freeselect" parameterType="int" resultType="EventVO">
         select fg.*, a.nickname
-        from FREE_GALLERY AS fg
+        from free_gallery AS fg
                  join members as a on fg.username = a.username
         where free_number = #{free_number}
     </select>
@@ -66,7 +66,7 @@
 
     <select id="free_detail_update_select" resultType="EventVO">
         select *
-        from FREE_GALLERY
+        from free_gallery
         where free_number = #{free_number}
 
 
@@ -89,7 +89,7 @@
 
     <select id="g_update" resultType="EventVO">
         select g.*, a.nickname
-        from g_GALLERY as g
+        from g_gallery as g
                  JOIN members as a on g.username = a.username
         where g_number = #{g_number}
 
@@ -103,7 +103,7 @@
 </insert>
 
     <update id="g_board_count" parameterType="int">
-        UPDATE G_GALLERY
+        UPDATE g_gallery
         SET g_count = g_count + 1
         WHERE g_number = #{gNumber}    </update>
 <!--    댓글쓴거 보여주는 기능-->

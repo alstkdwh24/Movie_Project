@@ -64,13 +64,15 @@ public class ReservationController {
         String getSession = (String) session2.getAttribute("accessToken");
         int total = reservationService.getReservation_board(cri);
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
-        cri.setUsername(userDetails.getUsername()); // 세션에서 가져온 username 사용
+        String username=cri.setUsername(userDetails.getUsername()); // 세션에서 가져온 username 사용
         List<ReservationVO> List = reservationService.getReservation_pay(cri);
+
 
 
         String roles= (String) session3.getAttribute("roles");
         model.addAttribute("roles",roles);
         PageVO pageVO = new PageVO(cri, total);
+        model.addAttribute("username",username);
         model.addAttribute("userSession", userDetails);
         model.addAttribute("list", List);
         model.addAttribute("accessToken", getSession);
