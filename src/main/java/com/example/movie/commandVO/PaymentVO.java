@@ -25,4 +25,5 @@ public class PaymentVO {
 //    private String imp_uid;
     private String accessToken;
     private List<PaymentResponseVO> payments;
+    private String payment_time_two;
 }
