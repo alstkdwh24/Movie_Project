@@ -52,7 +52,7 @@
 <body>
 <!--소메뉴  div-->
 
-<div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
+<div th:replace="movie/sub_menu-fragment/sub_menu_fragment :: article_divs"></div>
 <div class="big_word">
     <div class="input">
         <button id="writer_word" onclick="location.href='/movie/community/g_board_writer'"><img
@@ -71,7 +71,7 @@
     </div>
     <div class="gallery_content">
         <div class="gallery_blank_mini2" th:each="vo, status: ${list}" th:data-g_number="${vo.g_number}"
-             th:onclick="|location.href='@{/movie/community/g_detail(g_number=${vo.g_number})}'|">
+             th:onclick="|location.href='@{movie/community/g_detail(g_number=${vo.g_number})}'|">
             <input type="hidden" th:value="${vo.g_number}">
             <div class="mini_title_good" id="writer_number2" >[[${vo.g_number}]]</div>
             <div class="mini_title_good" id="writer_title2">[[${vo.g_title}]]</div>
@@ -84,22 +84,22 @@
 </div>
 <!--게시판 검색 div-->
 
-<div th:replace="/movie/community/g_search_modal.html :: free_writer_modal"></div>
+<div th:replace="movie/community/g_search_modal :: free_writer_modal"></div>
 
 <!--커뮤니티div-->
 
-<div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
+<div th:replace="movie/community/fragment_gallery_modal :: mains_menu_modal"></div>
 
 <!--채팅 모달div-->
 
-<div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
+<div th:replace="movie/mains_fragment/modal/mains_chat_modal :: chat"></div>
 
 <!--소메뉴 검색css-->
 
-<div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
+<div th:replace="movie/mains_fragment/modal/mains_search_modal :: mains_search_modal"></div>
 
 <!--미니 메뉴 div-->
-<div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
+<div th:replace="movie/mains_fragment/modal/mini_main_modal :: sneak_peeks"></div>
 
 
 <!--소메뉴 검색 모달-->

@@ -3,7 +3,6 @@ package com.example.movie.ReservationService;
 import com.example.movie.commandVO.*;
 import com.example.movie.util.Criteria;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
 import java.util.List;

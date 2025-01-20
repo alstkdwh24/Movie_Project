@@ -25,5 +25,6 @@ public class PaymentId_ListVO {
 //    private String imp_uid;
     private String accessToken;
     private LocalDateTime payment_time;
+    private String payment_time_two;
 
 }

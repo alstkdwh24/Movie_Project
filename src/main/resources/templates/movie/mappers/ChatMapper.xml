@@ -4,33 +4,33 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper  namespace="com.example.movie.ChatService.ChatMapper">
     <insert id="Question_writer"  parameterType="com.example.movie.commandVO.ChatVO">
-INSERT INTO QUESTION (Q_title, Q_content, Q_count, Q_write_time, username, nickname) values(
+INSERT INTO question (Q_title, Q_content, Q_count, Q_write_time, username, nickname) values(
                                                  #{Q_title},#{Q_content},#{Q_count},now(),#{username}, #{nickname}
                                                 )
     </insert>
 
     <select id="Question_show" resultType="com.example.movie.commandVO.ChatVO">
     select Q.*, a.nickname
-    from QUESTION AS Q
+    from question AS Q
              JOIN members AS a ON Q.username = a.username
     order by Q_number desc limit #{First}, #{amount}
 </select>
     <select id="Question_total" resultType="int">
         select count(*) AS Question_total
-        from QUESTION AS Q
+        from question AS Q
                  JOIN members AS a ON Q.username = a.username
     </select>
 
 
     <select id="Question_detail" parameterType="int" resultType="ChatVO">
         select fg.*, a.nickname
-        from QUESTION AS fg
+        from question AS fg
                  join members as a on fg.username = a.username
         where Q_number = #{Q_number}
     </select>
 
     <update id="Q_count" parameterType="int">
-        update Question
+        update question
         set Q_count=Q_count + 1
         where Q_number = #{QNumber}
     </update>

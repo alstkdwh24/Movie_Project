@@ -49,7 +49,7 @@
 </head>
 <body>
 <!--소메뉴 div-->
-<div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
+<div th:replace="movie/sub_menu-fragment/sub_menu_fragment :: article_divs"></div>
 <form method="post" name="free_board_writer" action="/free_board_writer" class="big_frame">
     <input type="hidden" name="free_number" th:value="${vo.free_number}">
     <div class="big_div">
@@ -83,17 +83,17 @@
 </form>
 
 <!--소메뉴 커뮤니티 모달 div-->
-<div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
+<div th:replace="movie/community/fragment_gallery_modal :: mains_menu_modal"></div>
 <!--소메뉴 채팅 모달 div-->
-<div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
+<div th:replace="movie/mains_fragment/modal/mains_chat_modal :: chat"></div>
 
 
 
 <!--소메뉴 검색 모달 div-->
-<div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal"></div>
+<div th:replace="movie/mains_fragment/modal/mains_search_modal :: mains_search_modal"></div>
 
 <!--미니 메뉴 div-->
-<div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
+<div th:replace="movie/mains_fragment/modal/mini_main_modal :: sneak_peeks"></div>
 
 
 

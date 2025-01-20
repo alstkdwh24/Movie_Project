@@ -3,9 +3,9 @@ package com.example.movie.ReservationService;
 import com.example.movie.commandVO.*;
 import com.example.movie.util.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +37,10 @@ public class ReservationServiceImpl implements ReservationService{
 
     @Override
     public int getReservation_board(Criteria cri) {
+
+
+
+
         return reservationMapper.getReservation_board(cri);
     }
 

@@ -39,7 +39,7 @@
 <body>
 
 <!--소메뉴  div-->
-<div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
+<div th:replace="movie/sub_menu-fragment/sub_menu_fragment :: article_divs"></div>
 
 <form id="login_join" name="login_join" action="##" method="post">
     <input type="hidden" name="ID_number">
@@ -128,7 +128,7 @@
         <div class="id_input"><label>
             <select name="roles"  class="input">
                 <option value="ROLE_1" >일반</option>
-                <option value="ROLE_2" >관리자</option>
+<!--                <option value="ROLE_2" >관리자</option>-->
             </select>
         </label></div>
 
@@ -165,16 +165,16 @@
 </div>
 </body>
 <!--커뮤니티div-->
-<div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
+<div th:replace="movie/community/fragment_gallery_modal :: mains_menu_modal"></div>
 
 <!--채팅 모달div-->
-<div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
+<div th:replace="movie/mains_fragment/modal/mains_chat_modal :: chat"></div>
 
 
 <!--소메뉴 검색css-->
 
 <!--미니 메뉴 div-->
-<div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
+<div th:replace="movie/mains_fragment/modal/mini_main_modal :: sneak_peeks"></div>
 
 
 <!--커뮤니티 js-->

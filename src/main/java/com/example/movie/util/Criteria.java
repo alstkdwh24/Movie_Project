@@ -3,12 +3,6 @@ package com.example.movie.util;
 import lombok.Data;
 import lombok.Getter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDateTime;
-
 
 @Data
 public class Criteria {
@@ -21,11 +15,13 @@ public class Criteria {
     private Integer g_number;
     private String nickname;
     @Getter
+
     private String username;
 
 
-    public void setUsername(String username) {
+    public String setUsername(String username) {
         this.username = username;
+        return username;
     }
 
 

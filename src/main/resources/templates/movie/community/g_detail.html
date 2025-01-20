@@ -43,7 +43,7 @@
 <body>
 
 <!--소메뉴 div-->
-<div th:replace="/movie/sub_menu-fragment/sub_menu_fragment.html :: article_divs"></div>
+<div th:replace="movie/sub_menu-fragment/sub_menu_fragment :: article_divs"></div>
 <form name="g_delete" method="get" action="" class="input">
 
     <div class="free_detail">
@@ -103,7 +103,7 @@
         <div id="buttom_two">
             <div id="one"></div>
             <button id="talk_button_update"
-                    th:onclick="|location.href='@{/movie/community/g_board_writer_update(g_number=${vo.g_number})}'|">
+                    th:onclick="|location.href='@{movie/community/g_board_writer_update(g_number=${vo.g_number})}'|">
                 수정
             </button>
             <button id="talk_button_cancel">삭제</button>
@@ -112,17 +112,17 @@
 </form>
 
 <!--커뮤니티 div-->
-<div th:replace="/movie/community/fragment_gallery_modal.html :: mains_menu_modal"></div>
+<div th:replace="movie/community/fragment_gallery_modal :: mains_menu_modal"></div>
 
 <!--채팅 div-->
-<div th:replace="/movie/mains_fragment/modal/mains_chat_modal.html :: chat"></div>
+<div th:replace="movie/mains_fragment/modal/mains_chat_modal :: chat"></div>
 
 
 <!--소메뉴 검색  div-->
-<div th:replace="/movie/mains_fragment/modal/mains_search_modal.html :: mains_search_modal">
+<div th:replace="movie/mains_fragment/modal/mains_search_modal :: mains_search_modal">
 </div>
     <!--미니 메뉴 div-->
-    <div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
+    <div th:replace="movie/mains_fragment/modal/mini_main_modal :: sneak_peeks"></div>
 
 
     <!--채팅 js-->
