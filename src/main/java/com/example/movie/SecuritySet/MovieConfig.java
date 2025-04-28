@@ -17,6 +17,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.session.SessionInformationExpiredEvent;
 import org.springframework.security.web.session.SessionInformationExpiredStrategy;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
@@ -25,10 +27,20 @@ import java.io.IOException;
 
 @Configuration //설정파일임
 @EnableWebSecurity
-public class MovieConfig  {
+public class MovieConfig implements WebMvcConfigurer {
+
+    //    @Autowired{
 //    @Autowired
 //    private MyUserDetailService userDetailService;
 
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry){
+        registry.addMapping("/**")
+                .allowedOrigins("http://15.164.7.12:9494")
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowCredentials(true);
+    }
     @Bean
     public BCryptPasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
@@ -39,7 +51,7 @@ public class MovieConfig  {
 
     @Bean
     public SecurityFilterChain SecurityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable();
+        http.csrf().disable().cors();
         http.authorizeRequests((authorize) -> authorize.antMatchers("/movie").authenticated()
                 .antMatchers("/movie/user/**").hasAnyRole("1", "2")
                 .antMatchers("/movie/chat/**").hasAnyRole("1", "2")

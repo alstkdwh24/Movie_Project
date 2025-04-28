@@ -19,8 +19,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -112,37 +114,36 @@ public class Movie_ticket_resist_RestController {
     }
 
     private String create_ticket(Movie_ticketVO movie_ticket_list){
-        StringBuilder movie_ticket_htmlContent=new StringBuilder();
 
-        movie_ticket_htmlContent.append("<div class=\"ant_three\">")
-                .append("<div class=\"contents_img\" id=\"contents_img_two\">")
-                .append("</div>")
-                .append("<div class=\"contents_ant\">")
-                .append("<div class=\"ant_big_title\">")
-                .append(movie_ticket_list.getMovie_ticket_name())
-                .append("</div>")
-                .append("<div class=\"ant_big_title\">")
-                .append(movie_ticket_list.getResist_textarea())
-                .append("</div>")
-                .append("</div>")
-                .append("</div>");
+        String movie_ticket_htmlContent = "<div class=\"ant_three\">" +
+                "<div class=\"contents_img\" id=\"contents_img_two\">" +
+                "</div>" +
+                "<div class=\"contents_ant\">" +
+                "<div class=\"ant_big_title\">" +
+                movie_ticket_list.getMovie_ticket_name() +
+                "</div>" +
+                "<div class=\"ant_big_title\">" +
+                movie_ticket_list.getResist_textarea() +
+                "</div>" +
+                "</div>" +
+                "</div>";
 
-    return movie_ticket_htmlContent.toString();
+    return movie_ticket_htmlContent;
     }
 
     @GetMapping("/movie_ticket_resist_list/files/{filePath}/{movie_ticket_filename}")
     public ResponseEntity<Resource> movie_ticket_image(@PathVariable String filePath, @PathVariable String movie_ticket_filename) throws IOException {
 
-        Path path= Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/"+ filePath + "/"+ movie_ticket_filename);
-        File file=path.toFile();
-        String mimeType= Files.probeContentType(path);
+        Resource resource= resourceLoader.getResource("classpath:/static/css/uploadImage/files/" + filePath + "/"+ movie_ticket_filename);
+        String fileName = resource.getFilename();
+        String mimeType = URLConnection.guessContentTypeFromName(fileName);
         MediaType mediaType=MediaType.parseMediaType(mimeType !=null? mimeType:"application/octet-stream\"");
 
 
         return ResponseEntity.ok()
                 .contentType(mediaType)
-                .header(HttpHeaders.CONTENT_DISPOSITION,"inline; filename=\"" + file.getName() + "\"")
-                .body(new org.springframework.core.io.FileSystemResource(file));
+                .header(HttpHeaders.CONTENT_DISPOSITION,"inline; filename=\"" + resource.getFilename() + "\"")
+                .body(resource);
 
     }
 
@@ -168,34 +169,53 @@ public class Movie_ticket_resist_RestController {
     }
 
     private String movie_ticket_htmlContent_createElement(Movie_ticketVO movie_ticketVO_two){
-        StringBuilder movie_ticket_htmlContent=new StringBuilder();
-        movie_ticket_htmlContent.append("<div class=\"body_gift\">")
-                .append("<div class=\"gift_img_two\">")
-                .append("</div>")
-                .append("<div class=\"gift_title\">")
-                .append("<div class=\"gift_title_big\">")
-                .append(movie_ticketVO_two.getMovie_ticket_name())
-                .append("</div>")
-                .append("<div class=\"gift_title_small\">")
-                .append(movie_ticketVO_two.getResist_textarea())
-                .append("</div>")
-                .append("</div>")
-                .append("</div>");
-        return movie_ticket_htmlContent.toString();
+        String movie_ticket_htmlContent = "<div class=\"body_gift\">" +
+                "<div class=\"gift_img_two\">" +
+                "</div>" +
+                "<div class=\"gift_title\">" +
+                "<div class=\"gift_title_big\">" +
+                movie_ticketVO_two.getMovie_ticket_name() +
+                "</div>" +
+                "<div class=\"gift_title_small\">" +
+                movie_ticketVO_two.getResist_textarea() +
+                "</div>" +
+                "</div>" +
+                "</div>";
+        return movie_ticket_htmlContent;
     }
 
     @GetMapping("/popcon_store/movie_ticket_resist_list_two/files/{filePath_ticket}/{movie_ticket_filename_array}")
     public ResponseEntity<Resource> movie_ticket_filename_array(@PathVariable String filePath_ticket, @PathVariable String movie_ticket_filename_array) throws IOException {
 
-        Path path= Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/"+ filePath_ticket + "/"+ movie_ticket_filename_array);
-        File file=path.toFile();
-        String mimeType= Files.probeContentType(path);
+        Resource resource= resourceLoader.getResource("classpath:/static/css/uploadImage/files/" + filePath_ticket + "/"+ movie_ticket_filename_array);
+        String fileName = resource.getFilename();
+        String mimeType = URLConnection.guessContentTypeFromName(fileName);
+
         MediaType mediaType=MediaType.parseMediaType(mimeType !=null? mimeType:"application/octet-stream\"");
 
 
         return ResponseEntity.ok()
                 .contentType(mediaType)
-                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; movie_ticket_filename=\"" + file.getName() + "\"")
-                .body(new org.springframework.core.io.FileSystemResource(file));
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; movie_ticket_filename=\"" + resource.getFilename() + "\"")
+                .body(resource);
     }
+
+
+
+
+    //코드보관
+//    @GetMapping("/popcon_store/movie_ticket_resist_list_two/files/{filePath_ticket}/{movie_ticket_filename_array}")
+//    public ResponseEntity<Resource> movie_ticket_filename_array(@PathVariable String filePath_ticket, @PathVariable String movie_ticket_filename_array) throws IOException {
+//
+//        Path path= Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/"+ filePath_ticket + "/"+ movie_ticket_filename_array);
+//        File file=path.toFile();
+//        String mimeType= Files.probeContentType(path);
+//        MediaType mediaType=MediaType.parseMediaType(mimeType !=null? mimeType:"application/octet-stream\"");
+//
+//
+//        return ResponseEntity.ok()
+//                .contentType(mediaType)
+//                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; movie_ticket_filename=\"" + file.getName() + "\"")
+//                .body(new org.springframework.core.io.FileSystemResource(file));
+//    }
 }

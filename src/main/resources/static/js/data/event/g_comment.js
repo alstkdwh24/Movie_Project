@@ -25,9 +25,9 @@ function create_g_comment(data) {
     data.forEach(function (result) {
         g_comment += '<div class="talks">' +
             '<div id="g_comment_tree">' +
-            '<div id="talk_img">' +
-            '<input type="image" alt="" id="input_img">' +
-            '</div>' +
+            // '<div id="talk_img">' +
+            // '<div type="image" alt="" id="input_img_one"> </div>' +
+            // '</div>' +
             // '<div id="big_fan">'+
             '<div id="talk_contents">' +
             '<div id="talk_contents_title">' +
@@ -49,6 +49,36 @@ function create_g_comment(data) {
     });
     $(".comment_two").append(g_comment);
 }
+
+// function create_g_comment(data) {
+//     let g_comment = ''
+//     data.forEach(function (result) {
+//         g_comment += '<div class="talks">' +
+//             '<div id="g_comment_tree">' +
+//             '<div id="talk_img">' +
+//             '<div type="image" alt="" id="input_img_one"> </div>' +
+//             '</div>' +
+//             // '<div id="big_fan">'+
+//             '<div id="talk_contents">' +
+//             '<div id="talk_contents_title">' +
+//
+//             ' <div class="id_date">닉네임</div>' +
+//             '<div class="id_date" data-g_number=\'' + JSON.stringify(result) + '\'>' + result.nickname + '</div>' +
+//
+//
+//             ' <div class="id_date">작성날짜</div>' +
+//             '<div class="id_date">' + result.comment_date + '</div>' +
+//             '</div>' +
+//
+//             ' <div id="talk_contents_content">' +
+//             result.comment +
+//             ' </div>' +
+//             ' </div>' +
+//             '</div>' +
+//             '</div>'
+//     });
+//     $(".comment_two").append(g_comment);
+// }
 
 
 document.getElementById("nickname").textContent = document.getElementById("name").textContent

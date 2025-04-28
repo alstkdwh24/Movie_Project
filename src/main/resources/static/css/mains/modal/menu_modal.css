@@ -1,6 +1,16 @@
 *{
     padding: 0; margin: 0;
 }
+
+#community_modal{
+    display: none;
+    position: fixed;
+    top:0;
+    background-color: rgb(0,0,0,0.5);
+}
+
+
+
 .modal_good{
     display: none;
     width: 100%;
@@ -17,16 +27,16 @@
     /*top: 50%;*/
     /*left: 50%;*/
     /*!*transform: translate(-50%, -50%);*!*/
-    background-color: white;
+    /*background-color: white;*/
 
     /*z-index: 10;*/
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    /*background-color: rgba(0, 0, 0, 0.5);*/
 
 }
 
-#mains_menus_modal {
+#mains_menus_modal{
     /* 배경을 반투명하게 */
     width: 28%;
     min-width: 480px;

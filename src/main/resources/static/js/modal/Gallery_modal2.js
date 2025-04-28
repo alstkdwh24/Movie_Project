@@ -21,4 +21,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             galleryModals.style.display = "none";
         }
     }
+
+
 });

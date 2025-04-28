@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
             data: JSON.stringify({ free_number: freeNumber }),
             contentType: "application/json",
             success: function(response) {
-               alert("성공하였습니다.");
+               // alert("성공하였습니다.");
                // AJAX 요청 성공 후 URL 이동
                location.href = `/movie/community/free_detail?free_number=${freeNumber}`; // 페이지 이동
             },

@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -100,15 +101,16 @@ public class Movie_Resist_RestController {
     public ResponseEntity<Resource> serveFile(@PathVariable String filePaths, @PathVariable String movie_filename_two, @PathVariable String movietitles) {
         System.out.println("finalFilename_one"+ filePath);
         try {
-            Path path = Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/" + filePaths + "/" + movie_filename_two);
-            File file = path.toFile();
-            String mimeType = Files.probeContentType(path);
-            MediaType mediaType = MediaType.parseMediaType(mimeType != null ? mimeType : "application/octet-stream");
+//            Path path = Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/" + filePaths + "/" + movie_filename_two);
+            Resource resource= resourceLoader.getResource("classpath:/static/css/uploadImage/files/" + filePaths + "/"+ movie_filename_two);
+            String fileName=resource.getFilename();
+            String mimeType = URLConnection.guessContentTypeFromName(fileName);
 
+//                   String fileName = resource.getFilename();
             return ResponseEntity.ok()
-                    .contentType(mediaType) // 이미지 형식에 맞게 설정
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + file.getName() + "\"")
-                    .body(new org.springframework.core.io.FileSystemResource(file));
+                    .contentType(MediaType.valueOf(mimeType)) // 이미지 형식에 맞게 설정
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + resource.getFilename() + "\"")
+                    .body(resource);
         } catch (Exception e) {
 
             return ResponseEntity.internalServerError().build(); // 500 Internal Server Error 반환
@@ -116,67 +118,25 @@ public class Movie_Resist_RestController {
 
     }
 
+//    @GetMapping("/files/{filePaths}/{movie_filename_two}/{movietitles}")
+//    @ResponseBody
+//    public ResponseEntity<Resource> serveFile(@PathVariable String filePaths, @PathVariable String movie_filename_two, @PathVariable String movietitles) {
+//        System.out.println("finalFilename_one"+ filePath);
+//        try {
+//            Path path = Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/" + filePaths + "/" + movie_filename_two);
+//            File file = path.toFile();
+//            String mimeType = Files.probeContentType(path);
+//            MediaType mediaType = MediaType.parseMediaType(mimeType != null ? mimeType : "application/octet-stream");
+//
+//            return ResponseEntity.ok()
+//                    .contentType(mediaType) // 이미지 형식에 맞게 설정
+//                    .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + file.getName() + "\"")
+//                    .body(new org.springframework.core.io.FileSystemResource(file));
+//        } catch (Exception e) {
+//
+//            return ResponseEntity.internalServerError().build(); // 500 Internal Server Error 반환
+//        }
+//
+//    }
 }
-
-//    @PostMapping(value = "/event_resist", consumes = "multipart/form-data")
-//    public ResponseEntity<EventVO_Board> event_resist(@RequestParam("event_name") String eventName,
-//                                                      @RequestParam("resist_textarea") String resistText, @RequestParam("movie_filename") MultipartFile file) {
-//        String originName = file.getOriginalFilename();
-//
-//        originName = originName.substring(originName.lastIndexOf("\\") + 1);
-//
-//        long size = file.getSize();
-//        // 동일한 파일로 업로드가 되면 덮어지기 때문에, 랜덤한 이름을 생성해야 한다.
-//        String uuid = UUID.randomUUID().toString();
-//
-//        //날짜별로 폴더 생성
-//        String filepath = makeFolder();
-//
-//        String savePath = uploadPath + "/" + filepath + '/' + uuid + "_" + originName;
-//        System.out.println("파일명:" + originName); //원본파일명 DB저장
-//        System.out.println("파일 사이즈:" + size); //폴더명 DB저장
-//        System.out.println("파일 구분:" + uuid); //파일 구분 DB저장
-//        System.out.println("업로그 할 경로:" + savePath); //업로드할 경로 저장
-//
-//
-//        EventVO_Board vo = new EventVO_Board();
-//        vo.setEvent_name(eventName);
-//        vo.setResist_textarea(resistText);
-//        vo.setMovie_filename(uuid + "_" + originName); // 저장된 파일 이름
-//        vo.setFileSize(size); // 파일 크기
-//
-//        return ResponseEntity.status(HttpStatus.CREATED).body(vo);
-//    }
-//
-//    @PostMapping(value = "/movie_resist", consumes = "multipart/form-data")
-//    public ResponseEntity<MovieVO> event_resist(@RequestParam("movie_title") String movie_title,
-//                                                      @RequestParam("movie_textarea") String movie_textarea, @RequestParam("movie_filename") MultipartFile file) {
-//        String originName = file.getOriginalFilename();
-//
-//        originName = originName.substring(originName.lastIndexOf("\\") + 1);
-//
-//        long size = file.getSize();
-//        // 동일한 파일로 업로드가 되면 덮어지기 때문에, 랜덤한 이름을 생성해야 한다.
-//        String uuid = UUID.randomUUID().toString();
-//
-//        //날짜별로 폴더 생성
-//        String filepath = makeFolder();
-//
-//        String savePath = uploadPath + "/" + filepath + '/' + uuid + "_" + originName;
-//        System.out.println("파일명:" + originName); //원본파일명 DB저장
-//        System.out.println("파일 사이즈:" + size); //폴더명 DB저장
-//        System.out.println("파일 구분:" + uuid); //파일 구분 DB저장
-//        System.out.println("업로그 할 경로:" + savePath); //업로드할 경로 저장
-//
-//
-//        MovieVO vo = new MovieVO();
-//        vo.setMovie_title(movie_title);
-//        vo.setMovie_textarea(movie_textarea);
-//        vo.setMovie_filename(uuid + "_" + originName); // 저장된 파일 이름
-//        vo.setFIleSize(size); // 파일 크기
-//
-//        return ResponseEntity.status(HttpStatus.CREATED).body(vo);
-//    }
-//
-
 

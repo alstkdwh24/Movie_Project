@@ -9,7 +9,7 @@ gallery_content.forEach(function (gallery_contents){
             contentType:"application/JSON",
             data:JSON.stringify({g_number:gNumber}),
             success: function (){
-                alert("조회수 1이 증가하였습니다.")
+                // alert("조회수 1이 증가하였습니다.")
                 location.href=`/movie/community/g_detail?g_number=${gNumber}`;
             },
             error:function (){

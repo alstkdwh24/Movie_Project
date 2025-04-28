@@ -9,6 +9,12 @@
     <!--제아쿼리 버전 다름-->
     <script src="/js/jquery-1.12.1.min.js"></script>
 
+    <!--    조인 모달-->
+    <link rel="stylesheet" href="/css/login/join_modal/join_modal.css">
+
+    <!--    토큰 조인 모달-->
+    <link rel="stylesheet" href="/css/login/join_modal/realJoin.css">
+
     <!--글 등록 모달-->
     <link rel="stylesheet" href="/css/resist_contents/resist_modal.css">
 
@@ -334,9 +340,14 @@
 
 <!--예약모달-->
 <div th:replace="movie/Reservation/reservation_modal :: reservation_modal"></div>
+<!--커뮤니티 모달-->
+<div th:replace="movie/write_resist/resist_modal :: resist_fragment"></div>
 
 <!--예약 모달-->
 <div th:replace="movie/Reservation/reservation_modal :: reservation_modal"></div>
+
+<div th:replace="movie/login/joinModal/joinModal :: joinModal"></div>
+<div th:replace="movie/login/joinModal/realJoin :: realJoin"></div>
 
 <!--jQuery js -->
 <!--<script src="/js/jquery-3.7.1.min.js"></script>-->
@@ -353,7 +364,12 @@
 <!--좌석예매 js-->
 <script src="/js/data/Reservation_Seat/Reservation_Seat.js"></script>
 
+<!--조인모달-->
+<script src="/js/login/join_modal/join_sub.js"></script>
+
 <!--<script src="/js/data/Use_Rest_js/Reservation_RestRest.js"></script>-->
+
+<script src="/js/login/join_modal/join_modal.js"></script>
 
 
 </body>

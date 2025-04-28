@@ -44,6 +44,6 @@ INSERT INTO question (Q_title, Q_content, Q_count, Q_write_time, username, nickn
         SELECT q.*, tion.q_number
         FROM comment_q AS q
                  JOIN question AS tion ON q.q_number = tion.Q_number
-        WHERE tion.Q_number = #{q_number}
+        WHERE tion.Q_number = #{q_number}  ORDER BY comment_date DESC;
     </select>
 </mapper>

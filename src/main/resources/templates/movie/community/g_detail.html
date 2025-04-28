@@ -13,6 +13,11 @@
 <!--제이쿼리-->
     <script src="/js/jquery-1.12.1.min.js"></script>
 
+    <!--    조인 모달-->
+    <link rel="stylesheet" href="/css/login/join_modal/join_modal.css">
+
+    <!--    토큰 조인 모달-->
+    <link rel="stylesheet" href="/css/login/join_modal/realJoin.css">
     <!--글 등록 모달-->
     <link rel="stylesheet" href="/css/resist_contents/resist_modal.css">
 
@@ -40,24 +45,26 @@
     <link rel="stylesheet" href="/css/mains/modal/chat_modal.css">
 
 </head>
-<body>
+<body id="body">
 
 <!--소메뉴 div-->
-<div th:replace="movie/sub_menu-fragment/sub_menu_fragment :: article_divs"></div>
+<!--<div id="main_title_two">-->
+<div th:replace="movie/sub_menu-fragment/sub_menu_fragment :: article_divs "></div>
+<!--</div>-->
 <form name="g_delete" method="get" action="" class="input">
 
     <div class="free_detail">
         <input type="hidden" name="g_number" id="g_numbers" th:value="${vo.g_number}">
         <div class="user_name">
-            <div id="title" th:value="${vo.g_title}"><h2>[[${vo.g_title}]]</h2></div>
+            <div id="title_two" th:value="${vo.g_title}"><h2 id="g_board_title">공지사항</h2><h2 id="h2_title">[[${vo.g_title}]]</h2></div>
             <div id="user_id">
-                <div id="user_img"></div>
+<!--                <div id="user_img"></div>-->
                 <div id="free_feature">
                     <div id="name" th:value="${vo.nickname}">[[${vo.nickname}]]</div>
                     <div id="free_impormation">
-                        <div class="small_box" id="gallery_name"></div>
-                        <div class="small_box" id="date"></div>
-                        <div class="small_box" id="count"></div>
+                        <div class="small_box" id="gallery_name">글번호 : [[${vo.g_number}]]</div>
+                        <div class="small_box" id="date">[[${vo.write_time}]]</div>
+                        <div class="small_box" id="count">조회수 : [[${vo.g_count}]]</div>
                     </div>
                 </div>
             </div>
@@ -69,24 +76,25 @@
         </div>
         <div class="coment">
             <div class="talk">
-                <div id="talk_img">
-                    <input type="image" alt="" id="input_img">
-                </div>
+<!--                <div id="talk_img">-->
+<!--                    <div alt="dd" id="input_img_one"></div>-->
+<!--                </div>-->
                 <div id="talk_contents">
-                    <div id="talk_contents_title">
-                        <div class="id_date">
-                            <div class="id_date">닉네임</div>
-                            <div class="id_date" id="nickname"></div>
+<!--                    <div id="talk_contents_title">-->
+<!--                        <div class="id_date">-->
+<!--                            <div class="id_date">닉네임</div>-->
+                            <input type="hidden" class="id_date" id="nickname"></input>
 
-                        </div>
-                        <div class="id_date">
-                            <div class="id_date">작성날짜</div>
-                            <div class="id_date" id="comment_date" name="comment"></div>
-                        </div>
-                    </div>
+
+<!--                        </div>-->
+<!--                        <div class="id_date">-->
+<!--                            <div class="id_date">작성날짜</div>-->
+                            <input type="hidden" class="id_date" id="comment_date" name="comment"></input>
+<!--                        </div>-->
+<!--                    </div>-->
                     <div id="talk_contents_content">
 
-                            <input type="text"  id="textareas"></input>
+                            <textarea type="text"  id="textareas"></textarea>
                     </div>
                     <button id="comment_submit">댓글달기</button>
                  </div>
@@ -100,7 +108,7 @@
             </div>
         </div>
 
-        <div id="buttom_two">
+        <div id="buttom_two" th:if="${vo.username} == ${userSession.username}">
             <div id="one"></div>
             <button id="talk_button_update"
                     th:onclick="|location.href='@{movie/community/g_board_writer_update(g_number=${vo.g_number})}'|">
@@ -117,6 +125,8 @@
 <!--채팅 div-->
 <div th:replace="movie/mains_fragment/modal/mains_chat_modal :: chat"></div>
 
+<!--커뮤니티 모달-->
+<div th:replace="movie/write_resist/resist_modal :: resist_fragment"></div>
 
 <!--소메뉴 검색  div-->
 <div th:replace="movie/mains_fragment/modal/mains_search_modal :: mains_search_modal">
@@ -124,6 +134,8 @@
     <!--미니 메뉴 div-->
     <div th:replace="movie/mains_fragment/modal/mini_main_modal :: sneak_peeks"></div>
 
+<div th:replace="movie/login/joinModal/joinModal :: joinModal"></div>
+<div th:replace="movie/login/joinModal/realJoin :: realJoin"></div>
 
     <!--채팅 js-->
     <script src="/js/modal/chat_modal.js"></script>
@@ -144,5 +156,35 @@
 
 <!--글등록 모달-->
 <script src="/js/resist_image_file/resist_modal.js"></script>
+
+<script src="/js/login/join_modal/join_modal.js"></script>
+
+<!--조인모달-->
+<script src="/js/login/join_modal/join_sub.js"></script>
+<script>
+
+
+    let resist_modal = document.querySelector(".resist_black");
+    let resist_modal_top = document.getElementById("resist_modal_top")
+
+    function movie_modal_resist(event) {
+        resist_modal.style.display = "flex"; // 선택한 요소의 display 속성을 'flex'로 설정하여 보이게 합니다.
+        console.log("나옵니다. 모달만 만들면 되요.")
+
+
+    }
+
+    resist_modal_top.onclick = function (event) {
+        resist_modal.style.display = "none";
+    }
+
+    resist_modal.onclick = function (event) {
+        if (resist_modal && event.target === resist_modal) {
+            resist_modal.style.display = "none";
+        }
+
+    }
+
+</script>
 </body>
 </html>

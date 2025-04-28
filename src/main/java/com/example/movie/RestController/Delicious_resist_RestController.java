@@ -18,8 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -114,39 +116,37 @@ public class Delicious_resist_RestController {
     }
 
     private String create_delicious_htmlContent(DeliciousVO deliciousVO_list_two) {
-        StringBuilder delicious_htmlContent = new StringBuilder();
 
 
-        delicious_htmlContent.append("<div class=\"ant_three\" >")
+        String delicious_htmlContent = "<div class=\"ant_three\" >" +
+                "<div class=\"contents_img\" id=\"contents_img_four\">" +
+                "</div>" +
+                "<div class=\"contents_ant\">" +
+                "<div class=\"ant_big_title\">" +
+                deliciousVO_list_two.getDelicious_name() +
+                "</div>" +
+                "<div class=\"ant_big_title\">" +
+                deliciousVO_list_two.getDelicious_name() +
+                "</div>" +
+                "</div>" +
+                "</div>";
 
-                .append("<div class=\"contents_img\" id=\"contents_img_four\">")
-                .append("</div>")
-                .append("<div class=\"contents_ant\">")
-                .append("<div class=\"ant_big_title\">")
-                .append(deliciousVO_list_two.getDelicious_name())
-                .append("</div>")
-                .append("<div class=\"ant_big_title\">")
-                .append(deliciousVO_list_two.getDelicious_name())
-                .append("</div>")
-                .append("</div>")
-                .append("</div>");
-
-        return delicious_htmlContent.toString();
+        return delicious_htmlContent;
     }
 
 
     @GetMapping("/DeliciousVO_list/files/{filePath}/{delicious_filename}")
     public ResponseEntity<Resource> delicious_image(@PathVariable String filePath, @PathVariable String delicious_filename) throws IOException {
 
-        Path path = Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/" + filePath + "/" + delicious_filename);
-        File file = path.toFile();
-        String mimeType = Files.probeContentType(path);
+        Resource resource= resourceLoader.getResource("classpath:/static/css/uploadImage/files/" + filePath + "/"+ delicious_filename);
+        String fileName = resource.getFilename();
+        String mimeType = URLConnection.guessContentTypeFromName(fileName);
         MediaType mediaType = MediaType.parseMediaType(mimeType != null ? mimeType : "application/octet-stream");
 
         return ResponseEntity.ok()
                 .contentType(mediaType)
-                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; delicious_filename=\"" + file.getName() + "\"")
-                .body(new org.springframework.core.io.FileSystemResource(file));
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; delicious_filename=\"" + resource.getFilename() + "\"")
+                .body(resource);
     }
 
 
@@ -176,27 +176,25 @@ public class Delicious_resist_RestController {
 
     private String deliciousVO_html_createElement(DeliciousVO Delicious_list_two) {
 
-        StringBuilder deliciousVO_response_two_htmlContent = new StringBuilder();
+
+        String deliciousVO_response_two_htmlContent = "<div class=\"popcorn_pakage\">" +
+                "<div class=\"pakage_img\" id=\"pakage_imgs\">" +
+                "</div>" +
+                "<div class=\"pakage_title\">" +
+                "<div class=\"pakage_title_big\">" +
+                "<h2>" +
+                Delicious_list_two.getDelicious_name() +
+                "</h2>" +
+                "</div>" +
+                "<div class=\"pakage_title_small\">" +
+                Delicious_list_two.getResist_textarea() +
+                "<h5>" +
+                "</h5></div>" +
+                "</div>" +
+                "</div>";
 
 
-        deliciousVO_response_two_htmlContent.append("<div class=\"popcorn_pakage\">")
-                .append("<div class=\"pakage_img\" id=\"pakage_imgs\">")
-                .append("</div>")
-                .append("<div class=\"pakage_title\">")
-                .append("<div class=\"pakage_title_big\">")
-                .append("<h2>")
-                .append(Delicious_list_two.getDelicious_name())
-                .append("</h2>")
-                .append("</div>")
-                .append("<div class=\"pakage_title_small\">")
-                .append(Delicious_list_two.getResist_textarea())
-                .append("<h5>")
-                .append("</h5></div>")
-                .append("</div>")
-                .append("</div>");
-
-
-        return deliciousVO_response_two_htmlContent.toString();
+        return deliciousVO_response_two_htmlContent;
     }
 
 
@@ -228,30 +226,47 @@ public class Delicious_resist_RestController {
     @GetMapping("/DeliciousVO_list_two/files/{filePath}/{delicious_filename}")
     public ResponseEntity<Resource> delicious_image_two(@PathVariable String filePath, @PathVariable String delicious_filename) throws IOException {
 
-        Path path = Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/" + filePath + "/" + delicious_filename);
-        File file = path.toFile();
-        String mimeType = Files.probeContentType(path);
-        MediaType mediaType = MediaType.parseMediaType(mimeType != null ? mimeType : "application/octet-stream");
+        Resource resource= resourceLoader.getResource("classpath:/static/css/uploadImage/files/" + filePath + "/"+ delicious_filename);
+
+//            Path path = Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/" + filePath_two + "/" + gifticon_filename);
+        String fileName=resource.getFilename();
+        String mimeType = URLConnection.guessContentTypeFromName(fileName);
 
         return ResponseEntity.ok()
-                .contentType(mediaType)
-                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; delicious_filename=\"" + file.getName() + "\"")
-                .body(new org.springframework.core.io.FileSystemResource(file));
+                .contentType(MediaType.valueOf(mimeType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; delicious_filename=\"" + resource.getFilename() + "\"")
+                .body(resource);
     }
 
     @GetMapping("/DeliciousVO_list_three/files/{filePath}/{delicious_filename}")
     public ResponseEntity<Resource> delicious_image_three(@PathVariable String filePath, @PathVariable String delicious_filename) throws IOException {
 
-        Path path = Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/" + filePath + "/" + delicious_filename);
-        File file = path.toFile();
-        String mimeType = Files.probeContentType(path);
+        Resource resource= resourceLoader.getResource("classpath:/static/css/uploadImage/files/" + filePath + "/"+ delicious_filename);
+        // 파일 이름 가져오기
+        String fileName = resource.getFilename();
+
+        // 확장자 기반으로 MIME 타입 설정
+        String mimeType = URLConnection.guessContentTypeFromName(fileName);
         MediaType mediaType = MediaType.parseMediaType(mimeType != null ? mimeType : "application/octet-stream");
 
         return ResponseEntity.ok()
                 .contentType(mediaType)
-                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; delicious_filename=\"" + file.getName() + "\"")
-                .body(new org.springframework.core.io.FileSystemResource(file));
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; delicious_filename=\"" + resource.getFilename() + "\"")
+                .body(resource);
     }
-
+//코드 보관
+//    @GetMapping("/DeliciousVO_list_three/files/{filePath}/{delicious_filename}")
+//    public ResponseEntity<Resource> delicious_image_three(@PathVariable String filePath, @PathVariable String delicious_filename) throws IOException {
+//
+//        Path path = Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/" + filePath + "/" + delicious_filename);
+//        File file = path.toFile();
+//        String mimeType = Files.probeContentType(path);
+//        MediaType mediaType = MediaType.parseMediaType(mimeType != null ? mimeType : "application/octet-stream");
+//
+//        return ResponseEntity.ok()
+//                .contentType(mediaType)
+//                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; delicious_filename=\"" + file.getName() + "\"")
+//                .body(new org.springframework.core.io.FileSystemResource(file));
+//    }
 
 }

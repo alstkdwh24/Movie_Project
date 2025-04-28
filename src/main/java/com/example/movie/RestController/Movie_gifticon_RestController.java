@@ -18,8 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -110,37 +112,40 @@ public class Movie_gifticon_RestController {
     }
 
     private String createGifticon(Movie_gifticonVO gifticonVO){
-        StringBuilder html=new StringBuilder();
-        html.append("<div class=\"ant_three\">")
-                .append("<div class=\"contents_img\" id=\"contents_img\">")
-                .append("</div>")
-                .append("<div class=\"contents_ant\">")
-                .append("<div class=\"ant_big_title\">")
-                .append(gifticonVO.getGifticon_name())
-                .append("</div>")
-                .append("<div class=\"ant_big_title\">")
-                .append(gifticonVO.getGifticon_name())
-                .append("</div>").append("</div>").
-                append("</div>");
+        String html = "<div class=\"ant_three\">" +
+                "<div class=\"contents_img\" id=\"contents_img\">" +
+                "</div>" +
+                "<div class=\"contents_ant\">" +
+                "<div class=\"ant_big_title\">" +
+                gifticonVO.getGifticon_name() +
+                "</div>" +
+                "<div class=\"ant_big_title\">" +
+                gifticonVO.getGifticon_name() +
+                "</div>" + "</div>" +
+                "</div>";
 
         System.out.println(gifticonVO.getGifticon_name()+"gifticonVO.getGifticon_name()");
 
-                return html.toString();
+                return html;
     }
 
 
     @GetMapping("/movie_gifticon_list/file/{filePath}/{Gifticon_filename}")
     public ResponseEntity<Resource> gifticon_img(@PathVariable String filePath, @PathVariable String Gifticon_filename) throws IOException {
 
-        Path path= Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/"+ filePath + "/"+ Gifticon_filename);
-        File file=path.toFile();
-        String mimeType= Files.probeContentType(path);
+        String path = "classpath:/static/css/uploadImage/files/" + filePath + "/" + Gifticon_filename;
+
+//            Path path = Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/" + filePath_two + "/" + gifticon_filename);
+        Resource resource= resourceLoader.getResource(path);
+        String fileName = resource.getFilename();
+
+        String mimeType = URLConnection.guessContentTypeFromName(fileName);
         MediaType mediaType=MediaType.parseMediaType(mimeType !=null? mimeType:"application/octet-stream");
 
         return ResponseEntity.ok()
                 .contentType(mediaType)
-                .header(HttpHeaders.CONTENT_DISPOSITION,"inline; Gifticon_filename=\""+ file.getName()+"\"")
-                .body(new org.springframework.core.io.FileSystemResource(file));
+                .header(HttpHeaders.CONTENT_DISPOSITION,"inline; Gifticon_filename=\""+ resource.getFilename()+"\"")
+                .body(resource);
 
     }
 
@@ -166,34 +171,38 @@ public class Movie_gifticon_RestController {
         return ResponseEntity.ok(Movie_gifticonVO_Responses_list);
     }
         private String Gifticon_createElement(Movie_gifticonVO movie_gifticonVO){
-                StringBuilder GifticonHtml=new StringBuilder();
-            GifticonHtml.append(" <div class=\"body_gift\">")
-                    .append("<div class=\"gift_img\">")
-                    .append("</div>")
-                    .append("<div class=\"gift_title\">")
-                    .append("<div class=\"gift_title_big\">")
-                    .append(movie_gifticonVO.getGifticon_name())
-                    .append("</div>")
-                    .append("<div class=\"gift_title_small\">")
-                    .append(movie_gifticonVO.getResist_textarea())
-                    .append("</div>")
-                    .append("</div>");
+            String GifticonHtml = " <div class=\"body_gift\">" +
+                    "<div class=\"gift_img\">" +
+                    "</div>" +
+                    "<div class=\"gift_title\">" +
+                    "<div class=\"gift_title_big\">" +
+                    movie_gifticonVO.getGifticon_name() +
+                    "</div>" +
+                    "<div class=\"gift_title_small\">" +
+                    movie_gifticonVO.getResist_textarea() +
+                    "</div>" +
+                    "</div>";
 
-            return GifticonHtml.toString();
+            return GifticonHtml;
         }
 
         @GetMapping("/gifticonVO_Responses_two_list/files/{filePath_two}/{gifticon_filename}")
         public ResponseEntity<Resource> gifticonVO_Resource(@PathVariable String filePath_two, @PathVariable String gifticon_filename) throws IOException {
+            String path = "classpath:/static/css/uploadImage/files/" + filePath_two + "/" + gifticon_filename;
 
-            Path path = Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/" + filePath_two + "/" + gifticon_filename);
-            File file = path.toFile();
-            String mimeType = Files.probeContentType(path);
-            MediaType mediaType = MediaType.parseMediaType(mimeType != null ? mimeType : "application/octet-stream");
+//            Path path = Path.of("C:/Users/alstk/2course/JAVA/portfolio_project/movie_resist/files/" + filePath_two + "/" + gifticon_filename);
+            Resource resource= resourceLoader.getResource(path);
+            // 파일 이름 가져오기
+            String fileName = resource.getFilename();
+
+            // 확장자 기반으로 MIME 타입 설정
+            String mimeType = URLConnection.guessContentTypeFromName(fileName);
+//            MediaType mediaType = MediaType.parseMediaType(mimeType != null ? mimeType : "application/octet-stream");
 
             return ResponseEntity.ok()
-                    .contentType(mediaType)
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "inline; delicious_filename=\"" + file.getName() + "\"")
-                    .body(new org.springframework.core.io.FileSystemResource(file));
+                    .contentType(MediaType.parseMediaType(mimeType))
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "inline; delicious_filename=\"" + resource.getFilename() + "\"")
+                    .body(resource);
 
         }
 
