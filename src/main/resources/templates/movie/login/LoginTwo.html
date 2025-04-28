@@ -12,6 +12,12 @@
   <!--글 등록 모달-->
   <link rel="stylesheet" href="/css/resist_contents/resist_modal.css">
 
+  <!--    조인 모달-->
+  <link rel="stylesheet" href="/css/login/join_modal/join_modal.css">
+
+  <!--    토큰 조인 모달-->
+  <link rel="stylesheet" href="/css/login/join_modal/realJoin.css">
+
   <!--    본페이지 css-->
   <link rel="stylesheet" href="/css/login/login.css">
   <!--    mains css-->
@@ -88,6 +94,9 @@
 <!--소메뉴 검색css-->
 <div th:replace="movie/mains_fragment/modal/mains_search_modal :: mains_search_modal"></div>
 
+<div th:replace="movie/login/joinModal/joinModal :: joinModal"></div>
+<div th:replace="movie/login/joinModal/realJoin :: realJoin"></div>
+
 <!--커뮤니티 js-->
 <script src="/js/modal/Gallery_modal2.js"></script>
 
@@ -98,6 +107,11 @@
 
 <!--글등록 모달-->
 <script src="/js/resist_image_file/resist_modal.js"></script>
+
+<!--조인모달-->
+<script src="/js/login/join_modal/join_sub.js"></script>
+
+<script src="/js/login/join_modal/join_modal.js"></script>
 
 <!--로그인 모달-->
 <script>document.addEventListener("DOMContentLoaded",()=>

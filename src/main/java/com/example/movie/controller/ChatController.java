@@ -53,7 +53,7 @@ public class ChatController {
 
 
     @GetMapping("/Question_writer")
-    @PreAuthorize("hasAnyRole('ROLE_1')")
+//    @PreAuthorize("hasAnyRole('ROLE_1')")
     public String writer(HttpSession session, Model model,HttpSession session2) {
         String roles= (String) session2.getAttribute("roles");
         model.addAttribute("roles",roles);

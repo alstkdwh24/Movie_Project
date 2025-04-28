@@ -48,4 +48,10 @@ public interface EventMapper {
  int G_Comment(G_CommentVO vo);
 
  ArrayList<G_CommentVO> G_comment_show(int g_number);
+//수정한거 넣기
+    int free_update_resist(EventVO vo);
+//자유게시판 댓글 제거
+    void free_comment(int free_number);
+
+
 }

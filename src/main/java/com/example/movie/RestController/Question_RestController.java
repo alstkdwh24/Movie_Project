@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Map;
 @RestController
 @RequestMapping("/movie/chats")
-public class Question_Restcontroller {
+public class Question_RestController {
 
     @Autowired
     @Qualifier("chatService")

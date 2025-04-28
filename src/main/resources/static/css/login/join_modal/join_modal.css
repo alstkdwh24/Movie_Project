@@ -1,0 +1,99 @@
+#joinModal_container{
+    background-color: rgb(0,0,0,0.5);
+    display: none;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
+
+}
+/*모달 메뉴 css*/
+#joinModal_menu{
+    width: 30%;
+    height: 46%;
+    background-color: white;
+    border-radius: 20px;
+}
+
+#joinModal_top{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border-radius: 20px 20px 0 0 ;
+    color:white;
+
+}
+#joinModal_bottom{
+    width: 100%;
+    height: 70%;
+    border-radius: 0 0 20px 20px;
+    display: flex;
+
+}
+
+.joinModal_bottom_div{
+    width: 50%;
+    height: 100%;
+    border: 1px solid black;
+}
+
+#joinModal_bottom_left{
+    border-radius: 0 0 0 20px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#joinModal_bottom_right{
+    border-radius: 0 0  20px 0 ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#h2_joinModal{
+    font-size: 40px;
+}
+
+#joinModal_left{
+    width: 90%;
+    height: 80%;
+    border-radius: 20%;
+    border:none;
+;
+}
+
+#joinModal_right{
+    width: 90%;
+    height: 80%;
+    border-radius: 20%;
+    border:none;
+
+}
+
+#joinModal_left{
+    background: rgb(159, 87, 17); /* 노란색에서 흰색으로 그라데이션 설정 */
+}
+
+#joinModal_right{
+    background: rgb(159, 87, 17) /* 노란색에서 흰색으로 그라데이션 설정 */
+
+}
+
+#sub{
+    border: none;
+    background-color: black;
+
+}
+
+#sub_join{
+    border: none;
+
+    /*background-color: black;*/
+}

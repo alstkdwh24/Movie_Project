@@ -1,10 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>JOIN</title>
 </head>
 <body>
-$END$
+    <div th:fragment="realJoin" id="realJoin_top_container">
+        <div id="realJoin_modal">
+            <div id="realJoin_top"><h2>JOIN</h2></div>
+            <div id="realJoin_middle">
+               <div id="left">
+                   <div id="left_one">
+                       <h2>ID</h2>
+                   </div>
+                   <div id="left_two">
+                       <h2>PW</h2>
+                   </div>
+               </div>
+               <div id="right">
+                   <div id="right_one">
+                       <input type="text" name="username" id="rightUsername">
+                   </div>
+                   <div id="right_two">
+                       <input type="password" name="pw" id="rightPw" >
+
+                   </div>
+               </div>
+            </div>
+            <div id="realJoin_bottom">
+                <button id="bottom_button"><h2>가입하기</h2></button>
+            </div>
+
+        </div>
+    </div>
 </body>
 </html>

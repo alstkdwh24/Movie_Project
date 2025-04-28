@@ -15,7 +15,7 @@ gallery_blank_mini2.forEach(function (gallery_blank_mini2_24){
             contentType:"application/json",
             data:JSON.stringify({Q_number:QNumber}),
             success:function (){
-                alert("성공하였습니다.")
+                // alert("성공하였습니다.")
                 location.href=`/movie/chats/Question_detail?Q_number=${QNumber}`
             },
             error: function(xhr, status, error) {

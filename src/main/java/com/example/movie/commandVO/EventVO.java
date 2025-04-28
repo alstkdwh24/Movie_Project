@@ -57,6 +57,10 @@ public class EventVO extends TimeEntity {
     @DateTimeFormat(pattern = "MM-dd-HH-mm")
     private LocalDate comment_date;
     private Integer comment_number;
+
+    public int getFreeNumber() {
+        return free_number;
+    }
 //    private File user_image;
 
 }

@@ -79,7 +79,8 @@ public class MovieController {
 //    }
 
     @GetMapping("/mains")
-    @CrossOrigin(origins = "http://localhost:9494") // 적절한 출처 설정
+    @CrossOrigin(origins = "http://15.164.7.12:9494") // 적절한 출처 설정
+
     public ModelAndView movieVOResponseEntity(HttpSession session, Model model, HttpSession session2, MovieVO vo) {
         String roles = (String) session2.getAttribute("roles");
         model.addAttribute("roles", roles);

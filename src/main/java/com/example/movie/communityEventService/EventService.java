@@ -24,7 +24,7 @@ public interface EventService {
 
     EventVO free_detail_update_select(int free_number);
 
-    void free_delete(int free_number);
+    EventVO free_delete(int free_number);
 
     EventVO gSelect(int g_number);
 
@@ -46,5 +46,8 @@ public interface EventService {
 
     ArrayList<G_CommentVO> G_comment_show(int g_number);
 
+    int free_update_resist(EventVO vo);
+//댓글 제거
+        EventVO free_comment(int free_number);
 
 }

@@ -74,12 +74,16 @@
 
 
     <delete id="free_delete">
+
         delete
         from free_gallery
         where free_number = #{free_number}
 
     </delete>
+        <delete id="free_comment">
+            DELETE FROM comment WHERE free_number = #{free_number}; -- 먼저 자식 레코드 삭제
 
+        </delete>
 
     <delete id="g_delete">
         delete
@@ -108,7 +112,10 @@
         WHERE g_number = #{gNumber}    </update>
 <!--    댓글쓴거 보여주는 기능-->
     <select id="get_comment" parameterType="int" resultType="EventVO">
-        SELECT * FROM comment WHERE free_number = #{free_number}
+        SELECT *
+        FROM comment
+        WHERE free_number = #{free_number}
+        ORDER BY comment_date DESC;
     </select>
 
     <insert id="G_Comment" parameterType="G_CommentVO">
@@ -118,8 +125,16 @@
     </insert>
 
     <select id="G_comment_show" parameterType="int" resultType="G_CommentVO">
-        select * from comment_g where g_number=#{g_number};
+        select * from comment_g where g_number=#{g_number}  ORDER BY comment_date DESC;
     </select>
+
+    <update id="free_update_resist">
+        update free_gallery set
+            free_contents=#{free_contents},
+            free_title=#{free_title}
+        where free_number=#{free_number}
+
+    </update>
 
 </mapper>
 

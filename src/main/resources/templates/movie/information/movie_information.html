@@ -8,7 +8,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
+    <!--    조인 모달-->
+    <link rel="stylesheet" href="/css/login/join_modal/join_modal.css">
 
+    <!--    토큰 조인 모달-->
+    <link rel="stylesheet" href="/css/login/join_modal/realJoin.css">
 
     <!--    소메뉴 검색 css-->
 
@@ -51,6 +55,8 @@
 <!--미니 메뉴 div-->
 <div th:replace="/movie/mains_fragment/modal/mini_main_modal.html :: sneak_peeks"></div>
 
+<div th:replace="movie/login/joinModal/joinModal :: joinModal"></div>
+<div th:replace="movie/login/joinModal/realJoin :: realJoin"></div>
 
 <!--    미니메뉴 모달-->
 <link rel="stylesheet" href="/css/mains/main_imin_menu.css">
@@ -71,5 +77,9 @@
 
 <!--글등록 모달-->
 <script src="/js/resist_image_file/resist_modal.js"></script>
+<script src="/js/login/join_modal/join_modal.js"></script>
+
+<!--조인모달-->
+<script src="/js/login/join_modal/join_sub.js"></script>
 </body>
 </html>

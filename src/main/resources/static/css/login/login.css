@@ -25,10 +25,10 @@ html {
 .login_div {
     width: 25%;
     height: 36%;
-background-color: wheat;
+background-color: #43a8e7;
     border-radius: 50px;
     position: relative;
-    top: 12%;
+    top: 20%;
     display: flex;
     /*justify-content: center;*/
     align-items: center;

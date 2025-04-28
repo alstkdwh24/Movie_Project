@@ -29,6 +29,10 @@ cancel
 
 <!--미니 메뉴 div-->
 <div th:replace="movie/mains_fragment/modal/mini_main_modal :: sneak_peeks"></div>
+
+<div th:replace="movie/login/joinModal/joinModal :: joinModal"></div>
+<div th:replace="movie/login/joinModal/realJoin :: realJoin"></div>
+
 <!-- PortOne 라이브러리의 올바른 경로를 사용 -->
 </body>
 
@@ -42,4 +46,9 @@ cancel
 
 <!--글등록 모달-->
 <script src="/js/resist_image_file/resist_modal.js"></script>
+
+<script src="/js/login/join_modal/join_modal.js"></script>
+
+<!--조인모달-->
+<script src="/js/login/join_modal/join_sub.js"></script>
 </html>

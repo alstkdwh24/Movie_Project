@@ -8,7 +8,7 @@
 
 </head>
 <body class="body">
-<div th:fragment="article_divs" class="main_title">
+<div th:fragment="article_divs" class="main_title" id="main_title">
     <div class="big_sub_main">
         <div class="week_title">
             <div class="bird" id="bird_popcorn" onclick="location.href='/movie/shops/popcorn_store'"><img width="50%"
@@ -30,8 +30,9 @@
            <a th:if="${userSession==null}" onclick="location.href='/movie/login/login'">로그인</a>
         <a th:if="${userSession!=null}" onclick="location.href='/movie/login/logout'">로그아웃</a></div>
 
-        <div class="a_word" id="middle"><a onclick="location.href='/movie/login/join'">회원가입</a></div>
-        <div class="a_word" id="right">   <a onclick="location.href='/movie/chats/Question'">문의사항</a></div>
+        <div class="a_word" id="middle"><a th:if="${userSession == null}" id="sub_join">회원가입</a>
+        <a th:if="${userSession !=null}"  onclick="location.href='/movie/user/Mypage'">마이페이지</a></div>
+        <div class="a_word" id="rights">   <a onclick="location.href='/movie/chats/Question'">문의사항</a></div>
         </div>
             </div>
         </div>
@@ -60,7 +61,7 @@
             <div class="plus_menu" onclick="location.href='/movie/Reservation/reservation'">예매</div>
             <div class="plus_menu" onclick="location.href='/movie/community/event'">이벤트</div>
             <div class="plus_menu" onclick="location.href='/movie/shops/popcorn_store'">스토어</div>
-            <div class="plus_menu" onclick="movie_modal_resist(event)">글등록</div>
+            <div class="plus_menu" id="iPlus_menu" ><!--onclick="movie_modal_resist(event)"-->글등록</div>
 
         </div>
         <div th:if="${roles != 'ROLE_1' && roles != 'ROLE_2'}" class="menu_function">
@@ -90,9 +91,12 @@ menu
         </div>
     </div>
 </div>
-
-<div th:replace="movie/movie_menu/menu_modal.html :: menu_fragment"></div>
+<div th:replace="movie/login/joinModal/joinModal :: joinModal"></div>
+<div th:replace="movie/login/joinModal/realJoin :: realJoin"></div>
+<div th:replace="movie/movie_menu/menu_modal :: menu_fragment"></div>
 <!--글 등록-->
 <div th:replace="movie/write_resist/resist_modal :: resist_fragment"></div>
+<!--글등록 모달-->
+<script src="/js/resist_image_file/resist_modal.js"></script>
 
 </body>

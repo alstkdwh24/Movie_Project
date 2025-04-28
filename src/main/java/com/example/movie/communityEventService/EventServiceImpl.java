@@ -64,8 +64,9 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public void free_delete(int free_number) {
+    public EventVO free_delete(int free_number) {
         eventMapper.free_delete(free_number);
+        return null;
     }
 
     @Override
@@ -108,6 +109,18 @@ public class EventServiceImpl implements EventService {
     @Override
     public ArrayList<G_CommentVO> G_comment_show(int g_number) {
         return eventMapper.G_comment_show(g_number);
+    }
+
+    @Override
+    public int free_update_resist(EventVO vo) {
+        return  eventMapper.free_update_resist(vo);
+
+    }
+//자유게시판 댓글제거
+    @Override
+    public EventVO free_comment(int free_number) {
+        eventMapper.free_comment(free_number);
+        return null;
     }
 
 
