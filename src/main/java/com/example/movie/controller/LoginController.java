@@ -1,6 +1,7 @@
 package com.example.movie.controller;
 
 import com.example.movie.LoginService.LoginService;
+import com.example.movie.LoginService.SocialLoginService;
 import com.example.movie.dto.LoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Locale;
 
 @Controller
 @RequestMapping("/movie/login")
@@ -110,8 +110,8 @@ public class LoginController {
     // 회원가입 요청
     @PostMapping("/login_join")
     public String login_join(LoginDTO vo, RedirectAttributes ra) {
-        // kakao_ 아이디는 카카오 로그인 전용이다. 일반 가입으로 먼저 만들어 두면 카카오 사용자가 그 계정으로 로그인하게 된다(계정 선점).
-        if (vo.getUsername() == null || vo.getUsername().toLowerCase(Locale.ROOT).startsWith("kakao_")) {
+        // kakao_·naver_ 아이디는 소셜 로그인 전용이다. 일반 가입으로 먼저 만들어 두면 소셜 사용자가 그 계정으로 로그인하게 된다(계정 선점).
+        if (SocialLoginService.isReservedUsername(vo.getUsername())) {
             ra.addFlashAttribute("msg", "사용할 수 없는 아이디입니다.");
             return "redirect:/movie/login/login";
         }

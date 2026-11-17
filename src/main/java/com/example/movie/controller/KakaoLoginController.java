@@ -1,23 +1,17 @@
 package com.example.movie.controller;
 
-import com.example.movie.LoginService.LoginService;
+import com.example.movie.LoginService.SocialLoginService;
 import com.example.movie.dto.LoginDTO;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataAccessException;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -25,7 +19,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
@@ -37,9 +30,7 @@ import javax.servlet.http.HttpSession;
 import java.util.UUID;
 
 /**
- * 카카오 로그인(REST API 직접 연동).
- * 로그인 성공 후 세션 구성은 LoginController.login_login과 같게 맞춘다.
- * 다른 화면들이 session "user"(UserDetails)와 "roles"를 읽기 때문이다.
+ * 카카오 로그인(REST API 직접 연동). 회원 연결과 세션 구성은 SocialLoginService가 맡는다.
  */
 @Slf4j
 @Controller
@@ -50,23 +41,18 @@ public class KakaoLoginController {
     private static final String TOKEN_URL = "https://kauth.kakao.com/oauth/token";
     private static final String USER_URL = "https://kapi.kakao.com/v2/user/me";
     private static final String STATE_KEY = "kakaoOAuthState";
-    private static final String USERNAME_PREFIX = "kakao_";
-    private static final int NICKNAME_MAX = 100; // members.nickname VARCHAR(100)
 
-    private final LoginService loginService;
-    private final UserDetailsService userDetailsService;
+    private final SocialLoginService socialLoginService;
     private final RestTemplate restTemplate;
     private final String clientId;
     private final String clientSecret;
     private final String redirectUri;
 
-    public KakaoLoginController(@Qualifier("loginService") LoginService loginService,
-                                UserDetailsService userDetailsService,
+    public KakaoLoginController(SocialLoginService socialLoginService,
                                 @Value("${KAKAO_CLIENT_ID:}") String clientId,
                                 @Value("${KAKAO_CLIENT_SECRET:}") String clientSecret,
                                 @Value("${KAKAO_REDIRECT_URI:http://localhost:8080/movie/login/kakao/callback}") String redirectUri) {
-        this.loginService = loginService;
-        this.userDetailsService = userDetailsService;
+        this.socialLoginService = socialLoginService;
         this.clientId = clientId;
         this.clientSecret = clientSecret;
         this.redirectUri = redirectUri;
@@ -120,8 +106,9 @@ public class KakaoLoginController {
             String accessToken = requestAccessToken(code);
             JsonNode kakaoUser = requestUserInfo(accessToken);
 
-            LoginDTO member = findOrJoin(kakaoUser);
-            signIn(request, member);
+            LoginDTO member = socialLoginService.findOrJoin(
+                    SocialLoginService.KAKAO_PREFIX, kakaoUser.get("id").asText(), extractNickname(kakaoUser));
+            socialLoginService.signIn(request, member);
 
             ra.addFlashAttribute("msg", "정상적으로 로그인되었습니다");
             return "redirect:/movie/mains";
@@ -169,63 +156,12 @@ public class KakaoLoginController {
         return body;
     }
 
-    /** 카카오 회원번호로 members를 찾고, 없으면 새로 가입시킨다. */
-    private LoginDTO findOrJoin(JsonNode kakaoUser) {
-        String username = USERNAME_PREFIX + kakaoUser.get("id").asText();
-
-        LoginDTO member = loginService.login(username);
-        if (member != null) {
-            return member;
-        }
-
-        // 일반 로그인 폼으로는 들어올 수 없도록 아무도 모르는 무작위 비밀번호를 넣는다(Login_join에서 BCrypt로 암호화).
-        LoginDTO newMember = LoginDTO.builder()
-                .username(username)
-                .nickname(extractNickname(kakaoUser))
-                .pw(UUID.randomUUID().toString())
-                .build();
-        try {
-            loginService.Login_join(newMember);
-        } catch (DuplicateKeyException e) {
-            // 같은 카카오 계정의 콜백이 동시에 들어와 이미 가입된 경우: 다시 조회해서 쓴다.
-            log.info("카카오 회원이 이미 가입되어 있어 기존 계정을 사용합니다: {}", username);
-        }
-
-        member = loginService.login(username);
-        if (member == null) {
-            throw new IllegalStateException("카카오 회원 가입 후 조회에 실패했습니다: " + username);
-        }
-        return member;
-    }
-
     private String extractNickname(JsonNode kakaoUser) {
         String nickname = kakaoUser.path("kakao_account").path("profile").path("nickname").asText("");
         if (nickname.isEmpty()) {
             nickname = kakaoUser.path("properties").path("nickname").asText("");
         }
-        if (nickname.isEmpty()) {
-            return null;
-        }
-        return nickname.length() > NICKNAME_MAX ? nickname.substring(0, NICKNAME_MAX) : nickname;
-    }
-
-    /** LoginController.login_login과 같은 세션 구성. 비밀번호 검증 대신 카카오 인증을 거쳤으므로 AuthenticationManager는 쓰지 않는다. */
-    private void signIn(HttpServletRequest request, LoginDTO member) {
-        // 로그인 전 세션 ID를 그대로 쓰지 않도록 바꾼다(세션 고정 공격 방지).
-        request.changeSessionId();
-        HttpSession session = request.getSession();
-
-        UserDetails userDetails = userDetailsService.loadUserByUsername(member.getUsername());
-        UsernamePasswordAuthenticationToken authentication =
-                new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-
-        SecurityContext context = SecurityContextHolder.createEmptyContext();
-        context.setAuthentication(authentication);
-        SecurityContextHolder.setContext(context);
-
-        session.setAttribute("user", userDetails);
-        session.setAttribute("roles", member.getRoles());
-        session.setMaxInactiveInterval(2000);
+        return nickname;
     }
 
     private String failRedirect(RedirectAttributes ra) {
