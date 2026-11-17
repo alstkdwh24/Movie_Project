@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import java.nio.charset.StandardCharsets;
+import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -131,7 +133,7 @@ public class DeliciousApi {
 
         return ResponseEntity.ok()
                 .contentType(mediaType)
-                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; delicious_filename=\"" + resource.getFilename() + "\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, ContentDisposition.inline().filename(resource.getFilename(), StandardCharsets.UTF_8).build().toString())
                 .body(resource);
     }
 
@@ -207,7 +209,7 @@ public class DeliciousApi {
 
         return ResponseEntity.ok()
                 .contentType(MediaType.valueOf(mimeType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; delicious_filename=\"" + resource.getFilename() + "\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, ContentDisposition.inline().filename(resource.getFilename(), StandardCharsets.UTF_8).build().toString())
                 .body(resource);
     }
 
@@ -220,7 +222,7 @@ public class DeliciousApi {
 
         return ResponseEntity.ok()
                 .contentType(mediaType)
-                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; delicious_filename=\"" + resource.getFilename() + "\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, ContentDisposition.inline().filename(resource.getFilename(), StandardCharsets.UTF_8).build().toString())
                 .body(resource);
     }
 }
