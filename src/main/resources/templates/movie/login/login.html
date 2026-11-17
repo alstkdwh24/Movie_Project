@@ -57,7 +57,7 @@
 <body>
 <!--소메뉴  div: 다른 화면과 같은 위치·폭이 되도록 form(가운데 정렬 flex) 밖에 둔다-->
 <div th:replace="movie/sub_menu-fragment/sub_menu_fragment :: article_divs"></div>
-<form class="over_flow" name="login_form" method="post" action="/">
+<form class="over_flow" name="login_form" method="post" action="/movie/login/Login_form">
 
     <div class="login_div">
         <div class="login_title"><h2 class="h2_title">LOGIN</h2></div>
@@ -71,9 +71,9 @@
                 </div>
                 <div class="small_button">
 
-                    <button class="login_buttonss"><img id="img_kakao" src="/css/img/icon/kakao_login_medium_narrow.png"
+                    <button type="button"  class="login_buttonss"><img id="img_kakao" src="/css/img/icon/kakao_login_medium_narrow.png"
                                                         alt=""></button>
-                    <button class="login_buttonss"><img id="img_naver"
+                    <button type="button"  class="login_buttonss"><img id="img_naver"
                                                         src="/css/img/2021_Login_with_naver_guidelines_Kr/btnG_완성형.png"
                                                         alt=""></button>
 
@@ -121,8 +121,7 @@
 <script src="/js/modal/chat_modal.js"></script>
 
 
-<!--로그인 모달-->
-<script src="/js/login/login.js"></script>
+
 
 <!--글등록 모달-->
 <script src="/js/resist_image_file/resist_modal.js"></script>
