@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="/css/cinema-theme.css?v=20261111-15">
+</head>
+<body>
+<div th:fragment="article_div" class="article">
+
+    <div class="big_image">
+        <div id="big_angle">
+            <!-- 헤더는 mains.html에서 body 바로 아래에 둔다(히어로 안에 두면 스크롤 시 같이 사라지고 다른 화면과 위치가 달라짐) -->
+            <div class="big_image_div">
+                <div class="big_image_arrow">
+                    <button class="big_image_arrow_button"><span class="material-symbols-outlined" id="google_font">
+arrow_circle_left
+</span></button>
+                </div>
+                <div class="cinema-hero-copy">
+                    <p class="cinema-eyebrow">YOUR NEXT GREAT STORY</p>
+                    <h2>일상에 더하는<br>한 편의 특별함.</h2>
+                    <p>큰 스크린으로 만나는 새로운 이야기.<br>오늘의 영화를 JCGX에서 만나보세요.</p>
+                    <div class="cinema-hero-actions">
+                        <a href="/movie/Reservation/reservation" class="cinema-book">영화 예매하기 <span aria-hidden="true">↗</span></a>
+                        <button type="button" class="sneak_entry">예고편 보기 <span aria-hidden="true">▷</span></button>
+                    </div>
+                </div>
+                <div class="big_image_arrow" id="big_image_arrow_right">
+                    <button class="big_image_arrow_button_left"><span class="material-symbols-outlined"
+                                                                      id="google_font_right">
+arrow_circle_right
+</span></button>
+                </div>
+            </div>
+    </div>
+        </div>
+    </div>
+    <div th:replace="movie/mains_fragment/modal/mains_menu_modal :: mains_menu_modal"></div>
+    <!--    글등록 div-->
+
+</body>
+</html>

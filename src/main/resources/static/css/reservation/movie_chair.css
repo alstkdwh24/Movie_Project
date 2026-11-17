@@ -1,0 +1,81 @@
+/*좌석 예매 */
+
+#reservation_two{
+    height: 100%;
+    width: 100%;
+z-index: 12;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+justify-content: center;
+    position: fixed;
+ background-color: rgb(0,0,0,0.5);
+box-sizing: border-box;
+}
+
+#reservation_modal_content_two{
+    width: 60%;
+    height: 96%;
+    background-color: transparent;
+    /*border-radius: 10px;*/
+    display: flex;
+    justify-content: center;
+box-sizing: border-box;
+}
+
+#reservation_board_two{
+    width: 100%;
+    height: 100%;
+    background-color: antiquewhite;
+box-sizing: border-box;
+    display: flex;
+    overflow: hidden;
+    min-width: 850px;
+    min-height: 600px;
+    flex-direction: column;
+
+}
+
+
+.movie_chair_sheet3{
+    width: 100%;
+    height: 50%;
+    border:1px solid black;
+    box-sizing: border-box;
+}
+
+
+.movie_chair{
+    width: 100%;
+    height: 50%;
+    border:1px solid black;
+    box-sizing: border-box;
+
+}
+
+.movie_sheet_number{
+    width: 100%;
+    height: 20%;
+    border:1px solid black;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.chair{
+    width: 10%;
+    height: 100%;
+    border:1px solid black;
+    box-sizing: border-box;
+    /*border-radius: 10px;*/
+    background-color: black;
+
+    color:white;
+}
+
+.main_image_text {
+position: relative;
+    top:-80%;
+left: 36%;
+
+    color: white;
+}

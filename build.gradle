@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.18'
+    id 'io.spring.dependency-management' version '1.1.5'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '21'
+}
+
+// 저장소 설정
+repositories {
+    mavenCentral() // 기본 Maven 중앙 저장소
+    maven { url 'https://jitpack.io' } // JitPack 저장소 추가
+}
+
+dependencies {
+
+    implementation "org.springframework.boot:spring-boot-starter-jdbc"
+    // Spring Boot 스타터들
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // Thymeleaf 템플릿 엔진
+    implementation 'org.springframework.boot:spring-boot-starter-web' // Spring 웹 스타터
+    compileOnly 'org.projectlombok:lombok' // Lombok (컴파일 타임에 어노테이션 처리)
+    developmentOnly 'org.springframework.boot:spring-boot-devtools' // 개발 도구
+    annotationProcessor 'org.projectlombok:lombok' // Lombok 어노테이션 프로세서
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' // Spring Boot 테스트 스타터
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher' // JUnit 플랫폼 런처
+    implementation 'org.webjars:jquery:3.7.1' // jQuery 웹 자원
+    runtimeOnly 'com.mysql:mysql-connector-j' // MySQL JDBC 드라이버
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // Spring Data JPA
+
+    implementation 'org.mapstruct:mapstruct-processor:1.5.3.Final' // Gradle 7 이상
+
+    implementation 'org.codehaus.groovy:groovy:3.0.9'
+    // MyBatis Spring Boot 스타터
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.0'
+
+    // Spring Security 관련 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-security' // Spring Security
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5' // Thymeleaf Extras for Spring Security 5
+    testImplementation 'org.springframework.security:spring-security-test' // Spring Security 테스트 지원
+
+    // Log4jdbc를 사용하여 JDBC 쿼리 로깅
+    implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.12'
+
+    // 아임포트 REST 클라이언트
+    implementation 'com.github.iamport:iamport-rest-client-java:0.2.21'
+
+    testImplementation 'com.h2database:h2'
+
+    // 테스트모듈 트러블슈팅
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

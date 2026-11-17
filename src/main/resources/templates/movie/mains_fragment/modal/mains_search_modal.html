@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/cinema-theme.css?v=20261111-15">
+</head>
+<body>
+<!-- 바로가기 검색: 사이트 메뉴를 찾아 이동한다. 동작은 js/modal/momo_modal.js -->
+<div th:fragment="mains_search_modal">
+    <div class="momo_container">
+        <div class="mo_contents" role="dialog" aria-label="검색">
+            <form class="momo_search" role="search" autocomplete="off">
+                <input type="search" class="momo_input" maxlength="20" placeholder="메뉴 검색 (예: 예매, 이벤트, 스토어)" aria-label="메뉴 검색">
+                <button type="button" class="close_lo" aria-label="검색 닫기">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"></path></svg>
+                </button>
+            </form>
+            <p class="momo_label">바로가기</p>
+            <ul class="momo_results"></ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

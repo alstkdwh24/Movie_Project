@@ -1,0 +1,99 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+
+body{
+    width:100%;
+    height: 140%;
+    background-color:black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+}
+
+.main_title{
+    top:0;
+    height: 14%;
+    width: 100%;
+}
+
+#middle_report{
+    border:1px solid white;
+    width: 100%;
+    height: 126%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top:6%;
+}
+
+#username2{
+    width: 100%;
+    height: 100%;
+}
+
+#reservation_board{
+    width: 70%;
+    height: 80%;
+    border:1px solid white;
+overflow: auto;
+}
+
+#reservation_list{
+    height:5%;
+    width:100%;
+    border:1px solid white;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+}
+
+.list_top{
+    box-sizing: border-box;
+    border: 1px solid white;
+display: flex;
+justify-content: center;
+align-items: center;
+    color:white;
+    width: 12.5%;
+    height: 100%;
+    font-size:16px;
+}
+
+#reservation_lists{
+   height: 100%;
+    width: 100%;
+}
+
+.submit{
+    border: none;
+    width: 50%;
+    height: 80%;
+    border-radius: 20px;
+}
+
+.submit_pay{
+    border: none;
+    width: 50%;
+    height: 80%;
+    border-radius: 20px;
+}
+
+.reservation_item{
+    height:5%;
+    width:100%;
+    border:1px solid white;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+}
+
+.hidden{
+    display: none;
+}

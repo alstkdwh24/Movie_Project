@@ -1,0 +1,105 @@
+/* Shared header: JCGX Noir Velvet & Champagne Gold Theme */
+.jcgx-header, .jcgx-header * { box-sizing: border-box !important; }
+.jcgx-header {
+    position: sticky !important; top: 0 !important; z-index: 900 !important;
+    width: 100% !important; min-width: 0 !important; height: auto !important;
+    background: rgba(7, 8, 12, 0.88) !important;
+    backdrop-filter: blur(22px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(160%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    color: #f5f7fb !important;
+    font-family: "Pretendard", "Plus Jakarta Sans", sans-serif !important;
+    line-height: 1.4 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+}
+.jcgx-header .jcgx-header-inner { width: min(100% - 48px, 1320px) !important; margin: 0 auto !important; }
+.jcgx-header .jcgx-header-top {
+    display: flex !important; align-items: center !important; justify-content: space-between !important;
+    min-height: 76px !important; gap: 24px !important; border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    padding: 12px 0 !important;
+}
+.jcgx-header .jcgx-brand {
+    display: block !important;
+    font-family: "Cinzel", "Plus Jakarta Sans", serif !important;
+    font-size: 36px !important; font-weight: 800 !important;
+    letter-spacing: 0.08em !important; line-height: 1 !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f3e5ab 48%, #d4af37 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    text-decoration: none !important;
+}
+.jcgx-header .jcgx-brand span {
+    display: block !important; margin-top: 4px !important;
+    color: #8c96ab !important; -webkit-text-fill-color: #8c96ab !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: 10px !important; font-weight: 700 !important; letter-spacing: 0.24em !important;
+}
+.jcgx-header a, .jcgx-header button {
+    float: none !important; position: static !important; width: auto !important; height: auto !important; min-width: 0 !important;
+    margin: 0 !important; border: 0 !important; background: transparent !important;
+    color: #d5dbe8 !important; font: inherit !important; text-decoration: none !important; cursor: pointer !important;
+    transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+.jcgx-header .jcgx-account { display: flex !important; align-items: center !important; gap: 10px !important; }
+.jcgx-header .jcgx-account a, .jcgx-header .jcgx-account button {
+    display: inline-flex !important; align-items: center !important; justify-content: center !important;
+    min-height: 36px !important; padding: 6px 16px !important; border-radius: 999px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    font-size: 13px !important; font-weight: 600 !important;
+}
+.jcgx-header .jcgx-account a:hover, .jcgx-header .jcgx-account button:hover {
+    border-color: rgba(212, 175, 55, 0.38) !important;
+    background: rgba(212, 175, 55, 0.12) !important;
+    color: #f3e5ab !important;
+    transform: translateY(-1px) !important;
+}
+.jcgx-header .jcgx-header-bottom {
+    display: flex !important; justify-content: space-between !important; align-items: center !important;
+    min-height: 58px !important; gap: 24px !important; padding: 6px 0 !important;
+}
+.jcgx-header .jcgx-navigation { display: flex !important; align-items: center !important; gap: 8px !important; }
+.jcgx-header .jcgx-navigation a, .jcgx-header .jcgx-navigation button {
+    display: inline-flex !important; align-items: center !important; min-height: 40px !important;
+    padding: 8px 18px !important; border-radius: 999px !important;
+    font-size: 15px !important; font-weight: 700 !important; color: #f5f7fb !important;
+    white-space: nowrap !important;
+}
+.jcgx-header .jcgx-navigation a:hover, .jcgx-header .jcgx-navigation button:hover {
+    background: rgba(255, 255, 255, 0.06) !important; color: #f3e5ab !important;
+}
+.jcgx-header .jcgx-navigation .jcgx-community {
+    color: #f3e5ab !important;
+    background: rgba(212, 175, 55, 0.1) !important;
+    border: 1px solid rgba(212, 175, 55, 0.24) !important;
+}
+.jcgx-header .jcgx-tools { display: flex !important; align-items: center !important; gap: 10px !important; }
+.jcgx-header .jcgx-tools a, .jcgx-header .jcgx-tools button {
+    display: inline-flex !important; align-items: center !important; justify-content: center !important;
+    width: 38px !important; height: 38px !important; border-radius: 50% !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+}
+.jcgx-header .jcgx-tools a:hover, .jcgx-header .jcgx-tools button:hover {
+    border-color: rgba(212, 175, 55, 0.38) !important;
+    color: #f3e5ab !important;
+}
+.jcgx-header .jcgx-tools svg {
+    width: 20px !important; height: 20px !important; fill: none !important;
+    stroke: currentColor !important; stroke-width: 1.8 !important;
+    stroke-linecap: round !important; stroke-linejoin: round !important;
+}
+@media (max-width: 900px) {
+    .jcgx-header .jcgx-navigation { gap: 4px !important; }
+    .jcgx-header .jcgx-navigation a, .jcgx-header .jcgx-navigation button { font-size: 14px !important; padding: 6px 10px !important; }
+}
+@media (max-width: 640px) {
+    .jcgx-header .jcgx-header-inner { width: calc(100% - 24px) !important; }
+    .jcgx-header .jcgx-header-top { min-height: 64px !important; }
+    .jcgx-header .jcgx-brand { font-size: 28px !important; }
+    .jcgx-header .jcgx-brand span { font-size: 8px !important; }
+    .jcgx-header .jcgx-account { gap: 6px !important; }
+    .jcgx-header .jcgx-account a, .jcgx-header .jcgx-account button { font-size: 11px !important; padding: 4px 10px !important; min-height: 30px !important; }
+    .jcgx-header .jcgx-header-bottom { flex-wrap: wrap !important; gap: 8px !important; }
+    .jcgx-header .jcgx-navigation { width: 100% !important; overflow-x: auto !important; }
+}

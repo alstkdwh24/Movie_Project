@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sneak peek</title>
+    <link rel="stylesheet" href="/css/cinema-theme.css?v=20261111-15">
+</head>
+<body>
+<div th:fragment="sneak_peek" class="sneak_peek_movie">
+    <div class="sneak_mobal">
+
+        <iframe id="trailer" width="100%" height="100%" src=""  frameborder="0" allowfullscreen></iframe>
+    </div>
+    <button class="sneak_close"><span class="material-symbols-outlined">
+cancel
+</span></button>
+
+</div>
+
+<!--커뮤니티div-->
+<div th:replace="movie/community/fragment_gallery_modal :: mains_menu_modal"></div>
+
+<!--채팅 모달div-->
+<div th:replace="movie/mains_fragment/modal/mains_chat_modal :: chat"></div>
+
+
+<!--소메뉴 검색css-->
+<div th:replace="movie/mains_fragment/modal/mains_search_modal :: mains_search_modal"></div>
+
+
+<!--미니 메뉴 div-->
+<div th:replace="movie/mains_fragment/modal/mini_main_modal :: sneak_peeks"></div>
+
+<div th:replace="movie/login/joinModal/joinModal :: joinModal"></div>
+<div th:replace="movie/login/joinModal/realJoin :: realJoin"></div>
+
+<!-- PortOne 라이브러리의 올바른 경로를 사용 -->
+</body>
+
+<!--커뮤니티 js-->
+<script src="/js/modal/Gallery_modal2.js"></script>
+
+<!--소메뉴 검색 모달-->
+<script src="/js/modal/momo_modal.js"></script>
+<!--채팅 모달js-->
+<script src="/js/modal/chat_modal.js"></script>
+
+<!--글등록 모달-->
+<script src="/js/resist_image_file/resist_modal.js"></script>
+
+<script src="/js/login/join_modal/join_modal.js"></script>
+
+<!--조인모달-->
+<script src="/js/login/join_modal/join_sub.js"></script>
+</html>

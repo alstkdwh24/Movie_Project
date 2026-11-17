@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.movie.ChatService.ChatMapper">
+    <insert id="Question_writer" parameterType="com.example.movie.entity.ChatEntity">
+        INSERT INTO question (Q_title, Q_content, Q_count, Q_write_time, username, nickname)
+        VALUES (#{Q_title}, #{Q_content}, #{Q_count}, now(), #{username}, #{nickname})
+    </insert>
+
+    <select id="Question_show" resultType="com.example.movie.entity.ChatEntity">
+        select Q.*, a.nickname
+        from question AS Q
+                 JOIN members AS a ON Q.username = a.username
+        order by Q_number desc limit #{First}, #{amount}
+    </select>
+
+    <select id="Question_total" resultType="int">
+        select count(*) AS Question_total
+        from question AS Q
+                 JOIN members AS a ON Q.username = a.username
+    </select>
+
+    <select id="Question_detail" parameterType="int" resultType="com.example.movie.entity.ChatEntity">
+        select fg.*, a.nickname
+        from question AS fg
+                 join members as a on fg.username = a.username
+        where Q_number = #{Q_number}
+    </select>
+
+    <update id="Q_count" parameterType="int">
+        update question
+        set Q_count=Q_count + 1
+        where Q_number = #{QNumber}
+    </update>
+
+    <insert id="Question_comment_resist" parameterType="com.example.movie.entity.QCommentEntity">
+        INSERT INTO comment_q (comment, comment_date, nickname, q_number, username)
+        VALUES (#{comment}, NOW(), #{nickname}, #{q_number}, #{username})
+    </insert>
+
+    <select id="question_comment" parameterType="int" resultType="com.example.movie.entity.QCommentEntity">
+        SELECT q.*, tion.q_number
+        FROM comment_q AS q
+                 JOIN question AS tion ON q.q_number = tion.Q_number
+        WHERE tion.Q_number = #{q_number}
+        ORDER BY comment_date DESC;
+    </select>
+</mapper>

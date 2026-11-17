@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.movie.ReservationService.ReservationMapper">
+    <insert id="movie_report_resist" parameterType="com.example.movie.entity.ReservationEntity">
+        insert into reservation_contents(movie_title, movie_place, movie_time, movie_Seat, username, reservation_price, paymentId)
+        values (#{movieTitle}, #{moviePlace}, #{movieTime}, #{movieSeat}, #{username}, #{reservation_price}, #{paymentId});
+    </insert>
+
+    <select id="getMovieCategoryChild" resultType="com.example.movie.entity.CategoryEntity">
+        select * from movie_category_table
+        where group_id = #{group_id}
+          and movie_category_parents_lv = #{movie_category_lv}
+          and movie_category_detail_parent_lv = #{movie_detail_lv}
+    </select>
+
+    <select id="getMovieCategory" resultType="com.example.movie.entity.CategoryEntity">
+        select * from movie_category_table
+        where movie_category_lv = 1
+    </select>
+
+    <select id="getMovieCategory2" resultType="com.example.movie.entity.CategoryEntity">
+        select * from movie_category_table
+        where movie_category_lv = 2 and group_id = "A";
+    </select>
+
+    <select id="getMovieCategory3" resultType="com.example.movie.entity.CategoryEntity">
+        SELECT *
+        FROM movie_category_table
+        where movie_category_lv = 3 and group_id = "A";
+    </select>
+
+    <select id="getReservation_board" resultType="int">
+        select count(*) from reservation_contents;
+    </select>
+
+    <select id="getReservation_pay" parameterType="com.example.movie.util.Criteria" resultType="com.example.movie.entity.ReservationEntity">
+        select * from reservation_contents
+        where username = #{username};
+    </select>
+
+    <delete id="reservation_Delete">
+        delete
+        from reservation_contents
+        where reservation_number = #{reservation_number}
+    </delete>
+
+    <insert id="paymentVO" parameterType="com.example.movie.entity.PaymentEntity">
+        insert into movie_payment (username, movie_title, movie_time, movie_place, paymentId, reservation_price, movie_Seat, payment_time)
+        values (#{username}, #{movie_title}, #{movie_time}, #{movie_place}, #{paymentId}, #{reservation_price}, #{movie_Seat}, now())
+    </insert>
+
+    <select id="existsPaymentById" parameterType="string" resultType="int">
+        select count(1) from movie_payment where paymentId = #{paymentId} limit 1
+    </select>
+
+    <select id="getPayment_report" resultType="com.example.movie.entity.PaymentEntity">
+        select * from movie_payment where username = #{username}
+    </select>
+
+    <select id="paymentId_same" resultType="com.example.movie.entity.ReservationEntity">
+        select * from reservation_contents where username = #{username} and paymentId = #{paymentId};
+    </select>
+
+    <insert id="paymentIdSave" parameterType="com.example.movie.entity.PaymentIdEntity">
+        insert into paymentIdvo(paymentId, reservation_price, username, payment_time)
+        values (#{paymentId}, #{reservation_price}, #{username}, now())
+    </insert>
+
+    <insert id="movie_payment_paymentId" parameterType="com.example.movie.entity.PaymentEntity">
+        insert into movie_payment_paymentId(paymentId, movie_title, movie_time, movie_place, movie_Seat,
+                                            reservation_price, payment_time, username, payment_time_two)
+        values (#{paymentId}, #{movie_title}, #{movie_time}, #{movie_place}, #{movie_Seat}, #{reservation_price}, now(), #{username}, #{payment_time_two})
+    </insert>
+
+    <select id="PaymentIdList" resultType="com.example.movie.entity.PaymentListEntity">
+        select b.paymentId, a.movie_title, a.movie_time, a.movie_place, a.movie_Seat, a.reservation_price, a.payment_time_two, a.username
+        from movie_payment_paymentId as a
+                 left join paymentIdvo as b on a.paymentId = b.paymentId
+        where a.paymentId = #{paymentId}
+            and a.username = #{username}
+    </select>
+</mapper>

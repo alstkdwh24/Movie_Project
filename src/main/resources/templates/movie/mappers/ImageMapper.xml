@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.movie.movie_image_service.ImageMapper">
+    <insert id="movie_resist" parameterType="com.example.movie.entity.mains.MovieEntity">
+        insert into movie_title (movie_title, movie_filename, uuid, reg_date, movie_resist_filePath, sizes, movie_textarea, uploadPaths, filePath)
+        values (#{movie_title}, #{movie_filename}, #{uuid}, now(), #{movie_resist_filePath}, #{size}, #{movie_textarea}, #{uploadPaths}, #{filePath});
+    </insert>
+
+    <select id="movie_resist_list" resultType="com.example.movie.entity.mains.MovieEntity">
+        select * from movie_title;
+    </select>
+
+    <insert id="event_board_resist" parameterType="com.example.movie.entity.mains.EventBoardEntity">
+        insert into event_board_image (filePath, event_name, uploadPaths, size, movie_filename, resist_textarea, movie_resist_filepath)
+        values (#{filePath}, #{event_name}, #{uploadPaths}, #{size}, #{movie_filename}, #{resist_textarea}, #{movie_resist_filePath})
+    </insert>
+
+    <select id="get_event_list" resultType="com.example.movie.entity.mains.EventBoardEntity">
+        select * from event_board_image;
+    </select>
+
+    <insert id="gifticon_resist" parameterType="com.example.movie.entity.mains.GifticonEntity">
+        insert into movie_gifticon(Gifticon_name, Gifticon_filename, uuid, reg_date, movie_filepath, resist_textarea, size, uploadPaths)
+        values (#{Gifticon_name}, #{Gifticon_filename}, #{uuid}, now(), #{movie_filepath}, #{resist_textarea}, #{size}, #{uploadPaths})
+    </insert>
+
+    <select id="gifticon_select" resultType="com.example.movie.entity.mains.GifticonEntity">
+        select * from movie_gifticon;
+    </select>
+
+    <insert id="movie_ticket_resist" parameterType="com.example.movie.entity.mains.TicketEntity">
+        insert into movie_ticket(movie_ticket_name, movie_ticket_filename, uuid, reg_date, movie_filepath, uploadPaths, size, resist_textarea, filePath)
+        values (#{movie_ticket_name}, #{movie_ticket_filename}, #{uuid}, now(), #{movie_filepath}, #{uploadPaths}, #{size}, #{resist_textarea}, #{filePath})
+    </insert>
+
+    <select id="movie_ticket_resist_list" resultType="com.example.movie.entity.mains.TicketEntity">
+        select * from movie_ticket;
+    </select>
+
+    <insert id="DeliciousVO_image" parameterType="com.example.movie.entity.mains.DeliciousEntity">
+        insert into delicious (delicious_name, delicious_filename, uuid, reg_date, movie_filepath, size, resist_textarea, filePath, uploadPaths, movie_resist_filePath)
+        values (#{delicious_name}, #{delicious_filename}, #{uuid}, now(), #{movie_filepath}, #{size}, #{resist_textarea}, #{filePath}, #{uploadPaths}, #{movie_resist_filePath})
+    </insert>
+
+    <select id="deliciousVO_list" resultType="com.example.movie.entity.mains.DeliciousEntity">
+        select * from delicious;
+    </select>
+
+    <select id="deliciousVO_two_list" resultType="com.example.movie.entity.mains.DeliciousEntity">
+        select * from delicious;
+    </select>
+
+    <select id="Movie_gifticon_list" resultType="com.example.movie.entity.mains.GifticonEntity">
+        select * from movie_gifticon;
+    </select>
+
+    <select id="movie_ticketVOS_list" resultType="com.example.movie.entity.mains.TicketEntity">
+        select * from movie_ticket;
+    </select>
+</mapper>

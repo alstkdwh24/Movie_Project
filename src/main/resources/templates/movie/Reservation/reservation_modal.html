@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/cinema-theme.css?v=20261111-15">
+</head>
+<body>
+<div th:fragment="reservation_modal" id="reservation_modal">
+    <button id="closecl" ><img src="/css/img/icon/2door.png" width="64px" height="64px"
+                                   alt=""></button>
+    <div id="reservation_modal_contents">
+        <div id="reservation_content">
+            <div class="reservation_row">
+                <div class="reservation_column"
+                     style="color: white; display:flex; align-items: center; justify-content: center; font-size: 30px">
+                    영화이름
+                </div>
+                <div class="reservation_column" id="movie_title24"
+                     style="color: white; display:flex; align-items: center; justify-content: center; font-size: 30px"></div>
+            </div>
+            <div class="reservation_row">
+                <div class="reservation_column"
+                     style="color: white; display:flex; align-items: center; justify-content: center; font-size: 30px">
+                    지역
+                </div>
+                <div class="reservation_column" id="movie_place24"
+                     style="color: white; display:flex; align-items: center; justify-content: center; font-size: 30px"></div>
+            </div>
+            <div class="reservation_row">
+                <div class="reservation_column"
+                     style="color: white; display:flex; align-items: center; justify-content: center; font-size: 30px">
+                    시간
+                </div>
+                <div class="reservation_column" id="movie_time24"
+                     style="color: white; display:flex; align-items: center; justify-content: center; font-size: 30px">
+                </div>
+            </div>
+
+
+        </div>
+        <button id="next" onclick='location.href="/movie/Reservation/reservation_report"'>좌석 예약 페이지</button>
+
+    </div>
+
+</div>
+
+</body>
+</html>

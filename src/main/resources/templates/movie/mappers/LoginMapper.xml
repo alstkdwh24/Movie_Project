@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.movie.LoginService.LoginMapper">
+    <insert id="Login_join" parameterType="com.example.movie.entity.LoginEntity">
+        insert into members (nickname, namena, username, pw, phone, birthDate, gender, job, email, roles)
+        values (#{nickname}, #{namena}, #{username}, #{pw}, #{phone}, #{birthDate}, #{gender}, #{job}, #{email}, #{roles})
+    </insert>
+
+    <select id="login" resultType="com.example.movie.entity.LoginEntity">
+        select * from members where username = #{username}
+    </select>
+
+    <select id="LOGIN_VO" resultType="com.example.movie.entity.LoginEntity">
+        select * from members where username = #{username} and pw = #{pw}
+    </select>
+
+    <select id="getAcount" resultType="com.example.movie.entity.LoginEntity">
+        select * from members where username = #{username}
+    </select>
+
+    <update id="get_Mypage_Modify" parameterType="map">
+        update members
+        set namena    = #{update.namena},
+            nickname  = #{update.nickname},
+            phone     = #{update.phone},
+            birthDate = #{update.birthDate},
+            gender    = #{update.gender},
+            job       = #{update.job},
+            email     = #{update.email}
+        where username = #{username}
+    </update>
+</mapper>

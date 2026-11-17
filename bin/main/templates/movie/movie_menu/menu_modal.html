@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Title</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@48,500&display=swap"/>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="menu_buttons" th:fragment="menu_fragment">
+
+
+    <div id="modalContainer" class="hidden">
+        <div id="modalContent">
+            <div class="material-symbols-outlined" id="modalCloseButton">
+
+                <h2 class="material"></h2>
+            </div>
+
+            <div>
+                <h2 id="h2_modals">BOARD SELECT</h2>
+            </div>
+            <div class="body_modal">
+                <div class="body_freeboard"  onclick="location.href='/movie/community/freeboard'"><h2 class="h2_modals">자유게시판</h2>
+                </div>
+                <div class="body_gboard" onclick="location.href='/movie/community/gboard'"><h2 class="h2_modals">공지사항</h2>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

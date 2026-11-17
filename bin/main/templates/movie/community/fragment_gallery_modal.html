@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div th:fragment="mains_menu_modal" class="m_c">
+    <div class="c_m">
+        <button class="c_c"><h2 id="h2_ti">JCGX</h2></button>
+        <div class="b_b">
+            <div class="b_b_l">
+                <button class="b_b_r" id="yel" onclick="location.href='/movie/community/freeboard'">
+                    자유게시판
+                </button>
+            </div>
+            <div class="b_b_l">
+                <button class="b_b_r" id="sky" onclick="location.href='/movie/community/gboard'">
+                    공지사항
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

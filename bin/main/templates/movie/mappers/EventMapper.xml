@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.movie.communityEventService.EventMapper">
+    <insert id="gallery_free_board" parameterType="com.example.movie.commandVO.EventVO">
+        INSERT INTO FREE_GALLERY (free_title, free_contents)
+        VALUES (#{free_title}, #{free_contents})
+    </insert>
+    <select id="gallery_free_show" resultType="com.example.movie.commandVO.EventVO">
+select * from FREE_GALLERY
+order by free_number desc limit #{First},#{amount}
+    </select>
+    <select id="gallery_free_total" resultType="int" >
+        select count(*) AS gallery_free_total from FREE_GALLERY
+    </select>
+
+
+
+    <insert id="gallery_g_board" parameterType="com.example.movie.commandVO.EventVO">
+        INSERT INTO g_GALLERY (G_TITLE, G_CONTENTS)
+        VALUES (#{g_title}, #{g_contents})
+    </insert>
+
+    <select id="gallery_g_show" resultType="com.example.movie.commandVO.EventVO">
+        select * from g_GALLERY
+        order by G_NUMBER desc limit #{First},#{amount}
+    </select>
+    <select id="gallery_g_total" resultType="int" >
+        select count(*) AS gallery_g_total from G_GALLERY
+    </select>
+
+
+
+    <select id="freeselect" resultType="EventVO">
+        select *
+        from FREE_GALLERY
+        where free_number=${free_number}
+
+
+    </select>
+
+    <select id="free_detail_update_select" resultType="EventVO">
+        select *
+        from FREE_GALLERY
+        where free_number=${free_number}
+
+
+    </select>
+
+    <delete id="free_delete">
+delete from free_gallery
+where free_number=#{free_number}
+
+    </delete>
+
+    <select id="gSelect" resultType="EventVO">
+        select *
+        from G_GALLERY
+        where g_number=#{g_number}
+
+
+    </select>
+
+    <delete id="g_delete">
+        delete from g_gallery
+        where g_number=#{g_number}
+    </delete>
+
+    <select id="g_update">
+        select *
+        from g_GALLERY
+        where g_number=${g_number}
+
+    </select>
+</mapper>
+

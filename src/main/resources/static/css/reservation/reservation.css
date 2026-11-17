@@ -1,0 +1,244 @@
+html{
+padding: 0; margin: 0;
+}
+body{   width: 100%;
+    height: 140%;
+overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    background-color: antiquewhite;
+
+}
+#reservation{
+height: 128%;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*overflow-y: scroll;*/
+    position: relative;
+    top:7%;
+
+
+}
+
+#reservation_board{
+    width: 38%;
+    height: 50%;
+    background-color: antiquewhite;
+    position: relative;
+    top:6%;
+    display: flex;
+    overflow: auto;
+    min-width: 600px;
+    overflow-x:hidden;
+;
+}
+
+/*스크롤바 스타일*/
+#reservation ::-webkit-scrollbar{
+
+    width: 10px;
+height: 10px;
+
+
+}
+
+#reservation ::-webkit-scrollbar-thumb {
+ /* 스크롤바의 길이 */
+    /*background: #217af4; !* 스크롤바의 색상 *!*/
+    height: 10%; /* 스크롤바의 길이 */
+    border-radius: 10px;
+    width: 10px;
+    background: saddlebrown;
+}
+
+
+
+/*스크롤바 뒷 배경 색상*/
+#reservation ::-webkit-scrollbar-track{
+    background-color: rgba(248, 165, 63, 1);
+    /*height: 10px;*/
+
+}
+.movies_titles{
+    width: 33.3%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /*border: 1px solid black;*/
+}
+/*#place{*/
+/*    width: 33.3%;*/
+/*    height: 100%;*/
+/*    border: 1px solid black;*/
+/*}*/
+/*#time{*/
+/*    width: 33.3%;*/
+/*    height: 100%;*/
+/*    border: 1px solid black;*/
+/*}*/
+/*영화 이름 데이터 가져오는 div*/
+.movie_name{
+    width: 100%;
+    height: 10%;
+    border: 1px solid saddlebrown;
+background-color: #d39c4a;
+min-height: 53px;
+    color:antiquewhite;
+display: flex;
+    justify-content: center;
+    font-size: 16px;
+    align-items:center;
+}
+
+
+.movies_titles > div.sub_menu_select,
+div.sub_menu_select {color: #f1f1f1; background-color: #00acac;}
+.movies_titles > div.sub_menu_select2,
+div.sub_menu_select2 {color: #f1f1f1; background-color: #00acac;}
+.movies_titles > div.sub_menu_select3,
+div.sub_menu_select3 {color: #f1f1f1; background-color: #00acac;}
+.movies_titles > div:hover {background-color: #2196F3;}
+.movies_titles > div.on {background-color: #2196F3;}
+
+#submit{
+    width: 10%;
+    height: 5%;
+}
+/*여기부터는 모달내용*/
+/*예약모달 내용*/
+#reservation_modal{
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: fixed;
+    flex-direction: column;
+}
+/*모달의 몸통*/
+#reservation_modal_contents{
+    width: 40%;
+    height: 80%;
+    background-color: rgb(26, 25, 23);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    min-width: 700px;
+    min-height: 640px;
+    flex-direction: column;
+}
+
+#closecl{
+    border: none;
+    background-color: rgb(40, 37, 37);
+    width: 5%;
+height: 10%;
+    border-radius: 50%;
+    position:relative;
+    top:-2%;
+    min-height: 89px;
+    min-width: 89px;
+
+}
+
+#reservation_content{
+    width: 90%;
+    height: 80%;
+    background-color: rgb(40, 37, 37);
+    margin-top: 5%;
+
+}
+
+.reservation_row{
+    width: 100%;
+    height: 33.3%;
+    border:1px solid white;
+    display: flex;
+
+}
+
+.reservation_column{
+    width:50%;
+    height:100%;
+    border:1px solid white;
+}
+
+#next{
+    width: 14%;
+    height: 7%;
+    min-width: 100px;
+    min-height: 20px;
+    background-color: rgb(50, 45, 45);
+    color: antiquewhite;
+    border: none;
+    border-radius: 10px;
+}
+
+.input_movie_title{
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    align-items:center;
+    color: white;
+}
+
+
+.input_movie_place{
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    align-items:center;
+    color: white;
+}
+
+.input_movie_time{
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    align-items:center;
+    color: white;
+}
+#modal_button{
+    width: 70%;
+    height: 50%;
+    border-radius: 15px;
+    background-color: #d39c4a;
+    color:white;
+    font-size: 16px;
+
+}
+#modal_button_div{
+    width: 10%;
+    height: 10%;
+    position: relative;
+    top: 5%;
+    /*background-color: black;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#seat_resist{
+    width: 10%;
+    height: 10%;
+    position: relative;
+    right: 50%;
+    top:22%;
+    border-radius: 10px;
+    display: none;
+}
+

@@ -1,0 +1,75 @@
+body{
+    background-color: black;
+}
+
+#product_list{
+    width: 66%;
+    height: 76%;
+    background-color: black;
+    border: 1px solid white;
+    box-sizing: border-box;
+    overflow: auto;
+
+}
+
+#product_list_top{
+    width: 100%;
+    box-sizing: border-box;
+    height: 4%;
+    border: 1px solid white;
+    display: flex;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*font-size: 20px;*/
+
+}
+
+.product_list_top{
+    width: 100%;
+    box-sizing: border-box;
+    height: 4%;
+    border: 1px solid white;
+    display: flex;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*font-size: 20px;*/
+}
+
+
+.list_bottom{
+    width: 11.4%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:16px;
+    color:white;
+}
+
+#paymentId{
+    width: 20%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:16px;
+    color:white;
+
+}
+
+#movie_paymentId{
+    width: 20%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:16px;
+    color:white;
+
+}

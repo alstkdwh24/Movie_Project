@@ -1,0 +1,6157 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap");
+
+/* ==========================================================================
+   JCGX CINEMA & CULTURE — NOIR VELVET & CHAMPAGNE GOLD DESIGN SYSTEM
+   Master Theme & Broken UI Complete Repair
+   ========================================================================== */
+:root {
+    --cinema-bg:#f4f4f4;
+    --cinema-bg-deep:#ececec;
+    --cinema-bg-elevated:#f7f7f7;
+    --cinema-surface:#ffffff;
+    --cinema-surface-2:#f2f2f2;
+    --cinema-surface-hover:#ebebeb;
+    --cinema-glass:rgba(0, 0, 0, 0.92);
+    --cinema-glass-heavy:rgba(0, 0, 0, 0.98);
+    --cinema-border:rgba(0, 0, 0, 0.1);
+    --cinema-border-strong:rgba(0, 0, 0, 0.2);
+    --cinema-border-gold:rgba(0, 0, 0, 0.14);
+    --cinema-ink:#1a1a1a;
+    --cinema-ink-soft:#444444;
+    --cinema-muted:#6e6e6e;
+    --cinema-primary:#e71a0f;
+    --cinema-primary-hover:#c9150b;
+    --cinema-primary-deep:#d41408;
+    --cinema-gold:#d4160c;
+    --cinema-gold-light:#b01208;
+    --cinema-gold-bright:#e71a0f;
+    --cinema-radius-xs:4px;
+    --cinema-radius-sm:6px;
+    --cinema-radius:8px;
+    --cinema-radius-lg:12px;
+    --cinema-shadow-sm:0 1px 3px rgba(0, 0, 0, 0.08);
+    --cinema-shadow:0 4px 14px rgba(0, 0, 0, 0.1);
+    --cinema-shadow-lg:0 10px 30px rgba(0, 0, 0, 0.16);
+    --cinema-glow:none;
+    --cinema-gold-glow:none;
+    --cinema-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box !important;
+}
+
+html {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    display: block !important;
+    scroll-behavior: smooth;
+    background-color: var(--cinema-bg) !important;
+    color-scheme: light;
+}
+
+html body,
+html body#body,
+html body.cinema-home,
+html body.body {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 100vh !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    background:
+        radial-gradient(1100px 540px at 15% -5%, rgba(231, 26, 15, 0.05), transparent 60%),
+        radial-gradient(1000px 520px at 88% 0%, rgba(217, 45, 58, 0.06), transparent 58%),
+        linear-gradient(180deg, #0d0d10 0%, var(--cinema-bg) 48%, #060607 100%) !important;
+    background-attachment: fixed !important;
+    color: var(--cinema-ink) !important;
+    font-family: "Pretendard", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif !important;
+    font-size: 15px;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+a {
+    color: var(--cinema-ink);
+    text-decoration: none !important;
+    transition: color 0.25s var(--cinema-ease), opacity 0.25s var(--cinema-ease);
+}
+
+a:hover {
+    color: var(--cinema-gold-light);
+}
+
+button, input, select, textarea {
+    font-family: "Pretendard", "Plus Jakarta Sans", sans-serif !important;
+}
+
+button {
+    cursor: pointer;
+    transition: all 0.25s var(--cinema-ease);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--cinema-bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c9c9c9;
+    border-radius: 999px;
+    border: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--cinema-gold);
+}
+
+/* ==========================================================================
+   0. 미스타일링/파손 요소 격리 (Critical Bug Fixes)
+   ========================================================================== */
+/* login.html 및 join.html 하단에 튀어나오던 무스타일 빈 박스 제거 */
+html body .Gallery_container {
+    display: none !important;
+}
+
+/* 레거시 hidden 메시지 정리 */
+#hidden, .hidden {
+    display: block;
+    margin-top: 10px;
+    color: var(--cinema-primary-hover);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ==========================================================================
+   1. 글로벌 헤더 (.jcgx-header) & 네비게이션
+   ========================================================================== */
+html body .jcgx-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 900 !important;
+    width: 100% !important;
+    background: rgba(9, 9, 11, 0.88) !important;
+    backdrop-filter: blur(22px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(160%) !important;
+    border-bottom: 1px solid var(--cinema-border) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+    font-family: "Pretendard", "Plus Jakarta Sans", sans-serif !important;
+}
+
+html body .jcgx-header .jcgx-header-inner {
+    width: min(100% - 48px, 1320px) !important;
+    margin: 0 auto !important;
+}
+
+html body .jcgx-header .jcgx-header-top {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    min-height: 76px !important;
+    padding: 12px 0 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+}
+
+html body .jcgx-header .jcgx-brand {
+    font-family: "Pretendard", "Plus Jakarta Sans", sans-serif!important;
+    font-size: 36px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.08em !important;
+    background: linear-gradient(135deg, #ffffff 0%, var(--cinema-gold-light) 48%, var(--cinema-gold) 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    line-height: 1 !important;
+}
+
+html body .jcgx-header .jcgx-brand span {
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    margin-top: 4px !important;
+    color: var(--cinema-muted) !important;
+    -webkit-text-fill-color: var(--cinema-muted) !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.24em !important;
+}
+
+html body .jcgx-header .jcgx-account {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+html body .jcgx-header .jcgx-account a,
+html body .jcgx-header .jcgx-account button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 36px !important;
+    padding: 6px 16px !important;
+    border-radius: 999px !important;
+    border: 1px solid var(--cinema-border) !important;
+    background: rgba(0, 0, 0, 0.03) !important;
+    color: var(--cinema-ink-soft) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    transition: all 0.22s var(--cinema-ease) !important;
+}
+
+html body .jcgx-header .jcgx-account a:hover,
+html body .jcgx-header .jcgx-account button:hover {
+    border-color: var(--cinema-border-gold) !important;
+    background: rgba(231, 26, 15, 0.12) !important;
+    color: var(--cinema-gold-light) !important;
+    transform: translateY(-1px) !important;
+}
+
+html body .jcgx-header .jcgx-header-bottom {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    min-height: 58px !important;
+    padding: 6px 0 !important;
+}
+
+html body .jcgx-header .jcgx-navigation {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+html body .jcgx-header .jcgx-navigation a,
+html body .jcgx-header .jcgx-navigation button {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    min-height: 40px !important;
+    padding: 8px 18px !important;
+    border-radius: 999px !important;
+    color: var(--cinema-ink) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em !important;
+    transition: all 0.22s var(--cinema-ease) !important;
+}
+
+html body .jcgx-header .jcgx-navigation a:hover,
+html body .jcgx-header .jcgx-navigation button:hover {
+    background: rgba(0, 0, 0, 0.06) !important;
+    color: var(--cinema-gold-light) !important;
+}
+
+html body .jcgx-header .jcgx-navigation .jcgx-community {
+    color: var(--cinema-gold-light) !important;
+    background: rgba(231, 26, 15, 0.1) !important;
+    border: 1px solid rgba(231, 26, 15, 0.24) !important;
+}
+
+html body .jcgx-header .jcgx-tools {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+html body .jcgx-header .jcgx-tools a,
+html body .jcgx-header .jcgx-tools button {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    min-height: 38px !important;
+    padding: 6px 14px !important;
+    border-radius: 999px !important;
+    border: 1px solid var(--cinema-border) !important;
+    background: rgba(0, 0, 0, 0.03) !important;
+    color: var(--cinema-ink-soft) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+}
+
+html body .jcgx-header .jcgx-tools a:hover,
+html body .jcgx-header .jcgx-tools button:hover {
+    border-color: var(--cinema-border-gold) !important;
+    color: var(--cinema-gold-light) !important;
+}
+
+html body .jcgx-header .jcgx-booking {
+    background: linear-gradient(135deg, var(--cinema-primary) 0%, var(--cinema-primary-deep) 100%) !important;
+    border: 0 !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    box-shadow: var(--cinema-glow) !important;
+}
+
+html body .jcgx-header .jcgx-booking:hover {
+    background: linear-gradient(135deg, var(--cinema-primary-hover) 0%, var(--cinema-primary) 100%) !important;
+    color: #ffffff !important;
+    transform: translateY(-1px) scale(1.02) !important;
+}
+
+/* ==========================================================================
+   2. 메인 페이지 히어로 뷰 (.article, .big_image) & 영화 목록
+   ========================================================================== */
+html body .article {
+    position: relative !important;
+    width: 100% !important;
+    min-height: 580px !important;
+    background: transparent !important;
+    margin-bottom: 40px !important;
+}
+
+html body .big_image {
+    position: relative !important;
+    width: 100% !important;
+    min-height: 580px !important;
+    background-size: cover !important;
+    background-position: center 25% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+html body #big_angle {
+    position: relative !important;
+    width: 100% !important;
+    min-height: 580px !important;
+    background: linear-gradient(180deg, rgba(9, 9, 11, 0.3) 0%, rgba(9, 9, 11, 0.85) 75%, var(--cinema-bg) 100%) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}
+
+html body .big_image_div {
+    width: min(100% - 48px, 1320px) !important;
+    margin: 80px auto 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+html body .cinema-hero-copy {
+    max-width: 680px !important;
+    text-align: left !important;
+}
+
+html body .cinema-hero-copy .cinema-eyebrow {
+    display: inline-block !important;
+    padding: 6px 14px !important;
+    border-radius: 999px !important;
+    background: rgba(231, 26, 15, 0.12) !important;
+    border: 1px solid var(--cinema-border-gold) !important;
+    color: var(--cinema-gold-light) !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.18em !important;
+    margin-bottom: 16px !important;
+}
+
+html body .cinema-hero-copy h2 {
+    font-family: "Pretendard", "Plus Jakarta Sans", sans-serif!important;
+    font-size: 48px !important;
+    font-weight: 800 !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.02em !important;
+    color: #ffffff !important;
+    margin: 0 0 16px 0 !important;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7) !important;
+}
+
+html body .cinema-hero-copy p {
+    font-size: 17px !important;
+    color: var(--cinema-ink-soft) !important;
+    line-height: 1.6 !important;
+    margin-bottom: 28px !important;
+}
+
+html body .cinema-hero-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+}
+
+html body .cinema-hero-actions .cinema-book {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 52px !important;
+    padding: 0 32px !important;
+    border-radius: 999px !important;
+    background: linear-gradient(135deg, var(--cinema-primary) 0%, var(--cinema-primary-deep) 100%) !important;
+    color: #ffffff !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    box-shadow: var(--cinema-glow) !important;
+    transition: all 0.25s var(--cinema-ease) !important;
+}
+
+html body .cinema-hero-actions .cinema-book:hover {
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 0 16px 36px rgba(217, 45, 58, 0.45) !important;
+}
+
+html body .cinema-hero-actions .sneak_entry {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 52px !important;
+    padding: 0 28px !important;
+    border-radius: 999px !important;
+    background: rgba(0, 0, 0, 0.08) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+    color: var(--cinema-ink) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+}
+
+html body .cinema-hero-actions .sneak_entry:hover {
+    background: rgba(0, 0, 0, 0.16) !important;
+    border-color: var(--cinema-border-gold) !important;
+    color: var(--cinema-gold-light) !important;
+}
+
+html body .big_image_arrow_button,
+html body .big_image_arrow_button_left {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
+    background: rgba(24, 24, 28, 0.6) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 1px solid var(--cinema-border) !important;
+    color: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s var(--cinema-ease) !important;
+}
+
+html body .big_image_arrow_button:hover,
+html body .big_image_arrow_button_left:hover {
+    background: var(--cinema-surface-hover) !important;
+    border-color: var(--cinema-gold) !important;
+    color: var(--cinema-gold-light) !important;
+    transform: scale(1.1) !important;
+}
+
+/* 영화 목록 (.movie_list) */
+html body .movie_list {
+    width: min(100% - 48px, 1320px) !important;
+    margin: 40px auto 70px !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+html body .cinema-heading {
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: space-between !important;
+    margin-bottom: 24px !important;
+}
+
+html body .cinema-heading h1 {
+    font-size: 32px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    margin: 0 !important;
+}
+
+html body .cinema-heading .cinema-eyebrow {
+    color: var(--cinema-gold) !important;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.16em !important;
+    margin-bottom: 6px !important;
+}
+
+html body .cinema-heading .cinema-link {
+    color: var(--cinema-gold) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+}
+
+html body .movie_title {
+    margin-bottom: 28px !important;
+}
+
+html body .sort {
+    display: inline-flex !important;
+    gap: 8px !important;
+    padding: 6px !important;
+    background: var(--cinema-bg-elevated) !important;
+    border: 1px solid var(--cinema-border) !important;
+    border-radius: 999px !important;
+}
+
+html body .watch_movie {
+    height: 38px !important;
+    padding: 0 20px !important;
+    border-radius: 999px !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: var(--cinema-muted) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+}
+
+html body .watch_movie#moving,
+html body .watch_movie.active {
+    background: var(--cinema-surface-2) !important;
+    color: var(--cinema-ink) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+html body .movie_title_ex {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+    gap: 28px 24px !important;
+    width: 100% !important;
+}
+
+html body .movie_picture {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: var(--cinema-surface) !important;
+    border: 1px solid var(--cinema-border) !important;
+    border-radius: var(--cinema-radius) !important;
+    overflow: hidden !important;
+    transition: all 0.3s var(--cinema-ease) !important;
+    box-shadow: var(--cinema-shadow-sm) !important;
+}
+
+html body .movie_picture:hover {
+    transform: translateY(-8px) !important;
+    border-color: var(--cinema-border-gold) !important;
+    box-shadow: var(--cinema-shadow), var(--cinema-gold-glow) !important;
+}
+
+html body .movie_image {
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 2 / 3 !important;
+    overflow: hidden !important;
+    background: #000 !important;
+}
+
+html body .movie_image .movie_movie {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+}
+
+html body .movie_real_image {
+    width: 100% !important;
+    height: 100% !important;
+    background-size: cover !important;
+    background-position: center !important;
+    transition: transform 0.4s var(--cinema-ease) !important;
+}
+
+html body .movie_picture:hover .movie_real_image {
+    transform: scale(1.05) !important;
+}
+
+html body .movie_gle {
+    padding: 16px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    background: var(--cinema-surface) !important;
+}
+
+html body .secrete_div {
+    display: none !important;
+}
+
+/* ==========================================================================
+   3. 로그인 화면 (.login_div, .login_id_pw)
+   ========================================================================== */
+html body .over_flow {
+    width: 100% !important;
+    min-height: calc(100vh - 140px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 60px 16px !important;
+}
+
+html body .login_div {
+    position: static !important;
+    width: min(100% - 32px, 460px) !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 40px auto !important;
+    padding: 44px 36px 36px !important;
+    background: linear-gradient(180deg, rgba(31, 31, 37, 0.85) 0%, rgba(18, 18, 21, 0.95) 100%) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid var(--cinema-border-gold) !important;
+    border-radius: var(--cinema-radius-lg) !important;
+    box-shadow: var(--cinema-shadow-lg), var(--cinema-gold-glow) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+html body .login_title {
+    width: 100% !important;
+    height: auto !important;
+    margin-bottom: 28px !important;
+    text-align: center !important;
+}
+
+html body .login_title .h2_title {
+    font-family: "Pretendard", "Plus Jakarta Sans", sans-serif!important;
+    font-size: 38px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.08em !important;
+    background: linear-gradient(135deg, #ffffff 0%, var(--cinema-gold-light) 50%, var(--cinema-gold) 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    margin: 0 !important;
+}
+
+html body .login_id_pw {
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+}
+
+html body .login_input {
+    width: 100% !important;
+    height: auto !important;
+}
+
+html body .input_black {
+    width: 100% !important;
+    height: 52px !important;
+    padding: 0 18px !important;
+    border-radius: var(--cinema-radius-sm) !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+    background: var(--cinema-bg-deep) !important;
+    color: #ffffff !important;
+    font-size: 15px !important;
+    transition: all 0.25s var(--cinema-ease) !important;
+}
+
+html body .input_black:focus {
+    outline: none !important;
+    border-color: var(--cinema-gold) !important;
+    box-shadow: 0 0 0 3px rgba(231, 26, 15, 0.25) !important;
+    background: #f2f2f2 !important;
+}
+
+html body .login_button {
+    width: 100% !important;
+    height: auto !important;
+    margin-top: 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+}
+
+html body .big_button {
+    width: 100% !important;
+    height: auto !important;
+}
+
+html body #login_button {
+    width: 100% !important;
+    height: 52px !important;
+    border-radius: 999px !important;
+    border: 0 !important;
+    background: linear-gradient(135deg, var(--cinema-primary) 0%, var(--cinema-primary-deep) 100%) !important;
+    color: #ffffff !important;
+    box-shadow: var(--cinema-glow) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+}
+
+html body #login_button:hover {
+    background: linear-gradient(135deg, var(--cinema-primary-hover) 0%, var(--cinema-primary) 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 14px 32px rgba(217, 45, 58, 0.45) !important;
+}
+
+html body #login_button h3 {
+    margin: 0 !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.04em !important;
+}
+
+html body .small_button {
+    width: 100% !important;
+    height: auto !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+}
+
+html body .login_buttonss {
+    width: 100% !important;
+    height: 48px !important;
+    border-radius: var(--cinema-radius-sm) !important;
+    border: 1px solid var(--cinema-border) !important;
+    background: var(--cinema-bg-deep) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    padding: 4px !important;
+}
+
+html body .login_buttonss:hover {
+    border-color: var(--cinema-border-strong) !important;
+    transform: translateY(-2px) !important;
+}
+
+html body #img_kakao,
+html body #img_naver {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+}
+
+html body .login_search {
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    margin-top: 12px !important;
+    color: var(--cinema-muted) !important;
+    font-size: 13px !important;
+}
+
+html body .login_search a {
+    color: var(--cinema-muted) !important;
+    cursor: pointer !important;
+}
+
+html body .login_search a:hover {
+    color: var(--cinema-gold-light) !important;
+}
+
+/* ==========================================================================
+   4. 회원가입 화면 (#login_join)
+   ========================================================================== */
+html body #login_join {
+    width: min(100% - 32px, 780px) !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 60px auto 90px !important;
+    padding: 48px 40px !important;
+    background: linear-gradient(180deg, rgba(31, 31, 37, 0.9) 0%, rgba(18, 18, 21, 0.98) 100%) !important;
+    border: 1px solid var(--cinema-border-gold) !important;
+    border-radius: var(--cinema-radius-lg) !important;
+    box-shadow: var(--cinema-shadow-lg) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+}
+
+html body #id_title {
+    width: 100% !important;
+    height: auto !important;
+    margin-bottom: 20px !important;
+    text-align: center !important;
+}
+
+html body .title_id {
+    font-family: "Pretendard", "Plus Jakarta Sans", sans-serif!important;
+    font-size: 34px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.06em !important;
+    background: linear-gradient(135deg, #ffffff 0%, var(--cinema-gold-light) 50%, var(--cinema-gold) 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    margin: 0 !important;
+}
+
+html body #login_join .id {
+    width: 100% !important;
+    height: auto !important;
+    display: grid !important;
+    grid-template-columns: 160px 1fr !important;
+    align-items: center !important;
+    gap: 16px !important;
+}
+
+html body #login_join .id_div {
+    width: 100% !important;
+    height: auto !important;
+}
+
+html body #login_join .id_div .title_id {
+    font-family: "Pretendard", sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: var(--cinema-ink-soft) !important;
+    -webkit-text-fill-color: var(--cinema-ink-soft) !important;
+    text-align: left !important;
+}
+
+html body #login_join .id_input {
+    width: 100% !important;
+    height: auto !important;
+}
+
+html body #login_join .id_input label {
+    width: 100% !important;
+    display: block !important;
+}
+
+html body #login_join .input {
+    width: 100% !important;
+    height: 48px !important;
+    padding: 0 16px !important;
+    border-radius: var(--cinema-radius-sm) !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+    background: var(--cinema-bg-deep) !important;
+    color: #ffffff !important;
+    font-size: 15px !important;
+    transition: all 0.25s var(--cinema-ease) !important;
+}
+
+html body #login_join .input:focus {
+    outline: none !important;
+    border-color: var(--cinema-gold) !important;
+    box-shadow: 0 0 0 3px rgba(231, 26, 15, 0.2) !important;
+}
+
+html body #login_join .black {
+    display: none !important;
+}
+
+html body #login_join .div_button {
+    width: 100% !important;
+    height: auto !important;
+    margin-top: 24px !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 16px !important;
+}
+
+html body .botton_button#button_colors {
+    width: 160px !important;
+    height: 50px !important;
+    border-radius: 999px !important;
+    border: 0 !important;
+    background: linear-gradient(135deg, var(--cinema-primary) 0%, var(--cinema-primary-deep) 100%) !important;
+    color: #ffffff !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    box-shadow: var(--cinema-glow) !important;
+}
+
+html body .botton_button#button_color {
+    width: 140px !important;
+    height: 50px !important;
+    border-radius: 999px !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+    background: rgba(0, 0, 0, 0.05) !important;
+    color: var(--cinema-ink-soft) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+}
+
+/* ==========================================================================
+   5. 스토어 화면 (#popcorn_div, .store, .card, #store_card)
+   ========================================================================== */
+html body #popcorn_div {
+    width: min(100% - 48px, 1320px) !important;
+    margin: 40px auto 90px !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 40px !important;
+    position: static !important;
+    bottom: auto !important;
+}
+
+html body .store {
+    width: 100% !important;
+    height: auto !important;
+    background: var(--cinema-surface) !important;
+    border: 1px solid var(--cinema-border) !important;
+    border-radius: var(--cinema-radius-lg) !important;
+    padding: 32px 28px !important;
+    box-shadow: var(--cinema-shadow-sm) !important;
+}
+
+html body #pakage_store {
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid var(--cinema-border) !important;
+    padding-bottom: 16px !important;
+    margin-bottom: 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+html body #combo_store {
+    display: block !important;
+    height: auto !important;
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid var(--cinema-border) !important;
+    padding-bottom: 16px !important;
+    margin-bottom: 24px !important;
+}
+
+html body #combo_store::before {
+    content: "콤보 세트 (COMBO PACKAGES)" !important;
+    display: block !important;
+}
+
+html body #pakage_store_popcorn,
+html body #pakage_store_combo {
+    width: 100% !important;
+    height: auto !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+    gap: 20px !important;
+}
+
+html body .popcorn_pakage {
+    width: 100% !important;
+    height: auto !important;
+    background: var(--cinema-bg-elevated) !important;
+    border: 1px solid var(--cinema-border) !important;
+    border-radius: var(--cinema-radius) !important;
+    overflow: hidden !important;
+    transition: all 0.25s var(--cinema-ease) !important;
+}
+
+html body .popcorn_pakage:hover {
+    transform: translateY(-6px) !important;
+    border-color: var(--cinema-border-gold) !important;
+    box-shadow: var(--cinema-shadow), var(--cinema-gold-glow) !important;
+}
+
+html body .pakage_img {
+    width: 100% !important;
+    height: 180px !important;
+    overflow: hidden !important;
+    background: #000 !important;
+    padding: 0 !important;
+}
+
+html body .pakage_img img,
+html body .popcorn_pakage img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+html body .pakage_title {
+    padding: 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+}
+
+html body .pakage_title_big {
+    padding: 0 !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+}
+
+html body .pakage_title_small {
+    padding: 0 !important;
+    font-size: 13px !important;
+    color: var(--cinema-muted) !important;
+}
+
+/* 기프트카드 & 티켓 2열 카드 (#store_card) */
+html body #store_card {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 28px !important;
+    width: 100% !important;
+    height: auto !important;
+    background: transparent !important;
+    border: 0 !important;
+    padding: 0 !important;
+}
+
+html body .card {
+    width: 100% !important;
+    height: auto !important;
+    background: var(--cinema-surface) !important;
+    border: 1px solid var(--cinema-border) !important;
+    border-radius: var(--cinema-radius-lg) !important;
+    padding: 28px 24px !important;
+    box-shadow: var(--cinema-shadow-sm) !important;
+}
+
+html body .card_title {
+    height: auto !important;
+    border-bottom: 1px solid var(--cinema-border) !important;
+    padding-bottom: 14px !important;
+    margin-bottom: 20px !important;
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+}
+
+html body .card_body_1,
+html body .card_body {
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+}
+
+html body .body_gift {
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 18px !important;
+    background: var(--cinema-bg-elevated) !important;
+    border: 1px solid var(--cinema-border) !important;
+    border-radius: var(--cinema-radius) !important;
+    padding: 14px !important;
+    transition: all 0.25s var(--cinema-ease) !important;
+}
+
+html body .body_gift:hover {
+    transform: translateY(-4px) !important;
+    border-color: var(--cinema-border-gold) !important;
+    box-shadow: var(--cinema-shadow-sm) !important;
+}
+
+html body .gift_img,
+html body .gift_img_two {
+    width: 110px !important;
+    height: 110px !important;
+    min-width: 110px !important;
+    border-radius: var(--cinema-radius-sm) !important;
+    overflow: hidden !important;
+    background: #000 !important;
+    padding: 0 !important;
+}
+
+html body .gift_img img,
+html body .gift_img_two img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+html body .gift_title {
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+}
+
+html body .gift_title_big {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+}
+
+html body .gift_title_small {
+    font-size: 13px !important;
+    color: var(--cinema-muted) !important;
+}
+
+/* 메인 페이지 하단 섹션 3 (.section3) */
+html body .section3 {
+    width: min(100% - 48px, 1320px) !important;
+    margin: 50px auto 80px !important;
+    background: transparent !important;
+}
+
+html body .section3 > .movie_movie {
+    width: 100% !important;
+    height: auto !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 28px !important;
+}
+
+html body .ant {
+    background: var(--cinema-surface) !important;
+    border: 1px solid var(--cinema-border) !important;
+    border-radius: var(--cinema-radius-lg) !important;
+    padding: 24px !important;
+    box-shadow: var(--cinema-shadow-sm) !important;
+}
+
+html body .ant_set_title {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    border-bottom: 1px solid var(--cinema-border) !important;
+    padding-bottom: 12px !important;
+    margin-bottom: 18px !important;
+}
+
+html body .ant_set_title .set_title_h2 h2 {
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    margin: 0 !important;
+}
+
+html body .button_store {
+    padding: 6px 14px !important;
+    border-radius: 999px !important;
+    border: 1px solid var(--cinema-border-gold) !important;
+    background: rgba(231, 26, 15, 0.08) !important;
+    color: var(--cinema-gold-light) !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+}
+
+html body .ant_contents {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+}
+
+html body .ant_three {
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+    padding: 10px !important;
+    border-radius: var(--cinema-radius-sm) !important;
+    background: var(--cinema-bg-elevated) !important;
+    border: 1px solid var(--cinema-border) !important;
+}
+
+html body .contents_img {
+    width: 80px !important;
+    height: 80px !important;
+    min-width: 80px !important;
+    border-radius: var(--cinema-radius-xs) !important;
+    overflow: hidden !important;
+    background: #000 !important;
+}
+
+html body .contents_img img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+html body .contents_ant {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+}
+
+html body .ant_big_title {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: var(--cinema-ink) !important;
+}
+
+/* ==========================================================================
+   6. 영화 예매 화면 (#reservation, #reservation_board, 좌석 모달)
+   ========================================================================== */
+html body #reservation {
+    position: static !important;
+    top: auto !important;
+    width: min(100% - 48px, 1200px) !important;
+    height: auto !important;
+    margin: 40px auto 90px !important;
+    background: transparent !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 28px !important;
+}
+
+html body #reservation_board {
+    position: static !important;
+    top: auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 520px !important;
+    background: var(--cinema-surface) !important;
+    border: 1px solid var(--cinema-border-gold) !important;
+    border-radius: var(--cinema-radius-lg) !important;
+    box-shadow: var(--cinema-shadow-lg) !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    overflow: hidden !important;
+}
+
+html body .movies_titles {
+    width: 100% !important;
+    height: 100% !important;
+    overflow-y: auto !important;
+    border-right: 1px solid var(--cinema-border) !important;
+    background: var(--cinema-bg-elevated) !important;
+    padding: 12px 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+}
+
+html body .movies_titles:last-child {
+    border-right: 0 !important;
+}
+
+html body .movie_name {
+    width: 100% !important;
+    min-height: 48px !important;
+    height: auto !important;
+    padding: 12px 16px !important;
+    border-radius: var(--cinema-radius-sm) !important;
+    border: 1px solid var(--cinema-border) !important;
+    background: var(--cinema-surface) !important;
+    color: var(--cinema-ink-soft) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    transition: all 0.2s var(--cinema-ease) !important;
+}
+
+html body .movie_name:hover {
+    border-color: var(--cinema-border-gold) !important;
+    background: var(--cinema-surface-hover) !important;
+    color: #ffffff !important;
+}
+
+html body .movie_name.sub_menu_select,
+html body .movie_name.sub_menu_select2,
+html body .movie_name.sub_menu_select3,
+html body .movie_name.on {
+    border-color: var(--cinema-gold) !important;
+    background: linear-gradient(135deg, rgba(231, 26, 15, 0.24) 0%, rgba(217, 45, 58, 0.2) 100%) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    box-shadow: var(--cinema-gold-glow) !important;
+}
+
+html body #modal_button_div {
+    width: 100% !important;
+    height: auto !important;
+    position: static !important;
+    top: auto !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+html body #modal_button_div #modal_button {
+    width: auto !important;
+    min-width: 200px !important;
+    height: 52px !important;
+    border-radius: 999px !important;
+    border: 0 !important;
+    background: linear-gradient(135deg, var(--cinema-primary) 0%, var(--cinema-primary-deep) 100%) !important;
+    color: #ffffff !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    box-shadow: var(--cinema-glow) !important;
+    cursor: pointer !important;
+}
+
+html body #modal_button_div #modal_button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 16px 36px rgba(217, 45, 58, 0.45) !important;
+}
+
+/* 좌석 예약 모달 (#reservation_two & #reservation_modal_content_two) */
+html body #reservation_two {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(5, 5, 6, 0.88) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    z-index: 2500 !important;
+    display: none;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 24px !important;
+}
+
+html body #reservation_modal_content_two {
+    width: min(100%, 960px) !important;
+    height: auto !important;
+    max-height: 90vh !important;
+    background: linear-gradient(180deg, var(--cinema-surface) 0%, #f2f2f2 100%) !important;
+    border: 1px solid var(--cinema-border-gold) !important;
+    border-radius: var(--cinema-radius-lg) !important;
+    box-shadow: var(--cinema-shadow-lg), var(--cinema-gold-glow) !important;
+    padding: 36px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    overflow-y: auto !important;
+}
+
+html body #reservation_board_two {
+    width: 100% !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    background: transparent !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 20px !important;
+}
+
+html body .movie_chair {
+    width: 80% !important;
+    height: auto !important;
+    border: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin-bottom: 12px !important;
+}
+
+html body .movie_chair img {
+    display: none !important; /* 촌스러운 극장 아이콘 제거 */
+}
+
+html body .movie_chair::after {
+    content: "THEATER SCREEN" !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 36px !important;
+    border-radius: 999px !important;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.02) 100%) !important;
+    border-top: 2px solid var(--cinema-border-gold) !important;
+    color: var(--cinema-gold-light) !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.35em !important;
+    box-shadow: 0 -4px 18px rgba(231, 26, 15, 0.2) !important;
+}
+
+html body .movie_chair_sheet3 {
+    width: 100% !important;
+    height: auto !important;
+    border: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+}
+
+html body .movie_sheet_number {
+    width: 100% !important;
+    height: auto !important;
+    border: 0 !important;
+    display: grid !important;
+    grid-template-columns: 28px repeat(10, 1fr) !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+html body .seat_row_label {
+    text-align: center !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    color: var(--cinema-gold-light) !important;
+}
+
+html body .chair {
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    border-radius: var(--cinema-radius-xs) !important;
+    border: 1px solid var(--cinema-border) !important;
+    background: var(--cinema-bg-elevated) !important;
+    color: var(--cinema-ink) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.2s var(--cinema-ease) !important;
+    overflow: hidden !important;
+    padding: 4px !important;
+}
+
+html body .chair img {
+    width: 22px !important;
+    height: 22px !important;
+    object-fit: contain !important;
+    opacity: 0.75 !important;
+    filter: grayscale(1) brightness(1.3) !important; /* 원본 PNG의 빨강·파랑을 뉴트럴 테마에 맞춰 흑백 처리 */
+}
+
+html body .main_image_text {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    margin: 2px 0 0 0 !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: var(--cinema-ink-soft) !important;
+}
+
+html body .chair:hover:not(.is-taken):not(.selected) {
+    transform: translateY(-2px) !important;
+    border-color: var(--cinema-gold) !important;
+    background: var(--cinema-surface-hover) !important;
+}
+
+html body .chair:active:not(.is-taken) {
+    transform: scale(0.96) !important;
+}
+
+html body .chair:focus-visible {
+    outline: 2px solid var(--cinema-gold-light) !important;
+    outline-offset: 2px !important;
+}
+
+html body .chair.selected {
+    background: linear-gradient(135deg, var(--cinema-primary) 0%, var(--cinema-primary-deep) 100%) !important;
+    border-color: #ffffff !important;
+    box-shadow: var(--cinema-glow) !important;
+}
+
+html body .chair.selected img {
+    opacity: 1 !important;
+    filter: brightness(1.8) !important;
+}
+
+html body .chair.selected .main_image_text {
+    color: #ffffff !important;
+}
+
+/* 예약 완료 좌석: 중복 예약 방지 로직이 서버 응답으로 이 클래스를 붙인다 */
+html body .chair.is-taken {
+    cursor: not-allowed !important;
+    border-color: transparent !important;
+    background:
+        repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.05) 0 6px, transparent 6px 12px),
+        var(--cinema-bg-elevated) !important;
+    opacity: 0.45 !important;
+}
+
+html body .chair.is-taken img {
+    filter: grayscale(1) !important;
+}
+
+/* 좌석 상태 범례 */
+html body .seat_legend {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 20px !important;
+    margin: 4px 0 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+    font-size: 12px !important;
+    color: var(--cinema-ink-soft) !important;
+}
+
+html body .seat_legend li {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+html body .seat_legend_dot {
+    width: 14px !important;
+    height: 14px !important;
+    border-radius: 4px !important;
+    border: 1px solid var(--cinema-border) !important;
+    background: var(--cinema-bg-elevated) !important;
+}
+
+html body .seat_legend_dot.is-selected {
+    border-color: #ffffff !important;
+    background: linear-gradient(135deg, var(--cinema-primary) 0%, var(--cinema-primary-deep) 100%) !important;
+}
+
+html body .seat_legend_dot.is-taken {
+    border-color: transparent !important;
+    opacity: 0.45 !important;
+    background: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.25) 0 3px, transparent 3px 6px) !important;
+}
+
+@media (max-width: 640px) {
+    html body #reservation_modal_content_two {
+        padding: 20px 14px !important;
+    }
+
+    html body .movie_sheet_number {
+        gap: 4px !important;
+    }
+
+    html body .chair img {
+        display: none !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html body .chair {
+        transition: none !important;
+    }
+}
+
+html body #seat_resist {
+    position: static !important;
+    right: auto !important;
+    top: auto !important;
+    width: auto !important;
+    min-width: 180px !important;
+    height: 50px !important;
+    margin: 0 auto !important;
+    border-radius: 999px !important;
+    border: 0 !important;
+    background: linear-gradient(135deg, var(--cinema-primary) 0%, var(--cinema-primary-deep) 100%) !important;
+    color: #ffffff !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    box-shadow: var(--cinema-glow) !important;
+    cursor: pointer !important;
+    display: none;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* ==========================================================================
+   7. 게시판 목록 & 상세 (자유게시판, 공지사항, 문의사항)
+   ========================================================================== */
+html body .big_word {
+    position: static !important;
+    top: auto !important;
+    width: min(100% - 48px, 1200px) !important;
+    height: auto !important;
+    margin: 40px auto 90px !important;
+    background: var(--cinema-surface) !important;
+    border: 1px solid var(--cinema-border) !important;
+    border-radius: var(--cinema-radius-lg) !important;
+    padding: 36px 32px !important;
+    box-shadow: var(--cinema-shadow-sm) !important;
+}
+
+html body .gallery_title {
+    position: static !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    margin-bottom: 24px !important;
+    text-align: left !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+html body .h2_title2 {
+    font-size: 26px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+}
+
+html body .big_word .input {
+    position: static !important;
+    float: none !important;
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    gap: 10px !important;
+    margin-bottom: 16px !important;
+}
+
+html body #writer_word,
+html body #w_s {
+    position: static !important;
+    left: auto !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50% !important;
+    border: 1px solid var(--cinema-border) !important;
+    background: var(--cinema-bg-elevated) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+html body #writer_word:hover,
+html body #w_s:hover {
+    border-color: var(--cinema-gold) !important;
+    background: var(--cinema-surface-hover) !important;
+    transform: scale(1.08) !important;
+}
+
+html body .gallery_blank_mini {
+    width: 100% !important;
+    height: 48px !important;
+    border: 0 !important;
+    border-bottom: 2px solid var(--cinema-border-gold) !important;
+    background: var(--cinema-bg-elevated) !important;
+    border-radius: var(--cinema-radius-sm) var(--cinema-radius-sm) 0 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    color: var(--cinema-gold-light) !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em !important;
+}
+
+html body .gallery_content {
+    width: 100% !important;
+    height: auto !important;
+    border: 0 !important;
+    background: transparent !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+}
+
+html body .gallery_blank_mini2 {
+    width: 100% !important;
+    min-height: 52px !important;
+    height: auto !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--cinema-border) !important;
+    background: transparent !important;
+    display: flex !important;
+    align-items: center !important;
+    color: var(--cinema-ink-soft) !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    transition: all 0.2s var(--cinema-ease) !important;
+    padding: 6px 0 !important;
+}
+
+html body .gallery_blank_mini2:hover {
+    background: rgba(231, 26, 15, 0.06) !important;
+    color: #ffffff !important;
+    padding-left: 8px !important;
+}
+
+/* 게시판 상세 페이지 (.free_detail) */
+html body .free_detail {
+    position: static !important;
+    top: auto !important;
+    width: min(100% - 48px, 1080px) !important;
+    height: auto !important;
+    margin: 40px auto 90px !important;
+    background: var(--cinema-surface) !important;
+    border: 1px solid var(--cinema-border) !important;
+    border-radius: var(--cinema-radius-lg) !important;
+    padding: 40px !important;
+    box-shadow: var(--cinema-shadow-sm) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 28px !important;
+}
+
+html body .user_name {
+    height: auto !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--cinema-border) !important;
+    padding-bottom: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+}
+
+html body #title,
+html body #title_two {
+    height: auto !important;
+    max-height: none !important;
+    border: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+}
+
+html body #title h2,
+html body #title_two h2 {
+    margin: 0 !important;
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+}
+
+html body #user_id {
+    height: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+html body #free_impormation {
+    height: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+}
+
+html body .small_box {
+    width: auto !important;
+    min-width: 0 !important;
+    height: auto !important;
+    padding: 4px 10px !important;
+    border-radius: 999px !important;
+    background: var(--cinema-bg-elevated) !important;
+    border: 1px solid var(--cinema-border) !important;
+    color: var(--cinema-muted) !important;
+    font-size: 12px !important;
+    text-decoration: none !important;
+}
+
+html body .free_contents {
+    width: 100% !important;
+    min-height: 240px !important;
+    height: auto !important;
+    border: 0 !important;
+    padding: 10px 0 !important;
+    color: var(--cinema-ink-soft) !important;
+    font-size: 16px !important;
+    line-height: 1.8 !important;
+}
+
+html body .coment {
+    width: 100% !important;
+    height: auto !important;
+    border: 0 !important;
+    border-top: 1px solid var(--cinema-border) !important;
+    padding-top: 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+}
+
+html body .talk {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    border: 0 !important;
+}
+
+html body #talk_contents {
+    width: 100% !important;
+    height: auto !important;
+    border: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+}
+
+html body #talk_contents_content,
+html body #talk_contents_content_origin {
+    width: 100% !important;
+    height: auto !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+}
+
+html body #label,
+html body #idss {
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    gap: 12px !important;
+    align-items: stretch !important;
+}
+
+html body #textarea,
+html body #textareas {
+    flex: 1 !important;
+    min-height: 72px !important;
+    height: auto !important;
+    padding: 12px 16px !important;
+    border-radius: var(--cinema-radius-sm) !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+    background: var(--cinema-bg-deep) !important;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    resize: vertical !important;
+}
+
+html body #talk_button_free_two,
+html body #comment_submit,
+html body #Question_comment_two,
+html body .bottom_submit {
+    height: auto !important;
+    min-width: 100px !important;
+    padding: 0 20px !important;
+    border-radius: var(--cinema-radius-sm) !important;
+    border: 0 !important;
+    background: linear-gradient(135deg, var(--cinema-primary) 0%, var(--cinema-primary-deep) 100%) !important;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+}
+
+html body #comment_two,
+html body .comment_two {
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+}
+
+html body #talk_writer_free,
+html body .talks {
+    width: 100% !important;
+    height: auto !important;
+    padding: 16px 20px !important;
+    border-radius: var(--cinema-radius-sm) !important;
+    border: 1px solid var(--cinema-border) !important;
+    background: var(--cinema-bg-elevated) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+}
+
+/* ==========================================================================
+   8. 마이페이지 & 주문내역 & 결제완료 (#Mypage_account, #product_list)
+   ========================================================================== */
+html body #Mypage {
+    width: min(100% - 48px, 860px) !important;
+    height: auto !important;
+    margin: 40px auto 90px !important;
+    background: transparent !important;
+    position: static !important;
+    top: auto !important;
+}
+
+html body #Mypage_account {
+    position: static !important;
+    top: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    background: var(--cinema-surface) !important;
+    border: 1px solid var(--cinema-border-gold) !important;
+    border-radius: var(--cinema-radius-lg) !important;
+    padding: 40px !important;
+    box-shadow: var(--cinema-shadow-lg) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+}
+
+html body .Mypage_titles {
+    border: 0 !important;
+    font-size: 26px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    margin-bottom: 12px !important;
+    justify-content: flex-start !important;
+}
+
+html body .Mypage_input {
+    width: 100% !important;
+    height: auto !important;
+    border: 0 !important;
+    display: grid !important;
+    grid-template-columns: 140px 1fr !important;
+    align-items: center !important;
+    gap: 14px !important;
+}
+
+html body .top_left {
+    border: 0 !important;
+    color: var(--cinema-ink-soft) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    justify-content: flex-start !important;
+}
+
+html body .top_right {
+    border: 0 !important;
+    background: transparent !important;
+}
+
+html body .account_text {
+    width: 100% !important;
+    height: 48px !important;
+    padding: 0 16px !important;
+    border-radius: var(--cinema-radius-sm) !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+    background: var(--cinema-bg-deep) !important;
+    color: #ffffff !important;
+    font-size: 15px !important;
+    text-align: left !important;
+}
+
+html body .Mypage_title {
+    position: static !important;
+    top: auto !important;
+    border: 0 !important;
+    margin-top: 20px !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    gap: 12px !important;
+}
+
+html body .corrections {
+    min-width: 120px !important;
+    height: 48px !important;
+    border-radius: 999px !important;
+    border: 0 !important;
+    background: linear-gradient(135deg, var(--cinema-primary) 0%, var(--cinema-primary-deep) 100%) !important;
+    color: #ffffff !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+}
+
+html body #cancel {
+    min-width: 110px !important;
+    height: 48px !important;
+    border-radius: 999px !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+    background: rgba(0, 0, 0, 0.05) !important;
+    color: var(--cinema-ink-soft) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+}
+
+/* 주문내역 (#product_list) & 예매내역 리포트 (#middle_report) */
+html body #product_list,
+html body #middle_report {
+    position: static !important;
+    top: auto !important;
+    width: min(100% - 48px, 1200px) !important;
+    height: auto !important;
+    margin: 40px auto 90px !important;
+    background: var(--cinema-surface) !important;
+    border: 1px solid var(--cinema-border) !important;
+    border-radius: var(--cinema-radius-lg) !important;
+    padding: 32px !important;
+    box-shadow: var(--cinema-shadow-sm) !important;
+    overflow: hidden !important;
+}
+
+html body #product_list_top,
+html body #reservation_list {
+    width: 100% !important;
+    height: 48px !important;
+    border: 0 !important;
+    border-bottom: 2px solid var(--cinema-border-gold) !important;
+    background: var(--cinema-bg-elevated) !important;
+    border-radius: var(--cinema-radius-sm) var(--cinema-radius-sm) 0 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    color: var(--cinema-gold-light) !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+}
+
+html body .product_list_top,
+html body .reservation_item {
+    width: 100% !important;
+    min-height: 52px !important;
+    height: auto !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--cinema-border) !important;
+    display: flex !important;
+    align-items: center !important;
+    color: var(--cinema-ink-soft) !important;
+    font-size: 14px !important;
+    padding: 8px 0 !important;
+}
+
+html body .list_top,
+html body .list_bottom {
+    border: 0 !important;
+    color: inherit !important;
+    font-size: inherit !important;
+    text-align: center !important;
+}
+
+html body .submit {
+    height: 36px !important;
+    padding: 0 16px !important;
+    border-radius: 999px !important;
+    border: 1px solid var(--cinema-primary) !important;
+    background: rgba(217, 45, 58, 0.1) !important;
+    color: var(--cinema-primary-hover) !important;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+}
+
+html body .submit_pay {
+    height: 36px !important;
+    padding: 0 16px !important;
+    border-radius: 999px !important;
+    border: 0 !important;
+    background: linear-gradient(135deg, var(--cinema-gold) 0%, #9c7a3c 100%) !important;
+    color: #000000 !important;
+    font-weight: 800 !important;
+    font-size: 13px !important;
+    box-shadow: var(--cinema-gold-glow) !important;
+}
+
+/* ==========================================================================
+   9. 전체 모달 팝업 시스템 (Total Modal Overrides)
+   ========================================================================== */
+html body .modal_good,
+html body .m_c,
+html body .modal_container,
+html body #joinModal_container,
+html body #realJoin_top_container,
+html body .resist_black,
+html body .chat_modals,
+html body .momo_container,
+html body .imin_menu_modal,
+html body .free_modal_container,
+html body .sneak_peek_movie {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(5, 5, 6, 0.88) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    z-index: 3000 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 20px !important;
+}
+
+/* 모달 카드 컨테이너들 */
+html body #mains_menus_modal,
+html body .c_m,
+html body .modal_contents,
+html body #joinModal_menu,
+html body #realJoin_modal,
+html body #resist_modal,
+html body .modal_modal,
+html body .mo_contents,
+html body .mini_modal,
+html body .M_C,
+html body .sneak_mobal {
+    margin: auto !important;
+    background: linear-gradient(180deg, var(--cinema-surface) 0%, #f2f2f2 100%) !important;
+    border: 1px solid var(--cinema-border-gold) !important;
+    border-radius: var(--cinema-radius-lg) !important;
+    box-shadow: var(--cinema-shadow-lg), var(--cinema-gold-glow) !important;
+    color: var(--cinema-ink) !important;
+    overflow: hidden !important;
+}
+
+html body #mains_menus_modal,
+html body .c_m {
+    width: min(100% - 32px, 460px) !important;
+    min-width: 0 !important;
+    height: auto !important;
+    padding: 32px 28px !important;
+}
+
+html body .close_closes,
+html body .c_c {
+    background: transparent !important;
+    border: 0 !important;
+    width: 100% !important;
+    margin-bottom: 24px !important;
+}
+
+html body .close_closes h2,
+html body .c_c h2 {
+    font-family: "Pretendard", "Plus Jakarta Sans", sans-serif!important;
+    font-size: 32px !important;
+    font-weight: 800 !important;
+    background: linear-gradient(135deg, #ffffff 0%, var(--cinema-gold-light) 50%, var(--cinema-gold) 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    margin: 0 !important;
+}
+
+html body .botton_button,
+html body .b_b {
+    width: 100% !important;
+    height: auto !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 14px !important;
+}
+
+html body .botton_button_left,
+html body .b_b_l {
+    width: 100% !important;
+}
+
+html body .botton_button_right,
+html body .b_b_r {
+    width: 100% !important;
+    height: 52px !important;
+    border-radius: var(--cinema-radius-sm) !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+}
+
+html body #yellow,
+html body #yel {
+    background: linear-gradient(135deg, #9c7a3c 0%, var(--cinema-gold) 100%) !important;
+    color: #000000 !important;
+    font-weight: 800 !important;
+}
+
+html body #skyblue,
+html body #sky {
+    background: linear-gradient(135deg, var(--cinema-surface-hover) 0%, var(--cinema-surface-2) 100%) !important;
+    color: #ffffff !important;
+}
+
+/* 관리자 등록 모달 (#resist_modal) */
+html body #resist_modal {
+    width: min(100% - 32px, 560px) !important;
+    min-width: 0 !important;
+    height: auto !important;
+    padding: 32px !important;
+}
+
+html body #resist_modal_top {
+    background: transparent !important;
+    border-radius: 0 !important;
+    border-bottom: 1px solid var(--cinema-border) !important;
+    padding-bottom: 16px !important;
+    margin-bottom: 24px !important;
+    text-align: center !important;
+}
+
+html body #JCGX_NAME {
+    font-family: "Pretendard", "Plus Jakarta Sans", sans-serif!important;
+    font-size: 32px !important;
+    font-weight: 800 !important;
+    color: var(--cinema-gold-light) !important;
+}
+
+html body #resist_modal_middle {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+}
+
+html body #resist_modal_middle_top,
+html body #resist_modal_middle_middle,
+html body #resist_modal_middle_bottom {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 14px !important;
+    width: 100% !important;
+    height: auto !important;
+}
+
+html body .resist_modal_good {
+    width: 100% !important;
+    height: auto !important;
+}
+
+html body .movies_resist {
+    width: 100% !important;
+    height: 52px !important;
+    border-radius: var(--cinema-radius-sm) !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+    background: var(--cinema-bg-elevated) !important;
+    color: var(--cinema-ink) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.25s var(--cinema-ease) !important;
+}
+
+html body .movies_resist:hover {
+    border-color: var(--cinema-gold) !important;
+    background: var(--cinema-surface-hover) !important;
+    color: var(--cinema-gold-light) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* ==========================================================================
+   10. 푸터 (Footer .licence)
+   ========================================================================== */
+html body .licence {
+    width: 100% !important;
+    background: var(--cinema-bg-deep) !important;
+    border-top: 1px solid var(--cinema-border) !important;
+    padding: 40px 24px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 16px 24px !important;
+}
+
+html body #JCGX h2 {
+    font-family: "Pretendard", "Plus Jakarta Sans", sans-serif!important;
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    color: var(--cinema-gold) !important;
+    margin: 0 16px 0 0 !important;
+}
+
+html body .Copyright {
+    color: var(--cinema-muted) !important;
+    font-size: 13px !important;
+    cursor: pointer !important;
+    transition: color 0.2s var(--cinema-ease) !important;
+}
+
+html body .Copyright:hover {
+    color: var(--cinema-gold-light) !important;
+}
+
+html body .modal_button {
+    padding: 6px 14px !important;
+    border-radius: 999px !important;
+    border: 1px solid var(--cinema-border) !important;
+    background: transparent !important;
+    color: var(--cinema-muted) !important;
+    font-size: 12px !important;
+}
+
+/* ==========================================================================
+   11. 메인 개편 · 공통 레이아웃 · 반응형
+   브레이크포인트: 1024px(태블릿) / 640px(모바일)
+   ========================================================================== */
+
+/* 스킵 링크: 평소엔 숨기고 키보드 포커스일 때만 보인다 */
+html body .cinema-skip {
+    position: absolute !important;
+    left: -9999px !important;
+    top: 0 !important;
+}
+
+html body .cinema-skip:focus {
+    left: 12px !important;
+    top: 12px !important;
+    z-index: 3000 !important;
+    padding: 8px 14px !important;
+    border-radius: 8px !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-weight: 700 !important;
+}
+
+/* 헤더: 모든 화면에서 같은 위치·같은 폭 */
+html body .jcgx-header {
+    margin: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+}
+
+html body .jcgx-header .jcgx-navigation a,
+html body .jcgx-header .jcgx-navigation button,
+html body .jcgx-header .jcgx-account a,
+html body .jcgx-header .jcgx-account button {
+    white-space: nowrap !important;
+}
+
+/* 히어로 */
+html body .article,
+html body .big_image,
+html body #big_angle {
+    min-height: clamp(420px, 60vh, 560px) !important;
+}
+
+html body #big_angle {
+    justify-content: center !important;
+}
+
+html body .big_image_div {
+    margin: 0 auto !important;
+    padding: 56px 0 !important;
+    gap: 16px !important;
+}
+
+html body .big_image_arrow {
+    flex: 0 0 auto !important;
+}
+
+/* 아이콘 글자가 100px로 커서 굵은 원처럼 보이던 것을 바로잡는다 */
+html body #google_font,
+html body #google_font_right,
+html body .big_image_arrow .material-symbols-outlined {
+    width: auto !important;
+    height: auto !important;
+    font-size: 26px !important;
+    color: #ffffff !important;
+    border: 0 !important;
+    background: none !important;
+}
+
+html body .cinema-hero-copy {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+}
+
+html body .cinema-hero-copy h2 {
+    font-family: "Pretendard", "Plus Jakarta Sans", sans-serif !important;
+    font-size: clamp(30px, 5vw, 48px) !important;
+}
+
+html body .cinema-hero-actions {
+    flex-wrap: wrap !important;
+}
+
+html body .cinema-hero-actions .cinema-book,
+html body .cinema-hero-actions .sneak_entry {
+    white-space: nowrap !important;
+}
+
+html body .cinema-hero-actions .cinema-book {
+    background: var(--cinema-primary) !important;
+}
+
+html body .cinema-hero-actions .cinema-book:hover {
+    background: var(--cinema-primary-hover) !important;
+}
+
+/* 빠른 메뉴 바 (일반 영화관 사이트의 예매·이벤트·스토어 바로가기) */
+html body .cinema-quick {
+    width: min(100% - 48px, 1320px) !important;
+    margin: -36px auto 0 !important;
+    position: relative !important;
+    z-index: 5 !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    background: var(--cinema-surface) !important;
+    border: 1px solid var(--cinema-border) !important;
+    border-radius: var(--cinema-radius) !important;
+    box-shadow: var(--cinema-shadow) !important;
+    overflow: hidden !important;
+}
+
+html body .cinema-quick a {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    padding: 20px 24px !important;
+    border-right: 1px solid var(--cinema-border) !important;
+    transition: background 0.2s var(--cinema-ease) !important;
+}
+
+html body .cinema-quick a:last-child {
+    border-right: 0 !important;
+}
+
+html body .cinema-quick a:hover {
+    background: var(--cinema-surface-hover) !important;
+}
+
+html body .cinema-quick strong {
+    font-size: 17px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+}
+
+html body .cinema-quick span {
+    font-size: 13px !important;
+    color: var(--cinema-muted) !important;
+}
+
+/* 영화 목록 */
+html body .cinema-heading .cinema-link {
+    white-space: nowrap !important;
+}
+
+html body .movie_title_ex:not(:has(.movie_picture)) {
+    display: none !important;
+}
+
+html body .movie_title_ex {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+    gap: 28px 20px !important;
+}
+
+html body .cinema-empty,
+html body #good_movies_title_bottom > p {
+    margin: 0 !important;
+    padding: 40px 24px !important;
+    text-align: center !important;
+    color: var(--cinema-muted) !important;
+    font-size: 15px !important;
+    background: var(--cinema-bg-elevated) !important;
+    border: 1px dashed var(--cinema-border-strong) !important;
+    border-radius: var(--cinema-radius) !important;
+}
+
+/* 이벤트 / 스토어 구역 공통 */
+html body .section2,
+html body .section3 {
+    width: min(100% - 48px, 1320px) !important;
+    height: auto !important;
+    margin: 0 auto 64px !important;
+    padding: 0 !important;
+    background: transparent !important;
+    overflow: visible !important;
+}
+
+html body .good_movies {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: block !important;
+}
+
+html body #good_movies_title {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 0 20px !important;
+    display: block !important;
+    text-align: left !important;
+}
+
+html body #event_title_board {
+    margin: 0 !important;
+    font-size: 28px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+}
+
+html body #good_movies_title_bottom {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+    gap: 20px !important;
+}
+
+/* 스토어 3단 카드: 폭이 56px로 눌리던 문제 */
+html body .section3 > .movie_movie {
+    border-radius: 0 !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+html body .section3 .ant {
+    width: auto !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+}
+
+html body .section3 .ant_set_title {
+    height: auto !important;
+}
+
+html body .section3 .set_title_button:empty {
+    display: none !important;
+}
+
+html body .section3 .ant_contents {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 120px !important;
+    overflow: visible !important;
+}
+
+html body .ant_contents:not(:has(.ant_three))::before {
+    content: "등록된 상품이 없습니다." !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 120px !important;
+    border: 1px dashed var(--cinema-border-strong) !important;
+    border-radius: var(--cinema-radius-sm) !important;
+    color: var(--cinema-muted) !important;
+    font-size: 14px !important;
+}
+
+/* 푸터 */
+html body .licence {
+    display: block !important;
+    margin-top: 40px !important;
+    padding: 40px 0 !important;
+}
+
+html body .licence-inner {
+    width: min(100% - 48px, 1320px) !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+    gap: 24px 40px !important;
+}
+
+html body #JCGX h2 {
+    margin: 0 !important;
+}
+
+html body #JCGX p {
+    margin: 4px 0 0 !important;
+    font-size: 11px !important;
+    letter-spacing: 0.2em !important;
+    color: var(--cinema-muted) !important;
+}
+
+html body .licence-links {
+    flex: 1 1 420px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px 22px !important;
+}
+
+html body .licence .Copyright {
+    text-decoration: none !important;
+    white-space: nowrap !important;
+}
+
+html body .licence .modal_button {
+    height: auto !important;
+    min-width: 0 !important;
+    box-shadow: none !important;
+}
+
+/* ---- 태블릿 ---- */
+@media (max-width: 1024px) {
+    html body .cinema-quick {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    html body .cinema-quick a:nth-child(2) {
+        border-right: 0 !important;
+    }
+
+    html body .cinema-quick a:nth-child(-n+2) {
+        border-bottom: 1px solid var(--cinema-border) !important;
+    }
+
+    html body .section3 > .movie_movie {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ---- 모바일 ---- */
+@media (max-width: 640px) {
+    html body .jcgx-header .jcgx-header-inner {
+        width: calc(100% - 32px) !important;
+    }
+
+    html body .jcgx-header .jcgx-header-top {
+        min-height: 56px !important;
+    }
+
+    html body .jcgx-header .jcgx-brand {
+        font-size: 26px !important;
+    }
+
+    html body .jcgx-header .jcgx-brand span {
+        display: none !important;
+    }
+
+    html body .jcgx-header .jcgx-account {
+        gap: 6px !important;
+    }
+
+    html body .jcgx-header .jcgx-account a,
+    html body .jcgx-header .jcgx-account button {
+        min-height: 32px !important;
+        padding: 4px 10px !important;
+        font-size: 12px !important;
+    }
+
+    html body .jcgx-header .jcgx-header-bottom {
+        gap: 8px !important;
+        min-height: 48px !important;
+    }
+
+    html body .jcgx-header .jcgx-navigation {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        gap: 4px !important;
+        overflow-x: auto !important;
+        scrollbar-width: none !important;
+    }
+
+    html body .jcgx-header .jcgx-navigation::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    html body .jcgx-header .jcgx-navigation a,
+    html body .jcgx-header .jcgx-navigation button {
+        min-height: 36px !important;
+        padding: 6px 12px !important;
+        font-size: 14px !important;
+    }
+
+    html body .jcgx-header .jcgx-tools {
+        gap: 6px !important;
+    }
+
+    html body .jcgx-header .jcgx-tools a,
+    html body .jcgx-header .jcgx-tools button {
+        min-width: 36px !important;
+        min-height: 36px !important;
+        padding: 6px !important;
+    }
+
+    html body .big_image_div {
+        width: calc(100% - 32px) !important;
+        padding: 36px 0 !important;
+    }
+
+    html body .big_image_arrow {
+        display: none !important;
+    }
+
+    html body .cinema-hero-copy p {
+        font-size: 15px !important;
+    }
+
+    html body .movie_list,
+    html body .section2,
+    html body .section3,
+    html body .cinema-quick,
+    html body .licence-inner {
+        width: calc(100% - 32px) !important;
+    }
+
+    html body .cinema-quick {
+        margin-top: -24px !important;
+    }
+
+    html body .cinema-quick a {
+        padding: 14px 16px !important;
+    }
+
+    html body .cinema-quick strong {
+        font-size: 15px !important;
+    }
+
+    html body .cinema-quick span {
+        display: none !important;
+    }
+
+    html body .cinema-heading h1 {
+        font-size: 24px !important;
+    }
+
+    html body .movie_title_ex {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 20px 12px !important;
+    }
+
+    html body #good_movies_title_bottom {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* 히어로 버튼: 줄 전체로 늘어나지 않도록 */
+html body .cinema-hero-actions .cinema-book,
+html body .cinema-hero-actions .sneak_entry {
+    width: auto !important;
+    flex: 0 0 auto !important;
+}
+
+/* 영화 목록 영역의 불필요한 가로 스크롤바 제거, 이벤트 빈 안내는 전체 폭 */
+html body .movie_list {
+    overflow: visible !important;
+}
+
+html body #good_movies_title_bottom > p {
+    grid-column: 1 / -1 !important;
+}
+
+/* ==========================================================================
+   12. CGV·롯데시네마 레이아웃 참고 구성
+   - 데스크톱: 로고 · 메뉴 · 아이콘 · 회원 메뉴를 한 줄에 둔 헤더
+   - 모바일: 하단 탭바(가운데 강조된 예매 버튼)
+   ========================================================================== */
+
+/* 데스크톱(1025px~): 헤더 한 줄. top/bottom 래퍼를 풀어 네 요소를 한 그리드에 놓는다 */
+@media (min-width: 1025px) {
+    html body .jcgx-header .jcgx-header-inner {
+        display: grid !important;
+        grid-template-columns: auto minmax(0, 1fr) auto auto !important;
+        align-items: center !important;
+        column-gap: 28px !important;
+        min-height: 72px !important;
+    }
+
+    html body .jcgx-header .jcgx-header-top,
+    html body .jcgx-header .jcgx-header-bottom {
+        display: contents !important;
+    }
+
+    html body .jcgx-header .jcgx-brand {
+        grid-column: 1 !important;
+        font-size: 30px !important;
+    }
+
+    html body .jcgx-header .jcgx-navigation {
+        grid-column: 2 !important;
+    }
+
+    html body .jcgx-header .jcgx-tools {
+        grid-column: 3 !important;
+    }
+
+    html body .jcgx-header .jcgx-account {
+        grid-column: 4 !important;
+    }
+}
+
+/* 하단 탭바: 기본은 숨김, 모바일에서만 노출 */
+html body .cinema-tabbar {
+    display: none !important;
+}
+
+@media (max-width: 640px) {
+    html body {
+        padding-bottom: 76px !important;
+    }
+
+    html body .cinema-tabbar {
+        position: fixed !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        z-index: 1000 !important;
+        display: grid !important;
+        grid-template-columns: repeat(5, 1fr) !important;
+        align-items: end !important;
+        height: 64px !important;
+        padding: 0 4px env(safe-area-inset-bottom) !important;
+        background: rgba(12, 12, 14, 0.94) !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        border-top: 1px solid var(--cinema-border) !important;
+    }
+
+    html body .cinema-tabbar a {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 4px !important;
+        height: 64px !important;
+        color: var(--cinema-muted) !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+    }
+
+    html body .cinema-tabbar a:hover,
+    html body .cinema-tabbar a:active {
+        color: var(--cinema-ink) !important;
+    }
+
+    html body .cinema-tabbar svg {
+        width: 22px !important;
+        height: 22px !important;
+        fill: none !important;
+        stroke: currentColor !important;
+        stroke-width: 1.8 !important;
+        stroke-linecap: round !important;
+        stroke-linejoin: round !important;
+    }
+
+    /* 가운데 예매 버튼: 탭바 위로 살짝 올라온 원형 */
+    html body .cinema-tabbar a.cinema-tabbar-book {
+        width: 56px !important;
+        height: 56px !important;
+        margin: 0 auto 14px !important;
+        border-radius: 50% !important;
+        background: var(--cinema-primary) !important;
+        color: #ffffff !important;
+        font-size: 13px !important;
+        font-weight: 800 !important;
+        box-shadow: var(--cinema-glow) !important;
+    }
+
+    /* 메뉴는 탭바가 대신하므로 상단 메뉴 행은 도구 아이콘만 남긴다 */
+    html body .jcgx-header .jcgx-navigation {
+        display: none !important;
+    }
+
+    html body .jcgx-header .jcgx-header-bottom {
+        justify-content: flex-end !important;
+        min-height: 44px !important;
+    }
+}
+
+/* 영화 포스터 카드: 롯데시네마처럼 둥근 포스터 + 아래 제목 */
+html body .movie_picture {
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: var(--cinema-radius) !important;
+}
+
+html body .movie_picture:hover {
+    box-shadow: none !important;
+    transform: translateY(-4px) !important;
+}
+
+html body .movie_image {
+    border-radius: var(--cinema-radius) !important;
+    border: 1px solid var(--cinema-border) !important;
+}
+
+html body .movie_gle {
+    padding: 12px 2px 0 !important;
+    background: transparent !important;
+    font-size: 15px !important;
+}
+
+/* 제목 가운데 정렬(flex center)로 들여쓰기되던 것과 더보기 버튼 줄바꿈 수정 */
+html body #event_title_board {
+    display: block !important;
+    width: auto !important;
+    text-align: left !important;
+}
+
+html body .section3 .set_title_h2 {
+    display: block !important;
+    width: auto !important;
+    flex: 1 1 auto !important;
+    text-align: left !important;
+}
+
+html body .section3 .button_store {
+    width: auto !important;
+    white-space: nowrap !important;
+    flex: 0 0 auto !important;
+}
+
+/* 상영작 탭 글자가 세로로 쪼개지지 않도록 */
+html body .watch_movie {
+    white-space: nowrap !important;
+}
+
+@media (max-width: 640px) {
+    /* 홈은 하단 탭바에 있으므로 상단 도구에서는 뺀다 */
+    html body .jcgx-header .jcgx-tools a[aria-label="홈"] {
+        display: none !important;
+    }
+
+    html body .watch_movie {
+        padding: 0 14px !important;
+    }
+}
+
+/* ==========================================================================
+   13. 일반 영화관 사이트 톤 (CGV·롯데시네마 방식)
+   흰 배경 · 빨간 포인트 하나 · 장식(금색·유리·글로우·장식 서체) 제거
+   ========================================================================== */
+
+html {
+    background-color: var(--cinema-bg) !important;
+}
+
+html body,
+html body#body,
+html body.cinema-home,
+html body.body {
+    background: var(--cinema-bg) !important;
+    background-attachment: scroll !important;
+    color: var(--cinema-ink) !important;
+}
+
+::-webkit-scrollbar-track {
+    background: #eeeeee;
+}
+
+/* ---- 헤더: 흰 배경, 얇은 하단선 ---- */
+html body .jcgx-header {
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-bottom: 1px solid var(--cinema-border) !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06) !important;
+}
+
+html body .jcgx-header .jcgx-header-top {
+    border-bottom: 0 !important;
+}
+
+html body .jcgx-header .jcgx-brand {
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    -webkit-text-fill-color: var(--cinema-primary) !important;
+    color: var(--cinema-primary) !important;
+    font-weight: 900 !important;
+    letter-spacing: -0.02em !important;
+}
+
+html body .jcgx-header .jcgx-brand span {
+    -webkit-text-fill-color: var(--cinema-muted) !important;
+    color: var(--cinema-muted) !important;
+    letter-spacing: 0.12em !important;
+}
+
+html body .jcgx-header .jcgx-navigation a,
+html body .jcgx-header .jcgx-navigation button {
+    border-radius: 4px !important;
+    color: var(--cinema-ink) !important;
+    background: transparent !important;
+    border: 0 !important;
+}
+
+html body .jcgx-header .jcgx-navigation a:hover,
+html body .jcgx-header .jcgx-navigation button:hover {
+    background: transparent !important;
+    color: var(--cinema-primary) !important;
+}
+
+html body .jcgx-header .jcgx-navigation .jcgx-community {
+    background: transparent !important;
+    border: 0 !important;
+    color: var(--cinema-ink) !important;
+}
+
+html body .jcgx-header .jcgx-account a,
+html body .jcgx-header .jcgx-account button,
+html body .jcgx-header .jcgx-tools a,
+html body .jcgx-header .jcgx-tools button {
+    background: #ffffff !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+    border-radius: 4px !important;
+    color: var(--cinema-ink-soft) !important;
+    transform: none !important;
+}
+
+html body .jcgx-header .jcgx-account a:hover,
+html body .jcgx-header .jcgx-account button:hover,
+html body .jcgx-header .jcgx-tools a:hover,
+html body .jcgx-header .jcgx-tools button:hover {
+    background: #f7f7f7 !important;
+    border-color: var(--cinema-primary) !important;
+    color: var(--cinema-primary) !important;
+}
+
+html body .jcgx-header .jcgx-tools svg {
+    stroke: currentColor !important;
+}
+
+/* ---- 히어로: 어두운 사진 위 글자는 흰색 유지 ---- */
+html body #big_angle {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.65) 100%) !important;
+}
+
+html body .cinema-hero-copy .cinema-eyebrow {
+    background: rgba(255, 255, 255, 0.16) !important;
+    border: 0 !important;
+    border-radius: 4px !important;
+    color: #ffffff !important;
+}
+
+html body .cinema-hero-copy h2 {
+    color: #ffffff !important;
+}
+
+html body .cinema-hero-copy p {
+    color: rgba(255, 255, 255, 0.88) !important;
+}
+
+html body .cinema-hero-actions .cinema-book {
+    border-radius: 4px !important;
+    background: var(--cinema-primary) !important;
+    box-shadow: none !important;
+}
+
+html body .cinema-hero-actions .cinema-book:hover {
+    background: var(--cinema-primary-hover) !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+html body .cinema-hero-actions .sneak_entry {
+    border-radius: 4px !important;
+    background: rgba(255, 255, 255, 0.16) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    color: #ffffff !important;
+    backdrop-filter: none !important;
+}
+
+html body .cinema-hero-actions .sneak_entry:hover {
+    background: rgba(255, 255, 255, 0.28) !important;
+    color: #ffffff !important;
+}
+
+html body .big_image_arrow_button,
+html body .big_image_arrow_button_left {
+    background: rgba(0, 0, 0, 0.45) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    backdrop-filter: none !important;
+    color: #ffffff !important;
+}
+
+html body .big_image_arrow_button:hover,
+html body .big_image_arrow_button_left:hover {
+    background: rgba(0, 0, 0, 0.7) !important;
+    border-color: #ffffff !important;
+    color: #ffffff !important;
+    transform: none !important;
+}
+
+/* ---- 빠른 메뉴 바 ---- */
+html body .cinema-quick strong {
+    color: var(--cinema-ink) !important;
+}
+
+html body .cinema-quick {
+    border-radius: 8px !important;
+}
+
+/* ---- 영화 목록 ---- */
+html body .cinema-heading h1 {
+    color: var(--cinema-ink) !important;
+}
+
+html body .cinema-heading .cinema-eyebrow,
+html body .cinema-heading .cinema-link {
+    color: var(--cinema-primary) !important;
+}
+
+html body .sort {
+    border-radius: 4px !important;
+    background: #ffffff !important;
+}
+
+html body .watch_movie {
+    border-radius: 4px !important;
+}
+
+html body .watch_movie#moving,
+html body .watch_movie.active {
+    background: var(--cinema-primary) !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+}
+
+html body .movie_gle {
+    color: var(--cinema-ink) !important;
+}
+
+html body .movie_image,
+html body .movie_picture {
+    border-radius: 6px !important;
+}
+
+html body .movie_picture:hover {
+    box-shadow: none !important;
+}
+
+/* ---- 이벤트 / 스토어 ---- */
+html body #event_title_board,
+html body .ant_set_title .set_title_h2 h2 {
+    color: var(--cinema-ink) !important;
+}
+
+html body .button_store {
+    border-radius: 4px !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+    background: #ffffff !important;
+    color: var(--cinema-ink-soft) !important;
+}
+
+html body .button_store:hover {
+    border-color: var(--cinema-primary) !important;
+    color: var(--cinema-primary) !important;
+}
+
+html body .ant {
+    border-radius: 8px !important;
+}
+
+html body .ant_three {
+    background: #ffffff !important;
+}
+
+html body .ant_big_title {
+    color: var(--cinema-ink) !important;
+}
+
+/* ---- 푸터: 연한 회색 바탕 ---- */
+html body .licence {
+    background: #f0f0f0 !important;
+    border-top: 1px solid var(--cinema-border) !important;
+}
+
+html body #JCGX h2 {
+    color: var(--cinema-primary) !important;
+    font-weight: 900 !important;
+}
+
+html body .licence .Copyright {
+    color: var(--cinema-ink-soft) !important;
+}
+
+html body .licence .Copyright:hover {
+    color: var(--cinema-primary) !important;
+}
+
+html body .licence .modal_button {
+    border-radius: 4px !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+    color: var(--cinema-ink-soft) !important;
+}
+
+/* ---- 하단 탭바(모바일) ---- */
+html body .cinema-tabbar {
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+html body .cinema-tabbar a:hover,
+html body .cinema-tabbar a:active {
+    color: var(--cinema-primary) !important;
+}
+
+/* ---- 버튼: 그라데이션·글로우 제거, 단색 빨강 ---- */
+html body #login_button,
+html body .botton_button#button_colors,
+html body #modal_button_div #modal_button,
+html body #seat_resist,
+html body #talk_button_free_two,
+html body #comment_submit,
+html body #Question_comment_tw,
+html body .corrections,
+html body .jcgx-header .jcgx-booking {
+    background: var(--cinema-primary) !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    color: #ffffff !important;
+}
+
+html body #login_button:hover,
+html body .botton_button#button_colors:hover,
+html body #modal_button_div #modal_button:hover,
+html body #seat_resist:hover,
+html body .jcgx-header .jcgx-booking:hover {
+    background: var(--cinema-primary-hover) !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ---- 입력창: 흰 바탕, 어두운 글자 ---- */
+html body .input_black,
+html body #login_join .input,
+html body #textarea,
+html body #textareas,
+html body .account_text {
+    background: #ffffff !important;
+    color: var(--cinema-ink) !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+    border-radius: 4px !important;
+}
+
+html body .input_black:focus,
+html body #login_join .input:focus,
+html body #textarea:focus,
+html body #textareas:focus {
+    border-color: var(--cinema-primary) !important;
+    outline: 0 !important;
+}
+
+/* ---- 예매 화면 목록 선택 상태 ---- */
+html body .movie_name:hover {
+    color: var(--cinema-ink) !important;
+}
+
+html body .movie_name.sub_menu_select,
+html body .movie_name.sub_menu_select2,
+html body .movie_name.sub_menu_select3,
+html body .movie_name.on {
+    background: rgba(231, 26, 15, 0.08) !important;
+    border-color: var(--cinema-primary) !important;
+    color: var(--cinema-primary) !important;
+    box-shadow: none !important;
+}
+
+/* ---- 좌석 화면 ---- */
+html body .movie_chair::after {
+    background: #e5e5e5 !important;
+    border-top: 3px solid #bdbdbd !important;
+    color: var(--cinema-muted) !important;
+    box-shadow: none !important;
+}
+
+html body .chair img {
+    filter: grayscale(1) brightness(0.55) !important;
+}
+
+html body .chair.selected img {
+    filter: grayscale(1) brightness(3) !important;
+}
+
+html body .chair.selected {
+    background: var(--cinema-primary) !important;
+    border-color: var(--cinema-primary) !important;
+    box-shadow: none !important;
+}
+
+html body .chair.is-taken {
+    background:
+        repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.08) 0 6px, transparent 6px 12px),
+        #e6e6e6 !important;
+    opacity: 0.6 !important;
+}
+
+html body .seat_row_label {
+    color: var(--cinema-ink-soft) !important;
+}
+
+/* ---- 제목 계열 글자(어두운 배경용 흰색을 본문색으로) ---- */
+html body #pakage_store,
+html body #combo_store,
+html body .pakage_title_big,
+html body .card_title,
+html body .gift_title_big,
+html body .h2_title2,
+html body #title h2,
+html body #title_two h2,
+html body .Mypage_titles {
+    color: var(--cinema-ink) !important;
+}
+
+/* ---- 모달 배경막은 어둡게 유지하되 유리 효과 제거 ---- */
+html body #reservation_two {
+    background: rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+html body #reservation_modal_content_two {
+    background: #ffffff !important;
+}
+
+/* 헤더 한 줄 고정(자동 배치로 둘째 줄에 내려가던 것 방지) + 아이콘 색·크기 */
+@media (min-width: 1025px) {
+    html body .jcgx-header .jcgx-brand,
+    html body .jcgx-header .jcgx-navigation,
+    html body .jcgx-header .jcgx-tools,
+    html body .jcgx-header .jcgx-account {
+        grid-row: 1 !important;
+    }
+}
+
+html body .jcgx-header .jcgx-tools a,
+html body .jcgx-header .jcgx-tools button {
+    color: var(--cinema-ink-soft) !important;
+}
+
+html body .jcgx-header .jcgx-tools svg,
+html body .jcgx-header .jcgx-tools svg#menus,
+html body .jcgx-header .jcgx-tools svg#menulogin,
+html body .jcgx-header .jcgx-tools svg#menutwo {
+    width: 20px !important;
+    height: 20px !important;
+    color: var(--cinema-ink-soft) !important;
+    stroke: currentColor !important;
+    fill: none !important;
+}
+
+html body .jcgx-header .jcgx-tools a:hover svg,
+html body .jcgx-header .jcgx-tools button:hover svg {
+    color: var(--cinema-primary) !important;
+}
+
+/* 로그인·가입 카드: 흰 카드, 장식 그라데이션 글자 제거 */
+html body .login_div,
+html body #login_join {
+    background: #ffffff !important;
+    border: 1px solid var(--cinema-border) !important;
+    border-radius: 8px !important;
+    box-shadow: var(--cinema-shadow) !important;
+}
+
+html body .login_title .h2_title,
+html body #login_join .h2_title {
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    -webkit-text-fill-color: var(--cinema-ink) !important;
+    color: var(--cinema-ink) !important;
+    letter-spacing: 0 !important;
+}
+
+html body #login_join .id_div .title_id {
+    color: var(--cinema-ink-soft) !important;
+}
+
+html body .login_buttonss,
+html body .small_button button {
+    background: transparent !important;
+}
+
+/* 스토어: 카드 사이가 검게 보이던 컨테이너 배경 제거 */
+html body #popcorn_div {
+    background: transparent !important;
+    gap: 20px !important;
+}
+
+/* ==========================================================================
+   14. 이벤트 목록 (CGV 이벤트 목록 방식: 이미지 + 제목 + 등록일/조회수)
+   ========================================================================== */
+html body .event_board {
+    width: min(100% - 48px, 1320px) !important;
+    height: auto !important;
+    margin: 32px auto 80px !important;
+    padding: 28px 24px !important;
+    background: #ffffff !important;
+    border: 1px solid var(--cinema-border) !important;
+    border-radius: 8px !important;
+}
+
+html body #event_title {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 0 24px !important;
+    padding-bottom: 14px !important;
+    border-bottom: 2px solid var(--cinema-ink) !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+}
+
+html body #event_title .h2 {
+    margin: 0 !important;
+    font-size: 26px !important;
+    font-weight: 800 !important;
+    color: var(--cinema-ink) !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+html body #event_contents {
+    width: 100% !important;
+    height: auto !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+    gap: 24px 20px !important;
+}
+
+html body #event_contents .contents_good {
+    display: contents !important;
+}
+
+html body .good_click {
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    cursor: pointer !important;
+    background: #ffffff !important;
+    border: 1px solid var(--cinema-border) !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+    transition: border-color 0.2s var(--cinema-ease) !important;
+}
+
+html body .good_click:hover {
+    border-color: var(--cinema-primary) !important;
+}
+
+html body .good_click .click_div {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 10 !important;
+    overflow: hidden !important;
+    background: #eeeeee !important;
+}
+
+html body .good_click .super_bad {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+
+html body .good_click .click_bottom {
+    width: 100% !important;
+    height: auto !important;
+    padding: 12px 14px 14px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+}
+
+html body .good_click .bottom_top {
+    width: auto !important;
+    height: auto !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: var(--cinema-ink) !important;
+    text-align: left !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+}
+
+html body .good_click .bottom_bottom {
+    width: auto !important;
+    height: auto !important;
+    display: flex !important;
+    gap: 14px !important;
+    font-size: 12px !important;
+    color: var(--cinema-muted) !important;
+}
+
+html body .good_click .bottom_left,
+html body .good_click .bottom_right {
+    width: auto !important;
+    height: auto !important;
+    display: flex !important;
+    gap: 6px !important;
+}
+
+html body .good_click .right_text,
+html body .good_click .right_word {
+    width: auto !important;
+    height: auto !important;
+    font-size: 12px !important;
+    color: var(--cinema-muted) !important;
+}
+
+@media (max-width: 640px) {
+    html body .event_board {
+        width: calc(100% - 32px) !important;
+        padding: 20px 14px !important;
+    }
+
+    html body #event_contents {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 16px 12px !important;
+    }
+}
+
+html body #event_title .h2,
+html body .good_click .right_text,
+html body .good_click .right_word,
+html body .good_click .bottom_left,
+html body .good_click .bottom_right,
+html body .good_click .bottom_bottom,
+html body .good_click .bottom_top {
+    border: 0 !important;
+    background: transparent !important;
+}
+
+/* 메인 슬라이드: 가공된 배너(1920x720)를 한 장씩, 반복·늘림 없이 표시 */
+html body .big_image {
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-color: #0b0b0e !important;
+}
+
+/* 글자가 올라가는 왼쪽만 어둡게, 오른쪽 이미지는 원래 밝기 유지 */
+html body #big_angle {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.42) 42%, rgba(0, 0, 0, 0.05) 75%, rgba(0, 0, 0, 0) 100%) !important;
+}
+
+/* 히어로 높이를 화면 폭에 비례하게 해서, 1920x720 배너가 넓은 화면에서도 위아래로 잘리지 않도록 */
+html body .article,
+html body .big_image,
+html body #big_angle {
+    min-height: clamp(420px, 34vw, 640px) !important;
+}
+
+/* ==========================================================================
+   15. 게시판 선택 팝업 (JCGX · 자유게시판 · 공지사항)
+   - 예전 고정 높이(40%) + 안쪽 테두리 때문에 버튼이 박스 밖으로 겹치던 문제를 자연 높이로 해결
+   - 배경막은 흰 카드가 떠 보이도록 반투명 검정, 유리 효과 없음
+   ========================================================================== */
+html body .modal_good {
+    background: rgba(0, 0, 0, 0.55) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+html body #mains_menus_modal {
+    background: #ffffff !important;
+    border: 0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25) !important;
+    width: min(100% - 32px, 440px) !important;
+    min-width: 0 !important;
+    height: auto !important;
+    padding: 0 !important;
+}
+
+html body .mains_contenttwo {
+    border: 0 !important;
+    border-radius: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+}
+
+/* 상단: 로고 + 제목 줄 (누르면 닫힘) */
+html body .close_closes {
+    display: block !important;
+    height: auto !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 22px 24px 14px !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--cinema-border) !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    cursor: pointer;
+}
+
+html body .close_closes h2,
+html body #h2_ti {
+    background: none !important;
+    -webkit-text-fill-color: var(--cinema-primary) !important;
+    color: var(--cinema-primary) !important;
+    font-family: inherit !important;
+    font-size: 28px !important;
+    font-weight: 900 !important;
+    letter-spacing: -0.02em !important;
+    margin: 0 !important;
+}
+
+html body .close_closes::after {
+    content: "게시판 선택";
+    display: block;
+    margin-top: 4px;
+    color: var(--cinema-muted);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* 하단: 두 버튼 */
+html body .mains_contenttwo .botton_button {
+    height: auto !important;
+    padding: 20px 24px 24px !important;
+    gap: 12px !important;
+    box-sizing: border-box !important;
+}
+
+html body .mains_contenttwo .botton_button_left {
+    height: auto !important;
+    display: block !important;
+}
+
+html body .mains_contenttwo .botton_button_right {
+    height: 56px !important;
+    border-radius: 4px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+html body .mains_contenttwo #yellow {
+    background: var(--cinema-primary) !important;
+    border: 1px solid var(--cinema-primary) !important;
+    color: #ffffff !important;
+}
+
+html body .mains_contenttwo #yellow:hover {
+    background: var(--cinema-primary-hover) !important;
+}
+
+html body .mains_contenttwo #skyblue {
+    background: #ffffff !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+    color: var(--cinema-ink) !important;
+}
+
+html body .mains_contenttwo #skyblue:hover {
+    border-color: var(--cinema-primary) !important;
+    color: var(--cinema-primary) !important;
+}
+
+/* 같은 이름의 커뮤니티 메뉴 모달(#modalContainer)도 같은 톤으로 */
+html body #modalContent {
+    background: #ffffff !important;
+    border-radius: 8px !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25) !important;
+}
+
+html body #h2_modals {
+    font-size: 28px !important;
+    color: var(--cinema-ink) !important;
+}
+
+html body .body_freeboard,
+html body .body_gboard {
+    border-radius: 6px !important;
+    background: #ffffff !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+}
+
+html body .body_freeboard:hover,
+html body .body_gboard:hover {
+    border-color: var(--cinema-primary) !important;
+}
+
+html body .h2_modals {
+    font-size: 24px !important;
+    color: var(--cinema-ink) !important;
+}
+
+html body #modalCloseButton {
+    background: var(--cinema-primary) !important;
+    border-radius: 50% !important;
+}
+
+html body .material {
+    background: transparent !important;
+    border: 0 !important;
+}
+
+/* 헤더 아이콘 버튼: 좌우 패딩 14px가 38px 버튼 안에서 아이콘(8px)을 찌그러뜨리던 문제 */
+html body .jcgx-header .jcgx-tools a,
+html body .jcgx-header .jcgx-tools button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 38px !important;
+    height: 38px !important;
+    padding: 0 !important;
+}
+
+html body .jcgx-header .jcgx-tools svg {
+    flex: 0 0 20px !important;
+    stroke-width: 1.8 !important;
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
+}
+
+html body .jcgx-header #menu1 {
+    display: flex !important;
+    background: transparent !important;
+    border: 0 !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+/* 예전 아이콘 id(#menus 등)에 걸린 position/left/top 오프셋 제거 → 모든 페이지에서 같은 위치 */
+html body .jcgx-header .jcgx-tools #menu,
+html body .jcgx-header .jcgx-tools #menu1,
+html body .jcgx-header .jcgx-tools #menus,
+html body .jcgx-header .jcgx-tools #menutwo,
+html body .jcgx-header .jcgx-tools #menulogin {
+    position: static !important;
+    inset: auto !important;
+    margin: 0 !important;
+    transform: none !important;
+    font-size: inherit !important;
+}
+
+/* ==========================================================================
+   16. 게시판 목록 (자유게시판 · 공지사항 · 문의) - 라이트 톤 정리
+   - 어두운 테마용 흰 글자(hover 때 글씨가 사라지던 문제), 금색 머리글, 검은 모서리 제거
+   ========================================================================== */
+html body .big_word {
+    border-radius: 8px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+    color: var(--cinema-ink) !important;
+}
+
+html body .big_word .gallery_title {
+    margin: 8px 0 20px !important;
+}
+
+html body .h2_title2 {
+    color: var(--cinema-ink) !important;
+    font-size: 24px !important;
+}
+
+/* 글쓰기·검색 아이콘 버튼: 작은 원형, hover 시 빨강 */
+html body #writer_word,
+html body #w_s {
+    width: 40px !important;
+    height: 40px !important;
+    background: #ffffff !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+    transform: none !important;
+}
+
+html body #writer_word:hover,
+html body #w_s:hover {
+    border-color: var(--cinema-primary) !important;
+    background: #ffffff !important;
+    transform: none !important;
+}
+
+html body #writer_word img,
+html body #w_s img,
+html body .big_word .input img {
+    width: 20px !important;
+    height: 20px !important;
+    object-fit: contain !important;
+}
+
+/* 표 머리글: 연회색 바, 진한 글자 */
+html body .gallery_blank_mini {
+    background: #f5f5f5 !important;
+    border-top: 1px solid var(--cinema-border-strong) !important;
+    border-bottom: 1px solid var(--cinema-border-strong) !important;
+    border-radius: 0 !important;
+    color: var(--cinema-ink-soft) !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
+}
+
+html body .gallery_blank_mini .mini_title_good {
+    color: var(--cinema-ink-soft) !important;
+    font-size: 13px !important;
+}
+
+/* 표 행 */
+html body .gallery_blank_mini2 {
+    color: var(--cinema-ink) !important;
+    font-size: 14px !important;
+    border-bottom: 1px solid #ececec !important;
+}
+
+html body .gallery_blank_mini2 .mini_title_good {
+    color: inherit !important;
+    font-size: 14px !important;
+}
+
+html body .gallery_blank_mini2:hover {
+    background: #fafafa !important;
+    color: var(--cinema-primary) !important;
+    padding-left: 0 !important;
+}
+
+/* 제목 칸은 왼쪽 정렬, 말줄임 */
+html body .gallery_blank_mini2 #writer_title2 {
+    justify-content: flex-start !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+}
+
+/* 모바일: 작성일·좋아요 칸을 줄여 제목이 보이게 */
+@media (max-width: 640px) {
+    html body .big_word {
+        width: calc(100% - 24px) !important;
+        padding: 20px 14px !important;
+        margin: 16px auto 40px !important;
+    }
+
+    html body .gallery_blank_mini #l_c,
+    html body .gallery_blank_mini #w_t,
+    html body .gallery_blank_mini2 #l_c2,
+    html body .gallery_blank_mini2 #w_t2 {
+        display: none !important;
+    }
+
+    html body #writer_title,
+    html body #writer_title2 {
+        flex: 1 1 auto !important;
+        width: auto !important;
+    }
+}
+
+/* 이벤트 제목: 예전 사방 테두리 제거, 아래 선만 유지 */
+html body #event_title {
+    border-top: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+}
+
+/* 게시판 목록 본문: 예전 검은 바탕 제거(데이터가 있을 때 글자가 안 보이던 문제) */
+html body .good_form,
+html body .gallery_content {
+    background: transparent !important;
+    color: var(--cinema-ink) !important;
+    height: auto !important;
+}
+
+html body .gallery_blank_mini2 .mini_title_good {
+    background: transparent !important;
+    height: auto !important;
+}
+
+/* 글번호·작성자·조회수 칸은 가운데, 제목만 왼쪽 */
+html body .gallery_blank_mini2 #writer_title2 {
+    padding: 0 8px !important;
+}
+
+/* 모바일 게시판: 숫자·이름 칸은 줄바꿈 없이 고정 폭, 제목이 남는 폭 사용 */
+@media (max-width: 640px) {
+    html body #writer_number,
+    html body #writer_number2 {
+        flex: 0 0 44px !important;
+        width: 44px !important;
+    }
+
+    html body #writer,
+    html body #writer2 {
+        flex: 0 0 64px !important;
+        width: 64px !important;
+    }
+
+    html body #w_c,
+    html body #w_c2 {
+        flex: 0 0 52px !important;
+        width: 52px !important;
+    }
+
+    html body .gallery_blank_mini .mini_title_good,
+    html body .gallery_blank_mini2 .mini_title_good {
+        white-space: nowrap !important;
+        font-size: 12px !important;
+    }
+
+    html body .gallery_blank_mini2 #writer_title2,
+    html body .gallery_blank_mini #writer_title {
+        min-width: 0 !important;
+    }
+}
+
+/* 회원가입: 장식 그라데이션 제목 제거, 모바일은 라벨을 위로 올려 입력칸 전체 폭 사용 */
+html body .title_id {
+    background: none !important;
+    -webkit-text-fill-color: var(--cinema-ink) !important;
+    color: var(--cinema-ink) !important;
+    font-weight: 800 !important;
+}
+
+@media (max-width: 640px) {
+    html body #login_join {
+        box-sizing: border-box !important;
+        width: calc(100% - 24px) !important;
+        padding: 24px 16px !important;
+    }
+
+    html body #login_join .id {
+        grid-template-columns: 1fr !important;
+        gap: 6px !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    html body #login_join .id_div,
+    html body #login_join .id_input {
+        width: 100% !important;
+        justify-content: flex-start !important;
+        text-align: left !important;
+    }
+
+    html body #login_join .id_input input,
+    html body #login_join .id_input select,
+    html body #login_join .id_input .input_black {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+}
+
+/* 영화 목록 탭 줄: 예전 width:200%가 모바일에서 페이지를 가로로 넓히던 문제 */
+html body .movie_title {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+}
+
+/* ==========================================================================
+   17. 채팅 모달 (카카오톡 구성)
+   제목줄 / 목록 / 하단 탭 3단. 노란색은 활성 탭 표시에만 쓴다.
+   ========================================================================== */
+html body .chat_modals {
+    background: rgba(0, 0, 0, 0.55) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 16px !important;
+}
+
+html body .chat_modals .modal_modal {
+    position: relative !important;
+    width: 400px !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: min(720px, 100%) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    border: 0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3) !important;
+    overflow: hidden !important;
+    display: block !important;
+}
+
+html body .chat_modals .chat_body {
+    width: 100% !important;
+    height: 100% !important;
+    border: 0 !important;
+    background: #ffffff !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* 상단 제목줄 */
+html body .chat_head {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    padding: 0 8px 0 20px;
+    background: #ffffff;
+}
+
+html body .chat_title {
+    margin: 0 !important;
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    color: var(--cinema-ink) !important;
+    background: none !important;
+    -webkit-text-fill-color: var(--cinema-ink) !important;
+}
+
+html body .chat_modal_button {
+    position: static !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 40px !important;
+    height: 40px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+    background: transparent !important;
+    color: var(--cinema-ink-soft) !important;
+    cursor: pointer;
+}
+
+html body .chat_modal_button:hover {
+    background: #f1f1f1 !important;
+}
+
+html body .chat_modal_button svg,
+html body .chat_tab svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* 가운데 목록 영역: 스크롤은 여기서만 */
+html body .chat_modals .chat_center {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    border: 0 !important;
+    overflow-y: auto !important;
+    background: #ffffff !important;
+}
+
+html body .chat_panel {
+    display: none;
+}
+
+html body .chat_panel.is-active {
+    display: block;
+}
+
+html body .chat_list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+html body .chat_section {
+    margin: 0;
+    padding: 14px 20px 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--cinema-muted);
+    border-top: 1px solid #f0f0f0;
+}
+
+html body .chat_row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+html body .chat_row:hover {
+    background: #f7f7f7;
+}
+
+html body .chat_row.is-me {
+    padding: 14px 20px;
+}
+
+html body .chat_row.is-me .chat_avatar {
+    width: 54px;
+    height: 54px;
+    font-size: 20px;
+}
+
+html body .chat_avatar {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 16px;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+html body .chat_avatar.is-round {
+    border-radius: 18px;
+}
+
+html body .chat_row_body {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+html body .chat_row_name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--cinema-ink);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+html body .chat_row_last {
+    font-size: 13px;
+    color: var(--cinema-muted);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+html body .chat_row_meta {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+html body .chat_row_time {
+    font-size: 11px;
+    color: #9a9a9a;
+}
+
+html body .chat_badge {
+    min-width: 20px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    background: #f5543f;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.3;
+}
+
+html body .chat_empty {
+    margin: 0;
+    padding: 80px 20px;
+    text-align: center;
+    color: var(--cinema-muted);
+    font-size: 14px;
+}
+
+/* 방 만들기·더보기 */
+html body .chat_create {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 24px 20px;
+}
+
+html body .chat_create label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--cinema-ink-soft);
+}
+
+html body .chat_create input {
+    height: 46px;
+    padding: 0 14px;
+    border: 1px solid var(--cinema-border-strong);
+    border-radius: 6px;
+    background: #ffffff;
+    color: var(--cinema-ink);
+    font-size: 15px;
+}
+
+html body .chat_create input:focus {
+    outline: 0;
+    border-color: #3c1e1e;
+}
+
+html body .chat_create_submit {
+    height: 46px;
+    border: 0;
+    border-radius: 6px;
+    background: #fee500;
+    color: #191919;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+html body .chat_create_submit:hover {
+    background: #f5dc00;
+}
+
+html body .chat_create_hint {
+    margin: 0;
+    font-size: 12px;
+    color: var(--cinema-muted);
+}
+
+html body .chat_more {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+html body .chat_more li {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 15px;
+    color: var(--cinema-ink);
+    cursor: pointer;
+}
+
+html body .chat_more li:hover {
+    background: #f7f7f7;
+}
+
+/* 하단 탭 */
+html body .chat_tabs {
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--cinema-border);
+    background: #ffffff;
+}
+
+html body .chat_tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 9px 0 8px;
+    border: 0;
+    background: transparent;
+    color: #9a9a9a;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+html body .chat_tab:hover {
+    color: var(--cinema-ink-soft);
+}
+
+html body .chat_tab.is-active {
+    color: var(--cinema-ink);
+}
+
+html body .chat_tab.is-active svg {
+    stroke-width: 2.4;
+}
+
+@media (max-width: 640px) {
+    html body .chat_modals {
+        padding: 0 !important;
+    }
+
+    html body .chat_modals .modal_modal {
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 0 !important;
+    }
+}
+
+/* 채팅방 목록 맨 위 "새 채팅방 만들기" */
+html body .chat_new {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 20px;
+    border: 0;
+    background: transparent;
+    color: var(--cinema-ink);
+    font-size: 15px;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+}
+
+html body .chat_new:hover {
+    background: #f7f7f7;
+}
+
+html body .chat_new_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 16px;
+    background: #fee500;
+    color: #191919;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+html body .chat_create[hidden] {
+    display: none;
+}
+
+/* 친구 프로필(채팅하기) */
+html body .chat_profile {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #5b6572 0%, #3a414b 100%);
+    color: #ffffff;
+}
+
+html body .chat_profile[hidden] {
+    display: none;
+}
+
+html body .chat_profile_close {
+    align-self: flex-end;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin: 8px 8px 0 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+html body .chat_profile_close:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+html body .chat_profile_close svg,
+html body .chat_profile_chat svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+html body .chat_profile_main {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 24px;
+    text-align: center;
+}
+
+html body .chat_profile_avatar {
+    width: 104px;
+    height: 104px;
+    border-radius: 38px;
+    font-size: 40px;
+}
+
+html body .chat_profile_name {
+    margin-top: 6px;
+    font-size: 20px;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+html body .chat_profile_status {
+    min-height: 18px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+html body .chat_profile_actions {
+    flex: 0 0 auto;
+    padding: 16px 20px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+html body .chat_profile_chat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 48px;
+    border: 0;
+    border-radius: 6px;
+    background: #fee500;
+    color: #191919;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+html body .chat_profile_chat:hover {
+    background: #f5dc00;
+}
+
+/* ==========================================================================
+   18. 채팅 모달 확장: 채팅방 화면 · 친구 검색 · 방 메뉴 · 즐겨찾기·차단 · 기타
+   ========================================================================== */
+
+/* 친구 검색 */
+html body .chat_search {
+    padding: 4px 16px 10px;
+}
+
+html body .chat_search input {
+    width: 100%;
+    height: 38px;
+    box-sizing: border-box;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 8px;
+    background: #f2f2f2;
+    color: var(--cinema-ink);
+    font-size: 14px;
+}
+
+html body .chat_search input:focus {
+    outline: 2px solid #fee500;
+}
+
+/* 방 이름 줄: 이름 + 작은 표시(알림 꺼짐·고정) */
+html body .chat_row_nameline {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+html body .chat_flag {
+    flex: 0 0 auto;
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: #f0f0f0;
+    color: #8a8a8a;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+html body .chat_flag.is-pin {
+    background: #fff4b8;
+    color: #7a6600;
+}
+
+html body .chat_badge.is-muted {
+    background: #c9c9c9;
+}
+
+/* 채팅방 화면 */
+html body .chat_room {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    background: #b2c7da;
+}
+
+html body .chat_room[hidden] {
+    display: none;
+}
+
+html body .chat_room_head {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 56px;
+    padding: 0 6px;
+    background: #ffffff;
+    border-bottom: 1px solid var(--cinema-border);
+}
+
+html body .chat_room_back,
+html body .chat_room_more {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--cinema-ink);
+    cursor: pointer;
+}
+
+html body .chat_room_back:hover,
+html body .chat_room_more:hover {
+    background: #f1f1f1;
+}
+
+html body .chat_room_back svg,
+html body .chat_room_more svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+html body .chat_room_more svg circle {
+    fill: currentColor;
+    stroke: none;
+}
+
+html body .chat_room_title {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0 !important;
+    font-size: 17px !important;
+    font-weight: 800 !important;
+    color: var(--cinema-ink) !important;
+    background: none !important;
+    -webkit-text-fill-color: var(--cinema-ink) !important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* 방 메뉴(⋮) */
+html body .chat_room_menu {
+    position: absolute;
+    top: 52px;
+    right: 8px;
+    z-index: 6;
+    min-width: 168px;
+    padding: 6px 0;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+}
+
+html body .chat_room_menu[hidden] {
+    display: none;
+}
+
+html body .chat_room_menu button {
+    display: block;
+    width: 100%;
+    padding: 11px 16px;
+    border: 0;
+    background: transparent;
+    color: var(--cinema-ink);
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+}
+
+html body .chat_room_menu button[hidden] {
+    display: none;
+}
+
+html body .chat_room_menu button:hover {
+    background: #f5f5f5;
+}
+
+html body .chat_room_menu button.is-danger {
+    color: #d9291c;
+}
+
+/* 메시지 */
+html body .chat_messages {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 16px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+html body .chat_messages .chat_empty {
+    padding: 80px 20px;
+    color: rgba(0, 0, 0, 0.45);
+}
+
+html body .chat_msg {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+html body .chat_msg.is-me {
+    justify-content: flex-end;
+}
+
+html body .chat_msg .chat_avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 14px;
+    font-size: 15px;
+}
+
+html body .chat_msg_col {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 72%;
+}
+
+html body .chat_msg.is-me .chat_msg_col {
+    align-items: flex-end;
+}
+
+html body .chat_msg_who {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+html body .chat_msg_line {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+html body .chat_msg.is-me .chat_msg_line {
+    flex-direction: row-reverse;
+}
+
+html body .chat_bubble {
+    padding: 8px 12px;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #191919;
+    font-size: 14px;
+    line-height: 1.45;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
+html body .chat_msg.is-me .chat_bubble {
+    background: #fee500;
+}
+
+html body .chat_msg_time {
+    flex: 0 0 auto;
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+html body .chat_input {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 8px;
+    padding: 10px 12px 6px;
+    background: #ffffff;
+}
+
+html body .chat_input input {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid var(--cinema-border-strong);
+    border-radius: 6px;
+    background: #ffffff;
+    color: var(--cinema-ink);
+    font-size: 14px;
+}
+
+html body .chat_input input:focus {
+    outline: 0;
+    border-color: #3c1e1e;
+}
+
+html body .chat_send {
+    flex: 0 0 auto;
+    height: 42px;
+    padding: 0 16px;
+    border: 0;
+    border-radius: 6px;
+    background: #fee500;
+    color: #191919;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+html body .chat_send:hover {
+    background: #f5dc00;
+}
+
+html body .chat_room_notice {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0 12px 10px;
+    background: #ffffff;
+    font-size: 11px;
+    color: var(--cinema-muted);
+}
+
+/* 프로필: 위쪽 줄(즐겨찾기 · 닫기), 아래 버튼 2개 */
+html body .chat_profile_top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 8px 0 8px;
+}
+
+html body .chat_profile_top .chat_profile_close {
+    margin: 0;
+}
+
+html body .chat_profile_fav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+html body .chat_profile_fav:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+html body .chat_profile_fav svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linejoin: round;
+}
+
+html body .chat_profile_fav.is-on {
+    color: #fee500;
+}
+
+html body .chat_profile_fav.is-on svg {
+    fill: currentColor;
+}
+
+html body .chat_profile_actions {
+    display: flex;
+    gap: 10px;
+}
+
+html body .chat_profile_chat {
+    flex: 1 1 0;
+    width: auto;
+}
+
+html body .chat_profile_block {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 6px;
+    background: transparent;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+html body .chat_profile_block:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+html body .chat_profile_block svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+}
+
+/* 기타 */
+html body .chat_more_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 16px 20px;
+    border: 0;
+    border-bottom: 1px solid #f0f0f0;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+}
+
+html body .chat_more_item:hover {
+    background: #f7f7f7;
+}
+
+html body .chat_more_text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+html body .chat_more_text strong {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--cinema-ink);
+}
+
+html body .chat_more_text span {
+    font-size: 12px;
+    color: var(--cinema-muted);
+}
+
+html body .chat_switch {
+    position: relative;
+    flex: 0 0 auto;
+    width: 44px;
+    height: 26px;
+    border-radius: 13px;
+    background: #d0d0d0;
+    transition: background-color 0.15s;
+}
+
+html body .chat_switch::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    transition: transform 0.15s;
+}
+
+html body .chat_switch.is-on {
+    background: #fee500;
+}
+
+html body .chat_switch.is-on::after {
+    transform: translateX(18px);
+}
+
+html body .chat_more_back {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    border: 0;
+    border-bottom: 1px solid #f0f0f0;
+    background: transparent;
+    color: var(--cinema-ink);
+    font-size: 15px;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+}
+
+html body .chat_unblock {
+    flex: 0 0 auto;
+    padding: 6px 12px;
+    border: 1px solid var(--cinema-border-strong);
+    border-radius: 6px;
+    background: #ffffff;
+    color: var(--cinema-ink);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+html body .chat_unblock:hover {
+    border-color: var(--cinema-primary);
+    color: var(--cinema-primary);
+}
+
+/* ==========================================================================
+   19. 로그인 화면 정리
+   - 빈 입력칸에 placeholder 추가(마크업) + 다른 버튼과 같은 4px 모서리
+   - 소셜 로그인: 바깥 테두리 상자 + 안쪽 버튼 이중 구조를 브랜드색 한 겹으로
+   ========================================================================== */
+html body .login_div {
+    background: #ffffff !important;
+    border: 1px solid var(--cinema-border) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08) !important;
+    padding: 44px 40px 36px !important;
+}
+
+html body .login_title {
+    margin-bottom: 32px !important;
+}
+
+html body .login_title .h2_title {
+    background: none !important;
+    -webkit-text-fill-color: var(--cinema-ink) !important;
+    color: var(--cinema-ink) !important;
+    letter-spacing: 0.04em !important;
+}
+
+html body .input_black {
+    background: #ffffff !important;
+    color: var(--cinema-ink) !important;
+    border-radius: 4px !important;
+}
+
+html body .input_black::placeholder {
+    color: #9a9a9a;
+}
+
+html body .input_black:focus {
+    background: #ffffff !important;
+    border-color: var(--cinema-primary) !important;
+    box-shadow: none !important;
+}
+
+html body .login_msg {
+    margin: -4px 0 0;
+    font-size: 13px;
+    color: #d9291c;
+}
+
+html body .login_button {
+    margin-top: 8px !important;
+}
+
+html body #login_button {
+    border-radius: 4px !important;
+    background: var(--cinema-primary) !important;
+    box-shadow: none !important;
+}
+
+html body #login_button:hover {
+    background: var(--cinema-primary-hover) !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+html body .login_buttonss {
+    height: 48px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 4px !important;
+}
+
+html body .small_button .login_buttonss:first-child {
+    background: #fee500 !important;
+}
+
+html body .small_button .login_buttonss:last-child {
+    background: #03c75a !important;
+}
+
+html body .login_buttonss:hover {
+    filter: brightness(0.96);
+    transform: none !important;
+}
+
+html body .login_search a:hover {
+    color: var(--cinema-primary) !important;
+}
+
+/* ==========================================================================
+   20. 전체 메뉴 모달 (3열 아이콘 그리드, 선 아이콘 · 한 가지 색)
+   ========================================================================== */
+html body .imin_menu_modal {
+    background: rgba(0, 0, 0, 0.55) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+html body .imin_menu_modal .mini_modal {
+    width: min(100% - 32px, 420px) !important;
+    min-width: 0 !important;
+    height: auto !important;
+    padding: 20px 20px 24px !important;
+    background: #ffffff !important;
+    border: 0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25) !important;
+    display: block !important;
+}
+
+html body .mini_modal_title {
+    margin: 0 0 14px;
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--cinema-ink);
+}
+
+html body #mini_content.mini_menu_grid {
+    width: 100% !important;
+    height: auto !important;
+    border: 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+html body .mini_menu_grid .content_class_top {
+    width: auto !important;
+    height: auto !important;
+    padding: 16px 4px 14px;
+    border: 1px solid var(--cinema-border) !important;
+    border-radius: 6px;
+    background: #ffffff;
+    color: var(--cinema-ink);
+    text-decoration: none;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+html body .mini_menu_grid .content_class_top:hover {
+    border-color: var(--cinema-primary) !important;
+    color: var(--cinema-primary);
+}
+
+html body .mini_menu_grid .menu_img {
+    width: auto !important;
+    height: auto !important;
+}
+
+html body .mini_menu_grid .menu_img svg {
+    width: 30px;
+    height: 30px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+html body .mini_menu_grid .menu_name {
+    width: auto !important;
+    height: auto !important;
+    color: inherit !important;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   21. 검색 모달 (메뉴 바로가기 검색)
+   ========================================================================== */
+html body .momo_container {
+    display: none;
+    align-items: flex-start !important;
+    padding-top: 12vh !important;
+    background: rgba(0, 0, 0, 0.55) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+html body .momo_container .mo_contents {
+    width: min(100% - 32px, 520px) !important;
+    max-width: 100%;
+    height: auto !important;
+    margin: 0 auto !important;
+    padding: 16px 16px 12px !important;
+    background: #ffffff !important;
+    border: 0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25) !important;
+    display: block !important;
+}
+
+html body .momo_search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+html body .momo_input {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 46px;
+    padding: 0 14px;
+    border: 1px solid var(--cinema-border-strong);
+    border-radius: 4px;
+    background: #ffffff;
+    color: var(--cinema-ink);
+    font-size: 15px;
+}
+
+html body .momo_input:focus {
+    outline: 0;
+    border-color: var(--cinema-primary);
+}
+
+html body .momo_container .close_lo {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--cinema-ink-soft);
+    font-size: 0;
+    cursor: pointer;
+}
+
+html body .momo_container .close_lo:hover {
+    background: #f1f1f1;
+}
+
+html body .momo_container .close_lo svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+}
+
+html body .momo_label {
+    margin: 14px 4px 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--cinema-muted);
+}
+
+html body .momo_results {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+html body .momo_results a {
+    display: block;
+    padding: 12px 8px;
+    border-bottom: 1px solid #f0f0f0;
+    color: var(--cinema-ink);
+    font-size: 15px;
+    text-decoration: none;
+}
+
+html body .momo_results a:hover,
+html body .momo_results a:focus {
+    background: #fafafa;
+    color: var(--cinema-primary);
+    outline: 0;
+}
+
+html body .momo_none {
+    padding: 28px 8px;
+    text-align: center;
+    color: var(--cinema-muted);
+    font-size: 14px;
+}
+
+/* ==========================================================================
+   22. 예고편 모달: 16:9 검정 영상 틀 + 오른쪽 위 닫기 버튼
+   ========================================================================== */
+html body .sneak_peek_movie {
+    background: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+html body .sneak_peek_movie .sneak_mobal {
+    width: min(92vw, 960px) !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+    max-height: 86vh;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    background: #000000 !important;
+    border: 0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5) !important;
+    display: block !important;
+}
+
+html body .sneak_peek_movie #trailer {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+html body .sneak_peek_movie .sneak_close {
+    position: fixed !important;
+    top: 16px !important;
+    right: 16px !important;
+    left: auto !important;
+    float: none !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14) !important;
+    color: #ffffff !important;
+    cursor: pointer;
+}
+
+html body .sneak_peek_movie .sneak_close:hover,
+html body .sneak_peek_movie .sneak_close:focus {
+    background: rgba(255, 255, 255, 0.28) !important;
+    color: #ffffff !important;
+}
+
+/* ==========================================================================
+   23. 게시판 선택 팝업 - 하위 페이지용 이름(.m_c .c_m .c_c .b_b #yel #sky)
+   메인용(#mains_menus_modal)과 같은 모양. 구역 15와 한 쌍.
+   ========================================================================== */
+html body .m_c {
+    box-sizing: border-box !important;
+    background: rgba(0, 0, 0, 0.55) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+html body .m_c .c_m {
+    background: #ffffff !important;
+    border: 0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25) !important;
+    width: min(100% - 32px, 440px) !important;
+    min-width: 0 !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: auto !important;
+}
+
+html body .m_c .c_c {
+    display: block !important;
+    height: auto !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 22px 24px 14px !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--cinema-border) !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    cursor: pointer;
+}
+
+html body .m_c .c_c h2 {
+    background: none !important;
+    -webkit-text-fill-color: var(--cinema-primary) !important;
+    color: var(--cinema-primary) !important;
+    font-family: inherit !important;
+    font-size: 28px !important;
+    font-weight: 900 !important;
+    letter-spacing: -0.02em !important;
+    margin: 0 !important;
+}
+
+html body .m_c .c_c::after {
+    content: "게시판 선택";
+    display: block;
+    margin-top: 4px;
+    color: var(--cinema-muted);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+html body .m_c .b_b {
+    width: 100% !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    padding: 20px 24px 24px !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+}
+
+html body .m_c .b_b_l {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+}
+
+html body .m_c .b_b_r {
+    width: 100% !important;
+    height: 56px !important;
+    border-radius: 4px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    font-family: inherit !important;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+html body .m_c #yel {
+    background: var(--cinema-primary) !important;
+    border: 1px solid var(--cinema-primary) !important;
+    color: #ffffff !important;
+}
+
+html body .m_c #yel:hover {
+    background: var(--cinema-primary-hover) !important;
+}
+
+html body .m_c #sky {
+    background: #ffffff !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+    color: var(--cinema-ink) !important;
+}
+
+html body .m_c #sky:hover {
+    border-color: var(--cinema-primary) !important;
+    color: var(--cinema-primary) !important;
+}
+
+/* ==========================================================================
+   24. 크기 다듬기 (전체적으로 한 단계 작게)
+   CGV·롯데시네마 기준: 본문 폭 약 1200px, 헤더 60px대, 섹션 제목 22~24px, 버튼 높이 44px.
+   앞 구역들의 값을 한곳에서 덮어써서, 나중에 크기를 다시 조절할 때 여기만 보면 된다.
+   ========================================================================== */
+
+/* ---- 본문 폭 ---- */
+html body .jcgx-header .jcgx-header-inner,
+html body .big_image_div,
+html body .movie_list,
+html body #popcorn_div,
+html body .section2,
+html body .section3,
+html body .cinema-quick,
+html body .licence-inner,
+html body .event_board {
+    width: min(100% - 48px, 1200px) !important;
+}
+
+html body #reservation,
+html body #product_list,
+html body #middle_report {
+    width: min(100% - 48px, 1100px) !important;
+}
+
+html body .big_word {
+    width: min(100% - 48px, 1040px) !important;
+    padding: 28px 28px !important;
+}
+
+html body .free_detail {
+    width: min(100% - 48px, 960px) !important;
+    padding: 32px !important;
+}
+
+html body #login_join {
+    width: min(100% - 32px, 640px) !important;
+}
+
+/* ---- 헤더 ---- */
+@media (min-width: 1025px) {
+    html body .jcgx-header .jcgx-header-inner {
+        min-height: 60px !important;
+        column-gap: 24px !important;
+    }
+
+    html body .jcgx-header .jcgx-brand {
+        font-size: 24px !important;
+    }
+}
+
+html body .jcgx-header .jcgx-navigation a,
+html body .jcgx-header .jcgx-navigation button {
+    padding: 6px 14px !important;
+    font-size: 14px !important;
+}
+
+html body .jcgx-header .jcgx-tools a,
+html body .jcgx-header .jcgx-tools button {
+    width: 34px !important;
+    height: 34px !important;
+}
+
+html body .jcgx-header .jcgx-tools svg {
+    width: 18px !important;
+    height: 18px !important;
+    flex-basis: 18px !important;
+}
+
+html body .jcgx-header .jcgx-account a,
+html body .jcgx-header .jcgx-account button {
+    height: 30px !important;
+    padding: 0 10px !important;
+    font-size: 12px !important;
+}
+
+/* ---- 히어로 ---- */
+html body .article,
+html body .big_image,
+html body #big_angle {
+    min-height: clamp(340px, 28vw, 500px) !important;
+}
+
+html body .article {
+    margin-bottom: 32px !important;
+}
+
+html body .cinema-hero-copy h2 {
+    font-size: clamp(26px, 3.2vw, 40px) !important;
+    line-height: 1.25 !important;
+    margin-bottom: 12px !important;
+}
+
+html body .cinema-hero-copy p:not(.cinema-eyebrow) {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 20px !important;
+}
+
+html body .cinema-hero-copy .cinema-eyebrow {
+    font-size: 10px !important;
+    padding: 5px 12px !important;
+    margin-bottom: 12px !important;
+}
+
+html body .cinema-hero-actions .cinema-book,
+html body .cinema-hero-actions .sneak_entry {
+    height: 44px !important;
+    padding: 0 24px !important;
+    font-size: 15px !important;
+}
+
+html body .big_image_arrow_button,
+html body .big_image_arrow_button_left {
+    width: 40px !important;
+    height: 40px !important;
+}
+
+/* ---- 빠른 메뉴 ---- */
+html body .cinema-quick {
+    margin-top: -28px !important;
+}
+
+html body .cinema-quick a {
+    padding: 16px 20px !important;
+}
+
+html body .cinema-quick strong {
+    font-size: 15px !important;
+}
+
+html body .cinema-quick span {
+    font-size: 12px !important;
+}
+
+/* ---- 섹션 제목 ---- */
+html body .cinema-heading h1 {
+    font-size: 24px !important;
+}
+
+html body .cinema-heading .cinema-eyebrow {
+    font-size: 11px !important;
+}
+
+html body #event_title_board {
+    font-size: 22px !important;
+}
+
+html body .set_title_h2 h2,
+html body .section3 h2 {
+    font-size: 18px !important;
+}
+
+html body .h2_title2 {
+    font-size: 22px !important;
+}
+
+html body #event_title .h2 {
+    font-size: 22px !important;
+}
+
+html body .movie_list {
+    margin: 32px auto 48px !important;
+}
+
+html body .watch_movie {
+    height: 34px !important;
+    font-size: 13px !important;
+}
+
+/* ---- 푸터 ---- */
+html body .licence {
+    padding: 28px 0 !important;
+    margin-top: 32px !important;
+}
+
+html body #JCGX h2 {
+    font-size: 20px !important;
+}
+
+/* ---- 로그인 ---- */
+html body .login_div {
+    width: min(100% - 32px, 400px) !important;
+    padding: 36px 32px 28px !important;
+}
+
+html body .login_title {
+    margin-bottom: 24px !important;
+}
+
+html body .login_title .h2_title {
+    font-size: 30px !important;
+}
+
+html body .login_id_pw {
+    gap: 12px !important;
+}
+
+html body .input_black {
+    height: 46px !important;
+    font-size: 14px !important;
+}
+
+html body #login_button,
+html body .login_buttonss {
+    height: 44px !important;
+}
+
+html body #login_button h3 {
+    font-size: 15px !important;
+}
+
+/* ---- 모달 공통: 카드 폭 한 단계 작게 ---- */
+html body #mains_menus_modal,
+html body .m_c .c_m {
+    width: min(100% - 32px, 400px) !important;
+}
+
+html body .close_closes h2,
+html body .m_c .c_c h2,
+html body #h2_ti {
+    font-size: 24px !important;
+}
+
+html body .mains_contenttwo .botton_button_right,
+html body .m_c .b_b_r {
+    height: 48px !important;
+    font-size: 15px !important;
+}
+
+html body .chat_modals .modal_modal {
+    width: 380px !important;
+    height: min(660px, 100%) !important;
+}
+
+html body .imin_menu_modal .mini_modal {
+    width: min(100% - 32px, 380px) !important;
+}
+
+/* ---- 모바일: 헤더·히어로 더 작게 ---- */
+@media (max-width: 640px) {
+    html body .article,
+    html body .big_image,
+    html body #big_angle {
+        min-height: 300px !important;
+    }
+
+    html body .cinema-hero-copy h2 {
+        font-size: 24px !important;
+    }
+
+    html body .cinema-heading h1 {
+        font-size: 20px !important;
+    }
+}
+
+/* 히어로 정렬: 화살표는 이미지 양 끝에 띄우고, 문구는 로고·본문과 같은 왼쪽 선에 둔다 */
+html body .big_image_div {
+    justify-content: flex-start !important;
+    align-items: center !important;
+}
+
+html body .big_image_div .big_image_arrow {
+    position: absolute !important;
+    top: 50% !important;
+    left: 16px !important;
+    right: auto !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    transform: translateY(-50%) !important;
+    z-index: 2;
+}
+
+html body .big_image_div #big_image_arrow_right {
+    left: auto !important;
+    right: 16px !important;
+}
+
+html body .big_image_div .big_image_arrow button {
+    width: 40px !important;
+    height: 40px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+html body .big_image_div .big_image_arrow .material-symbols-outlined {
+    font-size: 22px !important;
+}
+
+html body .cinema-hero-copy {
+    flex: 0 1 560px !important;
+}
+
+html body .big_image_div .big_image_arrow .big_image_arrow_button,
+html body .big_image_div .big_image_arrow .big_image_arrow_button_left {
+    flex: 0 0 40px !important;
+    width: 40px !important;
+    min-width: 40px !important;
+    height: 40px !important;
+}
+
+/* ==========================================================================
+   25. 메인 데이터 구역 정리 (영화 / 이벤트 / 스토어)
+   옛 CSS의 width:10%·25%·200%가 grid 칸 안에서 다시 적용돼 눌리던 것을 푼다
+   ========================================================================== */
+/* 영화: 포스터 카드는 칸 폭 그대로, 너무 커지지 않게 200px 상한 */
+html body .movie_title_ex {
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 200px)) !important;
+    gap: 28px 20px !important;
+}
+
+html body .movie_picture {
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+}
+
+html body .movie_image {
+    height: auto !important;
+}
+
+html body .movie_real_image img,
+html body .movie_image_notice img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 0 !important;
+}
+
+html body .movie_gle {
+    height: auto !important;
+    justify-content: flex-start !important;
+}
+
+/* 이벤트: 4:3 썸네일 + 제목, 카드 하나가 한 칸 */
+html body #good_movies_title_bottom {
+    width: 100% !important;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+}
+
+html body .movie_event_notice {
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    gap: 10px !important;
+}
+
+html body .movie_image_notice {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4 / 3 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border-radius: 6px !important;
+    border: 1px solid var(--cinema-border) !important;
+    background: #f2f2f2 !important;
+}
+
+html body .movie_event_title {
+    width: 100% !important;
+    height: auto !important;
+    justify-content: flex-start !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+    color: var(--cinema-ink) !important;
+}
+
+/* 스토어: 상품이 많은 카드는 목록만 스크롤, 카드 높이를 맞춘다 */
+html body .section3 .ant {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+html body .section3 .ant_contents {
+    max-height: 440px !important;
+    overflow-y: auto !important;
+    padding-right: 4px !important;
+}
+
+html body .ant_three {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+html body .contents_img {
+    width: 64px !important;
+    height: 64px !important;
+    min-width: 64px !important;
+    padding: 0 !important;
+    background: #f2f2f2 !important;
+    border: 1px solid var(--cinema-border) !important;
+}
+
+html body .contents_img img {
+    padding: 4px !important;
+    box-sizing: border-box !important;
+    object-fit: contain !important;
+    border-radius: 0 !important;
+}
+
+html body .contents_ant {
+    flex: 1 1 auto !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+}
+
+/* 서버가 상품명을 두 번 내려 주므로 첫 줄만 보인다 */
+html body .contents_ant .ant_big_title {
+    height: auto !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    line-height: 1.4 !important;
+}
+
+html body .contents_ant .ant_big_title:nth-child(n + 2) {
+    display: none !important;
+}
+
+/* "더보기" 버튼: 옛 left:20%·height:40%로 제목 줄 위에 떠 있던 것을 제목과 같은 줄에 맞춘다 */
+html body .section3 .set_title_button {
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+html body .section3 .button_store {
+    position: static !important;
+    left: auto !important;
+    height: auto !important;
+    padding: 6px 12px !important;
+    line-height: 1.2 !important;
+}
+
+/* 이미지 잘림 보정: 이벤트 이미지는 제목이 위쪽에 있어 위 기준으로 자르고, 호버 확대 중에도 선명하게 그린다 */
+html body .movie_image_notice img {
+    object-position: center top !important;
+}
+
+html body .movie_real_image img,
+html body .movie_image_notice img,
+html body .contents_img img {
+    image-rendering: auto !important;
+    backface-visibility: hidden !important;
+}
+
+/* ==========================================================================
+   26. 스토어 페이지 (/movie/shops/popcorn_store)
+   ========================================================================== */
+html body .store {
+    padding: 28px 24px !important;
+}
+
+html body #pakage_store,
+html body #combo_store {
+    font-size: 22px !important;
+    justify-content: flex-start !important;
+}
+
+/* 상품명: 옛 h2{color:red} 제거, 본문색·16px */
+html body .pakage_title_big h2 {
+    margin: 0 !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+    color: var(--cinema-ink) !important;
+}
+
+/* 부제가 비어 있으면 자리를 차지하지 않게 */
+html body .pakage_title_small:has(h5:empty),
+html body .pakage_title_small:empty,
+html body .gift_title_small:empty {
+    display: none !important;
+}
+
+html body .pakage_title_small h5 {
+    margin: 0 !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    color: var(--cinema-muted) !important;
+}
+
+/* 클릭되지 않는 카드는 뜨지 않고 테두리만 진해진다 */
+html body .popcorn_pakage:hover,
+html body .body_gift:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    border-color: var(--cinema-border-strong) !important;
+}
+
+/* 이미지: 4:3 칸, 흰 배경 위에 꽉 채움 */
+html body .pakage_img {
+    height: auto !important;
+    aspect-ratio: 4 / 3 !important;
+    background: #f2f2f2 !important;
+}
+
+/* 기프트카드·관람권: 이미지가 잘리지 않게 contain, 검은 배경 대신 연회색 */
+html body .gift_img,
+html body .gift_img_two {
+    width: 96px !important;
+    height: 96px !important;
+    min-width: 96px !important;
+    background: #f2f2f2 !important;
+    border: 1px solid var(--cinema-border) !important;
+}
+
+html body .gift_img img,
+html body .gift_img_two img {
+    padding: 6px !important;
+    box-sizing: border-box !important;
+    object-fit: contain !important;
+    border-radius: 0 !important;
+}
+
+html body .card {
+    padding: 24px !important;
+}
+
+html body .card_title {
+    font-size: 18px !important;
+}
+
+@media (max-width: 720px) {
+    html body #store_card {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    html body #pakage_store_popcorn,
+    html body #pakage_store_combo {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px !important;
+    }
+
+    html body .pakage_title {
+        padding: 12px !important;
+    }
+
+    html body .pakage_title_big h2 {
+        font-size: 14px !important;
+    }
+}
+
+/* 상품 이미지 모서리: 옛 .img{border-radius:20px}가 카드 안쪽에 빈 모서리를 만들던 것 */
+html body .pakage_img img,
+html body .popcorn_pakage img {
+    border-radius: 0 !important;
+}
+
+/* ==========================================================================
+   27. 반응형 정리 (푸터 겹침, 한글 줄바꿈, 태블릿 히어로)
+   ========================================================================== */
+/* 한글은 단어 단위로 줄바꿈 (예: "프리미/어 상영회"처럼 단어 중간에서 끊기던 것) */
+html body {
+    word-break: keep-all !important;
+    overflow-wrap: break-word !important;
+}
+
+/* 푸터: 옛 .Copyright/.modal_button/#JCGX{width:5%}가 링크를 28px로 눌러 글씨가 겹치던 것 */
+html body .licence .Copyright,
+html body .licence .modal_button,
+html body .licence #JCGX {
+    width: auto !important;
+    min-width: 0 !important;
+    height: auto !important;
+    flex: 0 0 auto !important;
+}
+
+html body .licence #JCGX {
+    display: block !important;
+}
+
+html body .licence #JCGX h2 {
+    white-space: nowrap !important;
+}
+
+html body .licence .licence-links {
+    align-items: center !important;
+}
+
+html body .licence .Copyright {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+}
+
+html body .licence .modal_button {
+    align-self: flex-start !important;
+    font-size: 13px !important;
+    white-space: nowrap !important;
+}
+
+@media (max-width: 720px) {
+    html body .licence {
+        padding: 28px 0 calc(28px + 64px) !important; /* 하단 탭바에 가리지 않게 */
+    }
+
+    html body .licence .licence-inner {
+        flex-direction: column !important;
+        gap: 18px !important;
+    }
+
+    html body .licence .licence-links {
+        flex: 0 0 auto !important;
+        width: 100% !important;
+        gap: 8px 16px !important;
+    }
+}
+
+/* 태블릿: 화살표가 히어로 문구를 덮지 않도록 좌우 여백을 둔다 (640px 이하에서는 화살표를 숨김) */
+@media (min-width: 641px) and (max-width: 1024px) {
+    html body .big_image_div {
+        padding-left: 64px !important;
+        padding-right: 64px !important;
+        box-sizing: border-box !important;
+    }
+}
+
+/* 이벤트 목록: 좁은 화면에서 제목 크기 */
+@media (max-width: 480px) {
+    html body .bottom_top {
+        font-size: 14px !important;
+        line-height: 1.45 !important;
+    }
+}
+
+/* ==========================================================================
+   28. 영화 탭(현재 상영작/상영 예정작) 폭 + 모바일 헤더 한 줄
+   ========================================================================== */
+/* 옛 .sort{width:20%} .watch_movie{width:50%}가 좁은 화면에서 탭을 36px로 눌러 글씨가 겹치던 것 */
+html body .movie_title .sort {
+    float: none !important;
+    width: auto !important;
+    max-width: 100% !important;
+    flex: 0 0 auto !important;
+}
+
+html body .movie_title .watch_movie {
+    width: auto !important;
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+}
+
+/* 모바일: 메뉴가 숨겨져 아이콘만 남던 둘째 줄을 없애고 한 줄로 (로고 · 로그인 · 회원가입 · 아이콘) */
+@media (max-width: 640px) {
+    html body .jcgx-header .jcgx-header-inner {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        gap: 0 6px !important;
+        min-height: 56px !important;
+    }
+
+    html body .jcgx-header .jcgx-header-top,
+    html body .jcgx-header .jcgx-header-bottom {
+        display: contents !important;
+    }
+
+    html body .jcgx-header .jcgx-brand {
+        order: 1 !important;
+        margin-right: auto !important;
+    }
+
+    html body .jcgx-header .jcgx-account {
+        order: 2 !important;
+    }
+
+    html body .jcgx-header .jcgx-tools {
+        order: 3 !important;
+        margin-left: 4px !important;
+    }
+
+    /* 문의는 하단 탭바에 있다 */
+    html body .jcgx-header .jcgx-account a[href*="Question"] {
+        display: none !important;
+    }
+}
+
+@media (max-width: 380px) {
+    html body .jcgx-header .jcgx-account a,
+    html body .jcgx-header .jcgx-account button {
+        padding: 4px 8px !important;
+        font-size: 11px !important;
+    }
+
+    html body .jcgx-header .jcgx-tools a,
+    html body .jcgx-header .jcgx-tools button {
+        min-width: 32px !important;
+        min-height: 32px !important;
+        padding: 4px !important;
+    }
+}
+
+/* 320px대 극소 화면: 아이콘이 둘째 줄로 내려가면 오른쪽에 붙인다 */
+@media (max-width: 380px) {
+    html body .jcgx-header .jcgx-tools {
+        margin-left: auto !important;
+    }
+}
+
+/* ==========================================================================
+   29. 페이지별 마감 (가입 버튼, 게시판 빈 목록, 영화 정보 안내)
+   ========================================================================== */
+/* 가입: 두 버튼을 같은 크기·모양으로, 글씨는 가운데 */
+html body .div_button {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 12px !important;
+}
+
+html body .div_button .botton_button {
+    flex: 0 0 auto !important;
+    width: 140px !important;
+    height: 46px !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 6px !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    cursor: pointer !important;
+}
+
+html body .div_button #button_colors {
+    background: var(--cinema-primary) !important;
+    border: 1px solid var(--cinema-primary) !important;
+    color: #ffffff !important;
+}
+
+html body .div_button #button_colors:hover {
+    background: var(--cinema-primary-dark, #c4170d) !important;
+}
+
+html body .div_button #button_color {
+    background: #ffffff !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+    color: var(--cinema-ink-soft) !important;
+}
+
+html body .div_button #button_color:hover {
+    border-color: var(--cinema-ink-soft) !important;
+}
+
+/* 게시판: 글이 없을 때 표 머리만 남지 않도록 안내 문구 */
+html body .gallery_content:not(:has(.gallery_blank_mini2))::before {
+    content: "등록된 게시글이 없습니다." !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 160px !important;
+    color: var(--cinema-muted) !important;
+    font-size: 15px !important;
+}
+
+/* 영화 정보: 데이터가 없는 페이지의 안내 */
+html body .info_empty {
+    width: min(100% - 48px, 640px) !important;
+    margin: 72px auto 96px !important;
+    padding: 56px 32px !important;
+    text-align: center !important;
+    background: #ffffff !important;
+    border: 1px solid var(--cinema-border) !important;
+    border-radius: 8px !important;
+}
+
+html body .info_empty_eyebrow {
+    margin: 0 0 12px !important;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.16em !important;
+    color: var(--cinema-primary) !important;
+}
+
+html body .info_empty h1 {
+    margin: 0 0 14px !important;
+    font-size: 26px !important;
+    font-weight: 800 !important;
+    color: var(--cinema-ink) !important;
+}
+
+html body .info_empty_desc {
+    margin: 0 0 28px !important;
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    color: var(--cinema-ink-soft) !important;
+}
+
+html body .info_empty_actions {
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+}
+
+html body .info_empty_actions a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 130px !important;
+    height: 46px !important;
+    padding: 0 20px !important;
+    border-radius: 6px !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+}
+
+html body .info_empty_primary {
+    background: var(--cinema-primary) !important;
+    border: 1px solid var(--cinema-primary) !important;
+    color: #ffffff !important;
+}
+
+html body .info_empty_secondary {
+    background: #ffffff !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+    color: var(--cinema-ink-soft) !important;
+}
+
+/* 가입 버튼: 앞쪽 .botton_button#button_color(클래스+ID) 규칙보다 구체적으로 덮어쓴다 */
+html body .div_button .botton_button#button_colors,
+html body .div_button .botton_button#button_color {
+    width: 140px !important;
+    height: 46px !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+}
+
+html body .div_button .botton_button#button_colors {
+    background: var(--cinema-primary) !important;
+    border: 1px solid var(--cinema-primary) !important;
+}
+
+html body .div_button .botton_button#button_color {
+    background: #ffffff !important;
+    border: 1px solid var(--cinema-border-strong) !important;
+}
+
+/* ==========================================================================
+   30. 재확인 보정 (이벤트 메타 정렬, 메인 스토어 카드 높이)
+   ========================================================================== */
+/* 이벤트 카드: 제목은 왼쪽인데 등록일만 가운데이던 것 */
+html body .good_click .click_bottom {
+    align-items: flex-start !important;
+}
+
+html body .good_click .bottom_bottom,
+html body .good_click .bottom_left {
+    justify-content: flex-start !important;
+    align-items: center !important;
+}
+
+/* 메인 스토어: 항목이 하나뿐인 카드가 긴 카드에 맞춰 늘어나 빈 공간이 크던 것.
+   긴 목록은 4개 정도 높이에서 스크롤하고, 나머지 카드는 내용 높이로 둔다 */
+html body .section3 > .movie_movie {
+    align-items: start !important;
+}
+
+html body .section3 .ant_contents {
+    max-height: 340px !important;
+}

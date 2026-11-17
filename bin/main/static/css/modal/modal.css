@@ -1,0 +1,130 @@
+/* 메뉴버튼div */
+#menu_buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+/* 모달 버튼 제목 */
+#h2_modal{
+    font-size: 30px;
+    font-weight: bolder;
+
+}
+/*모달 제목*/
+#h2_modals{
+    font-size: 60px;
+    font-weight: bolder;
+    color: black;
+}
+/*모달 메뉴 이름*/
+.h2_modals{ font-size: 40px;
+    font-weight: bolder;
+    color: black;}
+/* 모달의 몸통 */
+#modalContainer{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* 배경을 반투명하게 */
+    z-index: 9;
+
+}
+/* 모달의 내용시작 */
+#modalContent {
+    position: relative;
+    background: linear-gradient(#6fd1ff 14% ,#0fb2ff 90%) ;
+    width: 1000px;
+    height: 600px;
+    padding: 15px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#modalContainer.hidden {
+    display: none;
+}
+#modalContainer:not(.hidden) {
+    display: flex;
+}
+/*모달 버튼 스타일*/
+.modal_btn{
+border: none;
+    background-color: antiquewhite;
+    color: #35a7e9;
+
+}
+/*모달 닫기 버든*/
+#modalCloseButton{
+    border: none;
+    background-color: #b85c00;
+    position: fixed;
+   text-align: center;
+    top:3%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+
+
+
+}
+
+.body_modal{
+    width: 90%;
+
+    height: 75%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+}
+.body_freeboard{
+    width: 40%;
+    height: 80%;
+display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background:linear-gradient(#ff3d6e 14%, #f0003c 90%) ;
+}
+.body_gboard{
+    width: 40%;
+    height: 80%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background: linear-gradient(#ffff82 3%, #f7e600 90%);
+}
+/*모달 닫기버튼 안에 원*/
+.material{
+    border: 1px solid saddlebrown;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    background-color: saddlebrown;
+
+
+}
+.login_dox{
+    width: 30%;
+    height: 100%;
+    border:1px solid white;
+    float: right;
+    position: relative;
+    left:41%;
+
+}
+
+

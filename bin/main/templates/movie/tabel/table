@@ -1,0 +1,18 @@
+create table FREE_GALLERY (free_number INT(11) primary key NOT NULL AUTO_INCREMENT,
+free_conut int(10),
+free_contents varchar(1000),free_galleryfree_conut
+free_like int(10));
+
+
+
+create table MEMBERS (ID_number INT(11) primary key NOT NULL AUTO_INCREMENT,
+nickname varchar(100),
+namena varchar(100),
+id varchar(100),
+pw varchar(100),
+phone int(100),
+barth date,
+gender varchar(100),
+job varchar(100),
+email varchar(100)
+);

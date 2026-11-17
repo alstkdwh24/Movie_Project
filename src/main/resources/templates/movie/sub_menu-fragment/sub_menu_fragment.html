@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/cinema-theme.css?v=20261111-15">
+    <link rel="stylesheet" href="/css/event/Gallery_modal.css">
+
+</head>
+<body class="body">
+<div th:fragment="article_divs">
+    <header th:replace="~{movie/mains_fragment/site_header :: header(false)}"></header>
+    <nav th:replace="~{movie/mains_fragment/site_header :: tabbar}"></nav>
+</div>
+<div th:replace="movie/login/joinModal/joinModal :: joinModal"></div>
+<div th:replace="movie/login/joinModal/realJoin :: realJoin"></div>
+<div th:replace="movie/movie_menu/menu_modal :: menu_fragment"></div>
+<!--글 등록-->
+<div th:replace="movie/write_resist/resist_modal :: resist_fragment"></div>
+<!--글등록 모달-->
+<script src="/js/resist_image_file/resist_modal.js"></script>
+
+</body>

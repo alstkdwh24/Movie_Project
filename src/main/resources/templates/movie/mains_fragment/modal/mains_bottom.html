@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/cinema-theme.css?v=20261111-15">
+</head>
+<body>
+    <div th:fragment="mains_bottom" class="licence">
+        <div class="licence-inner">
+            <div id="JCGX"><h2>JCGX</h2><p>CINEMA &amp; CULTURE</p></div>
+            <nav class="licence-links" aria-label="푸터 메뉴">
+                <a class="Copyright" href="/movie/Reservation/reservation">예매</a>
+                <a class="Copyright" href="/movie/community/event">이벤트</a>
+                <a class="Copyright" href="/movie/shops/popcorn_store">스토어</a>
+                <a class="Copyright" href="https://www.lottecultureworks.com/Contents/Company-Introduction/company-summary.aspx">회사소개</a>
+                <a class="Copyright" href="https://www.lottecultureworks.com/Contents/Company-Introduction/company-history.aspx">회사연혁</a>
+                <a class="Copyright" href="https://www.lottecinema.co.kr/NLCHS/Membership/l_point">L.POINT 회원안내</a>
+                <a class="Copyright" href="https://www.lottecinema.co.kr/NLCHS/Ticketing/DiscountGuide#none">통신사 혜택</a>
+                <a class="Copyright" href="https://www.instagram.com/lottecinema_official/">인스타그램</a>
+                <a class="Copyright" href="https://www.facebook.com/LotteCinema.kr/?locale=ko_KR">페이스북</a>
+            </nav>
+            <button class="modal_button" id="modal_button">저작권 안내</button>
+        </div>
+    </div>
+    <div th:replace="movie/mains_fragment/modal/mains_modal :: mains_menu_modal">
+    </div>
+</body>
+</html>
