@@ -24,7 +24,6 @@ public class MyUserDetailService implements UserDetailsService {
         System.out.println("사용자가 로그인을 시도함: " + username);
 
         LoginEntity entity = loginMapper.login(username);
-        System.out.println("조회된 사용자 정보: " + entity);
 
         if (entity != null) {
             return new MyUserDetail(LoginDTO.fromEntity(entity)); // 사용자 정보를 MyUserDetail로 변환
