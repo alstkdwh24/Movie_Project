@@ -23,8 +23,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * 같은 좌석에 예매 요청 10건이 동시에 들어와도 1건만 저장되고 나머지는 409인지 확인한다.
- * 운영 MySQL 대신 H2 메모리 DB(MySQL 모드)에 운영과 같은 유니크 제약(uq_reservation_seat)을 만들고,
- * 실제 매퍼 XML → 서비스 → 컨트롤러 경로를 그대로 쓴다.
+ * MySQL 대신 H2 메모리 DB(MySQL 모드)에 좌석 유니크 제약(uq_reservation_seat: 영화·지점·시간·좌석)을 만들고,
+ * 실제 매퍼 XML → 서비스 → 컨트롤러 메서드를 스레드 10개로 동시에 호출한다(HTTP·스프링 컨텍스트는 거치지 않음).
  */
 class SeatDuplicateConcurrencyTest {
 
