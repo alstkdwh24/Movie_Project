@@ -35,15 +35,39 @@
     </select>
 
 
+    <!-- 결제할 예약 목록: 결제가 끝난(PAID) 예약은 빼고 본인 것만 -->
     <select id="getReservation_pay" parameterType="com.example.movie.util.Criteria" resultType="ReservationVO">
         select * from reservation_contents
-        where username=#{username};
+        where username=#{username} and status='PENDING';
     </select>
 
+    <!-- 본인의 결제 전 예약만 취소. 결제가 끝난 좌석은 지우지 않는다 -->
     <delete id="reservation_Delete">
         delete
         from reservation_contents
         where reservation_number=#{reservation_number}
+          and username=#{username}
+          and status='PENDING'
+    </delete>
+
+    <!-- 결제 검증용: 본인의 결제 전 예약 1건 -->
+    <select id="findPendingForPayment" resultType="ReservationVO">
+        select * from reservation_contents
+        where username=#{username} and paymentId=#{paymentId} and status='PENDING'
+    </select>
+
+    <!-- 동시에 두 번 확정해도 1건만 바뀌도록 PENDING 조건을 건다 -->
+    <update id="markPaid">
+        update reservation_contents
+        set status='PAID'
+        where reservation_number=#{reservation_number} and status='PENDING'
+    </update>
+
+    <!-- 결제하지 않고 오래된 예약을 지워 좌석을 푼다 -->
+    <delete id="deleteExpiredPending">
+        delete from reservation_contents
+        where status='PENDING'
+          and reserved_at &lt; TIMESTAMPADD(MINUTE, -#{minutes}, NOW())
     </delete>
 
     <insert id="paymentVO" parameterType="com.example.movie.commandVO.PaymentVO">

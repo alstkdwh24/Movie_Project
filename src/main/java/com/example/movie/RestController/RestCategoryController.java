@@ -5,13 +5,16 @@ import com.example.movie.commandVO.CategoryVO;
 import com.example.movie.commandVO.ReservationVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.security.Principal;
 import java.util.ArrayList;
+import java.util.UUID;
 
 @RestController
 public class RestCategoryController {
@@ -19,6 +22,10 @@ public class RestCategoryController {
     @Autowired
     @Qualifier("reservationService")
     private ReservationService reservationService;
+
+    // 좌석 가격은 서버가 정한다(화면의 hidden 값은 바꿀 수 있으므로 믿지 않는다)
+    @Value("${reservation.seat-price:1000}")
+    private int seatPrice;
 
 
     @GetMapping("/getMovieCategory")
@@ -44,7 +51,14 @@ public class RestCategoryController {
         return new ResponseEntity<>(reservationService.getMovieCategoryChild(vo), HttpStatus.OK);
     }
     @PostMapping("/resist_reservation")
-    public ResponseEntity<ReservationVO> createReservation(@RequestBody  ReservationVO vo) {
+    public ResponseEntity<ReservationVO> createReservation(@RequestBody  ReservationVO vo, Principal principal) {
+        if (principal == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        vo.setUsername(principal.getName());
+        vo.setReservation_price(String.valueOf(seatPrice));
+        // paymentId도 서버가 만든다. 클라이언트 값을 받으면 이미 결제된 paymentId를 다른 좌석에 다시 쓸 수 있다
+        vo.setPaymentId("rsv-" + UUID.randomUUID());
         try {
             int saveReservation = reservationService.movie_report_resist(vo);
             if (saveReservation == 1) {

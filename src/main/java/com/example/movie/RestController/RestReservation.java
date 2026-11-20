@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,9 +28,14 @@ return null;
     }
 
     @PostMapping("/movie/Reservation/reservation_Delete")
-    public ResponseEntity<Void> reservation_Delete(@RequestBody ReservationVO vo){
-        reservationService.reservation_Delete(vo);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Void> reservation_Delete(@RequestBody ReservationVO vo, Principal principal){
+        if (principal == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        // 본인의 결제 전 예약만 지운다. 남의 예약·결제 끝난 예약이면 0건 → 404
+        vo.setUsername(principal.getName());
+        int deleted = reservationService.reservation_Delete(vo);
+        return deleted == 1 ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }
 

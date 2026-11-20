@@ -10,6 +10,7 @@ import com.example.movie.util.PageVO;
 import org.hibernate.cache.spi.support.StorageAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +29,13 @@ public class ReservationController {
     @Autowired
     @Qualifier("reservationService")
     public ReservationService reservationService;
+
+    // 결제창에 넘기는 포트원 공개 식별자. API Secret과 달리 브라우저에 보여도 된다
+    @Value("${portone.store-id:}")
+    private String portoneStoreId;
+
+    @Value("${portone.channel-key:}")
+    private String portoneChannelKey;
 
 //    public ReservationController(RestTemplate restTemplate) {
 //        super(restTemplate);
@@ -76,6 +84,8 @@ public class ReservationController {
         model.addAttribute("userSession", userDetails);
         model.addAttribute("list", List);
         model.addAttribute("accessToken", getSession);
+        model.addAttribute("portoneStoreId", portoneStoreId);
+        model.addAttribute("portoneChannelKey", portoneChannelKey);
         System.out.println("getSession"+getSession);
         return "movie/Reservation/reservation_report";
 

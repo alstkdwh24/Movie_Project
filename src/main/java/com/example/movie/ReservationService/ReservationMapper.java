@@ -3,6 +3,7 @@ package com.example.movie.ReservationService;
 import com.example.movie.commandVO.*;
 import com.example.movie.util.Criteria;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,10 @@ public interface ReservationMapper {
 
     int movie_report_resist(ReservationVO vo);
 
-    void reservation_Delete(ReservationVO vo);
+    int reservation_Delete(ReservationVO vo);
+    ReservationVO findPendingForPayment(@Param("username") String username, @Param("paymentId") String paymentId);
+    int markPaid(@Param("reservation_number") Integer reservationNumber);
+    int deleteExpiredPending(@Param("minutes") int minutes);
 
     int paymentVO(PaymentVO vo);
 

@@ -21,7 +21,11 @@ public interface ReservationService {
 
     List<ReservationVO> getReservation_pay(Criteria cri);
 
-    void reservation_Delete(ReservationVO vo);
+    int reservation_Delete(ReservationVO vo);
+
+    PaymentCompleteResult completePayment(String username, String paymentId);
+
+    int expirePendingReservations(int minutes);
 
     int paymentVO(PaymentVO vo);
 

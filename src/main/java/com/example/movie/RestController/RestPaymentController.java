@@ -1,9 +1,11 @@
 package com.example.movie.RestController;
 
+import com.example.movie.ReservationService.PaymentCompleteResult;
 import com.example.movie.ReservationService.ReservationService;
 import com.example.movie.commandVO.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
@@ -11,13 +13,16 @@ import org.springframework.http.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Slf4j
 @RestController
 @CrossOrigin("*")
 public class RestPaymentController {
@@ -33,17 +38,30 @@ public class RestPaymentController {
     }
 
 
+    /**
+     * 결제 확정. 클라이언트는 paymentId만 보낸다.
+     * 서버가 포트원에서 결제를 직접 조회해 상태(PAID)와 금액을 DB 예약과 비교한 뒤에만 저장한다.
+     */
     @PostMapping("/payment/complete")
-    @CrossOrigin(origins = "*") // 모든 출처 허용
-    public ResponseEntity<PaymentVO> paymentVO(@RequestBody PaymentVO vo, HttpSession session2, Model model) {
-
-
-        int savePayment = reservationService.paymentVO(vo);
-        if (savePayment == 1) {
-            return new ResponseEntity<>(vo, HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>(vo, HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<Void> completePayment(@RequestBody PaymentVO vo, Principal principal) {
+        if (principal == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
+        if (vo.getPaymentId() == null || vo.getPaymentId().isBlank()) {
+            return ResponseEntity.badRequest().build();
+        }
+        PaymentCompleteResult result;
+        try {
+            result = reservationService.completePayment(principal.getName(), vo.getPaymentId());
+        } catch (RestClientException | IllegalStateException e) {
+            log.error("포트원 결제 조회 실패 paymentId={}", vo.getPaymentId(), e);
+            return ResponseEntity.status(HttpStatus.BAD_GATEWAY).build();
+        }
+        return switch (result) {
+            case COMPLETED -> ResponseEntity.status(HttpStatus.CREATED).build();
+            case RESERVATION_NOT_FOUND -> ResponseEntity.notFound().build();
+            case NOT_PAID, AMOUNT_MISMATCH, NOT_PENDING -> ResponseEntity.status(HttpStatus.CONFLICT).build();
+        };
     }
 
     @GetMapping("/movie/payment/report")
@@ -51,25 +69,6 @@ public class RestPaymentController {
         ArrayList<PaymentVO> paymentReport = reservationService.getPayment_report(username);
         return new ResponseEntity<>(paymentReport, HttpStatus.OK);
 
-    }
-
-
-    @PostMapping("/api/Tokens")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<?> getToken(@RequestBody TokenVO tokenVO, HttpSession session) {
-        String url = "https://api.portone.io/login/api-secret";
-        ResponseEntity<?> response;
-
-        session.setAttribute("accessToken", tokenVO.getAccessToken());
-
-        try {
-            // TokenVO 객체를 사용하여 요청을 보냅니다.
-            response = restTemplate.postForEntity(url, tokenVO, Object.class);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred while processing your request: " + e.getMessage());
-        }
-
-        return ResponseEntity.ok(response.getBody()); // 클라이언트에 응답 반환
     }
 
 
@@ -142,18 +141,6 @@ public class RestPaymentController {
     }
 
 
-    //PaymentIdVO 데이터베이스 저장
-    @PostMapping("/new_payment")
-    public ResponseEntity<PaymentIdVO> PaymentIdVO(@RequestBody PaymentIdVO vo) {
-        int savePaymentId=reservationService.paymentIdSave(vo);
-        if(savePaymentId==1){
-            return new ResponseEntity<>(vo, HttpStatus.CREATED);
-        }
-
-        return new ResponseEntity<>(vo, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-
     //paymentIdVO List
     @GetMapping("/paymentIdVOList")
     public ResponseEntity<ArrayList<PaymentId_ListVO>> paymentId_ListVO(@RequestParam("paymentId") String paymentId){
@@ -161,17 +148,4 @@ public class RestPaymentController {
         return new ResponseEntity<>(PaymentIdList,HttpStatus.OK);
 
     }
-
-
-//    movie_payment테이블에서 paymentId열을 추가하는 부분
-    @PostMapping("/movie_payment_paymentId")
-    public ResponseEntity<PaymentVO> movie_payment_paymentId(@RequestBody PaymentVO vo) {
-        int movie_payment_paymentId_save = reservationService.movie_payment_paymentId(vo);
-        if (movie_payment_paymentId_save == 1) {
-            return new ResponseEntity<>(vo, HttpStatus.CREATED);
-        }
-        return new ResponseEntity<>(vo, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
 }
-
-

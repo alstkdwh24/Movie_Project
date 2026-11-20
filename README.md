@@ -12,11 +12,13 @@
 
 ## 기능
 
-- **예매**: 영화 · 지점 · 시간 · 좌석 선택, 예매 취소
+- **예매**: 영화 · 지점 · 시간 · 좌석 선택, 결제 전 예매 취소(본인 예약만)
+  - 좌석 가격과 예약자는 서버가 정한다(로그인 사용자, `reservation.seat-price`)
+  - 결제하지 않은 예약은 `reservation.pending-minutes`(기본 10분)가 지나면 지워져 좌석이 풀린다
   - 단계를 넘어갈 때 선택값이 사라지지 않도록 `data` 속성과 SessionStorage로 유지
-- **결제**: 포트원 서버 연동(서버에서 액세스 토큰 발급), 결제 내역 저장·조회, 예약 리포트
+- **결제**: 포트원 V2. 결제 후 서버가 포트원에서 결제를 직접 조회해 상태(PAID)와 금액을 DB 예약 금액과 비교한 뒤에만 저장한다
 - **회원**: 회원가입 · 로그인(Spring Security), 마이페이지
-- **게시판**: 자유 · 갤러리 · 맛집 · 이벤트 · Q&A 5종 등록·수정·삭제, 댓글 · 조회수, Q&A 페이징
+- **게시판**: 자유 · 갤러리 · Q&A 3종 작성·조회, 댓글 · 조회수, 페이징
 - **스토어**: 팝콘 · 기프티콘 · 관람권 상품 등록과 목록
 - **DB**: ERD 설계 후 조건별 JOIN · INSERT · SELECT · UPDATE · DELETE 작성
 
@@ -57,6 +59,15 @@ project:
   upload:
     path: ${UPLOAD_PATH}      # 업로드 파일을 저장할 로컬 폴더
 
+portone:
+  api-secret: ${PORTONE_API_SECRET}   # 서버에서만 쓴다. JS·저장소에 넣지 않는다
+  store-id: ${PORTONE_STORE_ID}       # 결제창에 넘기는 공개 식별자
+  channel-key: ${PORTONE_CHANNEL_KEY}
+
+reservation:
+  seat-price: 1000          # 좌석 1개 가격(원)
+  pending-minutes: 10       # 결제하지 않은 예약을 지우는 기준
+
 cloud:
   aws:
     credentials:
@@ -79,6 +90,8 @@ cloud:
 Windows에서는 `gradlew.bat bootRun`을 실행합니다. 실행 후 `http://localhost:8080/mains`로 접속합니다.
 
 > 테이블 생성 SQL은 저장소에 포함되어 있지 않습니다. `ddl-auto: none`이므로 MySQL에 테이블을 먼저 만들어야 합니다.
+> 예약 상태 컬럼과 paymentId 유니크 인덱스는 `docs/sql/20261121_reservation_status.sql`로 추가합니다.
+> 배포 순서: ① SQL 실행(이전 버전 코드와도 호환) → ② `portone.*` 설정 → ③ 새 버전 배포. SQL 없이 배포하면 예약 조회·취소·결제 확정이 실패합니다.
 
 ## 회고
 
