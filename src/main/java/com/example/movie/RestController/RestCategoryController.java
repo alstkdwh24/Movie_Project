@@ -5,6 +5,7 @@ import com.example.movie.commandVO.CategoryVO;
 import com.example.movie.commandVO.ReservationVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,11 +45,15 @@ public class RestCategoryController {
     }
     @PostMapping("/resist_reservation")
     public ResponseEntity<ReservationVO> createReservation(@RequestBody  ReservationVO vo) {
-        int saveReservation = reservationService.movie_report_resist(vo);
-        if (saveReservation == 1) {
-            return new ResponseEntity<>(vo, HttpStatus.CREATED);
-        } else {
+        try {
+            int saveReservation = reservationService.movie_report_resist(vo);
+            if (saveReservation == 1) {
+                return new ResponseEntity<>(vo, HttpStatus.CREATED);
+            }
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (DuplicateKeyException e) {
+            // 좌석 유니크 제약(uq_reservation_seat) 위반 = 이미 예매된 좌석
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
     }
 }
