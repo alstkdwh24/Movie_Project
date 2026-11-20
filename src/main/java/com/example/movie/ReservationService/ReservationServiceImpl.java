@@ -152,11 +152,6 @@ public class ReservationServiceImpl implements ReservationService{
     }
 
     @Override
-    public ArrayList<PaymentId_ListVO> PaymentIdList(String paymentId) {
-        return reservationMapper.PaymentIdList(paymentId);
-    }
-
-    @Override
     public int movie_payment_paymentId(PaymentVO vo) {
         return reservationMapper.movie_payment_paymentId(vo);
     }

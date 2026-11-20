@@ -37,7 +37,6 @@ public interface ReservationService {
     int paymentIdSave(PaymentIdVO vo);
 
 
-    ArrayList<PaymentId_ListVO> PaymentIdList(String paymentId);
 
     int movie_payment_paymentId(PaymentVO vo);
 

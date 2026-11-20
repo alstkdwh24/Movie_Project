@@ -38,7 +38,6 @@ public interface ReservationMapper {
 //포트원을 데이터베이스에 저장
     int paymentIdSave(PaymentIdVO vo);
 
-    ArrayList<PaymentId_ListVO> PaymentIdList(String paymentId);
 
     int movie_payment_paymentId(PaymentVO vo);
 

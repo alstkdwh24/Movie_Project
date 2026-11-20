@@ -3,39 +3,24 @@ package com.example.movie.RestController;
 import com.example.movie.ReservationService.PaymentCompleteResult;
 import com.example.movie.ReservationService.ReservationService;
 import com.example.movie.commandVO.*;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
 
-import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 @Slf4j
 @RestController
-@CrossOrigin("*")
 public class RestPaymentController {
 
     @Autowired
     @Qualifier("reservationService")
     private ReservationService reservationService;
 
-    private final RestTemplate restTemplate;
-
-    public RestPaymentController(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
 
 
     /**
@@ -64,88 +49,17 @@ public class RestPaymentController {
         };
     }
 
+    /** 결제 내역: 로그인한 본인 것만. 예전에는 username 파라미터로 아무나 남의 내역을 볼 수 있었다 */
     @GetMapping("/movie/payment/report")
-    public ResponseEntity<ArrayList<PaymentVO>> payment_report(@RequestParam("username") String username) {
-        ArrayList<PaymentVO> paymentReport = reservationService.getPayment_report(username);
-        return new ResponseEntity<>(paymentReport, HttpStatus.OK);
-
+    public ResponseEntity<ArrayList<PaymentVO>> payment_report(Principal principal) {
+        if (principal == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        return ResponseEntity.ok(reservationService.getPayment_report(principal.getName()));
     }
 
-
-    @PostMapping("/api/access_token")
-    public ResponseEntity<TokenVO> getToken(HttpSession session2,
-                                            @RequestBody String accessToken
-    ) {
-        TokenVO tokenVO = new TokenVO();
-        tokenVO.setAccessToken(String.valueOf(accessToken));
-        session2.setAttribute("token", tokenVO.getAccessToken());
-        session2.setMaxInactiveInterval(5000);
-        System.out.println("토큰" + session2.getAttribute("token"));
-        System.out.println(session2);
-        return ResponseEntity.ok(tokenVO); // 성공적으로 토큰을 반환
-
-    }
-
-
-    @GetMapping("/payments")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<List<PaymentVO>> getPayments(HttpSession session2) throws JsonProcessingException {
-        String url = "https://api.portone.io/payments";
-
-        // 세션에서 TokenVO 객체 가져오기
-        String tokenJson = (String) session2.getAttribute("token"); // String으로 가져오기
-
-        // null 체크
-        if (tokenJson == null) {
-            System.out.println("세션에 'token'이 없습니다.");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null); // 401 Unauthorized
-        }
-
-        // JSON 문자열을 TokenVO 객체로 변환
-        ObjectMapper objectMapper = new ObjectMapper();
-        TokenVO tokenVO = objectMapper.readValue(tokenJson, TokenVO.class);
-
-        // 액세스 토큰 가져오기
-        String accessToken = tokenVO.getAccessToken();
-        if (accessToken == null) {
-            System.out.println("accessToken이 null입니다.");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null); // 401 Unauthorized
-        }
-
-        System.out.println("tokensVO: " + tokenVO);
-
-        // 헤더 설정
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer " + accessToken);
-
-        // 요청 엔티티 생성
-        HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
-
-        ResponseEntity<PaymentResponseVO> response;
-        try {
-            response = restTemplate.exchange(url, HttpMethod.GET, requestEntity,
-                    new ParameterizedTypeReference<PaymentResponseVO>() {
-                    });
-        } catch (HttpClientErrorException e) {
-            System.out.println("HTTP 상태 코드: " + e.getStatusCode());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); // 500 Internal Server Error
-        }
-
-        // 응답 반환
-        List<PaymentVO> payments = Objects.requireNonNull(response.getBody()).getPayments();
-        if (payments == null || payments.isEmpty()) {
-            return ResponseEntity.ok(new ArrayList<>()); // 빈 리스트 반환
-        }
-        // 응답 반환
-        return ResponseEntity.ok(payments);
-    }
-
-
-    //paymentIdVO List
-    @GetMapping("/paymentIdVOList")
-    public ResponseEntity<ArrayList<PaymentId_ListVO>> paymentId_ListVO(@RequestParam("paymentId") String paymentId){
-        ArrayList<PaymentId_ListVO> PaymentIdList=reservationService.PaymentIdList(paymentId);
-        return new ResponseEntity<>(PaymentIdList,HttpStatus.OK);
-
-    }
+    // 제거한 API(호출하는 화면 없음):
+    // /api/access_token, /payments  - 아무나 세션에 토큰을 넣어 포트원 결제 목록을 프록시하고 토큰을 로그에 남김.
+    //                                  결제 확인은 서버 PortOneClient 단건 조회로 대체
+    // /paymentIdVOList              - WHERE 없이 전체 사용자의 결제 내역을 로그인 없이 반환
 }

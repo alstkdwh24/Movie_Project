@@ -20,7 +20,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.transaction.support.TransactionTemplate;
-import org.springframework.web.client.RestTemplate;
 
 import java.security.Principal;
 
@@ -78,7 +77,7 @@ class ReservationPaymentSafetyTest {
 
         reservationApi = new RestReservation();
         ReflectionTestUtils.setField(reservationApi, "reservationService", service);
-        paymentApi = new RestPaymentController(new RestTemplate());
+        paymentApi = new RestPaymentController();
         ReflectionTestUtils.setField(paymentApi, "reservationService", service);
         categoryApi = new RestCategoryController();
         ReflectionTestUtils.setField(categoryApi, "reservationService", service);
@@ -185,6 +184,18 @@ class ReservationPaymentSafetyTest {
         PaymentVO vo = new PaymentVO();
         vo.setPaymentId("pay-1");
         assertThat(paymentApi.completePayment(vo, null).getStatusCode().value()).isEqualTo(401);
+    }
+
+    // ---- 결제 내역 ----
+
+    @Test
+    void 결제_내역은_로그인한_본인_것만_돌려준다() {
+        jdbc.update("insert into movie_payment(username, paymentId, reservation_price) values ('alice', 'pay-a', '1000')");
+        jdbc.update("insert into movie_payment(username, paymentId, reservation_price) values ('bob', 'pay-b', '1000')");
+
+        assertThat(paymentApi.payment_report(user("alice")).getBody())
+                .extracting(PaymentVO::getPaymentId).containsExactly("pay-a");
+        assertThat(paymentApi.payment_report(null).getStatusCode().value()).isEqualTo(401);
     }
 
     // ---- 미결제 만료 ----

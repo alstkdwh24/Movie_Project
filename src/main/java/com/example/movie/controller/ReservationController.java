@@ -69,7 +69,6 @@ public class ReservationController {
 
     @GetMapping("/reservation_report")
     public String reservation_report(HttpSession session, Model model, Criteria cri, ReservationVO vo, HttpSession session2 ,HttpSession session3) {
-        String getSession = (String) session2.getAttribute("accessToken");
         int total = reservationService.getReservation_board(cri);
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
         String username=cri.setUsername(userDetails.getUsername()); // 세션에서 가져온 username 사용
@@ -83,10 +82,8 @@ public class ReservationController {
         model.addAttribute("username",username);
         model.addAttribute("userSession", userDetails);
         model.addAttribute("list", List);
-        model.addAttribute("accessToken", getSession);
         model.addAttribute("portoneStoreId", portoneStoreId);
         model.addAttribute("portoneChannelKey", portoneChannelKey);
-        System.out.println("getSession"+getSession);
         return "movie/Reservation/reservation_report";
 
     }
