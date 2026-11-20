@@ -32,7 +32,8 @@ public class RestPaymentController {
         if (principal == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        if (vo.getPaymentId() == null || vo.getPaymentId().isBlank()) {
+        // 포트원 경로에 들어가므로 문자 종류를 제한한다(/ . 등으로 다른 결제 경로를 만들지 못하게)
+        if (vo.getPaymentId() == null || !vo.getPaymentId().matches("[A-Za-z0-9_-]{1,64}")) {
             return ResponseEntity.badRequest().build();
         }
         PaymentCompleteResult result;
@@ -45,7 +46,9 @@ public class RestPaymentController {
         return switch (result) {
             case COMPLETED -> ResponseEntity.status(HttpStatus.CREATED).build();
             case RESERVATION_NOT_FOUND -> ResponseEntity.notFound().build();
-            case NOT_PAID, AMOUNT_MISMATCH, NOT_PENDING -> ResponseEntity.status(HttpStatus.CONFLICT).build();
+            case NOT_PAID, NOT_PENDING -> ResponseEntity.status(HttpStatus.CONFLICT).build();
+            case REFUNDED -> ResponseEntity.status(HttpStatus.GONE).build();
+            case REFUND_FAILED -> ResponseEntity.status(HttpStatus.BAD_GATEWAY).build();
         };
     }
 

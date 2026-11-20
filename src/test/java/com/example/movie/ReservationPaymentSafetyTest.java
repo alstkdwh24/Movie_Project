@@ -2,6 +2,7 @@ package com.example.movie;
 
 import com.example.movie.ReservationService.ReservationMapper;
 import com.example.movie.ReservationService.ReservationServiceImpl;
+import com.example.movie.ReservationService.ReservationService.ExpiryResult;
 import com.example.movie.RestController.RestCategoryController;
 import com.example.movie.RestController.RestPaymentController;
 import com.example.movie.RestController.RestReservation;
@@ -20,11 +21,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.transaction.support.TransactionTemplate;
+import org.springframework.web.client.RestClientException;
 
 import java.security.Principal;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 /**
@@ -32,6 +35,11 @@ import static org.mockito.Mockito.*;
  * 포트원 조회(PortOneClient)만 목으로 바꾼다. HTTP·스프링 컨텍스트는 거치지 않는다.
  */
 class ReservationPaymentSafetyTest {
+
+    // 서버가 만드는 형식(rsv- + UUID). 자동 환불은 이 형식에만 한다
+    private static final String RSV_MISMATCH = "rsv-00000000-0000-4000-8000-000000000001";
+    private static final String RSV_GONE = "rsv-00000000-0000-4000-8000-000000000002";
+    private static final String RSV_USED = "rsv-00000000-0000-4000-8000-000000000003";
 
     private JdbcTemplate jdbc;
     private PortOneClient portOne;
@@ -49,7 +57,7 @@ class ReservationPaymentSafetyTest {
                 create table reservation_contents (
                   reservation_number int auto_increment primary key,
                   movie_title varchar(100), movie_place varchar(100), movie_time varchar(50),
-                  movie_Seat varchar(20), username varchar(50), reservation_price varchar(20), paymentId varchar(100),
+                  movie_Seat varchar(100), username varchar(50), reservation_price varchar(20), paymentId varchar(100),
                   status varchar(10) not null default 'PENDING',
                   reserved_at datetime not null default current_timestamp,
                   constraint uq_reservation_seat unique (movie_title, movie_place, movie_time, movie_Seat),
@@ -125,13 +133,50 @@ class ReservationPaymentSafetyTest {
     // ---- 결제 확정 ----
 
     @Test
-    void 포트원_결제_금액이_예약_금액과_다르면_409이고_저장하지_않는다() {
-        insertReservation("alice", "pay-1", "PENDING", 0);
-        when(portOne.getPayment("pay-1")).thenReturn(new PortOnePayment("PAID", 100));
+    void 포트원_결제_금액이_예약_금액과_다르면_환불하고_410_저장하지_않는다() {
+        insertReservation("alice", RSV_MISMATCH, "PENDING", 0);
+        when(portOne.getPayment(RSV_MISMATCH)).thenReturn(new PortOnePayment("PAID", 100));
 
-        assertThat(complete("pay-1", "alice")).isEqualTo(HttpStatus.CONFLICT);
+        assertThat(complete(RSV_MISMATCH, "alice")).isEqualTo(HttpStatus.GONE);
+        verify(portOne).cancelPayment(eq(RSV_MISMATCH), anyString());
         assertThat(rows("movie_payment")).isZero();
-        assertThat(statusOf("pay-1")).isEqualTo("PENDING");
+        assertThat(statusOf(RSV_MISMATCH)).isEqualTo("PENDING");
+    }
+
+    // ---- 자동 환불 ----
+
+    @Test
+    void 결제창에_있는_사이_예약이_만료로_지워졌으면_자동_환불하고_410() {
+        // 예약 행은 이미 만료 작업이 지웠고, 포트원에는 결제가 완료돼 있다
+        when(portOne.getPayment(RSV_GONE)).thenReturn(new PortOnePayment("PAID", 1000));
+
+        assertThat(complete(RSV_GONE, "alice")).isEqualTo(HttpStatus.GONE);
+        verify(portOne).cancelPayment(eq(RSV_GONE), anyString());
+        assertThat(rows("movie_payment")).isZero();
+    }
+
+    @Test
+    void 이미_확정에_쓰인_결제와_서버가_만들지_않은_예전_결제는_환불하지_않는다() {
+        jdbc.update("insert into movie_payment(username, paymentId, reservation_price) values ('alice', ?, '1000')", RSV_USED);
+        when(portOne.getPayment(anyString())).thenReturn(new PortOnePayment("PAID", 1000));
+
+        assertThat(complete(RSV_USED, "bob")).isEqualTo(HttpStatus.CONFLICT);
+        assertThat(complete("12345678", "bob")).isEqualTo(HttpStatus.NOT_FOUND);
+        verify(portOne, never()).cancelPayment(anyString(), anyString());
+    }
+
+    @Test
+    void paymentId에_경로_문자가_있으면_400이고_포트원을_부르지_않는다() {
+        assertThat(complete("rsv-x/../" + RSV_USED, "alice")).isEqualTo(HttpStatus.BAD_REQUEST);
+        verifyNoInteractions(portOne);
+    }
+
+    @Test
+    void 자동_환불이_실패하면_502() {
+        when(portOne.getPayment(RSV_GONE)).thenReturn(new PortOnePayment("PAID", 1000));
+        doThrow(new RestClientException("timeout")).when(portOne).cancelPayment(eq(RSV_GONE), anyString());
+
+        assertThat(complete(RSV_GONE, "alice")).isEqualTo(HttpStatus.BAD_GATEWAY);
     }
 
     @Test
@@ -206,11 +251,29 @@ class ReservationPaymentSafetyTest {
         insertReservation("alice", "new-pending", "PENDING", 5);
         insertReservation("alice", "old-paid", "PAID", 60);
 
-        int deleted = service.expirePendingReservations(10);
+        ExpiryResult result = service.expirePendingReservations(10, 100);
 
-        assertThat(deleted).isEqualTo(1);
+        assertThat(result.released()).isEqualTo(1);
         assertThat(jdbc.queryForList("select paymentId from reservation_contents order by paymentId", String.class))
                 .containsExactly("new-pending", "old-paid");
+    }
+
+    @Test
+    void 만료_작업은_이미_결제된_예약은_지우지_않고_확정하고_조회가_실패하면_남겨_둔다() {
+        insertReservation("alice", "rsv-paid", "PENDING", 11);   // 결제 후 창을 닫아 확정 요청이 안 온 예약
+        insertReservation("alice", "rsv-unpaid", "PENDING", 11); // 결제하지 않은 예약
+        insertReservation("alice", "rsv-error", "PENDING", 11);  // 포트원 조회 실패
+        when(portOne.getPayment("rsv-paid")).thenReturn(new PortOnePayment("PAID", 1000));
+        when(portOne.getPayment("rsv-unpaid")).thenReturn(null);
+        when(portOne.getPayment("rsv-error")).thenThrow(new RestClientException("timeout"));
+
+        ExpiryResult result = service.expirePendingReservations(10, 100);
+
+        assertThat(result).isEqualTo(new ExpiryResult(1, 1, 0, 1));
+        assertThat(statusOf("rsv-paid")).isEqualTo("PAID");
+        assertThat(rows("movie_payment")).isEqualTo(1);
+        assertThat(jdbc.queryForList("select paymentId from reservation_contents order by paymentId", String.class))
+                .containsExactly("rsv-error", "rsv-paid");
     }
 
     // ---- 도우미 ----

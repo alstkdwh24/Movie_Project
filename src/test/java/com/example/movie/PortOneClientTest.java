@@ -44,6 +44,19 @@ class PortOneClientTest {
     }
 
     @Test
+    void 결제_취소는_cancel_경로에_취소_사유만_보내_전액_취소한다() {
+        server.expect(requestTo("https://api.portone.io/payments/pay-1/cancel"))
+                .andExpect(method(HttpMethod.POST))
+                .andExpect(header("Authorization", "PortOne test-secret"))
+                .andExpect(content().json("{\"reason\":\"예약 시간이 지나 좌석이 해제됨\"}", true))
+                .andRespond(withSuccess("{\"cancellation\":{\"status\":\"SUCCEEDED\"}}", MediaType.APPLICATION_JSON));
+
+        new PortOneClient(restTemplate, "test-secret").cancelPayment("pay-1", "예약 시간이 지나 좌석이 해제됨");
+
+        server.verify();
+    }
+
+    @Test
     void Secret_설정이_없으면_요청하지_않고_예외() {
         assertThatThrownBy(() -> new PortOneClient(restTemplate, "").getPayment("pay-1"))
                 .isInstanceOf(IllegalStateException.class);

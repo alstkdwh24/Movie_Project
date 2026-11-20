@@ -28,7 +28,10 @@ public interface ReservationMapper {
     int reservation_Delete(ReservationVO vo);
     ReservationVO findPendingForPayment(@Param("username") String username, @Param("paymentId") String paymentId);
     int markPaid(@Param("reservation_number") Integer reservationNumber);
-    int deleteExpiredPending(@Param("minutes") int minutes);
+    List<ReservationVO> findExpiredPending(@Param("minutes") int minutes, @Param("limit") int limit);
+    int deletePendingByNumber(@Param("reservation_number") Integer reservationNumber);
+    int countReservationsByPaymentId(@Param("paymentId") String paymentId);
+    int countPaymentRecords(@Param("paymentId") String paymentId);
 
     int paymentVO(PaymentVO vo);
 

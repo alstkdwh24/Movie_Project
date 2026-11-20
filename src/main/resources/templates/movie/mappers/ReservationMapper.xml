@@ -63,12 +63,28 @@
         where reservation_number=#{reservation_number} and status='PENDING'
     </update>
 
-    <!-- 결제하지 않고 오래된 예약을 지워 좌석을 푼다 -->
-    <delete id="deleteExpiredPending">
-        delete from reservation_contents
+    <!-- 만료 대상: 결제하지 않고 오래된 예약. 지우기 전에 포트원 결제 여부를 한 건씩 확인한다 -->
+    <select id="findExpiredPending" resultType="ReservationVO">
+        select * from reservation_contents
         where status='PENDING'
           and reserved_at &lt; TIMESTAMPADD(MINUTE, -#{minutes}, NOW())
+        order by reserved_at
+        limit #{limit}
+    </select>
+
+    <delete id="deletePendingByNumber">
+        delete from reservation_contents
+        where reservation_number=#{reservation_number} and status='PENDING'
     </delete>
+
+    <!-- 환불 전 확인: 이 paymentId가 예약이나 결제 기록에 쓰였는지 -->
+    <select id="countReservationsByPaymentId" resultType="int">
+        select count(*) from reservation_contents where paymentId=#{paymentId}
+    </select>
+
+    <select id="countPaymentRecords" resultType="int">
+        select count(*) from movie_payment where paymentId=#{paymentId}
+    </select>
 
     <insert id="paymentVO" parameterType="com.example.movie.commandVO.PaymentVO">
         insert into movie_payment (username, movie_title, movie_time, movie_place, paymentId, reservation_price, movie_Seat, payment_time)

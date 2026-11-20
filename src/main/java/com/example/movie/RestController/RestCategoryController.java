@@ -58,7 +58,7 @@ public class RestCategoryController {
         vo.setUsername(principal.getName());
         vo.setReservation_price(String.valueOf(seatPrice));
         // paymentId도 서버가 만든다. 클라이언트 값을 받으면 이미 결제된 paymentId를 다른 좌석에 다시 쓸 수 있다
-        vo.setPaymentId("rsv-" + UUID.randomUUID());
+        vo.setPaymentId(ReservationService.PAYMENT_ID_PREFIX + UUID.randomUUID());
         try {
             int saveReservation = reservationService.movie_report_resist(vo);
             if (saveReservation == 1) {

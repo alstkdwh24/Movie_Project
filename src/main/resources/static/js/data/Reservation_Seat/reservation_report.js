@@ -50,6 +50,9 @@
             if (response.status === 201) {
                 alert("결제가 완료되었습니다.");
                 item.remove();
+            } else if (response.status === 410) {
+                alert("예약을 확정할 수 없어 결제를 취소(환불)했습니다. 다시 예약해 주세요.");
+                item.remove();
             } else {
                 alert("결제를 확인하지 못했습니다. 결제 내역을 확인해 주세요.");
             }
