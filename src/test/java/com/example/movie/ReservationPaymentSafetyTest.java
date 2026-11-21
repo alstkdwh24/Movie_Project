@@ -9,6 +9,8 @@ import com.example.movie.RestController.RestReservation;
 import com.example.movie.commandVO.PaymentVO;
 import com.example.movie.commandVO.ReservationVO;
 import com.example.movie.util.PortOneClient;
+import com.example.movie.util.PortOneWebhookVerifier;
+import com.example.movie.util.PortOneWebhookVerifierTest;
 import com.example.movie.util.PortOneClient.PortOnePayment;
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,6 +42,7 @@ class ReservationPaymentSafetyTest {
     private static final String RSV_MISMATCH = "rsv-00000000-0000-4000-8000-000000000001";
     private static final String RSV_GONE = "rsv-00000000-0000-4000-8000-000000000002";
     private static final String RSV_USED = "rsv-00000000-0000-4000-8000-000000000003";
+    private static final String RSV_WEBHOOK = "rsv-00000000-0000-4000-8000-000000000004";
 
     private JdbcTemplate jdbc;
     private PortOneClient portOne;
@@ -66,7 +69,7 @@ class ReservationPaymentSafetyTest {
         jdbc.execute("""
                 create table movie_payment (
                   username varchar(50), movie_title varchar(100), movie_time varchar(50), movie_place varchar(100),
-                  paymentId varchar(100), reservation_price varchar(20), movie_Seat varchar(20), payment_time datetime,
+                  paymentId varchar(100), reservation_price varchar(20), movie_Seat varchar(100), payment_time datetime,
                   constraint uq_movie_payment_paymentId unique (paymentId)
                 )""");
 
@@ -86,6 +89,7 @@ class ReservationPaymentSafetyTest {
         reservationApi = new RestReservation();
         ReflectionTestUtils.setField(reservationApi, "reservationService", service);
         paymentApi = new RestPaymentController();
+        ReflectionTestUtils.setField(paymentApi, "webhookVerifier", new PortOneWebhookVerifier(PortOneWebhookVerifierTest.SECRET));
         ReflectionTestUtils.setField(paymentApi, "reservationService", service);
         categoryApi = new RestCategoryController();
         ReflectionTestUtils.setField(categoryApi, "reservationService", service);
@@ -199,8 +203,8 @@ class ReservationPaymentSafetyTest {
                 .containsEntry("USERNAME", "alice").containsEntry("RESERVATION_PRICE", "1000")
                 .containsEntry("MOVIE_SEAT", "A1");
 
-        // 같은 결제를 다시 확정해도 결제 행이 늘지 않는다
-        assertThat(complete("pay-1", "alice")).isEqualTo(HttpStatus.NOT_FOUND);
+        // 같은 결제를 다시 확정하면 이미 확정됐다고 201로 답하고, 결제 행은 늘지 않는다
+        assertThat(complete("pay-1", "alice")).isEqualTo(HttpStatus.CREATED);
         assertThat(rows("movie_payment")).isEqualTo(1);
     }
 
@@ -229,6 +233,58 @@ class ReservationPaymentSafetyTest {
         PaymentVO vo = new PaymentVO();
         vo.setPaymentId("pay-1");
         assertThat(paymentApi.completePayment(vo, null).getStatusCode().value()).isEqualTo(401);
+    }
+
+    // ---- 웹훅 ----
+
+    @Test
+    void 결제_후_창을_닫아도_웹훅으로_확정되고_늦게_온_브라우저_요청도_성공() throws Exception {
+        insertReservation("alice", RSV_WEBHOOK, "PENDING", 0);
+        when(portOne.getPayment(RSV_WEBHOOK)).thenReturn(new PortOnePayment("PAID", 1000));
+
+        assertThat(webhook("Transaction.Paid", RSV_WEBHOOK, true)).isEqualTo(HttpStatus.OK);
+        assertThat(statusOf(RSV_WEBHOOK)).isEqualTo("PAID");
+        assertThat(rows("movie_payment")).isEqualTo(1);
+
+        assertThat(complete(RSV_WEBHOOK, "alice")).isEqualTo(HttpStatus.CREATED);
+        assertThat(webhook("Transaction.Paid", RSV_WEBHOOK, true)).isEqualTo(HttpStatus.OK); // 재전송돼도 그대로
+        assertThat(rows("movie_payment")).isEqualTo(1);
+        verify(portOne, never()).cancelPayment(anyString(), anyString());
+    }
+
+    @Test
+    void 예약이_만료로_지워진_뒤_결제_웹훅이_오면_환불() throws Exception {
+        when(portOne.getPayment(RSV_GONE)).thenReturn(new PortOnePayment("PAID", 1000));
+
+        assertThat(webhook("Transaction.Paid", RSV_GONE, true)).isEqualTo(HttpStatus.OK);
+        verify(portOne).cancelPayment(eq(RSV_GONE), anyString());
+    }
+
+    @Test
+    void 웹훅_환불이_실패하면_503으로_재전송을_받는다() throws Exception {
+        when(portOne.getPayment(RSV_GONE)).thenReturn(new PortOnePayment("PAID", 1000));
+        doThrow(new RestClientException("timeout")).when(portOne).cancelPayment(eq(RSV_GONE), anyString());
+
+        assertThat(webhook("Transaction.Paid", RSV_GONE, true)).isEqualTo(HttpStatus.SERVICE_UNAVAILABLE);
+    }
+
+    @Test
+    void 서명이_틀린_웹훅은_401이고_모르는_type은_무시한다() throws Exception {
+        insertReservation("alice", RSV_WEBHOOK, "PENDING", 0);
+
+        assertThat(webhook("Transaction.Paid", RSV_WEBHOOK, false)).isEqualTo(HttpStatus.UNAUTHORIZED);
+        assertThat(webhook("Transaction.Ready", RSV_WEBHOOK, true)).isEqualTo(HttpStatus.OK);
+        verifyNoInteractions(portOne);
+        assertThat(statusOf(RSV_WEBHOOK)).isEqualTo("PENDING");
+    }
+
+    @Test
+    void 웹훅_본문이_64KB를_넘으면_서명_검증_전에_413() throws Exception {
+        org.springframework.mock.web.MockHttpServletRequest request = new org.springframework.mock.web.MockHttpServletRequest();
+        request.setContent(new byte[64 * 1024 + 1]);
+
+        assertThat(paymentApi.paymentWebhook(request).getStatusCode().value()).isEqualTo(413);
+        verifyNoInteractions(portOne);
     }
 
     // ---- 결제 내역 ----
@@ -298,6 +354,16 @@ class ReservationPaymentSafetyTest {
         PaymentVO vo = new PaymentVO();
         vo.setPaymentId(paymentId);
         return HttpStatus.valueOf(paymentApi.completePayment(vo, user(username)).getStatusCode().value());
+    }
+
+    private HttpStatus webhook(String type, String paymentId, boolean validSignature) throws Exception {
+        String body = """
+                {"type":"%s","timestamp":"2026-11-21T00:00:00Z","data":{"storeId":"store-test","paymentId":"%s"}}"""
+                .formatted(type, paymentId);
+        String id = "msg_" + System.nanoTime();
+        String ts = String.valueOf(java.time.Instant.now().getEpochSecond());
+        String signature = PortOneWebhookVerifierTest.sign(id, ts, validSignature ? body : body + " ");
+        return HttpStatus.valueOf(paymentApi.paymentWebhook(body, id, ts, signature).getStatusCode().value());
     }
 
     private String statusOf(String paymentId) {

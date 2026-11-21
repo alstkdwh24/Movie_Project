@@ -86,6 +86,16 @@
         select count(*) from movie_payment where paymentId=#{paymentId}
     </select>
 
+    <!-- 웹훅용: 로그인 사용자 없이 paymentId로 결제 전 예약을 찾는다(paymentId는 유니크) -->
+    <select id="findPendingByPaymentId" resultType="ReservationVO">
+        select * from reservation_contents where paymentId=#{paymentId} and status='PENDING'
+    </select>
+
+    <select id="countPaidForUser" resultType="int">
+        select count(*) from reservation_contents
+        where username=#{username} and paymentId=#{paymentId} and status='PAID'
+    </select>
+
     <insert id="paymentVO" parameterType="com.example.movie.commandVO.PaymentVO">
         insert into movie_payment (username, movie_title, movie_time, movie_place, paymentId, reservation_price, movie_Seat, payment_time)
         values (#{username}, #{movie_title}, #{movie_time}, #{movie_place}, #{paymentId}, #{reservation_price}, #{movie_Seat}, now())

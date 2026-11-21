@@ -18,7 +18,7 @@
   - 단계를 넘어갈 때 선택값이 사라지지 않도록 `data` 속성과 SessionStorage로 유지
 - **결제**: 포트원 V2. 결제 후 서버가 포트원에서 결제를 직접 조회해 상태(PAID)와 금액을 DB 예약 금액과 비교한 뒤에만 저장한다
   - 예약이 만료로 지워진 뒤 결제가 끝났거나 금액이 다르면, 결제 확정 요청이 서버에 도착했을 때 포트원 결제 취소 API로 자동 환불한다(서버가 만든 `rsv-` 결제 중 확정에 쓰이지 않은 것만)
-  - 한계: 만료 작업이 예약을 지운 뒤 결제하고 바로 창을 닫아 확정 요청이 오지 않으면 자동 환불되지 않는다(포트원 웹훅 미구현)
+  - 결제 후 창을 닫아 확정 요청이 오지 않아도 포트원 웹훅(`Transaction.Paid` → `POST /payment/webhook`)으로 확정하거나 환불한다. 서명(Standard Webhooks)이 맞는 요청만 받고, 본문을 믿지 않고 포트원에서 결제를 다시 조회한다
 - **회원**: 회원가입 · 로그인(Spring Security), 마이페이지
 - **게시판**: 자유 · 갤러리 · Q&A 3종 작성·조회, 댓글 · 조회수, 페이징
 - **스토어**: 팝콘 · 기프티콘 · 관람권 상품 등록과 목록
@@ -65,6 +65,7 @@ portone:
   api-secret: ${PORTONE_API_SECRET}   # 서버에서만 쓴다. JS·저장소에 넣지 않는다
   store-id: ${PORTONE_STORE_ID}       # 결제창에 넘기는 공개 식별자
   channel-key: ${PORTONE_CHANNEL_KEY}
+  webhook-secret: ${PORTONE_WEBHOOK_SECRET}  # 콘솔 결제알림(Webhook) 관리에서 발급(whsec_...)
 
 reservation:
   seat-price: 1000          # 좌석 1개 가격(원)
@@ -93,7 +94,7 @@ Windows에서는 `gradlew.bat bootRun`을 실행합니다. 실행 후 `http://lo
 
 > 테이블 생성 SQL은 저장소에 포함되어 있지 않습니다. `ddl-auto: none`이므로 MySQL에 테이블을 먼저 만들어야 합니다.
 > 예약 상태 컬럼과 paymentId 유니크 인덱스는 `docs/sql/20261121_reservation_status.sql`로 추가합니다.
-> 배포 순서: ① SQL 실행(이전 버전 코드와도 호환) → ② `portone.*` 설정 → ③ 새 버전 배포. SQL 없이 배포하면 예약 조회·취소·결제 확정이 실패합니다.
+> 배포 순서: ① SQL 실행(이전 버전 코드와도 호환) → ② `portone.*` 설정 → ③ 새 버전 배포 → ④ 포트원 콘솔에 웹훅 주소 `https://<도메인>/payment/webhook` 등록(버전 2024-04-25). SQL 없이 배포하면 예약 조회·취소·결제 확정이 실패합니다.
 
 ## 회고
 

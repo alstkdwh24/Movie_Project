@@ -32,6 +32,8 @@ public interface ReservationMapper {
     int deletePendingByNumber(@Param("reservation_number") Integer reservationNumber);
     int countReservationsByPaymentId(@Param("paymentId") String paymentId);
     int countPaymentRecords(@Param("paymentId") String paymentId);
+    ReservationVO findPendingByPaymentId(@Param("paymentId") String paymentId);
+    int countPaidForUser(@Param("username") String username, @Param("paymentId") String paymentId);
 
     int paymentVO(PaymentVO vo);
 

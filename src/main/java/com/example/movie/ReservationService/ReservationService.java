@@ -37,6 +37,9 @@ public interface ReservationService {
 
     PaymentCompleteResult completePayment(String username, String paymentId);
 
+    /** 포트원 결제 승인 웹훅(Transaction.Paid). 서명 검증은 컨트롤러가 먼저 한다 */
+    PaymentCompleteResult handlePaidWebhook(String paymentId);
+
     ExpiryResult expirePendingReservations(int minutes, int batchSize);
 
     int paymentVO(PaymentVO vo);

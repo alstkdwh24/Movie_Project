@@ -77,6 +77,10 @@ public class ReservationServiceImpl implements ReservationService{
     public PaymentCompleteResult completePayment(String username, String paymentId) {
         ReservationVO reservation = reservationMapper.findPendingForPayment(username, paymentId);
         if (reservation == null) {
+            if (reservationMapper.countPaidForUser(username, paymentId) > 0) {
+                // 웹훅이 먼저 확정한 경우. 브라우저 요청에도 성공으로 답한다
+                return PaymentCompleteResult.COMPLETED;
+            }
             // 결제창에 있는 사이 예약이 만료로 지워졌다면, 좌석 없이 돈만 빠진 결제라 환불한다
             return refundIfOrphan(paymentId);
         }
@@ -97,7 +101,24 @@ public class ReservationServiceImpl implements ReservationService{
             // 확인하는 사이 만료 작업이 예약을 지운 경우만 환불한다(다른 요청이 이미 확정했다면 그대로 둔다)
             return refundIfOrphan(paymentId);
         }
+        if (result == PaymentCompleteResult.NOT_PENDING && reservationMapper.countPaidForUser(username, paymentId) > 0) {
+            return PaymentCompleteResult.COMPLETED; // 웹훅과 동시에 와서 진 쪽도 결제는 확정된 상태다
+        }
         return result;
+    }
+
+    @Override
+    public PaymentCompleteResult handlePaidWebhook(String paymentId) {
+        // 웹훅은 로그인 사용자가 없으므로 paymentId로 예약 주인을 찾는다
+        ReservationVO reservation = reservationMapper.findPendingByPaymentId(paymentId);
+        if (reservation != null) {
+            return completePayment(reservation.getUsername(), paymentId);
+        }
+        if (reservationMapper.countPaymentRecords(paymentId) > 0) {
+            return PaymentCompleteResult.COMPLETED; // 브라우저 요청이 먼저 확정함
+        }
+        // 만료 작업이 예약을 지운 뒤 결제가 끝났고, 사용자가 창을 닫아 확정 요청도 오지 않은 경우
+        return refundIfOrphan(paymentId);
     }
 
     @Override
