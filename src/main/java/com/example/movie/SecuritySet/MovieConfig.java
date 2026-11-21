@@ -63,7 +63,6 @@ public class MovieConfig implements WebMvcConfigurer {
                 .antMatchers("/movie/Reservation/reservation").hasAnyRole("1", "2")
                 .antMatchers("/movie/Reservation/**").hasAnyRole("1", "2")
                 .antMatchers("/movie/chats/**").hasAnyRole("1", "2")
-                .antMatchers("/payments/**").permitAll()
                 .anyRequest().permitAll());
 
 

@@ -10,6 +10,7 @@ import com.example.movie.util.PageVO;
 import org.hibernate.cache.spi.support.StorageAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +29,13 @@ public class ReservationController {
     @Autowired
     @Qualifier("reservationService")
     public ReservationService reservationService;
+
+    // 결제창에 넘기는 포트원 공개 식별자. API Secret과 달리 브라우저에 보여도 된다
+    @Value("${portone.store-id:}")
+    private String portoneStoreId;
+
+    @Value("${portone.channel-key:}")
+    private String portoneChannelKey;
 
 //    public ReservationController(RestTemplate restTemplate) {
 //        super(restTemplate);
@@ -61,7 +69,6 @@ public class ReservationController {
 
     @GetMapping("/reservation_report")
     public String reservation_report(HttpSession session, Model model, Criteria cri, ReservationVO vo, HttpSession session2 ,HttpSession session3) {
-        String getSession = (String) session2.getAttribute("accessToken");
         int total = reservationService.getReservation_board(cri);
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
         String username=cri.setUsername(userDetails.getUsername()); // 세션에서 가져온 username 사용
@@ -75,8 +82,8 @@ public class ReservationController {
         model.addAttribute("username",username);
         model.addAttribute("userSession", userDetails);
         model.addAttribute("list", List);
-        model.addAttribute("accessToken", getSession);
-        System.out.println("getSession"+getSession);
+        model.addAttribute("portoneStoreId", portoneStoreId);
+        model.addAttribute("portoneChannelKey", portoneChannelKey);
         return "movie/Reservation/reservation_report";
 
     }

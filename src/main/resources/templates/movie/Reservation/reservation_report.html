@@ -73,8 +73,6 @@
 
             <div class="list_top">결제진행</div>
 
-            <!--            토큰 저장-->
-            <input type="hidden" th:value="${accessToken}" name="accessToken">
         </div>
         <div id="reservation_lists">
             <div class="reservation_item" th:each="vo, status:${list}"
@@ -153,6 +151,8 @@
 <script src="/js/modal/menu_modal.js"></script>
 
 
+<!--포트원 공개 식별자(서버 설정 portone.store-id, portone.channel-key). API Secret은 넣지 않는다-->
+<div id="portone-config" hidden th:data-store-id="${portoneStoreId}" th:data-channel-key="${portoneChannelKey}"></div>
 <!--js reservation_report-->
 <script src="/js/data/Reservation_Seat/reservation_report.js"></script>
 

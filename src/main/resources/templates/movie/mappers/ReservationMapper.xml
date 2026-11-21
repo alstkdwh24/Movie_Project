@@ -35,16 +35,66 @@
     </select>
 
 
+    <!-- 결제할 예약 목록: 결제가 끝난(PAID) 예약은 빼고 본인 것만 -->
     <select id="getReservation_pay" parameterType="com.example.movie.util.Criteria" resultType="ReservationVO">
         select * from reservation_contents
-        where username=#{username};
+        where username=#{username} and status='PENDING';
     </select>
 
+    <!-- 본인의 결제 전 예약만 취소. 결제가 끝난 좌석은 지우지 않는다 -->
     <delete id="reservation_Delete">
         delete
         from reservation_contents
         where reservation_number=#{reservation_number}
+          and username=#{username}
+          and status='PENDING'
     </delete>
+
+    <!-- 결제 검증용: 본인의 결제 전 예약 1건 -->
+    <select id="findPendingForPayment" resultType="ReservationVO">
+        select * from reservation_contents
+        where username=#{username} and paymentId=#{paymentId} and status='PENDING'
+    </select>
+
+    <!-- 동시에 두 번 확정해도 1건만 바뀌도록 PENDING 조건을 건다 -->
+    <update id="markPaid">
+        update reservation_contents
+        set status='PAID'
+        where reservation_number=#{reservation_number} and status='PENDING'
+    </update>
+
+    <!-- 만료 대상: 결제하지 않고 오래된 예약. 지우기 전에 포트원 결제 여부를 한 건씩 확인한다 -->
+    <select id="findExpiredPending" resultType="ReservationVO">
+        select * from reservation_contents
+        where status='PENDING'
+          and reserved_at &lt; TIMESTAMPADD(MINUTE, -#{minutes}, NOW())
+        order by reserved_at
+        limit #{limit}
+    </select>
+
+    <delete id="deletePendingByNumber">
+        delete from reservation_contents
+        where reservation_number=#{reservation_number} and status='PENDING'
+    </delete>
+
+    <!-- 환불 전 확인: 이 paymentId가 예약이나 결제 기록에 쓰였는지 -->
+    <select id="countReservationsByPaymentId" resultType="int">
+        select count(*) from reservation_contents where paymentId=#{paymentId}
+    </select>
+
+    <select id="countPaymentRecords" resultType="int">
+        select count(*) from movie_payment where paymentId=#{paymentId}
+    </select>
+
+    <!-- 웹훅용: 로그인 사용자 없이 paymentId로 결제 전 예약을 찾는다(paymentId는 유니크) -->
+    <select id="findPendingByPaymentId" resultType="ReservationVO">
+        select * from reservation_contents where paymentId=#{paymentId} and status='PENDING'
+    </select>
+
+    <select id="countPaidForUser" resultType="int">
+        select count(*) from reservation_contents
+        where username=#{username} and paymentId=#{paymentId} and status='PAID'
+    </select>
 
     <insert id="paymentVO" parameterType="com.example.movie.commandVO.PaymentVO">
         insert into movie_payment (username, movie_title, movie_time, movie_place, paymentId, reservation_price, movie_Seat, payment_time)
@@ -71,12 +121,6 @@
                                             reservation_price, payment_time, username, payment_time_two)
         values (#{paymentId}, #{movie_title}, #{movie_time},#{movie_place}, #{movie_Seat}, #{reservation_price}, now(), #{username}, #{payment_time_two})
     </insert>
-
-<!--    결제 결과 보기-->
-    <select id="PaymentIdList" resultType="PaymentId_ListVO">
-        select b.paymentId, a.movie_title, a.movie_time, a.movie_place,a.movie_Seat, a.reservation_price, a.payment_time_two, a.username
-        from movie_payment_paymentId as a left join paymentIdvo as b on a.paymentId = b.paymentId
-    </select>
 
 
 </mapper>

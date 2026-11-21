@@ -3,6 +3,7 @@ package com.example.movie.ReservationService;
 import com.example.movie.commandVO.*;
 import com.example.movie.util.Criteria;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,15 @@ public interface ReservationMapper {
 
     int movie_report_resist(ReservationVO vo);
 
-    void reservation_Delete(ReservationVO vo);
+    int reservation_Delete(ReservationVO vo);
+    ReservationVO findPendingForPayment(@Param("username") String username, @Param("paymentId") String paymentId);
+    int markPaid(@Param("reservation_number") Integer reservationNumber);
+    List<ReservationVO> findExpiredPending(@Param("minutes") int minutes, @Param("limit") int limit);
+    int deletePendingByNumber(@Param("reservation_number") Integer reservationNumber);
+    int countReservationsByPaymentId(@Param("paymentId") String paymentId);
+    int countPaymentRecords(@Param("paymentId") String paymentId);
+    ReservationVO findPendingByPaymentId(@Param("paymentId") String paymentId);
+    int countPaidForUser(@Param("username") String username, @Param("paymentId") String paymentId);
 
     int paymentVO(PaymentVO vo);
 
@@ -34,7 +43,6 @@ public interface ReservationMapper {
 //포트원을 데이터베이스에 저장
     int paymentIdSave(PaymentIdVO vo);
 
-    ArrayList<PaymentId_ListVO> PaymentIdList(String paymentId);
 
     int movie_payment_paymentId(PaymentVO vo);
 

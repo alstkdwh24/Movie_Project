@@ -58,6 +58,7 @@ class SeatDuplicateConcurrencyTest {
         ReflectionTestUtils.setField(service, "reservationMapper", mapper);
         controller = new RestCategoryController();
         ReflectionTestUtils.setField(controller, "reservationService", service);
+        ReflectionTestUtils.setField(controller, "seatPrice", 1000);
     }
 
     @Test
@@ -69,7 +70,7 @@ class SeatDuplicateConcurrencyTest {
             ReservationVO dto = seat("user" + i, "pay-" + i, "A1");
             results.add(pool.submit(() -> {
                 start.await();
-                return HttpStatus.valueOf(controller.createReservation(dto).getStatusCode().value());
+                return HttpStatus.valueOf(controller.createReservation(dto, dto::getUsername).getStatusCode().value());
             }));
         }
         start.countDown();
@@ -92,7 +93,8 @@ class SeatDuplicateConcurrencyTest {
     @Test
     void 좌석이_다르면_모두_저장된다() {
         for (int i = 0; i < REQUESTS; i++) {
-            assertThat(controller.createReservation(seat("user" + i, "pay-" + i, "B" + i)).getStatusCode())
+            assertThat(controller.createReservation(seat("user" + i, "pay-" + i, "B" + i), () -> "user")
+                    .getStatusCode())
                     .isEqualTo(HttpStatus.CREATED);
         }
         assertThat(countRows()).isEqualTo(REQUESTS);

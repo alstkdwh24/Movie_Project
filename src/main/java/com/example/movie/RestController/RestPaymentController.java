@@ -1,177 +1,126 @@
 package com.example.movie.RestController;
 
+import com.example.movie.ReservationService.PaymentCompleteResult;
 import com.example.movie.ReservationService.ReservationService;
 import com.example.movie.commandVO.*;
+import com.example.movie.util.PortOneWebhookVerifier;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestClientException;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.Principal;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
+@Slf4j
 @RestController
-@CrossOrigin("*")
 public class RestPaymentController {
 
     @Autowired
     @Qualifier("reservationService")
     private ReservationService reservationService;
 
-    private final RestTemplate restTemplate;
+    @Autowired
+    private PortOneWebhookVerifier webhookVerifier;
 
-    public RestPaymentController(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
+    private static final int MAX_WEBHOOK_BODY_BYTES = 64 * 1024; // 포트원 웹훅 본문은 수백 바이트
 
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
+    /**
+     * 결제 확정. 클라이언트는 paymentId만 보낸다.
+     * 서버가 포트원에서 결제를 직접 조회해 상태(PAID)와 금액을 DB 예약과 비교한 뒤에만 저장한다.
+     */
     @PostMapping("/payment/complete")
-    @CrossOrigin(origins = "*") // 모든 출처 허용
-    public ResponseEntity<PaymentVO> paymentVO(@RequestBody PaymentVO vo, HttpSession session2, Model model) {
-
-
-        int savePayment = reservationService.paymentVO(vo);
-        if (savePayment == 1) {
-            return new ResponseEntity<>(vo, HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>(vo, HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<Void> completePayment(@RequestBody PaymentVO vo, Principal principal) {
+        if (principal == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
+        // 포트원 경로에 들어가므로 문자 종류를 제한한다(/ . 등으로 다른 결제 경로를 만들지 못하게)
+        if (vo.getPaymentId() == null || !vo.getPaymentId().matches("[A-Za-z0-9_-]{1,64}")) {
+            return ResponseEntity.badRequest().build();
+        }
+        PaymentCompleteResult result;
+        try {
+            result = reservationService.completePayment(principal.getName(), vo.getPaymentId());
+        } catch (RestClientException | IllegalStateException e) {
+            log.error("포트원 결제 조회 실패 paymentId={}", vo.getPaymentId(), e);
+            return ResponseEntity.status(HttpStatus.BAD_GATEWAY).build();
+        }
+        return switch (result) {
+            case COMPLETED -> ResponseEntity.status(HttpStatus.CREATED).build();
+            case RESERVATION_NOT_FOUND -> ResponseEntity.notFound().build();
+            case NOT_PAID, NOT_PENDING -> ResponseEntity.status(HttpStatus.CONFLICT).build();
+            case REFUNDED -> ResponseEntity.status(HttpStatus.GONE).build();
+            case REFUND_FAILED -> ResponseEntity.status(HttpStatus.BAD_GATEWAY).build();
+        };
     }
 
+    /**
+     * 포트원 결제 승인 웹훅. 브라우저가 확정 요청을 못 보낸 경우(창 닫음 등)에도 확정하거나 환불한다.
+     * 서명이 맞는 요청만 받고, 본문을 믿지 않고 포트원에서 결제를 다시 조회한다(completePayment와 같은 검증).
+     * 처리하지 못하면 5xx로 답해 포트원이 다시 보내게 한다.
+     */
+    @PostMapping("/payment/webhook")
+    public ResponseEntity<Void> paymentWebhook(HttpServletRequest request) throws IOException {
+        // 인증 없는 공개 주소라, 서명 검증 전에 본문을 통째로 메모리에 올리지 않도록 크기를 제한한다
+        byte[] raw = request.getInputStream().readNBytes(MAX_WEBHOOK_BODY_BYTES + 1);
+        if (raw.length > MAX_WEBHOOK_BODY_BYTES) {
+            return ResponseEntity.status(HttpStatus.PAYLOAD_TOO_LARGE).build();
+        }
+        return paymentWebhook(new String(raw, StandardCharsets.UTF_8), request.getHeader("webhook-id"),
+                request.getHeader("webhook-timestamp"), request.getHeader("webhook-signature"));
+    }
+
+    public ResponseEntity<Void> paymentWebhook(String body, String webhookId, String webhookTimestamp, String webhookSignature) {
+        if (!webhookVerifier.verify(webhookId, webhookTimestamp, webhookSignature, body)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        JsonNode message;
+        try {
+            message = objectMapper.readTree(body);
+        } catch (JsonProcessingException e) {
+            return ResponseEntity.badRequest().build();
+        }
+        String paymentId = message.path("data").path("paymentId").asText("");
+        // 모르는 type, 다른 결제 이벤트, 이 서버가 만들지 않은 결제는 무시한다(문서: 모르는 type은 오류 없이 무시)
+        if (!"Transaction.Paid".equals(message.path("type").asText()) || !ReservationService.isServerPaymentId(paymentId)) {
+            return ResponseEntity.ok().build();
+        }
+
+        PaymentCompleteResult result;
+        try {
+            result = reservationService.handlePaidWebhook(paymentId);
+        } catch (RestClientException | IllegalStateException e) {
+            log.error("웹훅 처리 중 포트원 조회 실패 paymentId={}", paymentId, e);
+            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).build();
+        }
+        log.info("결제 웹훅 처리 paymentId={} 결과={}", paymentId, result);
+        // 환불 실패만 재전송을 받는다. 다시 와도 이미 취소된 결제는 PAID가 아니라 중복 취소되지 않는다
+        return result == PaymentCompleteResult.REFUND_FAILED
+                ? ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).build()
+                : ResponseEntity.ok().build();
+    }
+
+    /** 결제 내역: 로그인한 본인 것만. 예전에는 username 파라미터로 아무나 남의 내역을 볼 수 있었다 */
     @GetMapping("/movie/payment/report")
-    public ResponseEntity<ArrayList<PaymentVO>> payment_report(@RequestParam("username") String username) {
-        ArrayList<PaymentVO> paymentReport = reservationService.getPayment_report(username);
-        return new ResponseEntity<>(paymentReport, HttpStatus.OK);
-
+    public ResponseEntity<ArrayList<PaymentVO>> payment_report(Principal principal) {
+        if (principal == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        return ResponseEntity.ok(reservationService.getPayment_report(principal.getName()));
     }
 
-
-    @PostMapping("/api/Tokens")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<?> getToken(@RequestBody TokenVO tokenVO, HttpSession session) {
-        String url = "https://api.portone.io/login/api-secret";
-        ResponseEntity<?> response;
-
-        session.setAttribute("accessToken", tokenVO.getAccessToken());
-
-        try {
-            // TokenVO 객체를 사용하여 요청을 보냅니다.
-            response = restTemplate.postForEntity(url, tokenVO, Object.class);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred while processing your request: " + e.getMessage());
-        }
-
-        return ResponseEntity.ok(response.getBody()); // 클라이언트에 응답 반환
-    }
-
-
-    @PostMapping("/api/access_token")
-    public ResponseEntity<TokenVO> getToken(HttpSession session2,
-                                            @RequestBody String accessToken
-    ) {
-        TokenVO tokenVO = new TokenVO();
-        tokenVO.setAccessToken(String.valueOf(accessToken));
-        session2.setAttribute("token", tokenVO.getAccessToken());
-        session2.setMaxInactiveInterval(5000);
-        System.out.println("토큰" + session2.getAttribute("token"));
-        System.out.println(session2);
-        return ResponseEntity.ok(tokenVO); // 성공적으로 토큰을 반환
-
-    }
-
-
-    @GetMapping("/payments")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<List<PaymentVO>> getPayments(HttpSession session2) throws JsonProcessingException {
-        String url = "https://api.portone.io/payments";
-
-        // 세션에서 TokenVO 객체 가져오기
-        String tokenJson = (String) session2.getAttribute("token"); // String으로 가져오기
-
-        // null 체크
-        if (tokenJson == null) {
-            System.out.println("세션에 'token'이 없습니다.");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null); // 401 Unauthorized
-        }
-
-        // JSON 문자열을 TokenVO 객체로 변환
-        ObjectMapper objectMapper = new ObjectMapper();
-        TokenVO tokenVO = objectMapper.readValue(tokenJson, TokenVO.class);
-
-        // 액세스 토큰 가져오기
-        String accessToken = tokenVO.getAccessToken();
-        if (accessToken == null) {
-            System.out.println("accessToken이 null입니다.");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null); // 401 Unauthorized
-        }
-
-        System.out.println("tokensVO: " + tokenVO);
-
-        // 헤더 설정
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer " + accessToken);
-
-        // 요청 엔티티 생성
-        HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
-
-        ResponseEntity<PaymentResponseVO> response;
-        try {
-            response = restTemplate.exchange(url, HttpMethod.GET, requestEntity,
-                    new ParameterizedTypeReference<PaymentResponseVO>() {
-                    });
-        } catch (HttpClientErrorException e) {
-            System.out.println("HTTP 상태 코드: " + e.getStatusCode());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); // 500 Internal Server Error
-        }
-
-        // 응답 반환
-        List<PaymentVO> payments = Objects.requireNonNull(response.getBody()).getPayments();
-        if (payments == null || payments.isEmpty()) {
-            return ResponseEntity.ok(new ArrayList<>()); // 빈 리스트 반환
-        }
-        // 응답 반환
-        return ResponseEntity.ok(payments);
-    }
-
-
-    //PaymentIdVO 데이터베이스 저장
-    @PostMapping("/new_payment")
-    public ResponseEntity<PaymentIdVO> PaymentIdVO(@RequestBody PaymentIdVO vo) {
-        int savePaymentId=reservationService.paymentIdSave(vo);
-        if(savePaymentId==1){
-            return new ResponseEntity<>(vo, HttpStatus.CREATED);
-        }
-
-        return new ResponseEntity<>(vo, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-
-    //paymentIdVO List
-    @GetMapping("/paymentIdVOList")
-    public ResponseEntity<ArrayList<PaymentId_ListVO>> paymentId_ListVO(@RequestParam("paymentId") String paymentId){
-        ArrayList<PaymentId_ListVO> PaymentIdList=reservationService.PaymentIdList(paymentId);
-        return new ResponseEntity<>(PaymentIdList,HttpStatus.OK);
-
-    }
-
-
-//    movie_payment테이블에서 paymentId열을 추가하는 부분
-    @PostMapping("/movie_payment_paymentId")
-    public ResponseEntity<PaymentVO> movie_payment_paymentId(@RequestBody PaymentVO vo) {
-        int movie_payment_paymentId_save = reservationService.movie_payment_paymentId(vo);
-        if (movie_payment_paymentId_save == 1) {
-            return new ResponseEntity<>(vo, HttpStatus.CREATED);
-        }
-        return new ResponseEntity<>(vo, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+    // 제거한 API(호출하는 화면 없음):
+    // /api/access_token, /payments  - 아무나 세션에 토큰을 넣어 포트원 결제 목록을 프록시하고 토큰을 로그에 남김.
+    //                                  결제 확인은 서버 PortOneClient 단건 조회로 대체
+    // /paymentIdVOList              - WHERE 없이 전체 사용자의 결제 내역을 로그인 없이 반환
 }
-
-
