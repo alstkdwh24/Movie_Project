@@ -8,7 +8,7 @@
 - Java 21, Spring Boot 2.7, Spring Security (BCrypt 비밀번호 암호화)
 - MyBatis (Mapper XML), MySQL
 - Thymeleaf, jQuery
-- 포트원(아임포트) 결제 연동, AWS S3 파일 업로드
+- 포트원 V2 결제(서버 단건 조회·웹훅 서명 검증·자동 환불), AWS S3 파일 업로드
 
 ## 기능
 

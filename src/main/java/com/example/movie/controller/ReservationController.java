@@ -4,7 +4,6 @@ import com.example.movie.ReservationService.ReservationService;
 import com.example.movie.RestController.RestPaymentController;
 import com.example.movie.commandVO.EventVO;
 import com.example.movie.commandVO.ReservationVO;
-import com.example.movie.commandVO.TokenVO;
 import com.example.movie.util.Criteria;
 import com.example.movie.util.PageVO;
 import org.hibernate.cache.spi.support.StorageAccess;
