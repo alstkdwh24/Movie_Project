@@ -51,7 +51,7 @@ public class NaverLoginController {
     public NaverLoginController(SocialLoginService socialLoginService,
                                 @Value("${spring.login.NAVER_CLIENT_ID:}") String clientId,
                                 @Value("${spring.login.NAVER_CLIENT_SECRET:}") String clientSecret,
-                                @Value("${NAVER_REDIRECT_URI:http://localhost:8080/movie/login/naver/callback}") String redirectUri) {
+                                @Value("${spring.login.NAVER_REDIRECT_URI:http://localhost:8080/movie/login/naver/callback}") String redirectUri) {
         this.socialLoginService = socialLoginService;
         this.clientId = clientId;
         this.clientSecret = clientSecret;
