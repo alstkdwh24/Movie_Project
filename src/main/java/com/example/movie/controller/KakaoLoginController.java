@@ -62,8 +62,8 @@ public class KakaoLoginController {
 
     public KakaoLoginController(@Qualifier("loginService") LoginService loginService,
                                 UserDetailsService userDetailsService,
-                                @Value("${KAKAO_CLIENT_ID:}") String clientId,
-                                @Value("${KAKAO_CLIENT_SECRET:}") String clientSecret,
+                                @Value("${spring.login.KAKAO_CLIENT_ID:}") String clientId,
+                                @Value("${spring.login.KAKAO_CLIENT_SECRET:}") String clientSecret,
                                 @Value("${KAKAO_REDIRECT_URI:http://localhost:8080/movie/login/kakao/callback}") String redirectUri) {
         this.loginService = loginService;
         this.userDetailsService = userDetailsService;
