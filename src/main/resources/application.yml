@@ -1,0 +1,56 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  datasource:
+    # 일반 MySQL 드라이버 사용 시: com.mysql.cj.jdbc.Driver
+    # Log4jdbc 쿼리 로깅 사용 시: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL:jdbc:mysql://localhost:3306/movie?serverTimezone=Asia/Seoul&characterEncoding=UTF-8}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:여기에_DB_비밀번호}
+
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+    mode: HTML
+    encoding: UTF-8
+  login:
+    KAKAO_CLIENT_ID: ${KAKAO_CLIENT_ID:}
+    KAKAO_CLIENT_SECRET: ${KAKAO_CLIENT_SECRET:}
+    KAKAO_REDIRECT_URI: ${KAKAO_REDIRECT_URI:}
+    NAVER_CLIENT_ID: ${NAVER_CLIENT_ID:}
+    NAVER_CLIENT_SECRET: ${NAVER_CLIENT_SECRET:}
+    NAVER_REDIRECT_URI: ${NAVER_REDIRECT_URI:}
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 50MB
+
+# MyBatis 설정 (Mapper XML 경로 및 Entity 패키지 지정)
+mybatis:
+  mapper-locations: classpath:/templates/movie/mappers/*.xml
+  type-aliases-package: com.example.movie.entity
+
+# 로컬 파일 업로드 경로 (@Value("${project.upload.path}"))
+project:
+  upload:
+    path: ${PROJECT_UPLOAD_PATH:C:/courage3/JavaRealProject/potfolio_project/java/backend/movie/src/main/resources/static/css/uploadImage/files}

@@ -1,0 +1,36 @@
+services:
+  app:
+    image: ${APP_IMAGE:-ghcr.io/alstkdwh24/movie:latest}
+    build: .
+    ports:
+      - "8080:8080"
+    env_file: .env
+    environment:
+      DB_URL: jdbc:mysql://db:3306/movie?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+      PROJECT_UPLOAD_PATH: /app/uploads
+    volumes:
+      - uploads:/app/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: mysql:8.0
+    env_file: .env
+    environment:
+      MYSQL_DATABASE: movie
+      TZ: Asia/Seoul
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  uploads:
+  db-data:

@@ -1,0 +1,16 @@
+.git
+.gradle
+.idea
+.vscode
+.settings
+.metadata
+.claude
+bin
+build
+logs
+docs
+node_modules
+*.patch
+*.iml
+.env
+.env.*

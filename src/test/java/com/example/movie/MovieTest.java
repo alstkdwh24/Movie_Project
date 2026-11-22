@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -14,7 +15,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
+@Transactional
 public class MovieTest {
 
     @Value("${project.upload.path}")
@@ -47,6 +51,8 @@ public class MovieTest {
                 .reg_date(LocalDateTime.now())
                 .build();
 
-        shopService.delicious_Resist(dto);
+        int inserted = shopService.delicious_Resist(dto);
+
+        assertThat(inserted).isEqualTo(1);
     }
 }
