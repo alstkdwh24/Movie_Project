@@ -49,8 +49,8 @@ public class NaverLoginController {
     private final String redirectUri;
 
     public NaverLoginController(SocialLoginService socialLoginService,
-                                @Value("${NAVER_CLIENT_ID:}") String clientId,
-                                @Value("${NAVER_CLIENT_SECRET:}") String clientSecret,
+                                @Value("${spring.login.NAVER_CLIENT_ID:}") String clientId,
+                                @Value("${spring.login.NAVER_CLIENT_SECRET:}") String clientSecret,
                                 @Value("${NAVER_REDIRECT_URI:http://localhost:8080/movie/login/naver/callback}") String redirectUri) {
         this.socialLoginService = socialLoginService;
         this.clientId = clientId;
@@ -67,7 +67,7 @@ public class NaverLoginController {
     public String authorize(HttpSession session, RedirectAttributes ra) {
         // 네이버는 토큰 요청에 client secret이 꼭 필요하다.
         if (!StringUtils.hasText(clientId) || !StringUtils.hasText(clientSecret)) {
-            log.warn("NAVER_CLIENT_ID 또는 NAVER_CLIENT_SECRET 환경변수가 없어 네이버 로그인을 시작할 수 없습니다.");
+            log.warn("spring.login.NAVER_CLIENT_ID 또는 NAVER_CLIENT_SECRET 설정이 없어 네이버 로그인을 시작할 수 없습니다.");
             ra.addFlashAttribute("msg", "네이버 로그인이 아직 설정되지 않았습니다.");
             return "redirect:/movie/login/login";
         }

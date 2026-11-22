@@ -66,7 +66,7 @@ public class KakaoLoginController {
     @GetMapping
     public String authorize(HttpSession session, RedirectAttributes ra) {
         if (!StringUtils.hasText(clientId)) {
-            log.warn("KAKAO_CLIENT_ID 환경변수가 없어 카카오 로그인을 시작할 수 없습니다.");
+            log.warn("spring.login.KAKAO_CLIENT_ID 설정이 없어 카카오 로그인을 시작할 수 없습니다.");
             ra.addFlashAttribute("msg", "카카오 로그인이 아직 설정되지 않았습니다.");
             return "redirect:/movie/login/login";
         }
