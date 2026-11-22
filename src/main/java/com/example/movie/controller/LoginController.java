@@ -1,6 +1,7 @@
 package com.example.movie.controller;
 
 import com.example.movie.LoginService.LoginService;
+import com.example.movie.LoginService.SocialLoginService;
 import com.example.movie.dto.LoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,11 +19,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Locale;
+import java.util.regex.Pattern;
 
 @Controller
 @RequestMapping("/movie/login")
 public class LoginController {
+    private static final Pattern NORMAL_USERNAME = Pattern.compile("^[A-Za-z0-9]{4,20}$");
+
     @Autowired
     @Qualifier("loginService")
     private LoginService loginService;
@@ -110,9 +113,12 @@ public class LoginController {
     // 회원가입 요청
     @PostMapping("/login_join")
     public String login_join(LoginDTO vo, RedirectAttributes ra) {
-        // kakao_ 아이디는 카카오 로그인 전용이다. 일반 가입으로 먼저 만들어 두면 카카오 사용자가 그 계정으로 로그인하게 된다(계정 선점).
-        if (vo.getUsername() == null || vo.getUsername().toLowerCase(Locale.ROOT).startsWith("kakao_")) {
-            ra.addFlashAttribute("msg", "사용할 수 없는 아이디입니다.");
+        // 일반 가입 아이디는 영문·숫자만 허용한다. '_'가 없으니 kakao_·naver_ 같은 소셜 전용 아이디를 만들 수 없고,
+        // 악센트·전각 문자(예: kākao_1)가 DB 정렬 규칙에서 소셜 아이디와 같게 비교되는 것도 막는다(계정 선점 방지).
+        String username = vo.getUsername();
+        if (username == null || !NORMAL_USERNAME.matcher(username).matches()
+                || SocialLoginService.isReservedUsername(username)) {
+            ra.addFlashAttribute("msg", "사용할 수 없는 아이디입니다. 영문·숫자 4~20자로 입력해 주세요.");
             return "redirect:/movie/login/login";
         }
         int result = loginService.Login_join(vo);
